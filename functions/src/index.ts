@@ -9,7 +9,9 @@ const db = admin.firestore()
 
 // ── Create PayMongo checkout session ─────────────────────────────────────────
 
-export const createPaymongoCheckout = functions.https.onCall(
+const region = functions.region('asia-southeast1')
+
+export const createPaymongoCheckout = region.https.onCall(
   async (data: { uid: string }, context) => {
     const uid = data.uid
     if (!uid) throw new functions.https.HttpsError('invalid-argument', 'uid required')
@@ -56,7 +58,7 @@ export const createPaymongoCheckout = functions.https.onCall(
 
 // ── PayMongo webhook ──────────────────────────────────────────────────────────
 
-export const paymongoWebhook = functions.https.onRequest(async (req, res) => {
+export const paymongoWebhook = region.https.onRequest(async (req, res) => {
   if (req.method !== 'POST') { res.status(405).send('Method Not Allowed'); return }
 
   const webhookSecret = process.env.PAYMONGO_WEBHOOK_SECRET
