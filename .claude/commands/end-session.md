@@ -31,6 +31,16 @@ Update only files that are actually stale. Update the one-line hook in MEMORY.md
 ## Step 4 — Commit and push
 Stage all changes in `.claude/memory/` and `docs/` and commit with a brief end-of-session message. Push to origin.
 
+## Step 5 — Back up global memory to ron-notes
+After pushing the project repo, back up the global memory folder to GitHub:
+```powershell
+cd "C:\Users\rsilv\.claude\projects\C--Projects\memory"
+git add -A
+git commit -m "Session backup $(Get-Date -Format 'yyyy-MM-dd')"
+git push
+```
+If nothing changed, `git commit` will fail with "nothing to commit" — that's fine, skip it.
+
 ## Rules
 - Never ask Ron to summarize what was done — infer it from the conversation history
 - Do not modify CLAUDE.md or any source files
