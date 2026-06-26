@@ -1,22 +1,19 @@
 # Reality Check — Session Handoff
 
-**Last updated:** 2026-06-26 - Session 1
+**Last updated:** 2026-06-26 - Session 2
 
 ---
 
-## Completed This Session (Session 1 · 2026-06-26)
+## Completed This Session (Session 2 · 2026-06-26)
 
-- Scaffolded React + Vite + Zustand + Firebase + Tailwind web app
-- Built all 5 core modules: Sweat Hours, Asset Reality, Journal (with intercept), Near-Miss Reframe, Progress/Streaks
-- Firebase Auth (anonymous + Google) + Firestore cloud sync
-- PayMongo one-time payment (₱299) — GCash, Maya, QRPH, card
-- Firebase Cloud Functions deployed to Singapore (asia-southeast1)
-- Milestone modal system (Day 1/3/7/14/30/60/90/180/365)
-- Deployed to Firebase Hosting: https://reality-check-5fffe.web.app
-- Monorepo restructured: `apps/web/`, `apps/mobile/`, `packages/core/`
-- Expo mobile app scaffolded with all screens + onboarding + urge timer + call friend
-- Metro port locked to 8082 (DB uses 8081)
-- `end-session` command added to repo
+- Added taste-skill (13 design skills) to both RC and David's Beacon
+- Copied all DB commands, hooks, plugins, audit plan to RC — both projects now in sync
+- Added `typecheck` script to `apps/web/package.json`
+- `.claude/settings.json` configured: Ponytail hook, typecheck on Edit/Write, graphify on Read, security-guidance plugin
+- `docs/PRIVACY_SECURITY_AUDIT_PLAN.md` copied from DB
+- All commands available: `/end-session`, `/deploy`, `/new-route`, `/new-store`, `/new-view`, `/new-function`, `/new-firestore-rule`, `/create-prd`, `/create-jtbd`, `/fix-github-issue`, `/update-handoff`, `/update-roadmap`
+- Metro port 8082 confirmed for RC (DB uses 8081)
+- `end-session` skill now global at `C:\Projects\.claude\commands\` + in RC repo
 
 ---
 
@@ -41,13 +38,13 @@
 - [ ] Daily push notifications (streak reminder + pre-gambling intercept)
 - [ ] Budget tracker — income vs spending vs losses dashboard
 - [ ] Bank SMS parser — paste PH bank SMS, auto-extract loss amount
+- [ ] Loss simulation — ₱X compounded in savings over 1/5/10 years
 - [ ] Anonymous community feed
 - [ ] Biometric lock (Face ID / fingerprint)
 - [ ] Multi-language — Filipino + Cebuano
 - [ ] Home screen widget (streak counter)
 - [ ] Ko-fi button in Settings/footer
 - [ ] ToS + Privacy Policy pages (required before any store submission)
-- [ ] Loss simulation — ₱X compounded in savings over 1/5/10 years
 - [ ] Open source after RN release (separate public repo)
 
 ---
@@ -63,4 +60,4 @@
 
 ## Dev Approach
 
-Mobile-first: all new features built in Expo RN first, then ported to web app.
+Mobile-first: all new features built in Expo RN first, then ported to web app. PH → SEA → global expansion target.
