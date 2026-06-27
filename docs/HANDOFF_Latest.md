@@ -1,6 +1,20 @@
 # Reality Check — Session Handoff
 
-**Last updated:** 2026-06-26 - Session 2
+**Last updated:** 2026-06-26 - Session 3
+
+---
+
+## Completed This Session (Session 3 · 2026-06-26)
+
+**Session focus: Gut Check — new trading journal app planning**
+
+- Named new app **Gut Check** (double meaning: honest self-assessment + gut trade = impulsive trade, the enemy)
+- Decided on Chrome extension-first architecture (not mobile-first — trading happens on desktop)
+- Stack confirmed: Chrome extension (Manifest V3) + React web dashboard (PWA) + Firebase + NO separate RN (mobile use case is light; RC + DB already eating RN bandwidth)
+- Extension scrapes both Tradovate and TopstepX; hybrid auto-fill + user emotion/notes
+- Key features: pre-trade checklist, circuit breakers (cooldown timers, session lockout), consistency score, rule builder
+- Gut Check is a separate app from Reality Check (different audience, different identity)
+- Architecture section presented and accepted; design session paused — user switching to Zed IDE
 
 ---
 
