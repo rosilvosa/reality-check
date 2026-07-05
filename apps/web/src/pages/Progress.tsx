@@ -1,6 +1,8 @@
 import { useStreakStore } from '../stores/streakStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import VoidSection from '../components/VoidSection'
+import { useT } from '../i18n'
+import { tpl } from '@rc/core'
 
 const MILESTONES = [1, 3, 7, 14, 30, 60, 90, 180, 365]
 
@@ -24,6 +26,7 @@ export default function Progress() {
     startDate, loading, checkIn,
   } = useStreakStore()
   const { assets } = useSettingsStore()
+  const t = useT()
 
   const checkedInToday = isCheckedInToday(lastCheckInDate)
   const totalSaved = useStreakStore.getState().getTotalSaved()
@@ -37,28 +40,28 @@ export default function Progress() {
   return (
     <div className="px-4 py-6 pb-24 max-w-lg mx-auto">
       <p className="text-[11px] tracking-widest text-muted uppercase mb-1">Gambling Recovery Tool</p>
-      <h1 className="text-2xl font-black text-white mb-6">Progress</h1>
+      <h1 className="text-2xl font-black text-white mb-6">{t.progress.title}</h1>
 
       {/* Current streak */}
       <div className="bg-[#111118] border border-[#232330] rounded-xl p-6 mb-4 text-center">
         {currentStreak > 0 ? (
           <>
             <div className="text-7xl font-black text-white leading-none">{currentStreak}</div>
-            <div className="text-muted text-sm font-semibold mt-1 mb-3 uppercase tracking-wider">days clean</div>
+            <div className="text-muted text-sm font-semibold mt-1 mb-3 uppercase tracking-wider">{t.progress.daysClean}</div>
             <div className="text-[12px] text-muted">
-              Last check-in: {toDateLabel(lastCheckInDate)}
+              {tpl(t.progress.lastCheckIn, { date: toDateLabel(lastCheckInDate) })}
             </div>
             <div className="text-[12px] text-muted mt-1">
-              Personal best: <span className="text-white font-bold">{longestStreak} days</span>
+              {tpl(t.progress.personalBest, { n: String(longestStreak) })}
             </div>
           </>
         ) : (
           <div className="py-4">
             <div className="text-4xl mb-3">📅</div>
-            <div className="text-white font-bold text-lg">Start your streak today.</div>
+            <div className="text-white font-bold text-lg">{t.progress.startStreak}</div>
             {longestStreak > 0 && (
               <div className="text-muted text-sm mt-2">
-                Personal best: {longestStreak} days
+                {tpl(t.progress.personalBest, { n: String(longestStreak) })}
               </div>
             )}
           </div>
@@ -67,13 +70,13 @@ export default function Progress() {
 
       {/* Check-in */}
       <div className="bg-[#111118] border border-[#232330] rounded-xl p-5 mb-4">
-        <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-3">Daily Check-In</div>
+        <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-3">{t.progress.dailyCheckIn}</div>
         {checkedInToday ? (
           <button
             disabled
             className="w-full py-3 bg-[#18181f] text-muted font-black rounded-lg text-sm tracking-wider cursor-not-allowed"
           >
-            ✓ CHECKED IN TODAY
+            {t.progress.checkedInBtn}
           </button>
         ) : (
           <button
@@ -81,28 +84,23 @@ export default function Progress() {
             disabled={loading}
             className="w-full py-3 bg-accent text-white font-black rounded-lg text-sm tracking-wider hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            I AM CLEAN TODAY
+            {t.progress.checkInBtn}
           </button>
         )}
-        <p className="text-muted text-[12px] text-center mt-3">
-          Tap once per day to keep your streak alive. Miss a day and it resets.
-        </p>
+        <p className="text-muted text-[12px] text-center mt-3">{t.progress.checkInHint}</p>
       </div>
 
       {/* Streak reset message */}
       {currentStreak === 0 && startDate !== null && (
         <div className="border border-accent rounded-xl p-4 mb-4 bg-[#1a0a0a]">
-          <p className="text-white text-sm font-semibold">
-            Your streak reset. That's not failure — that's data. Start again.
-          </p>
+          <p className="text-white text-sm font-semibold">{t.progress.resetMsg}</p>
         </div>
       )}
 
       {/* What you've protected */}
       {totalSaved > 0 && (
         <div className="bg-[#111118] border border-[#232330] rounded-xl p-5 mb-4">
-          <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-3">What You've Protected</div>
-          <div className="text-[11px] text-muted mb-2">Since you started, you've protected:</div>
+          <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-3">{t.progress.protectedLabel}</div>
           <div className="text-2xl font-black text-white mb-3">
             ₱{totalSaved.toLocaleString()}
           </div>
@@ -126,7 +124,7 @@ export default function Progress() {
 
       {/* Milestone timeline */}
       <div className="bg-[#111118] border border-[#232330] rounded-xl p-5 mb-4">
-        <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-4">Milestones</div>
+        <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-4">{t.progress.milestonesLabel}</div>
         <div className="grid grid-cols-3 gap-3">
           {MILESTONES.map((m) => {
             const unlocked = milestonesSeen.includes(m) || currentStreak >= m
@@ -149,7 +147,7 @@ export default function Progress() {
                   {m}d
                 </span>
                 {isNext && !unlocked && (
-                  <span className="text-[9px] text-accent mt-0.5">next</span>
+                  <span className="text-[9px] text-accent mt-0.5">{t.progress.nextLabel}</span>
                 )}
                 {unlocked && (
                   <span className="text-[9px] text-accent mt-0.5">✓</span>

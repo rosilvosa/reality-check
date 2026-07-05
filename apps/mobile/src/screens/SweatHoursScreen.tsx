@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { colors } from '../theme/colors'
 import { useSettingsStore } from '../stores/settingsStore'
-import { calcSweatHours } from '@rc/core'
+import { calcSweatHours, tpl } from '@rc/core'
+import { useT } from '../i18n'
 
 export default function SweatHoursScreen() {
   const [loss, setLoss] = useState('')
   const [result, setResult] = useState<{ hours: number; days: number; hourlyRate: number } | null>(null)
   const settings = useSettingsStore(s => s.settings)
+  const t = useT()
 
   const noSettings = !settings.monthlyPay
 
@@ -20,23 +22,23 @@ export default function SweatHoursScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.label}>GAMBLING RECOVERY TOOL</Text>
-      <Text style={styles.title}>Sweat Hours{'\n'}Calculator</Text>
-      <Text style={styles.sub}>Every loss is hours of your life you will never get back. This makes that real.</Text>
+      <Text style={styles.title}>{t.sweat.title}</Text>
+      <Text style={styles.sub}>{t.sweat.subtitle}</Text>
 
       {noSettings && (
         <View style={styles.warning}>
-          <Text style={styles.warningText}>⚠ Set your monthly pay in Settings first.</Text>
+          <Text style={styles.warningText}>{t.sweat.notConfigured}</Text>
         </View>
       )}
 
       <View style={styles.card}>
-        <Text style={styles.fieldLabel}>LOSS AMOUNT (₱)</Text>
+        <Text style={styles.fieldLabel}>{t.sweat.labelLoss}</Text>
         <TextInput
           style={styles.input}
           value={loss}
           onChangeText={setLoss}
           keyboardType="numeric"
-          placeholder="e.g. 5000"
+          placeholder={t.sweat.placeholder}
           placeholderTextColor={colors.muted}
         />
         <TouchableOpacity
@@ -44,21 +46,23 @@ export default function SweatHoursScreen() {
           onPress={calculate}
           disabled={noSettings || !loss}
         >
-          <Text style={styles.btnText}>CALCULATE THE REAL COST</Text>
+          <Text style={styles.btnText}>{t.sweat.btn}</Text>
         </TouchableOpacity>
       </View>
 
       {result && (
         <View style={styles.result}>
-          <Text style={styles.resultBig}>{result.hours.toFixed(1)} hours of your life.</Text>
+          <Text style={styles.resultBig}>
+            {tpl(t.sweat.resultHours, { hours: result.hours.toFixed(1) })}
+          </Text>
           <Text style={styles.resultBody}>
-            You did not just lose ₱{parseFloat(loss).toLocaleString()}.{'\n'}
-            You threw away{' '}
-            <Text style={styles.bold}>{result.hours.toFixed(1)} hours</Text> of hard physical labor —
-            that is{' '}
-            <Text style={styles.bold}>{result.days.toFixed(1)} full working days</Text>.{'\n\n'}
-            At ₱{result.hourlyRate.toFixed(2)}/hr, you need to work{' '}
-            <Text style={styles.bold}>{Math.ceil(result.hours)} hours straight</Text> just to recover this.
+            {tpl(t.sweat.resultBody, {
+              loss: parseFloat(loss).toLocaleString(),
+              hours: result.hours.toFixed(1),
+              days: result.days.toFixed(1),
+              rate: result.hourlyRate.toFixed(2),
+              ceilHours: String(Math.ceil(result.hours)),
+            })}
           </Text>
         </View>
       )}
@@ -67,7 +71,11 @@ export default function SweatHoursScreen() {
         <View style={styles.rateCard}>
           <Text style={styles.fieldLabel}>YOUR HOURLY RATE</Text>
           <Text style={styles.rateText}>
-            ₱{settings.monthlyPay.toLocaleString()} / {settings.hoursPerMonth} hrs = ₱{(settings.monthlyPay / settings.hoursPerMonth).toFixed(2)}/hr
+            {tpl(t.sweat.rateNote, {
+              monthly: settings.monthlyPay.toLocaleString(),
+              hoursPerMonth: String(settings.hoursPerMonth),
+              rate: (settings.monthlyPay / settings.hoursPerMonth).toFixed(2),
+            })}
           </Text>
         </View>
       )}
@@ -92,7 +100,6 @@ const styles = StyleSheet.create({
   result: { backgroundColor: colors.surface, borderLeftWidth: 3, borderLeftColor: colors.red, borderRadius: 8, padding: 16, marginBottom: 16 },
   resultBig: { fontSize: 22, fontWeight: '800', color: colors.red, marginBottom: 10 },
   resultBody: { fontSize: 14, color: colors.text, lineHeight: 22 },
-  bold: { fontWeight: '700', color: colors.white },
   rateCard: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 10, padding: 18 },
   rateText: { fontSize: 14, color: colors.muted },
 })

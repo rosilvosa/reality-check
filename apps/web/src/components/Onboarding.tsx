@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSettingsStore } from '../stores/settingsStore'
 import type { Asset } from '@rc/core'
+import { useT } from '../i18n'
+import { tpl } from '@rc/core'
 
 const LS_KEY = 'rc_onboarded'
 
@@ -15,12 +17,10 @@ export default function Onboarding() {
   const { loaded, monthlyPay, saveSettings } = useSettingsStore()
   const [visible, setVisible] = useState(false)
   const [step, setStep] = useState(1)
+  const t = useT()
 
-  // Income state
   const [monthly, setMonthly] = useState('')
   const [hours, setHours] = useState('176')
-
-  // Assets state
   const [assets, setAssets] = useState<Asset[]>(DEFAULT_ASSETS)
 
   useEffect(() => {
@@ -61,7 +61,6 @@ export default function Onboarding() {
 
   return (
     <div className="fixed inset-0 z-50 bg-bg flex flex-col overflow-y-auto">
-      {/* Step indicator */}
       <div className="flex items-center justify-between px-6 pt-6 pb-2 shrink-0">
         <div className="flex gap-2">
           {[1, 2, 3].map((s) => (
@@ -74,48 +73,35 @@ export default function Onboarding() {
           ))}
         </div>
         <button onClick={skip} className="text-xs text-muted hover:text-white transition-colors">
-          Skip
+          {t.common.skip}
         </button>
       </div>
 
-      {/* Step content */}
       <div className="flex-1 flex flex-col justify-center px-6 py-8 max-w-lg w-full mx-auto">
 
-        {/* ── Step 1: Welcome ── */}
         {step === 1 && (
           <div>
-            <p className="text-[11px] tracking-widest uppercase text-muted font-bold mb-4">
-              Gambling Recovery Tool
-            </p>
-            <h1 className="text-5xl font-black text-white leading-none mb-4">
-              Reality<br />Check
-            </h1>
-            <p className="text-accent font-bold text-lg mb-6">Break the digital money illusion.</p>
-            <p className="text-white text-[15px] leading-relaxed mb-4">
-              Gambling turns money into abstract numbers on a screen. This app forces you to confront what every loss actually costs — in hours of your life, weeks of groceries, and months of rent.
-            </p>
-            <p className="text-white text-[15px] leading-relaxed mb-10">
-              The psychology is simple: when losses become real things you can picture, the urge to gamble weakens. Every feature in this app is built around that principle.
-            </p>
+            <p className="text-[11px] tracking-widest uppercase text-muted font-bold mb-4">{t.onboarding.tag}</p>
+            <h1 className="text-5xl font-black text-white leading-none mb-4">{t.onboarding.title}</h1>
+            <p className="text-accent font-bold text-lg mb-6">{t.onboarding.tagline}</p>
+            <p className="text-white text-[15px] leading-relaxed mb-4">{t.onboarding.body1}</p>
+            <p className="text-white text-[15px] leading-relaxed mb-10">{t.onboarding.body2}</p>
             <button
               onClick={() => setStep(2)}
               className="w-full bg-accent text-white font-black py-4 rounded-xl text-sm tracking-wider hover:opacity-90 transition-opacity"
             >
-              GET STARTED
+              {t.onboarding.getStarted}
             </button>
           </div>
         )}
 
-        {/* ── Step 2: Income ── */}
         {step === 2 && (
           <div>
-            <h2 className="text-3xl font-black text-white mb-2">Your Income</h2>
-            <p className="text-muted text-sm leading-relaxed mb-8">
-              This is what makes the calculator honest. Every loss will be converted into real hours of your life.
-            </p>
+            <h2 className="text-3xl font-black text-white mb-2">{t.onboarding.step2Title}</h2>
+            <p className="text-muted text-sm leading-relaxed mb-8">{t.onboarding.step2Sub}</p>
 
             <label className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
-              Monthly Take-Home Pay (₱)
+              {t.onboarding.step2LabelPay}
             </label>
             <input
               type="number"
@@ -127,7 +113,7 @@ export default function Onboarding() {
             />
 
             <label className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
-              Working Hours Per Month
+              {t.onboarding.step2LabelHours}
             </label>
             <input
               type="number"
@@ -139,7 +125,7 @@ export default function Onboarding() {
 
             {rate && (
               <p className="text-sm text-muted mb-8">
-                → Your hourly rate: <strong className="text-white">₱{rate}/hr</strong>
+                {tpl(t.onboarding.step2HourlyRate, { rate })}
               </p>
             )}
             {!rate && <div className="mb-8" />}
@@ -149,18 +135,15 @@ export default function Onboarding() {
               disabled={!monthly}
               className="w-full bg-accent text-white font-black py-4 rounded-xl text-sm tracking-wider disabled:opacity-40 hover:opacity-90 transition-opacity"
             >
-              NEXT
+              {t.onboarding.step2Next}
             </button>
           </div>
         )}
 
-        {/* ── Step 3: Assets ── */}
         {step === 3 && (
           <div>
-            <h2 className="text-3xl font-black text-white mb-2">Real-Life Costs</h2>
-            <p className="text-muted text-sm leading-relaxed mb-6">
-              These are the things your money actually pays for. Every loss will be compared to these. Adjust the numbers to match your life.
-            </p>
+            <h2 className="text-3xl font-black text-white mb-2">{t.onboarding.step3Title}</h2>
+            <p className="text-muted text-sm leading-relaxed mb-6">{t.onboarding.step3Sub}</p>
 
             <div className="space-y-2 mb-3">
               {assets.map((a, i) => (
@@ -169,7 +152,7 @@ export default function Onboarding() {
                     type="text"
                     value={a.name}
                     onChange={(e) => updateAsset(i, 'name', e.target.value)}
-                    placeholder="e.g. 1 Week of Groceries"
+                    placeholder={t.onboarding.step3AssetPh}
                     className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent"
                   />
                   <input
@@ -193,14 +176,14 @@ export default function Onboarding() {
               onClick={() => setAssets((prev) => [...prev, { name: '', cost: 0 }])}
               className="text-sm text-muted border border-border rounded-lg px-3 py-2 hover:text-white transition-colors mb-8"
             >
-              + Add Asset
+              {t.onboarding.step3Add}
             </button>
 
             <button
               onClick={finish}
               className="w-full bg-accent text-white font-black py-4 rounded-xl text-sm tracking-wider hover:opacity-90 transition-opacity"
             >
-              START RECOVERY
+              {t.onboarding.step3Finish}
             </button>
           </div>
         )}

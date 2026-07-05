@@ -2,32 +2,36 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { colors } from '../theme/colors'
 import { useSettingsStore } from '../stores/settingsStore'
-import { calcAssets } from '@rc/core'
+import { calcAssets, tpl } from '@rc/core'
+import { useT } from '../i18n'
 
 export default function AssetRealityScreen() {
   const [loss, setLoss] = useState('')
   const [results, setResults] = useState<Array<{ name: string; cost: number; units: number }> | null>(null)
   const settings = useSettingsStore(s => s.settings)
+  const t = useT()
 
   function calculate() {
     if (!loss) return
     setResults(calcAssets(parseFloat(loss), settings.assets))
   }
 
+  const lossVal = parseFloat(loss)
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.label}>GAMBLING RECOVERY TOOL</Text>
-      <Text style={styles.title}>Asset Reality{'\n'}Converter</Text>
-      <Text style={styles.sub}>Money on a screen feels unreal. Groceries, rent, and medicine do not.</Text>
+      <Text style={styles.title}>{t.assets.title}</Text>
+      <Text style={styles.sub}>{t.assets.subtitle}</Text>
 
       <View style={styles.card}>
-        <Text style={styles.fieldLabel}>LOSS AMOUNT (₱)</Text>
+        <Text style={styles.fieldLabel}>{t.assets.labelLoss}</Text>
         <TextInput
           style={styles.input}
           value={loss}
           onChangeText={setLoss}
           keyboardType="numeric"
-          placeholder="e.g. 5000"
+          placeholder={t.assets.placeholder}
           placeholderTextColor={colors.muted}
         />
         <TouchableOpacity
@@ -35,20 +39,22 @@ export default function AssetRealityScreen() {
           onPress={calculate}
           disabled={!loss}
         >
-          <Text style={styles.btnText}>SEE WHAT YOU BURNED</Text>
+          <Text style={styles.btnText}>{t.assets.btn}</Text>
         </TouchableOpacity>
       </View>
 
       {results && results.length > 0 && (
         <View style={styles.resultCard}>
-          <Text style={styles.resultBig}>You burned ₱{parseFloat(loss).toLocaleString()}</Text>
+          <Text style={styles.resultBig}>
+            {tpl(t.assets.resultBurned, { amount: lossVal.toLocaleString() })}
+          </Text>
           {results.map((r, i) => (
             <View key={i} style={styles.assetRow}>
               <Text style={styles.assetName}>{r.name}</Text>
               <Text style={styles.assetValue}>
                 {r.units >= 1
-                  ? `${r.units.toFixed(2)}× — ${r.units.toFixed(1)} full payments`
-                  : `${(r.units * 100).toFixed(0)}% of one payment`}
+                  ? tpl(t.assets.unitsGe1, { units: r.units.toFixed(1), name: r.name })
+                  : tpl(t.assets.unitsLt1, { pct: (r.units * 100).toFixed(0), name: r.name })}
               </Text>
             </View>
           ))}
@@ -57,7 +63,7 @@ export default function AssetRealityScreen() {
 
       {results && results.length === 0 && (
         <View style={styles.noAssets}>
-          <Text style={styles.noAssetsText}>No assets configured. Go to Settings and add your household costs.</Text>
+          <Text style={styles.noAssetsText}>{t.assets.noAssets}</Text>
         </View>
       )}
     </ScrollView>

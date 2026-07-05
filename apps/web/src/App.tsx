@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { LangProvider } from './i18n'
 import Layout from './components/Layout'
 import SweatHours from './pages/SweatHours'
 import AssetReality from './pages/AssetReality'
@@ -42,10 +43,10 @@ export default function App() {
   }, [init, loadStreak])
 
   return (
-    <>
+    <LangProvider>
       <RouterProvider router={router} />
       <MilestoneModal />
       <Onboarding />
-    </>
+    </LangProvider>
   )
 }

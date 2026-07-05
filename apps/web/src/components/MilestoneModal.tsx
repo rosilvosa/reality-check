@@ -1,31 +1,21 @@
 import { useStreakStore } from '../stores/streakStore'
 import { useSettingsStore } from '../stores/settingsStore'
+import { useT } from '../i18n'
 
 const BADGE: Record<number, string> = {
   1: '🌱', 3: '🌿', 7: '🔥', 14: '⚡', 30: '🏆', 60: '💎', 90: '🛡️', 180: '👑', 365: '🌟',
 }
 
-const MESSAGE: Record<number, string> = {
-  1:   'Day one. Most people never get here.',
-  3:   'Three days. The urge peaks around now. You beat it.',
-  7:   'One week. Your brain is already rewiring.',
-  14:  'Two weeks. The cravings are lying to you. Keep going.',
-  30:  'Thirty days. One month of choosing yourself.',
-  60:  'Two months. This is who you are now.',
-  90:  'Ninety days. You\'ve rebuilt your relationship with money.',
-  180: 'Half a year. Remember how bad it felt? You chose this instead.',
-  365: 'One year. You are not the person who walked in here.',
-}
-
 export default function MilestoneModal() {
   const { showMilestoneModal, newMilestone, getTotalSaved, dismissMilestone } = useStreakStore()
   const { assets } = useSettingsStore()
+  const t = useT()
 
   if (!showMilestoneModal || newMilestone === null) return null
 
   const totalSaved = getTotalSaved()
   const badge = BADGE[newMilestone] ?? '🏅'
-  const message = MESSAGE[newMilestone] ?? `${newMilestone} days clean.`
+  const message = t.milestoneMessages[String(newMilestone)] ?? `${newMilestone} days clean.`
 
   const assetLines = (assets ?? [])
     .filter((a) => a.cost > 0)

@@ -3,9 +3,12 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Keyboa
 import { useFocusEffect } from '@react-navigation/native'
 import { colors } from '../theme/colors'
 import { useJournalStore } from '../stores/journalStore'
+import { useT } from '../i18n'
+import { tpl } from '@rc/core'
 
 export default function JournalScreen() {
   const { entries, loading, load, addEntry } = useJournalStore()
+  const t = useT()
   const [acknowledged, setAcknowledged] = useState(false)
   const [chasingAcknowledged, setChasingAcknowledged] = useState(false)
   const [amount, setAmount] = useState('')

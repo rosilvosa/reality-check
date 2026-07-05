@@ -5,19 +5,21 @@ import { colors } from '../theme/colors'
 import { useStreakStore } from '../stores/streakStore'
 import { useJournalStore } from '../stores/journalStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import { MILESTONE_EMOJI, MILESTONE_MESSAGES, calcAssets } from '@rc/core'
+import { MILESTONE_EMOJI, calcAssets } from '@rc/core'
+import { useT } from '../i18n'
 
 export default function MilestoneModal() {
   const { showMilestoneModal, newMilestone, dismissMilestone } = useStreakStore()
   const entries = useJournalStore(s => s.entries)
   const settings = useSettingsStore(s => s.settings)
+  const t = useT()
 
   if (!showMilestoneModal || !newMilestone) return null
 
   const totalSaved = entries.reduce((sum, e) => sum + (e.amount || 0), 0)
   const assets = calcAssets(totalSaved, settings.assets)
   const emoji = MILESTONE_EMOJI[newMilestone] ?? '🏆'
-  const message = MILESTONE_MESSAGES[newMilestone] ?? ''
+  const message = t.milestoneMessages[String(newMilestone)] ?? ''
 
   async function handleDismiss() {
     await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
@@ -36,7 +38,7 @@ export default function MilestoneModal() {
 
           {totalSaved > 0 && (
             <View style={styles.savings}>
-              <Text style={styles.savingsTitle}>You have protected ₱{totalSaved.toLocaleString()}.</Text>
+              <Text style={styles.savingsTitle}>₱{totalSaved.toLocaleString()}</Text>
               {assets.slice(0, 2).map((a, i) => (
                 <Text key={i} style={styles.savingsLine}>
                   {a.units >= 1

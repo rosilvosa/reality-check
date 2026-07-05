@@ -4,6 +4,7 @@ import { VOID_OPTIONS } from '@rc/core'
 import type { VoidType } from '@rc/core'
 import { useSettingsStore } from '../stores/settingsStore'
 import { colors } from '../theme/colors'
+import { useT } from '../i18n'
 
 export default function VoidSection() {
   const { settings, save } = useSettingsStore()
@@ -11,8 +12,9 @@ export default function VoidSection() {
   const [selecting, setSelecting] = useState(false)
   const [pending, setPending] = useState<VoidType | null>(null)
   const [saving, setSaving] = useState(false)
+  const t = useT()
 
-  const active = VOID_OPTIONS.find(o => o.type === voidType)
+  const activeT = voidType ? t.void[voidType] : null
 
   async function handleSave() {
     if (!pending) return
@@ -27,25 +29,26 @@ export default function VoidSection() {
     return (
       <View style={styles.card}>
         <Text style={styles.fieldLabel}>
-          {selecting ? 'Change Recovery Profile' : 'Understanding Your Urge'}
+          {selecting ? t.progress.voidChanging : t.progress.voidLabel}
         </Text>
-        <Text style={styles.hint}>
-          Gambling fills a specific need. Knowing which one is the key to replacing it. Pick the one that fits you best.
-        </Text>
+        <Text style={styles.hint}>{t.progress.voidHint}</Text>
         <View style={styles.optionGrid}>
-          {VOID_OPTIONS.map(o => (
-            <TouchableOpacity
-              key={o.type}
-              onPress={() => setPending(o.type)}
-              style={[styles.optionBtn, pending === o.type && styles.optionBtnActive]}
-            >
-              <Text style={styles.optionEmoji}>{o.emoji}</Text>
-              <Text style={[styles.optionLabel, pending === o.type && { color: colors.white }]}>
-                {o.label}
-              </Text>
-              <Text style={styles.optionDesc}>{o.description}</Text>
-            </TouchableOpacity>
-          ))}
+          {VOID_OPTIONS.map(o => {
+            const ot = t.void[o.type]
+            return (
+              <TouchableOpacity
+                key={o.type}
+                onPress={() => setPending(o.type)}
+                style={[styles.optionBtn, pending === o.type && styles.optionBtnActive]}
+              >
+                <Text style={styles.optionEmoji}>{ot.emoji}</Text>
+                <Text style={[styles.optionLabel, pending === o.type && { color: colors.white }]}>
+                  {ot.label}
+                </Text>
+                <Text style={styles.optionDesc}>{ot.description}</Text>
+              </TouchableOpacity>
+            )
+          })}
         </View>
         <View style={styles.saveRow}>
           <TouchableOpacity
@@ -54,7 +57,7 @@ export default function VoidSection() {
             style={[styles.saveBtn, (!pending || saving) && styles.saveBtnDisabled]}
           >
             <Text style={styles.saveBtnText}>
-              {saving ? 'SAVING...' : 'SAVE & SEE YOUR ALTERNATIVES'}
+              {saving ? t.progress.voidSaving : t.progress.voidSave}
             </Text>
           </TouchableOpacity>
           {selecting && (
@@ -62,7 +65,7 @@ export default function VoidSection() {
               onPress={() => { setSelecting(false); setPending(null) }}
               style={styles.cancelBtn}
             >
-              <Text style={styles.cancelBtnText}>Cancel</Text>
+              <Text style={styles.cancelBtnText}>{t.common.cancel}</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -73,29 +76,29 @@ export default function VoidSection() {
   return (
     <View style={styles.card}>
       <View style={styles.profileHeader}>
-        <Text style={styles.fieldLabel}>When the Urge Hits</Text>
+        <Text style={styles.fieldLabel}>{t.progress.voidWhenUrge}</Text>
         <TouchableOpacity
           onPress={() => setSelecting(true)}
           style={styles.changeBtn}
         >
-          <Text style={styles.changeBtnText}>Change</Text>
+          <Text style={styles.changeBtnText}>{t.progress.voidChange}</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.activeProfile}>
-        <Text style={styles.activeEmoji}>{active!.emoji}</Text>
+        <Text style={styles.activeEmoji}>{activeT!.emoji}</Text>
         <View style={{ flex: 1 }}>
-          <Text style={styles.activeLabel}>{active!.label}</Text>
-          <Text style={styles.activeDesc}>{active!.description}</Text>
+          <Text style={styles.activeLabel}>{activeT!.label}</Text>
+          <Text style={styles.activeDesc}>{activeT!.description}</Text>
         </View>
       </View>
 
       <View style={styles.reframeBox}>
-        <Text style={styles.reframeText}>{active!.reframe}</Text>
+        <Text style={styles.reframeText}>{activeT!.reframe}</Text>
       </View>
 
-      <Text style={styles.altLabel}>Try Instead</Text>
-      {active!.alternatives.map(alt => (
+      <Text style={styles.altLabel}>{t.progress.voidTryInstead}</Text>
+      {activeT!.alternatives.map(alt => (
         <View key={alt} style={styles.altRow}>
           <Text style={styles.altArrow}>→</Text>
           <Text style={styles.altText}>{alt}</Text>

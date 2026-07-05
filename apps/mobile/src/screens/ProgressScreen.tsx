@@ -6,12 +6,14 @@ import { colors } from '../theme/colors'
 import { useStreakStore } from '../stores/streakStore'
 import { useJournalStore } from '../stores/journalStore'
 import { useSettingsStore } from '../stores/settingsStore'
-import { MILESTONES, MILESTONE_EMOJI, calcAssets } from '@rc/core'
+import { MILESTONES, MILESTONE_EMOJI, calcAssets, tpl } from '@rc/core'
 import MilestoneModal from '../components/MilestoneModal'
 import VoidSection from '../components/VoidSection'
+import { useT } from '../i18n'
 
 export default function ProgressScreen() {
   const { streak, loading, load, checkIn, showMilestoneModal } = useStreakStore()
+  const t = useT()
   const entries = useJournalStore(s => s.entries)
   const loadJournal = useJournalStore(s => s.load)
   const settings = useSettingsStore(s => s.settings)
@@ -41,14 +43,14 @@ export default function ProgressScreen() {
     <>
       <ScrollView style={styles.container} contentContainerStyle={styles.content}>
         <Text style={styles.label}>GAMBLING RECOVERY TOOL</Text>
-        <Text style={styles.title}>Progress</Text>
+        <Text style={styles.title}>{t.progress.title}</Text>
 
         <View style={styles.streakCard}>
           {streak.currentStreak > 0 ? (
             <>
               <Text style={styles.streakNum}>{streak.currentStreak}</Text>
-              <Text style={styles.streakSub}>days clean</Text>
-              <Text style={styles.streakBest}>Personal best: {streak.longestStreak} days</Text>
+              <Text style={styles.streakSub}>{t.progress.daysClean}</Text>
+              <Text style={styles.streakBest}>{tpl(t.progress.personalBest, { n: String(streak.longestStreak) })}</Text>
               {streak.lastCheckInDate && (
                 <Text style={styles.streakLast}>
                   Last check-in: {new Date(streak.lastCheckInDate + 'T00:00:00').toLocaleDateString('en-PH', { dateStyle: 'medium' })}
@@ -58,28 +60,28 @@ export default function ProgressScreen() {
           ) : (
             <>
               <Text style={styles.streakEmoji}>📅</Text>
-              <Text style={styles.streakEmpty}>Start your streak today.</Text>
+              <Text style={styles.streakEmpty}>{t.progress.startStreak}</Text>
             </>
           )}
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.fieldLabel}>DAILY CHECK-IN</Text>
+          <Text style={styles.fieldLabel}>{t.progress.dailyCheckIn}</Text>
           <TouchableOpacity
             style={[styles.checkInBtn, checkedInToday && styles.checkInBtnDone]}
             onPress={handleCheckIn}
             disabled={checkedInToday}
           >
             <Text style={styles.checkInBtnText}>
-              {checkedInToday ? '✓ Checked in today' : 'I AM CLEAN TODAY'}
+              {checkedInToday ? t.progress.checkedInBtn : t.progress.checkInBtn}
             </Text>
           </TouchableOpacity>
-          <Text style={styles.checkInHint}>Tap once per day. Miss a day and it resets.</Text>
+          <Text style={styles.checkInHint}>{t.progress.checkInHint}</Text>
         </View>
 
         {totalSaved > 0 && (
           <View style={styles.card}>
-            <Text style={styles.fieldLabel}>WHAT YOU HAVE PROTECTED</Text>
+            <Text style={styles.fieldLabel}>{t.progress.protectedLabel}</Text>
             <Text style={styles.savedTotal}>₱{totalSaved.toLocaleString()}</Text>
             {assetResults.map((r, i) => (
               <Text key={i} style={styles.assetLine}>
@@ -94,7 +96,7 @@ export default function ProgressScreen() {
         <VoidSection />
 
         <View style={styles.card}>
-          <Text style={styles.fieldLabel}>MILESTONES</Text>
+          <Text style={styles.fieldLabel}>{t.progress.milestonesLabel}</Text>
           <View style={styles.milestoneGrid}>
             {MILESTONES.map(m => {
               const unlocked = streak.currentStreak >= m
@@ -114,7 +116,7 @@ export default function ProgressScreen() {
                   <Text style={[styles.milestoneDay, !unlocked && styles.milestoneDayLocked]}>
                     {m}d
                   </Text>
-                  {isNext && <Text style={styles.nextLabel}>next</Text>}
+                  {isNext && <Text style={styles.nextLabel}>{t.progress.nextLabel}</Text>}
                 </View>
               )
             })}
@@ -123,9 +125,7 @@ export default function ProgressScreen() {
 
         {streak.currentStreak === 0 && streak.startDate && (
           <View style={styles.resetCard}>
-            <Text style={styles.resetText}>
-              Your streak reset. That is not failure — that is data. Start again.
-            </Text>
+            <Text style={styles.resetText}>{t.progress.resetMsg}</Text>
           </View>
         )}
       </ScrollView>

@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { LangProvider } from './src/i18n'
 import { colors } from './src/theme/colors'
 import { useAuthStore } from './src/stores/authStore'
 import AppNavigator from './src/navigation/AppNavigator'
@@ -30,17 +31,19 @@ export default function App() {
   if (onboarded === null) return null
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.bg }}>
-      <SafeAreaProvider>
-        <StatusBar style="light" />
-        {onboarded ? (
-          <NavigationContainer>
-            <AppNavigator />
-          </NavigationContainer>
-        ) : (
-          <OnboardingScreen onComplete={() => setOnboarded(true)} />
-        )}
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <LangProvider>
+      <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.bg }}>
+        <SafeAreaProvider>
+          <StatusBar style="light" />
+          {onboarded ? (
+            <NavigationContainer>
+              <AppNavigator />
+            </NavigationContainer>
+          ) : (
+            <OnboardingScreen onComplete={() => setOnboarded(true)} />
+          )}
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+    </LangProvider>
   )
 }

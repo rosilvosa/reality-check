@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
-
-const KOFI_URL = 'https://ko-fi.com/rosilvosa' // confirm your Ko-fi username
 import { useSearchParams, NavLink } from 'react-router-dom'
+import { useT, useLang } from '../i18n'
+import { tpl } from '@rc/core'
+
+const KOFI_URL = 'https://ko-fi.com/rosilvosa'
 import { useSettingsStore, Asset } from '../stores/settingsStore'
 import { useAuthStore } from '../stores/authStore'
 import { useJournalStore } from '../stores/journalStore'
@@ -13,6 +15,8 @@ import UpgradeModal from '../components/UpgradeModal'
 export default function Settings() {
   const { monthlyPay, hoursPerMonth, assets, loaded, loadSettings, saveSettings } = useSettingsStore()
   const { user, isPro, refreshProStatus } = useAuthStore()
+  const t = useT()
+  const { lang, setLang, languages } = useLang()
   const { loadJournal } = useJournalStore()
   const [monthly, setMonthly] = useState('')
   const [hours, setHours] = useState('176')
@@ -82,10 +86,8 @@ export default function Settings() {
 
   return (
     <div>
-      <h2 className="text-lg font-extrabold text-white mb-1">Settings</h2>
-      <p className="text-sm text-muted mb-5 leading-relaxed">
-        Configure your income and the real cost of living. These numbers make the calculator honest.
-      </p>
+      <h2 className="text-lg font-extrabold text-white mb-1">{t.settings.title}</h2>
+      <p className="text-sm text-muted mb-5 leading-relaxed">{t.settings.subtitle}</p>
 
       {/* ── Account Section ── */}
       {upgradeSuccess && (
@@ -95,7 +97,7 @@ export default function Settings() {
       )}
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-4">Account &amp; Sync</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-4">{t.settings.accountSection}</p>
 
         {!isRealUser && (
           <div>
@@ -149,9 +151,9 @@ export default function Settings() {
 
       {/* ── Income ── */}
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-4">Your Income</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-4">{t.settings.incomeSection}</p>
 
-        <label className="block text-xs font-bold text-muted mb-1.5">Monthly take-home pay (₱) — after taxes</label>
+        <label className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelMonthly}</label>
         <input
           type="number"
           value={monthly}
@@ -160,7 +162,7 @@ export default function Settings() {
           className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-base outline-none focus:border-accent mb-4"
         />
 
-        <label className="block text-xs font-bold text-muted mb-1.5">Working hours per month</label>
+        <label className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelHours}</label>
         <input
           type="number"
           value={hours}
@@ -170,14 +172,14 @@ export default function Settings() {
         />
 
         {derivedRate && (
-          <p className="text-sm text-muted">→ Your hourly rate: <strong className="text-white">₱{derivedRate}/hr</strong></p>
+          <p className="text-sm text-muted">{tpl(t.settings.hourlyRate, { rate: derivedRate })}</p>
         )}
       </div>
 
       {/* ── Assets ── */}
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-1">Real-Life Asset Costs</p>
-        <p className="text-sm text-muted mb-4">Add the things your money actually pays for.</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-1">{t.settings.assetsSection}</p>
+        <p className="text-sm text-muted mb-4">{t.settings.assetsHint}</p>
 
         <div className="space-y-2 mb-3">
           {localAssets.map((a, i) => (
@@ -186,7 +188,7 @@ export default function Settings() {
                 type="text"
                 value={a.name}
                 onChange={(e) => updateAsset(i, 'name', e.target.value)}
-                placeholder="Asset name"
+                placeholder={t.settings.assetNamePlaceholder}
                 className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
               />
               <input
@@ -207,46 +209,64 @@ export default function Settings() {
         </div>
 
         <button onClick={addAsset} className="text-sm text-muted border border-border rounded-lg px-3 py-2 hover:text-white transition-colors">
-          + Add Asset
+          {t.settings.addAsset}
         </button>
       </div>
 
       {/* ── Ko-fi ── */}
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">Support This Project</p>
-        <p className="text-sm text-muted mb-4 leading-relaxed">
-          Reality Check is free, forever. If it has helped you, a coffee keeps the lights on.
-        </p>
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.supportSection}</p>
+        <p className="text-sm text-muted mb-4 leading-relaxed">{t.settings.supportHint}</p>
         <a
           href={KOFI_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 w-full py-3 border border-border rounded-lg text-white font-bold text-sm hover:border-accent hover:text-accent transition-colors"
         >
-          ☕ Buy Me a Coffee
+          {t.settings.kofiBtn}
         </a>
       </div>
 
       {/* ── Recovery Tools ── */}
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">Recovery Tools</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.recoveryTools}</p>
         <NavLink
           to="/barriers"
           className="flex items-center justify-between w-full text-left hover:bg-surface2 rounded-lg px-3 py-2.5 transition-colors group"
         >
           <div>
-            <p className="text-white font-semibold text-sm">Build Your Barriers</p>
-            <p className="text-muted text-xs">Self-exclusion, app deletion, site blocking checklist</p>
+            <p className="text-white font-semibold text-sm">{t.settings.barriersTitle}</p>
+            <p className="text-muted text-xs">{t.settings.barriersDesc}</p>
           </div>
           <span className="text-muted group-hover:text-white transition-colors text-sm">→</span>
         </NavLink>
+      </div>
+
+      {/* Language Selector */}
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.langSection}</p>
+        <div className="flex flex-wrap gap-2">
+          {languages.map((l) => (
+            <button
+              key={l.code}
+              onClick={() => setLang(l.code)}
+              className={`px-3 py-1.5 rounded-lg text-sm font-semibold border transition-colors ${
+                lang === l.code
+                  ? 'bg-accent text-white border-accent'
+                  : 'bg-surface2 text-muted border-border hover:border-accent hover:text-white'
+              }`}
+            >
+              {l.native}
+            </button>
+          ))}
+        </div>
       </div>
 
       <button
         onClick={handleSave}
         className="w-full bg-[#0891b2] text-white font-bold py-3 rounded-lg transition-opacity hover:opacity-90"
       >
-        {saved ? '✓ SAVED' : 'SAVE SETTINGS'}
+        {saved ? t.settings.savedBtn : t.settings.saveBtn}
       </button>
 
       <AuthModal isOpen={showAuth} onClose={() => setShowAuth(false)} />

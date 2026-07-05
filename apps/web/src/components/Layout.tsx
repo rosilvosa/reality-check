@@ -1,16 +1,19 @@
 import { NavLink, Outlet } from 'react-router-dom'
-
-const tabs = [
-  { to: '/', label: '💧 Sweat', end: true },
-  { to: '/assets', label: '🔥 Assets' },
-  { to: '/journal', label: '📓 Journal' },
-  { to: '/nearmiss', label: '⚠️ Miss' },
-  { to: '/trap', label: '🧠 Trap' },
-  { to: '/progress', label: '🏆 Progress' },
-  { to: '/settings', label: '⚙ Settings' },
-]
+import { useT } from '../i18n'
 
 export default function Layout() {
+  const t = useT()
+
+  const tabs = [
+    { to: '/', label: t.nav.sweat, end: true },
+    { to: '/assets', label: t.nav.assets },
+    { to: '/journal', label: t.nav.journal },
+    { to: '/nearmiss', label: t.nav.nearmiss },
+    { to: '/trap', label: t.nav.trap },
+    { to: '/progress', label: t.nav.progress },
+    { to: '/settings', label: t.nav.settings },
+  ]
+
   return (
     <div className="flex flex-col min-h-screen bg-bg">
       <header className="border-b border-border bg-surface px-4 pt-4 pb-0">
@@ -23,18 +26,18 @@ export default function Layout() {
       </main>
 
       <nav className="fixed bottom-0 inset-x-0 bg-surface border-t border-border flex">
-        {tabs.map((t) => (
+        {tabs.map((tab) => (
           <NavLink
-            key={t.to}
-            to={t.to}
-            end={t.end}
+            key={tab.to}
+            to={tab.to}
+            end={tab.end}
             className={({ isActive }) =>
               `flex-1 py-3 text-center text-[11px] font-bold leading-tight transition-colors ${
                 isActive ? 'text-accent border-t-2 border-accent' : 'text-muted'
               }`
             }
           >
-            {t.label}
+            {tab.label}
           </NavLink>
         ))}
       </nav>
