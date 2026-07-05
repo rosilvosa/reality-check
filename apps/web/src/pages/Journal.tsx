@@ -5,6 +5,7 @@ import { auth } from '../lib/firebase'
 export default function Journal() {
   const { entries, loaded, loadJournal, addEntry } = useJournalStore()
   const [acknowledged, setAcknowledged] = useState(false)
+  const [chasingAcknowledged, setChasingAcknowledged] = useState(false)
   const [amount, setAmount] = useState('')
   const [text, setText] = useState('')
   const [saving, setSaving] = useState(false)
@@ -27,6 +28,15 @@ export default function Journal() {
 
   const mostRecent = entries[0]
   const mustIntercept = entries.length > 0 && !acknowledged
+
+  function isToday(date: Date) {
+    const now = new Date()
+    return date.getDate() === now.getDate() &&
+      date.getMonth() === now.getMonth() &&
+      date.getFullYear() === now.getFullYear()
+  }
+  const mostRecentIsToday = !!mostRecent && isToday(mostRecent.createdAt)
+  const mustShowChasingWarning = acknowledged && mostRecentIsToday && !chasingAcknowledged
 
   if (!loaded) {
     return <p className="text-muted text-sm">Loading journal...</p>
@@ -64,7 +74,36 @@ export default function Journal() {
         </div>
       )}
 
-      {(!mustIntercept) && (
+      {mustShowChasingWarning && (
+        <div className="border-2 border-red-500 rounded-xl p-5 mb-6 bg-surface">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-red-400 mb-1">⛔ Are You Chasing a Loss?</p>
+          <p className="text-sm text-muted mb-4 leading-relaxed">
+            You already logged a loss today. You are about to log another one.
+          </p>
+          <div className="bg-bg rounded-lg p-4 mb-4 border-l-4 border-red-500">
+            <p className="text-white text-[15px] leading-relaxed font-bold mb-2">
+              This is called loss chasing — and it is the most dangerous phase of gambling addiction.
+            </p>
+            <p className="text-white text-[15px] leading-relaxed mb-2">
+              The sunk cost fallacy tells you that because you have already lost so much, you need to keep going to make it worthwhile. But that is not how probability works.
+            </p>
+            <p className="text-white text-[15px] leading-relaxed mb-2">
+              Past losses have <strong>zero effect</strong> on future outcomes. The odds reset every single bet. Your emotions do not.
+            </p>
+            <p className="text-white text-[15px] leading-relaxed">
+              Researchers have found that during loss chasing, the prefrontal cortex — the part of your brain responsible for rational decisions — shows impaired activity. <strong>You are not making decisions right now. Your brain is in survival mode.</strong>
+            </p>
+          </div>
+          <button
+            onClick={() => setChasingAcknowledged(true)}
+            className="w-full bg-red-600 text-white font-bold py-3 rounded-lg text-sm"
+          >
+            I understand. I am still going to journal this loss.
+          </button>
+        </div>
+      )}
+
+      {(!mustIntercept && !mustShowChasingWarning) && (
         <div className="bg-surface border border-border rounded-xl p-5 mb-6">
           <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
             Amount Lost (₱)

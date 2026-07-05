@@ -5,9 +5,12 @@ import SweatHours from './pages/SweatHours'
 import AssetReality from './pages/AssetReality'
 import Journal from './pages/Journal'
 import NearMiss from './pages/NearMiss'
+import Trap from './pages/Trap'
+import Barriers from './pages/Barriers'
 import Settings from './pages/Settings'
 import Progress from './pages/Progress'
 import MilestoneModal from './components/MilestoneModal'
+import Onboarding from './components/Onboarding'
 import { useAuthStore } from './stores/authStore'
 import { useStreakStore } from './stores/streakStore'
 
@@ -20,6 +23,8 @@ const router = createBrowserRouter([
       { path: 'assets', element: <AssetReality /> },
       { path: 'journal', element: <Journal /> },
       { path: 'nearmiss', element: <NearMiss /> },
+      { path: 'trap', element: <Trap /> },
+      { path: 'barriers', element: <Barriers /> },
       { path: 'progress', element: <Progress /> },
       { path: 'settings', element: <Settings /> },
     ],
@@ -40,6 +45,7 @@ export default function App() {
     <>
       <RouterProvider router={router} />
       <MilestoneModal />
+      <Onboarding />
     </>
   )
 }

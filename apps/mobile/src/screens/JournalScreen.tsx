@@ -7,6 +7,7 @@ import { useJournalStore } from '../stores/journalStore'
 export default function JournalScreen() {
   const { entries, loading, load, addEntry } = useJournalStore()
   const [acknowledged, setAcknowledged] = useState(false)
+  const [chasingAcknowledged, setChasingAcknowledged] = useState(false)
   const [amount, setAmount] = useState('')
   const [text, setText] = useState('')
   const [saved, setSaved] = useState(false)
@@ -15,6 +16,7 @@ export default function JournalScreen() {
     React.useCallback(() => {
       load()
       setAcknowledged(false)
+      setChasingAcknowledged(false)
       setSaved(false)
     }, [])
   )
@@ -28,8 +30,17 @@ export default function JournalScreen() {
     setAcknowledged(true)
   }
 
+  function isToday(date: Date) {
+    const now = new Date()
+    return date.getFullYear() === now.getFullYear() &&
+      date.getMonth() === now.getMonth() &&
+      date.getDate() === now.getDate()
+  }
+
   const lastEntry = entries[0]
   const showIntercept = entries.length > 0 && !acknowledged
+  const mostRecentIsToday = !!lastEntry && lastEntry.createdAt instanceof Date && isToday(lastEntry.createdAt)
+  const showChasingWarning = acknowledged && mostRecentIsToday && !chasingAcknowledged
 
   if (loading) return <View style={styles.container} />
 
@@ -60,7 +71,25 @@ export default function JournalScreen() {
           </View>
         )}
 
-        {(!showIntercept) && (
+        {showChasingWarning && (
+          <View style={styles.chasingCard}>
+            <Text style={styles.chasingTitle}>⚠️ Are You Chasing Losses?</Text>
+            <Text style={styles.chasingBody}>
+              You already recorded a loss today. Returning to gamble after a loss is called chasing — it is the most dangerous pattern in gambling addiction.
+            </Text>
+            <Text style={styles.chasingBody}>
+              When you chase, your prefrontal cortex — the rational decision-making part of your brain — is partially shut down by stress. You are not thinking clearly right now.
+            </Text>
+            <Text style={[styles.chasingBody, { color: colors.white, fontWeight: '700', marginTop: 8 }]}>
+              The mathematics don't change. You cannot win back what you lost. Every bet is a new, independent loss.
+            </Text>
+            <TouchableOpacity style={styles.chasingBtn} onPress={() => setChasingAcknowledged(true)}>
+              <Text style={styles.chasingBtnText}>I understand. I am not chasing.</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {(!showIntercept && !showChasingWarning) && (
           <View style={styles.writeCard}>
             <Text style={styles.fieldLabel}>AMOUNT LOST (₱)</Text>
             <TextInput
@@ -121,6 +150,11 @@ const styles = StyleSheet.create({
   label: { fontSize: 11, fontWeight: '700', letterSpacing: 2, color: colors.muted, textTransform: 'uppercase', marginBottom: 4 },
   title: { fontSize: 28, fontWeight: '800', color: colors.white, marginBottom: 20 },
   intercept: { borderWidth: 2, borderColor: colors.red, borderRadius: 10, padding: 20, marginBottom: 20 },
+  chasingCard: { borderWidth: 2, borderColor: colors.amber, borderRadius: 10, padding: 20, marginBottom: 20, backgroundColor: '#120e00' },
+  chasingTitle: { fontSize: 16, fontWeight: '800', color: colors.amber, marginBottom: 12 },
+  chasingBody: { fontSize: 14, color: colors.text, lineHeight: 22, marginBottom: 8 },
+  chasingBtn: { backgroundColor: colors.amber, borderRadius: 8, padding: 14, alignItems: 'center', marginTop: 8 },
+  chasingBtnText: { color: '#000', fontWeight: '700', fontSize: 13, textAlign: 'center' },
   interceptTitle: { fontSize: 16, fontWeight: '800', color: colors.red, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 },
   interceptSub: { fontSize: 13, color: colors.muted, marginBottom: 16 },
   acknowledgeBtn: { backgroundColor: colors.red, borderRadius: 8, padding: 14, alignItems: 'center' },

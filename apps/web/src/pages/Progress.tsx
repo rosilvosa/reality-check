@@ -1,5 +1,6 @@
 import { useStreakStore } from '../stores/streakStore'
 import { useSettingsStore } from '../stores/settingsStore'
+import VoidSection from '../components/VoidSection'
 
 const MILESTONES = [1, 3, 7, 14, 30, 60, 90, 180, 365]
 
@@ -119,6 +120,9 @@ export default function Progress() {
           )}
         </div>
       )}
+
+      {/* Fill the Void */}
+      <VoidSection />
 
       {/* Milestone timeline */}
       <div className="bg-[#111118] border border-[#232330] rounded-xl p-5 mb-4">

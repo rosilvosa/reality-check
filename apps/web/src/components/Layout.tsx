@@ -4,7 +4,8 @@ const tabs = [
   { to: '/', label: '💧 Sweat', end: true },
   { to: '/assets', label: '🔥 Assets' },
   { to: '/journal', label: '📓 Journal' },
-  { to: '/nearmiss', label: '⚠️ Near-Miss' },
+  { to: '/nearmiss', label: '⚠️ Miss' },
+  { to: '/trap', label: '🧠 Trap' },
   { to: '/progress', label: '🏆 Progress' },
   { to: '/settings', label: '⚙ Settings' },
 ]

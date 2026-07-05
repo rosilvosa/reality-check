@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+
+const KOFI_URL = 'https://ko-fi.com/rosilvosa' // confirm your Ko-fi username
+import { useSearchParams, NavLink } from 'react-router-dom'
 import { useSettingsStore, Asset } from '../stores/settingsStore'
 import { useAuthStore } from '../stores/authStore'
 import { useJournalStore } from '../stores/journalStore'
@@ -207,6 +209,37 @@ export default function Settings() {
         <button onClick={addAsset} className="text-sm text-muted border border-border rounded-lg px-3 py-2 hover:text-white transition-colors">
           + Add Asset
         </button>
+      </div>
+
+      {/* ── Ko-fi ── */}
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">Support This Project</p>
+        <p className="text-sm text-muted mb-4 leading-relaxed">
+          Reality Check is free, forever. If it has helped you, a coffee keeps the lights on.
+        </p>
+        <a
+          href={KOFI_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 w-full py-3 border border-border rounded-lg text-white font-bold text-sm hover:border-accent hover:text-accent transition-colors"
+        >
+          ☕ Buy Me a Coffee
+        </a>
+      </div>
+
+      {/* ── Recovery Tools ── */}
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">Recovery Tools</p>
+        <NavLink
+          to="/barriers"
+          className="flex items-center justify-between w-full text-left hover:bg-surface2 rounded-lg px-3 py-2.5 transition-colors group"
+        >
+          <div>
+            <p className="text-white font-semibold text-sm">Build Your Barriers</p>
+            <p className="text-muted text-xs">Self-exclusion, app deletion, site blocking checklist</p>
+          </div>
+          <span className="text-muted group-hover:text-white transition-colors text-sm">→</span>
+        </NavLink>
       </div>
 
       <button

@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { getAdapter } from '../lib/storage'
 import { useAuthStore } from './authStore'
-import type { Asset, Settings } from '../types'
+import type { Asset, Settings, VoidType } from '../types'
 
 export type { Asset }
 
@@ -9,6 +9,7 @@ interface SettingsState extends Settings {
   loaded: boolean
   loadSettings: () => Promise<void>
   saveSettings: (data: Settings) => Promise<void>
+  setVoidType: (voidType: VoidType | null) => Promise<void>
 }
 
 const DEFAULT_ASSETS: Asset[] = [
@@ -27,10 +28,11 @@ async function waitForAuth(): Promise<void> {
   })
 }
 
-export const useSettingsStore = create<SettingsState>((set) => ({
+export const useSettingsStore = create<SettingsState>((set, get) => ({
   monthlyPay: 0,
   hoursPerMonth: 176,
   assets: DEFAULT_ASSETS,
+  voidType: null,
   loaded: false,
 
   loadSettings: async () => {
@@ -46,5 +48,18 @@ export const useSettingsStore = create<SettingsState>((set) => ({
     const { isPro, user } = useAuthStore.getState()
     await getAdapter(isPro, user?.uid ?? null).saveSettings(data)
     set({ ...data })
+  },
+
+  setVoidType: async (voidType) => {
+    await waitForAuth()
+    const { isPro, user } = useAuthStore.getState()
+    const s = get()
+    await getAdapter(isPro, user?.uid ?? null).saveSettings({
+      monthlyPay: s.monthlyPay,
+      hoursPerMonth: s.hoursPerMonth,
+      assets: s.assets,
+      voidType,
+    })
+    set({ voidType })
   },
 }))

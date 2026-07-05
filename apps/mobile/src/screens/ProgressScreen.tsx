@@ -8,6 +8,7 @@ import { useJournalStore } from '../stores/journalStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { MILESTONES, MILESTONE_EMOJI, calcAssets } from '@rc/core'
 import MilestoneModal from '../components/MilestoneModal'
+import VoidSection from '../components/VoidSection'
 
 export default function ProgressScreen() {
   const { streak, loading, load, checkIn, showMilestoneModal } = useStreakStore()
@@ -89,6 +90,8 @@ export default function ProgressScreen() {
             ))}
           </View>
         )}
+
+        <VoidSection />
 
         <View style={styles.card}>
           <Text style={styles.fieldLabel}>MILESTONES</Text>

@@ -35,4 +35,11 @@ export const URGE_MESSAGES = [
   'Think about what you could buy with what you almost lost.',
   'You built a streak. Do not trade it for one session.',
   'The near-miss you remember is keeping you here. It was a loss.',
+  'You are not due for a win. The odds reset completely with every single bet.',
+  'The casino engineered that near-miss to keep you here. It was not luck. Walk away.',
+  'This is a Skinner box. You are pressing the lever. The food stopped coming. Stop.',
+  'Past losses have zero effect on future outcomes. Zero. The math does not owe you anything.',
+  'Your brain is in loss-chasing mode right now. Your judgment is impaired. Do not decide anything.',
+  'You were targeted by a system designed by psychologists. This urge is the proof it is working.',
+  'Every bet you place is mathematically certain to lose over time. This is not bad luck. It is design.',
 ]

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, Alert, Linking } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { colors } from '../theme/colors'
+
+const KOFI_URL = 'https://ko-fi.com/rosilvosa'
 import { useSettingsStore } from '../stores/settingsStore'
 import { useAuthStore } from '../stores/authStore'
 import type { Settings, Asset } from '@rc/core'
 
 export default function SettingsScreen() {
+  const navigation = useNavigation<any>()
   const { settings, load, save } = useSettingsStore()
   const { user, isPro } = useAuthStore()
   const [monthly, setMonthly] = useState('')
@@ -127,6 +131,33 @@ export default function SettingsScreen() {
       <TouchableOpacity style={styles.saveBtn} onPress={handleSave}>
         <Text style={styles.saveBtnText}>SAVE SETTINGS</Text>
       </TouchableOpacity>
+
+      <View style={styles.card}>
+        <Text style={styles.fieldLabel}>Recovery Tools</Text>
+        <TouchableOpacity
+          style={styles.toolRow}
+          onPress={() => navigation.navigate('Barriers')}
+        >
+          <View style={{ flex: 1 }}>
+            <Text style={styles.toolTitle}>Build Your Barriers</Text>
+            <Text style={styles.toolDesc}>Self-exclusion, app deletion, site blocking checklist</Text>
+          </View>
+          <Text style={styles.toolArrow}>→</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.card}>
+        <Text style={styles.fieldLabel}>Support This Project</Text>
+        <Text style={[styles.syncHint, { marginBottom: 12 }]}>
+          Reality Check is free, forever. If it has helped you, a coffee keeps the lights on.
+        </Text>
+        <TouchableOpacity
+          style={styles.kofiBtn}
+          onPress={() => Linking.openURL(KOFI_URL)}
+        >
+          <Text style={styles.kofiBtnText}>☕ Buy Me a Coffee</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   )
 }
@@ -151,6 +182,12 @@ const styles = StyleSheet.create({
   syncHint: { fontSize: 13, color: colors.muted, marginBottom: 12, lineHeight: 20 },
   ghostBtn: { borderWidth: 1, borderColor: colors.border, borderRadius: 8, padding: 12, alignItems: 'center' },
   ghostBtnText: { color: colors.text, fontSize: 14 },
-  saveBtn: { backgroundColor: colors.teal, borderRadius: 8, padding: 16, alignItems: 'center' },
+  saveBtn: { backgroundColor: colors.teal, borderRadius: 8, padding: 16, alignItems: 'center', marginBottom: 16 },
   saveBtnText: { color: colors.white, fontWeight: '700', fontSize: 15, letterSpacing: 0.5 },
+  toolRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 4 },
+  toolTitle: { fontSize: 15, fontWeight: '700', color: colors.white, marginBottom: 2 },
+  toolDesc: { fontSize: 12, color: colors.muted },
+  toolArrow: { fontSize: 16, color: colors.muted, marginLeft: 10 },
+  kofiBtn: { borderWidth: 1, borderColor: colors.border, borderRadius: 8, padding: 14, alignItems: 'center' },
+  kofiBtnText: { color: colors.white, fontWeight: '700', fontSize: 14 },
 })

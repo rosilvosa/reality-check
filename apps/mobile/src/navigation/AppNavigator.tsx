@@ -6,10 +6,13 @@ import { colors } from '../theme/colors'
 import SweatHoursScreen from '../screens/SweatHoursScreen'
 import AssetRealityScreen from '../screens/AssetRealityScreen'
 import JournalScreen from '../screens/JournalScreen'
+import NearMissScreen from '../screens/NearMissScreen'
+import TrapScreen from '../screens/TrapScreen'
 import ProgressScreen from '../screens/ProgressScreen'
 import SettingsScreen from '../screens/SettingsScreen'
 import UrgeTimerScreen from '../screens/UrgeTimerScreen'
 import CallFriendScreen from '../screens/CallFriendScreen'
+import BarriersScreen from '../screens/BarriersScreen'
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
@@ -30,9 +33,11 @@ function Tabs() {
         tabBarInactiveTintColor: colors.muted,
       }}
     >
-      <Tab.Screen name="Sweat" component={SweatHoursScreen} options={{ title: 'Sweat Hours', tabBarIcon: () => <TabIcon label="💧" /> }} />
-      <Tab.Screen name="Assets" component={AssetRealityScreen} options={{ title: 'Asset Reality', tabBarIcon: () => <TabIcon label="🔥" /> }} />
+      <Tab.Screen name="Sweat" component={SweatHoursScreen} options={{ title: 'Sweat', tabBarIcon: () => <TabIcon label="💧" /> }} />
+      <Tab.Screen name="Assets" component={AssetRealityScreen} options={{ title: 'Assets', tabBarIcon: () => <TabIcon label="🔥" /> }} />
       <Tab.Screen name="Journal" component={JournalScreen} options={{ title: 'Journal', tabBarIcon: () => <TabIcon label="📓" /> }} />
+      <Tab.Screen name="NearMiss" component={NearMissScreen} options={{ title: 'Miss', tabBarIcon: () => <TabIcon label="⚠️" /> }} />
+      <Tab.Screen name="Trap" component={TrapScreen} options={{ title: 'Trap', tabBarIcon: () => <TabIcon label="🧠" /> }} />
       <Tab.Screen name="Progress" component={ProgressScreen} options={{ title: 'Progress', tabBarIcon: () => <TabIcon label="🏆" /> }} />
       <Tab.Screen name="Settings" component={SettingsScreen} options={{ title: 'Settings', tabBarIcon: () => <TabIcon label="⚙️" /> }} />
     </Tab.Navigator>
@@ -61,6 +66,16 @@ export default function AppNavigator() {
           headerShown: true,
           title: 'Call a Friend',
           presentation: 'modal',
+          headerStyle: { backgroundColor: colors.surface },
+          headerTintColor: colors.white,
+        }}
+      />
+      <Stack.Screen
+        name="Barriers"
+        component={BarriersScreen}
+        options={{
+          headerShown: true,
+          title: 'Build Your Barriers',
           headerStyle: { backgroundColor: colors.surface },
           headerTintColor: colors.white,
         }}

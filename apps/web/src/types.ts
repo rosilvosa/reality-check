@@ -3,10 +3,13 @@ export interface Asset {
   cost: number
 }
 
+export type VoidType = 'excitement' | 'escape' | 'social' | 'stress'
+
 export interface Settings {
   monthlyPay: number
   hoursPerMonth: number
   assets: Asset[]
+  voidType?: VoidType | null
 }
 
 export interface JournalEntry {

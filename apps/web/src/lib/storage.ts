@@ -71,7 +71,7 @@ function firestoreAdapter(uid: string): StorageAdapter {
       const snap = await getDoc(doc(db, 'users', uid, 'data', 'settings'))
       if (!snap.exists()) return null
       const d = snap.data()
-      return { monthlyPay: d.monthlyPay ?? 0, hoursPerMonth: d.hoursPerMonth ?? 176, assets: d.assets ?? [] }
+      return { monthlyPay: d.monthlyPay ?? 0, hoursPerMonth: d.hoursPerMonth ?? 176, assets: d.assets ?? [], voidType: d.voidType ?? null }
     },
 
     async saveSettings(s) {
