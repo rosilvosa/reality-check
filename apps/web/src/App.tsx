@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LangProvider } from './i18n'
 import Layout from './components/Layout'
+import Home from './pages/Home'
 import SweatHours from './pages/SweatHours'
 import AssetReality from './pages/AssetReality'
 import Journal from './pages/Journal'
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <SweatHours /> },
+      { index: true, element: <Home /> },
+      { path: 'sweat', element: <SweatHours /> },
       { path: 'assets', element: <AssetReality /> },
       { path: 'journal', element: <Journal /> },
       { path: 'nearmiss', element: <NearMiss /> },

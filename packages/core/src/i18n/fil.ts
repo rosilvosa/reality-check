@@ -4,6 +4,7 @@ export const fil: Translation = {
   meta: { languageName: 'Filipino' },
 
   nav: {
+    home: 'Umpisa',
     sweat: '💧 Pawis', assets: '🔥 Gastos', journal: '📓 Talaarawan',
     nearmiss: '⚠️ Halos', trap: '🧠 Bitag', progress: '🏆 Progreso', settings: '⚙ Mga Setting',
     more: 'Iba pa',
@@ -12,6 +13,20 @@ export const fil: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahin', back: 'Bumalik', next: 'Susunod', skip: 'Laktawan',
     change: 'Palitan', close: 'Isara', calculate: 'Kalkulahin', saved: '✓ Na-save',
+  },
+
+  home: {
+    tag: 'Ngayon',
+    checkInNow: 'Mag-check in ngayong araw',
+    checkedIn: 'Nakapag-check in na ngayong araw',
+    daysLabel: 'araw na malinis',
+    startHint: 'Mag-check in para simulan ang bilang ng malinis na araw.',
+    lostBtn: 'Kaka-talo ko lang',
+    lostHint: 'Tingnan ang oras at ang pagkain',
+    writeBtn: 'Isulat',
+    writeHint: 'Ang talaarawan. Basahin muna ang huling entry.',
+    lastEntry: 'Huli mong isinulat',
+    seeProgress: 'Buong progreso',
   },
 
   sweat: {

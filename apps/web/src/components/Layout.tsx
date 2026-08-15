@@ -12,13 +12,14 @@ export default function Layout() {
   const [moreOpen, setMoreOpen] = useState(false)
 
   const primary = [
-    { to: '/', label: t.nav.sweat, icon: '💧', end: true },
+    { to: '/', label: t.nav.home, icon: '🏠', end: true },
     { to: '/journal', label: t.nav.journal, icon: '📓' },
     { to: '/progress', label: t.nav.progress, icon: '🏆' },
     { to: '/settings', label: t.nav.settings, icon: '⚙' },
   ]
 
   const moreItems = [
+    { to: '/sweat', label: t.nav.sweat, icon: '💧', hint: t.sweat.subtitle },
     { to: '/assets', label: t.nav.assets, icon: '🔥', hint: t.settings.assetsHint },
     { to: '/nearmiss', label: t.nav.nearmiss, icon: '⚠️', hint: t.nearmiss.subtitle },
     { to: '/trap', label: t.nav.trap, icon: '🧠', hint: t.trap.subtitle },

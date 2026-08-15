@@ -4,6 +4,7 @@ export const hil: Translation = {
   meta: { languageName: 'Ilonggo' },
 
   nav: {
+    home: 'Umpisa',
     sweat: '💧 Pawis', assets: '🔥 Gastus', journal: '📓 Dyornal',
     nearmiss: '⚠️ Malapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
     more: 'Iban pa',
@@ -12,6 +13,20 @@ export const hil: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahon', back: 'Balik', next: 'Sunod', skip: 'Laktawan',
     change: 'Usbon', close: 'Sarhan', calculate: 'Kuwentahon', saved: '✓ Na-save',
+  },
+
+  home: {
+    tag: 'Subong',
+    checkInNow: 'Mag-check in subong',
+    checkedIn: 'Naka-check in na subong',
+    daysLabel: 'adlaw nga limpyo',
+    startHint: 'Mag-check in para umpisahan ang ihap sang limpyo nga adlaw.',
+    lostBtn: 'Bag-o lang ako napildi',
+    lostHint: 'Tan-awa ang oras kag ang pagkaon',
+    writeBtn: 'Isulat',
+    writeHint: 'Ang dyornal. Basaha anay ang ulihi nga entry.',
+    lastEntry: 'Ulihi mo naisulat',
+    seeProgress: 'Tibuok pag-uswag',
   },
 
   sweat: {

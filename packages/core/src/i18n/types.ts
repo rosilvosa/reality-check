@@ -4,6 +4,7 @@ export interface Translation {
   meta: { languageName: string }
 
   nav: {
+    home: string
     sweat: string; assets: string; journal: string
     nearmiss: string; trap: string; progress: string; settings: string
     more: string
@@ -12,6 +13,20 @@ export interface Translation {
   common: {
     save: string; cancel: string; back: string; next: string; skip: string
     change: string; close: string; calculate: string; saved: string
+  }
+
+  home: {
+    tag: string
+    checkInNow: string
+    checkedIn: string
+    daysLabel: string
+    startHint: string
+    lostBtn: string
+    lostHint: string
+    writeBtn: string
+    writeHint: string
+    lastEntry: string
+    seeProgress: string
   }
 
   sweat: {

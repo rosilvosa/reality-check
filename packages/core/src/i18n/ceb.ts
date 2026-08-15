@@ -4,6 +4,7 @@ export const ceb: Translation = {
   meta: { languageName: 'Bisaya' },
 
   nav: {
+    home: 'Sinugdan',
     sweat: '💧 Pawis', assets: '🔥 Gasto', journal: '📓 Dyornal',
     nearmiss: '⚠️ Hapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
     more: 'Uban pa',
@@ -12,6 +13,20 @@ export const ceb: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahon', back: 'Balik', next: 'Sunod', skip: 'Priso',
     change: 'Usbon', close: 'Sirado', calculate: 'Kuwentahon', saved: '✓ Na-save',
+  },
+
+  home: {
+    tag: 'Karon',
+    checkInNow: 'Pag-check in karon',
+    checkedIn: 'Naka-check in na karon',
+    daysLabel: 'adlaw nga limpyo',
+    startHint: 'Pag-check in aron sugdan ang ihap sa limpyo nga adlaw.',
+    lostBtn: 'Bag-o ko kapildi',
+    lostHint: 'Tan-awa ang oras ug ang pagkaon',
+    writeBtn: 'Isulat',
+    writeHint: 'Ang dyornal. Basaha una ang kataposang entry.',
+    lastEntry: 'Kataposan nimo gisulat',
+    seeProgress: 'Tibuok pag-uswag',
   },
 
   sweat: {

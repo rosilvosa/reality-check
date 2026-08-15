@@ -4,6 +4,7 @@ export const ilo: Translation = {
   meta: { languageName: 'Ilocano' },
 
   nav: {
+    home: 'Rugian',
     sweat: '💧 Balitok', assets: '🔥 Gasto', journal: '📓 Diario',
     nearmiss: '⚠️ Asideg', trap: '🧠 Lit-ag', progress: '🏆 Nalibtaan', settings: '⚙ Settings',
     more: 'Ad-adu',
@@ -12,6 +13,20 @@ export const ilo: Translation = {
   common: {
     save: 'I-save', cancel: 'Ikansela', back: 'Umay', next: 'Sumaganad', skip: 'Brisan',
     change: 'Balbalen', close: 'Saraan', calculate: 'Kalkularen', saved: '✓ Na-save',
+  },
+
+  home: {
+    tag: 'Ita',
+    checkInNow: 'Ag-check in ita',
+    checkedIn: 'Naka-check inen ita',
+    daysLabel: 'aldaw a natalna',
+    startHint: 'Ag-check in tapno marugian ti bilang dagiti natalna nga aldaw.',
+    lostBtn: 'Kakaabakak laeng',
+    lostHint: 'Kitaem dagiti oras ken ti kanen',
+    writeBtn: 'Isurat',
+    writeHint: 'Ti diario. Basaem nga umuna ti maudi nga entry.',
+    lastEntry: 'Maudi a naisuratmo',
+    seeProgress: 'Amin a progreso',
   },
 
   sweat: {

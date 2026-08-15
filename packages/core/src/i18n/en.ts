@@ -4,6 +4,7 @@ export const en: Translation = {
   meta: { languageName: 'English' },
 
   nav: {
+    home: 'Home',
     sweat: '💧 Sweat', assets: '🔥 Assets', journal: '📓 Journal',
     nearmiss: '⚠️ Miss', trap: '🧠 Trap', progress: '🏆 Progress', settings: '⚙ Settings',
     more: 'More',
@@ -12,6 +13,20 @@ export const en: Translation = {
   common: {
     save: 'Save', cancel: 'Cancel', back: 'Back', next: 'Next', skip: 'Skip',
     change: 'Change', close: 'Close', calculate: 'Calculate', saved: '✓ Saved',
+  },
+
+  home: {
+    tag: 'Today',
+    checkInNow: 'Check in for today',
+    checkedIn: 'Checked in today',
+    daysLabel: 'days clean',
+    startHint: 'Check in to start counting clean days.',
+    lostBtn: 'I just lost',
+    lostHint: 'See the hours and the groceries',
+    writeBtn: 'Write it down',
+    writeHint: 'The journal. Read the last entry first.',
+    lastEntry: 'Last time you wrote',
+    seeProgress: 'Full progress',
   },
 
   sweat: {
