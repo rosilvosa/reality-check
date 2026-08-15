@@ -292,6 +292,8 @@ export const ceb: Translation = {
     filterUrge: 'Pagnanasa',
     filterQuestions: 'Mga Pangutana',
     filterVent: 'Lisod nga adlaw',
+    countryLabel: 'Nasud',
+    countryAll: 'Tanang Nasud',
     composeHint: 'Unsa ang naa sa imong hunahuna?',
     typeTip: 'Tip',
     typeUrge: 'Miabot ang pagnanasa',

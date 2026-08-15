@@ -14,6 +14,7 @@ import {
   type Timestamp,
 } from 'firebase/firestore'
 import { db } from './firebase'
+import { resolveHelpRegion, type HelpRegion } from '@rc/core'
 
 export const POST_TYPES = ['tip', 'urge', 'question', 'vent'] as const
 export type PostType = (typeof POST_TYPES)[number]
@@ -28,6 +29,7 @@ export interface CommunityPost {
   uid: string
   type: PostType
   text: string
+  country: HelpRegion
   hearts: number
   createdAt: Date
 }
@@ -63,19 +65,21 @@ export async function fetchPosts(): Promise<CommunityPost[]> {
       uid: String(data.uid ?? ''),
       type: normalizePostType(data.type),
       text: String(data.text ?? ''),
+      country: resolveHelpRegion(data.country),
       hearts: Number(data.hearts ?? 0),
       createdAt: asDate(data.createdAt),
     }
   })
 }
 
-export async function createPost(uid: string, type: PostType, text: string): Promise<void> {
+export async function createPost(uid: string, type: PostType, text: string, country: HelpRegion): Promise<void> {
   const trimmed = text.trim().slice(0, MAX)
   if (!trimmed) throw new Error('empty')
   await addDoc(collection(db, COL), {
     uid,
     type,
     text: trimmed,
+    country,
     hearts: 0,
     createdAt: serverTimestamp(),
   })

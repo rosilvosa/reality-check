@@ -225,6 +225,8 @@ export interface Translation {
     filterUrge: string
     filterQuestions: string
     filterVent: string
+    countryLabel: string
+    countryAll: string
     composeHint: string
     typeTip: string
     typeUrge: string

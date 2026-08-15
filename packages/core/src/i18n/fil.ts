@@ -292,6 +292,8 @@ export const fil: Translation = {
     filterUrge: 'Pagnanasa',
     filterQuestions: 'Mga Tanong',
     filterVent: 'Mahirap na araw',
+    countryLabel: 'Bansa',
+    countryAll: 'Lahat ng bansa',
     composeHint: 'Ano ang nasa isip mo?',
     typeTip: 'Tip',
     typeUrge: 'Dumating ang pagnanasa',

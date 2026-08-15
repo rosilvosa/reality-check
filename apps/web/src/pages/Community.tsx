@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useT } from '../i18n'
+import { HELP_REGIONS, resolveHelpRegion, type HelpRegion } from '@rc/core'
 import { useAuthStore } from '../stores/authStore'
+import { useSettingsStore } from '../stores/settingsStore'
 import {
   createPost,
   deletePost,
@@ -37,6 +39,8 @@ export default function Community() {
   const [posts, setPosts] = useState<CommunityPost[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState<'all' | PostType>('all')
+  const [countryFilter, setCountryFilter] = useState<'all' | HelpRegion>('all')
+  const myRegion = useSettingsStore((s) => resolveHelpRegion(s.helpRegion))
   const [type, setType] = useState<PostType>('tip')
   const [text, setText] = useState('')
   const [open, setOpen] = useState(false)
@@ -63,7 +67,9 @@ export default function Community() {
     reload()
   }, [loadingAuth])
 
-  const visible = filter === 'all' ? posts : posts.filter((p) => p.type === filter)
+  const visible = posts.filter(
+    (p) => (filter === 'all' || p.type === filter) && (countryFilter === 'all' || p.country === countryFilter),
+  )
 
   async function submit() {
     if (!user || posting) return
@@ -72,7 +78,7 @@ export default function Community() {
     setPosting(true)
     setError('')
     try {
-      await createPost(user.uid, type, trimmed)
+      await createPost(user.uid, type, trimmed, myRegion)
       setText('')
       setOpen(false)
       await reload()
@@ -127,7 +133,7 @@ export default function Community() {
       <p className="text-sm text-muted mb-3 leading-relaxed">{t.community.subtitle}</p>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.community.hero}</p>
 
-      <div className="flex gap-1 mb-4 overflow-x-auto bg-surface border border-border rounded-xl p-1">
+      <div className="flex gap-1 mb-3 overflow-x-auto bg-surface border border-border rounded-xl p-1">
         {FILTERS.map((f) => (
           <button
             key={f.id}
@@ -140,6 +146,25 @@ export default function Community() {
             {t.community[f.key]}
           </button>
         ))}
+      </div>
+
+      <div className="flex items-center gap-2 mb-4">
+        <label htmlFor="community-country" className="text-xs font-bold text-muted shrink-0">
+          {t.community.countryLabel}
+        </label>
+        <select
+          id="community-country"
+          value={countryFilter}
+          onChange={(e) => setCountryFilter(e.target.value as 'all' | HelpRegion)}
+          className="flex-1 bg-surface border border-border rounded-lg px-2 py-1.5 text-xs text-ink outline-none focus:border-accent"
+        >
+          <option value="all">{t.community.countryAll}</option>
+          {HELP_REGIONS.map((r) => (
+            <option key={r.code} value={r.code}>
+              {r.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       {!open ? (

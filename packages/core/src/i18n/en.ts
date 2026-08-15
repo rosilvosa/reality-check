@@ -292,6 +292,8 @@ export const en: Translation = {
     filterUrge: 'Urge',
     filterQuestions: 'Questions',
     filterVent: 'Hard day',
+    countryLabel: 'Country',
+    countryAll: 'All countries',
     composeHint: 'What is on your mind?',
     typeTip: 'Tip',
     typeUrge: 'The urge hit',

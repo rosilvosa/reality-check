@@ -292,6 +292,8 @@ export const ilo: Translation = {
     filterUrge: 'Panagnanasa',
     filterQuestions: 'Dagiti Saludsod',
     filterVent: 'Narigat nga aldaw',
+    countryLabel: 'Pagilian',
+    countryAll: 'Amin a Pagilian',
     composeHint: 'Ania ti adda iti panunotmo?',
     typeTip: 'Tip',
     typeUrge: 'Dimteng ti panagnanasa',

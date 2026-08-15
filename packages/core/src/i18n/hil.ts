@@ -292,6 +292,8 @@ export const hil: Translation = {
     filterUrge: 'Pagnanasa',
     filterQuestions: 'Mga Pamangkot',
     filterVent: 'Mabudlay nga adlaw',
+    countryLabel: 'Pungsod',
+    countryAll: 'Tanan nga Pungsod',
     composeHint: 'Ano ang sa imo hunahuna?',
     typeTip: 'Tip',
     typeUrge: 'Nag-abot ang pagnanasa',
