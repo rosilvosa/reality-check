@@ -12,7 +12,10 @@ const MIN_PESOS = 20
 const MAX_PESOS = 50000
 
 export const createPaymongoCheckout = region.https.onCall(
-  async (data: { amount?: number }) => {
+  async (data: { amount?: number }, context) => {
+    if (!context.auth) {
+      throw new functions.https.HttpsError('unauthenticated', 'Sign in required.')
+    }
     const pesos = Number(data?.amount)
     if (!Number.isFinite(pesos) || pesos < MIN_PESOS || pesos > MAX_PESOS) {
       throw new functions.https.HttpsError(

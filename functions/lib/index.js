@@ -46,7 +46,10 @@ const db = admin.firestore();
 const region = functions.region('asia-southeast1');
 const MIN_PESOS = 20;
 const MAX_PESOS = 50000;
-exports.createPaymongoCheckout = region.https.onCall(async (data) => {
+exports.createPaymongoCheckout = region.https.onCall(async (data, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError('unauthenticated', 'Sign in required.');
+    }
     const pesos = Number(data?.amount);
     if (!Number.isFinite(pesos) || pesos < MIN_PESOS || pesos > MAX_PESOS) {
         throw new functions.https.HttpsError('invalid-argument', `Amount must be ₱${MIN_PESOS}–₱${MAX_PESOS.toLocaleString()}`);
