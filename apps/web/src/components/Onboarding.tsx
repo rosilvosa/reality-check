@@ -48,8 +48,15 @@ export default function Onboarding() {
   }
 
   async function finish() {
-    await persistSetup()
-    markDone()
+    // markDone() must run even if the write fails. This overlay is
+    // fixed inset-0 with no dismiss control, so an unhandled rejection
+    // here leaves a first-run user permanently locked out of the app.
+    // Settings can repair the data later; being trapped is unrecoverable.
+    try {
+      await persistSetup()
+    } finally {
+      markDone()
+    }
   }
 
   function updateAsset(i: number, field: 'name' | 'cost', value: string) {

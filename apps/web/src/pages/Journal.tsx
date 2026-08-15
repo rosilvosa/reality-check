@@ -14,7 +14,7 @@ function amountFromQuery(raw: string | null): string {
 }
 
 export default function Journal() {
-  const { entries, loaded, loadJournal, addEntry } = useJournalStore()
+  const { entries, loaded, loadJournal, addEntry, error } = useJournalStore()
   const currency = useSettingsStore((s) => s.currency) ?? 'PHP'
   const [searchParams, setSearchParams] = useSearchParams()
   const [acknowledged, setAcknowledged] = useState(false)
@@ -69,7 +69,7 @@ export default function Journal() {
   return (
     <div>
       <h2 className="text-lg font-extrabold text-ink mb-1">{t.journal.title}</h2>
-      <p className="text-sm text-muted mb-5 leading-relaxed">{t.journal.interceptSub}</p>
+      <p className="text-sm text-muted mb-5 leading-relaxed">{t.journal.subtitle}</p>
 
       {mustIntercept && mostRecent && (
         <div className="border-2 border-accent rounded-xl p-5 mb-6 bg-surface">
@@ -135,6 +135,9 @@ export default function Journal() {
             rows={5}
             className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4 resize-y"
           />
+          {error && (
+            <p role="alert" className="text-sm text-accent mb-3">{t.journal.saveFailed}</p>
+          )}
           <button
             onClick={handleSave}
             disabled={!text.trim() || saving}

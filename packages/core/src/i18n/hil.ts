@@ -9,6 +9,7 @@ export const hil: Translation = {
     nearmiss: '⚠️ Malapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
     community: 'Komunidad', help: 'Bulig',
     lost: 'Pildi',
+    barriers: 'Babag',
     more: 'Iban pa',
   },
 
@@ -88,6 +89,7 @@ export const hil: Translation = {
 
   journal: {
     title: 'Dyornal sang Pagkalugi',
+    subtitle: 'Isulat kon ano gid ang imo nabatyagan sa pagkapierde. Sa masunod, basahon mo anay ini.',
     interceptTitle: '⛔ Tignaa. Basahon Ini Una.',
     interceptSub: 'Ginakuha mo ini pagkatapos sang imo nauli nga pagkalugi. Kinahanglan mo ini basahon subong antes ka magpadayon.',
     acknowledge: 'Nabasa ko na kag natandaan ko ang akon naagi nga kasakit.',
@@ -101,6 +103,7 @@ export const hil: Translation = {
     placeholderAmount: 'hal. 2000',
     placeholderFeeling: 'Isulat ang kamatuoran. Ang kahadlok, ang pagpalangga, ang pisikal nga kasakit. Ang "imo sa palaabuton" kinahanglan makabasa sini.',
     recordBtn: 'IREHISTRO INING PANAHON',
+    saveFailed: 'Wala na-save. Yari pa ang imo ginsulat — tilawi liwat.',
     recorded: 'Na-rekord na ang entry.',
     pastEntries: 'MGA NAAGI NGA ENTRY ({n})',
   },
@@ -248,6 +251,7 @@ export const hil: Translation = {
     syncingBtn: 'GINA-SYNC…',
     syncDoneBtn: '✓ NAKA-SYNC',
     syncFail: 'Wala na-sync. Tilawi liwat.',
+    saveFailed: 'Wala na-save ang mga setting. Tilawi liwat.',
     donateNow: 'Magdonar sa GCash / Maya',
     donateSuccess: 'Salamat. Amo ini ang nagapabilin nga libre sang cloud sync para sa bisan sin-o.',
     donateFail: 'Wala natuloy ang bayad. Tilawi liwat.',
@@ -306,6 +310,8 @@ export const hil: Translation = {
     deletePost: 'Kuhaa',
     posting: 'GINA-POST…',
     failed: 'Wala na-post. Tilawi liwat.',
+    loadFailed: 'Indi ma-load ang mga post.',
+    retry: 'Tilawi liwat',
   },
 
   contact: {

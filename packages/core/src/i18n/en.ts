@@ -9,6 +9,7 @@ export const en: Translation = {
     nearmiss: '⚠️ Miss', trap: '🧠 Trap', progress: '🏆 Progress', settings: '⚙ Settings',
     community: 'Community', help: 'Help',
     lost: 'Lost',
+    barriers: 'Barriers',
     more: 'More',
   },
 
@@ -88,6 +89,7 @@ export const en: Translation = {
 
   journal: {
     title: 'Loss Journal',
+    subtitle: 'Write what a loss actually felt like. Next time, you read it first.',
     interceptTitle: '⛔ Stop. Read This First.',
     interceptSub: 'You wrote this after your last loss. You must read it now before continuing.',
     acknowledge: 'I have read and acknowledged my past pain.',
@@ -101,6 +103,7 @@ export const en: Translation = {
     placeholderAmount: 'e.g. 2000',
     placeholderFeeling: 'Write the raw truth. The fear, the regret, the physical pain. Future-you needs to read this.',
     recordBtn: 'RECORD THIS MOMENT',
+    saveFailed: 'Could not save. What you wrote is still here — try again.',
     recorded: 'Entry recorded.',
     pastEntries: 'PAST ENTRIES ({n})',
   },
@@ -248,6 +251,7 @@ export const en: Translation = {
     syncingBtn: 'SYNCING…',
     syncDoneBtn: '✓ SYNCED',
     syncFail: 'Could not sync. Try again.',
+    saveFailed: 'Could not save your settings. Try again.',
     donateNow: 'Donate with GCash / Maya',
     donateSuccess: 'Thank you. That keeps cloud sync free for anyone who needs it.',
     donateFail: 'Payment did not start. Try again.',
@@ -306,6 +310,8 @@ export const en: Translation = {
     deletePost: 'Remove',
     posting: 'POSTING…',
     failed: 'Could not post. Try again.',
+    loadFailed: 'Could not load posts.',
+    retry: 'Try again',
   },
 
   contact: {

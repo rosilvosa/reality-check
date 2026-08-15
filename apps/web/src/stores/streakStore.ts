@@ -28,6 +28,7 @@ function defaultStreak(): StreakData {
 
 interface StreakState extends StreakData {
   loading: boolean
+  error: string | null
   showMilestoneModal: boolean
   newMilestone: number | null
   loadStreak: () => Promise<void>
@@ -39,14 +40,19 @@ interface StreakState extends StreakData {
 export const useStreakStore = create<StreakState>((set, get) => ({
   ...defaultStreak(),
   loading: true,
+  error: null,
   showMilestoneModal: false,
   newMilestone: null,
 
   loadStreak: async () => {
     const { user } = useAuthStore.getState()
-    const adapter = getAdapter(user)
-    const data = await adapter.getStreak()
-    set({ ...(data ?? defaultStreak()), loading: false })
+    try {
+      const data = await getAdapter(user).getStreak()
+      set({ ...(data ?? defaultStreak()), loading: false, error: null })
+    } catch {
+      // Never leave loading stuck true -- the counter would show a dash forever.
+      set({ loading: false })
+    }
   },
 
   checkIn: async () => {
@@ -77,11 +83,19 @@ export const useStreakStore = create<StreakState>((set, get) => ({
     }
 
     const { user } = useAuthStore.getState()
-    await getAdapter(user).saveStreak(updated)
+    try {
+      await getAdapter(user).saveStreak(updated)
+    } catch (e) {
+      // Do not apply the new streak locally -- it was not persisted, and a
+      // counter that silently fails to move reads as "the app thinks I relapsed".
+      set({ error: e instanceof Error ? e.message : 'Could not save your check-in' })
+      return
+    }
     await recordRoomCheckIn().catch(() => undefined)
 
     set({
       ...updated,
+      error: null,
       showMilestoneModal: hitMilestone !== null,
       newMilestone: hitMilestone,
     })
@@ -102,9 +116,13 @@ export const useStreakStore = create<StreakState>((set, get) => ({
     }
 
     const { user } = useAuthStore.getState()
-    await getAdapter(user).saveStreak(updated)
-
-    set({ milestonesSeen: seen, showMilestoneModal: false, newMilestone: null })
+    try {
+      await getAdapter(user).saveStreak(updated)
+    } finally {
+      // Always dismiss. A modal that cannot be closed on a failed write is
+      // the same trap as the onboarding overlay.
+      set({ milestonesSeen: seen, showMilestoneModal: false, newMilestone: null })
+    }
   },
 
   getTotalSaved: () => {

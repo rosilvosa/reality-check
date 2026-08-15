@@ -9,6 +9,7 @@ export const ceb: Translation = {
     nearmiss: '⚠️ Hapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
     community: 'Komunidad', help: 'Tabang',
     lost: 'Pildi',
+    barriers: 'Babag',
     more: 'Uban pa',
   },
 
@@ -88,6 +89,7 @@ export const ceb: Translation = {
 
   journal: {
     title: 'Dyornal sa Pagkawala',
+    subtitle: 'Isulat kung unsa gyud ang imong gibati sa pagkapildi. Sa sunod, basahon nimo kini una.',
     interceptTitle: '⛔ Hunong. Basaha Kini Una.',
     interceptSub: 'Gisulat nimo kini human sa imong katapusang pagkawala. Kinahanglan nimong basahon kini karon sa wala ka magpadayon.',
     acknowledge: 'Nabasa nako ug giila ang akong nangaging kasakit.',
@@ -101,6 +103,7 @@ export const ceb: Translation = {
     placeholderAmount: 'hal. 2000',
     placeholderFeeling: 'Isulat ang kamatuoran. Ang kahadlok, ang paghigugma, ang pisikal nga kasakit. Ang "ikaw sa umaabot" kinahanglang mabasa kini.',
     recordBtn: 'IREHISTRO KINING GUTLO',
+    saveFailed: 'Wala na-save. Ania pa ang imong gisulat — sulayi pag-usab.',
     recorded: 'Na-rekord na ang entry.',
     pastEntries: 'MGA NANGAGING ENTRY ({n})',
   },
@@ -248,6 +251,7 @@ export const ceb: Translation = {
     syncingBtn: 'GINA-SYNC…',
     syncDoneBtn: '✓ NAKA-SYNC',
     syncFail: 'Wala na-sync. Sulayi pag-usab.',
+    saveFailed: 'Wala na-save ang mga setting. Sulayi pag-usab.',
     donateNow: 'Donar pinaagi sa GCash / Maya',
     donateSuccess: 'Salamat. Mao ni ang nagpabilin nga libre sa cloud sync para kang bisan kinsa.',
     donateFail: 'Wala natuloy ang bayad. Sulayi pag-usab.',
@@ -306,6 +310,8 @@ export const ceb: Translation = {
     deletePost: 'Tangtang',
     posting: 'GINA-POST…',
     failed: 'Wala na-post. Sulayi pag-usab.',
+    loadFailed: 'Wala ma-load ang mga post.',
+    retry: 'Sulayi pag-usab',
   },
 
   contact: {

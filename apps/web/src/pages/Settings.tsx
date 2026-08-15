@@ -88,14 +88,22 @@ export default function Settings() {
 
   async function handleSave() {
     const validAssets = localAssets.filter((a) => a.name.trim() && a.cost > 0)
-    await saveSettings({
-      monthlyPay: monthlyVal,
-      hoursPerMonth: hoursVal,
-      assets: validAssets,
-      voidType,
-      currency: currencyCode,
-      helpRegion: regionCode,
-    })
+    setFormError('')
+    try {
+      await saveSettings({
+        monthlyPay: monthlyVal,
+        hoursPerMonth: hoursVal,
+        assets: validAssets,
+        voidType,
+        currency: currencyCode,
+        helpRegion: regionCode,
+      })
+    } catch {
+      // Monthly pay is the one value the whole app depends on. A save that
+      // fails silently leaves the user unable to tell saved from failed.
+      setFormError(t.settings.saveFailed)
+      return
+    }
     setSaved(true)
     setTimeout(() => setSaved(false), 2500)
   }

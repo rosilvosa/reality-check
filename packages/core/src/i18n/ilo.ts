@@ -9,6 +9,7 @@ export const ilo: Translation = {
     nearmiss: '⚠️ Asideg', trap: '🧠 Lit-ag', progress: '🏆 Nalibtaan', settings: '⚙ Settings',
     community: 'Komunidad', help: 'Tulong',
     lost: 'Naabak',
+    barriers: 'Sagam-at',
     more: 'Ad-adu',
   },
 
@@ -88,6 +89,7 @@ export const ilo: Translation = {
 
   journal: {
     title: 'Diario ti Naibagsak',
+    subtitle: 'Isurat no ania ti pudno a nariknam iti pannakaabak. Iti sumaruno, basaem nga umuna daytoy.',
     interceptTitle: '⛔ Agsardeng. Basaen Daytoy Umuna.',
     interceptSub: 'Isursurattam daytoy kalpasan ti naudi a naibagsak. Masapul a basaenmo daytoy ita sakbay a agtultuloy.',
     acknowledge: 'Nabasa ken nakilalak ti napalabas a sakit.',
@@ -101,6 +103,7 @@ export const ilo: Translation = {
     placeholderAmount: 'halimbawa 2000',
     placeholderFeeling: 'Isurat ti kinapudno. Ti buteng, ti ayat, ti pisikal a sakit. Ti "sikayon iti masakbayan" masapul a mabasa daytoy.',
     recordBtn: 'IREHISTRO DAYTOY A TIEMPO',
+    saveFailed: 'Saan a naisalbar. Adda pay laeng ti insuratmo — padasem manen.',
     recorded: 'Narehistro ti entry.',
     pastEntries: 'NAPALABAS A MGA ENTRY ({n})',
   },
@@ -248,6 +251,7 @@ export const ilo: Translation = {
     syncingBtn: 'AGSYNC…',
     syncDoneBtn: '✓ NAKA-SYNC',
     syncFail: 'Saan a na-sync. Padasem manen.',
+    saveFailed: 'Saan a naisalbar dagiti settings. Padasem manen.',
     donateNow: 'Agdonar babaen ti GCash / Maya',
     donateSuccess: 'Agyamanak. Daytoy ti mangitalinaed a libre ti cloud sync para iti siasinoman.',
     donateFail: 'Saan a natuloy ti bayad. Padasem manen.',
@@ -306,6 +310,8 @@ export const ilo: Translation = {
     deletePost: 'Ikkaten',
     posting: 'AGIPOST…',
     failed: 'Saan a naipost. Padasem manen.',
+    loadFailed: 'Saan a na-load dagiti post.',
+    retry: 'Padasem manen',
   },
 
   contact: {

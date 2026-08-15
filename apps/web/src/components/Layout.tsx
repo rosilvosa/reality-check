@@ -32,7 +32,7 @@ function Tab({
       {({ isActive }) => (
         <>
           <span className={`text-[22px] leading-none ${isActive ? '' : 'opacity-70'}`}>{icon}</span>
-          <span className="text-[11px] font-bold tracking-wide leading-tight text-center">{word(label)}</span>
+          <span className="w-full truncate text-[11px] font-bold tracking-wide leading-tight text-center">{word(label)}</span>
           <span className={`h-0.5 w-5 rounded-full ${isActive ? 'bg-accent' : 'bg-transparent'}`} />
         </>
       )}
@@ -54,7 +54,7 @@ export default function Layout() {
   const bottom = [
     { to: '/lost', label: t.nav.lost, icon: '💧' },
     { to: '/trap', label: t.nav.trap, icon: '🧠' },
-    { to: '/barriers', label: t.settings.barriersTitle, icon: '🛡' },
+    { to: '/barriers', label: t.nav.barriers, icon: '🛡' },
     { to: '/help', label: t.nav.help, icon: '🤝' },
     { to: '/community', label: t.nav.community, icon: '💬' },
   ]

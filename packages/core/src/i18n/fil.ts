@@ -9,6 +9,7 @@ export const fil: Translation = {
     nearmiss: '⚠️ Halos', trap: '🧠 Bitag', progress: '🏆 Progreso', settings: '⚙ Mga Setting',
     community: 'Komunidad', help: 'Tulong',
     lost: 'Talo',
+    barriers: 'Hadlang',
     more: 'Iba pa',
   },
 
@@ -88,6 +89,7 @@ export const fil: Translation = {
 
   journal: {
     title: 'Talaan ng Pagkalugi',
+    subtitle: 'Isulat ang tunay mong naramdaman sa pagkatalo. Sa susunod, babasahin mo muna ito.',
     interceptTitle: '⛔ Hinto. Basahin Ito Muna.',
     interceptSub: 'Isinulat mo ito pagkatapos ng iyong huling pagkalugi. Kailangan mong basahin ito ngayon bago magpatuloy.',
     acknowledge: 'Nabasa ko at tinanggap ko ang aking nakaraang sakit.',
@@ -101,6 +103,7 @@ export const fil: Translation = {
     placeholderAmount: 'hal. 2000',
     placeholderFeeling: 'Isulat ang katotohanan. Ang takot, ang pagsisisi, ang pisikal na sakit. Ang "ikaw sa hinaharap" ay kailangang basahin ito.',
     recordBtn: 'ITALA ANG SANDALING ITO',
+    saveFailed: 'Hindi na-save. Nandito pa ang isinulat mo — subukan ulit.',
     recorded: 'Naitala ang entry.',
     pastEntries: 'MGA NAKARAANG ENTRY ({n})',
   },
@@ -248,6 +251,7 @@ export const fil: Translation = {
     syncingBtn: 'SINE-SYNC…',
     syncDoneBtn: '✓ NAKA-SYNC',
     syncFail: 'Hindi na-sync. Subukan ulit.',
+    saveFailed: 'Hindi na-save ang mga setting. Subukan ulit.',
     donateNow: 'Mag-donate sa GCash / Maya',
     donateSuccess: 'Salamat. Iyon ang nagpapanatiling libre ng cloud sync para sa sinumang nangangailangan.',
     donateFail: 'Hindi natuloy ang bayad. Subukan ulit.',
@@ -306,6 +310,8 @@ export const fil: Translation = {
     deletePost: 'Alisin',
     posting: 'PINO-POST…',
     failed: 'Hindi na-post. Subukan ulit.',
+    loadFailed: 'Hindi ma-load ang mga post.',
+    retry: 'Subukan ulit',
   },
 
   contact: {

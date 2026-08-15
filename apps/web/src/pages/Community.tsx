@@ -38,6 +38,7 @@ export default function Community() {
   const loadingAuth = useAuthStore((s) => s.loading)
   const [posts, setPosts] = useState<CommunityPost[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadFailed, setLoadFailed] = useState(false)
   const [filter, setFilter] = useState<'all' | PostType>('all')
   const [countryFilter, setCountryFilter] = useState<'all' | HelpRegion>('all')
   const myRegion = useSettingsStore((s) => resolveHelpRegion(s.helpRegion))
@@ -55,8 +56,12 @@ export default function Community() {
   async function reload() {
     try {
       setPosts(await fetchPosts())
+      setLoadFailed(false)
     } catch (e) {
+      // Offline, this used to render as "no posts yet" -- telling someone
+      // looking for peer support that the room is empty.
       console.error(e)
+      setLoadFailed(true)
     } finally {
       setLoading(false)
     }
@@ -222,7 +227,21 @@ export default function Community() {
       )}
 
       {loading && <p className="text-sm text-muted">…</p>}
-      {!loading && visible.length === 0 && <p className="text-sm text-muted">{t.community.empty}</p>}
+      {!loading && loadFailed && (
+        <div className="bg-surface border border-border rounded-xl p-5 text-center">
+          <p className="text-sm text-muted mb-3">{t.community.loadFailed}</p>
+          <button
+            type="button"
+            onClick={() => { setLoading(true); reload() }}
+            className="text-sm font-bold text-ink underline underline-offset-4"
+          >
+            {t.community.retry}
+          </button>
+        </div>
+      )}
+      {!loading && !loadFailed && visible.length === 0 && (
+        <p className="text-sm text-muted">{t.community.empty}</p>
+      )}
 
       <div className="space-y-3">
         {visible.map((post) => {

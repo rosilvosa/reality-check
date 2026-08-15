@@ -9,6 +9,7 @@ export interface Translation {
     nearmiss: string; trap: string; progress: string; settings: string
     community: string; help: string
     lost: string
+    barriers: string
     more: string
   }
 
@@ -83,10 +84,10 @@ export interface Translation {
   }
 
   journal: {
-    title: string; interceptTitle: string; interceptSub: string; acknowledge: string
+    title: string; subtitle: string; interceptTitle: string; interceptSub: string; acknowledge: string
     chasingTitle: string; chasingBody1: string; chasingBody2: string; chasingBody3: string; chasingBtn: string
     labelAmount: string; labelFeeling: string; placeholderAmount: string; placeholderFeeling: string
-    recordBtn: string; recorded: string
+    recordBtn: string; recorded: string; saveFailed: string
     // params: {n}
     pastEntries: string
   }
@@ -172,7 +173,7 @@ export interface Translation {
     insteadTitle: string; insteadDesc: string
     communityTitle: string; communityDesc: string
     syncActive: string
-    syncNowBtn: string; syncNowHint: string; syncingBtn: string; syncDoneBtn: string; syncFail: string
+    syncNowBtn: string; syncNowHint: string; syncingBtn: string; syncDoneBtn: string; syncFail: string; saveFailed: string
     donateNow: string; donateSuccess: string; donateFail: string
     customAmount: string; donateOther: string
     deleteAccount: string; deleteConfirm: string
@@ -239,6 +240,8 @@ export interface Translation {
     deletePost: string
     posting: string
     failed: string
+    loadFailed: string
+    retry: string
   }
 
   contact: {
