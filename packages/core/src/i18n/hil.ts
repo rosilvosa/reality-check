@@ -208,7 +208,17 @@ export const hil: Translation = {
     step3Sub: 'Ini ang mga butang nga matuod nga nabayaran sang imo kwarta. Ang kada pagkalugi ikumpara sa ini. Usba ang mga numero para maghaum sa imo kabuhi.',
     step3AssetPh: 'hal. 1 Semana sang Pagkaon',
     step3Add: '+ Magdugang sang Gastus',
-    step3Finish: 'SUGDI ANG RECOVERY',
+    step3Finish: 'SUNOD',
+    laterBtn: 'I-set ulihi',
+    toolsTitle: 'Paano gamiton',
+    toolsSub: 'Ang mga tab yara sa idalom. Pagkatapos sang pildi, umpisa sa Sweat ukon Journal. Indi laktawan ang ulihi nga entry sa journal.',
+    toolSweat: 'Sweat — oras sang kabuhi nga nabayad sa pildi',
+    toolAssets: 'Assets — pagkaon kag abang nga nasunog',
+    toolJournal: 'Journal — isulat ang panic. Sa sunod, basaha anay ini',
+    toolMiss: 'Miss — ang near-miss 100% pildi',
+    toolTrap: 'Trap — ngaa ginbuhat ang hampang para indi ka mag-untat',
+    toolProgress: 'Progress — mag-check in. I-ihap ang limpyo nga adlaw',
+    finishCta: 'BUKSI ANG APP',
   },
 
   urge: {

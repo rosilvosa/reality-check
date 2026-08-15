@@ -126,6 +126,11 @@ export interface Translation {
     step2HourlyRate: string
     step2Next: string; step3Title: string; step3Sub: string; step3AssetPh: string
     step3Add: string; step3Finish: string
+    laterBtn: string
+    toolsTitle: string; toolsSub: string
+    toolSweat: string; toolAssets: string; toolJournal: string
+    toolMiss: string; toolTrap: string; toolProgress: string
+    finishCta: string
   }
 
   urge: {

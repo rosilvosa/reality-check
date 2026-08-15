@@ -208,7 +208,17 @@ export const ilo: Translation = {
     step3Sub: 'Dagitoy ti banag nga pudno a nabayaran ti kuartam. Ti tunggal naibagsak maikomparar iti daytoy. Balbalen dagiti numero tapno husto iti biagmo.',
     step3AssetPh: 'halimbawa 1 Lawas ti Kanen',
     step3Add: '+ Mangidungag ti Gasto',
-    step3Finish: 'RUGIAN TI RECOVERY',
+    step3Finish: 'SUMAGANAD',
+    laterBtn: 'I-set inton madamdama',
+    toolsTitle: 'Kasano nga usaren',
+    toolsSub: 'Adda dagiti tab iti baba. Kalpasan ti pannakaabak, rugian iti Sweat wenno Journal. Dika laktawan ti maudi nga entry iti journal.',
+    toolSweat: 'Sweat — oras ti biag a nabayadan iti pannakaabak',
+    toolAssets: 'Assets — kanen ken abang a nasunog',
+    toolJournal: 'Journal — isurat ti panic. Inton sumaruno, basaem nga umuna',
+    toolMiss: 'Miss — ti near-miss ket 100% a pannakaabak',
+    toolTrap: 'Trap — apay a naaramid ti ay-ayam tapno saan ka nga agsardeng',
+    toolProgress: 'Progress — ag-check in. Bilangem dagiti natalna nga aldaw',
+    finishCta: 'LUKATAN TI APP',
   },
 
   urge: {

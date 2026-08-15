@@ -208,7 +208,17 @@ export const ceb: Translation = {
     step3Sub: 'Kini ang mga butang nga tinuod nga gibayran sa imong kwarta. Ang matag pagkawala itandi sa kini. Usba ang mga numero para mohaum sa imong kinabuhi.',
     step3AssetPh: 'hal. 1 Semana sa Pagkaon',
     step3Add: '+ Magdugang og Gasto',
-    step3Finish: 'SUGDI ANG RECOVERY',
+    step3Finish: 'SUNOD',
+    laterBtn: 'I-set unya',
+    toolsTitle: 'Unsaon paggamit',
+    toolsSub: 'Ang mga tab anaa sa ubos. Human sa kapildihan, sugdi sa Sweat o Journal. Ayaw laktawi ang kataposang entry sa journal.',
+    toolSweat: 'Sweat — oras sa kinabuhi nga nabayad sa kapildihan',
+    toolAssets: 'Assets — pagkaon ug abang nga nasunog',
+    toolJournal: 'Journal — isulat ang panic. Sunod higayon, basaha una kini',
+    toolMiss: 'Miss — ang near-miss 100% kapildihan',
+    toolTrap: 'Trap — ngano gibuhat ang dula aron dili ka mohunong',
+    toolProgress: 'Progress — mag-check in. I-ihap ang limpyo nga adlaw',
+    finishCta: 'ABLIHI ANG APP',
   },
 
   urge: {

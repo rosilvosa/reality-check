@@ -4,7 +4,7 @@ import type { Asset } from '@rc/core'
 import { useT } from '../i18n'
 import { tpl } from '@rc/core'
 
-const LS_KEY = 'rc_onboarded'
+const LS_KEY = 'rc_onboarded_v2'
 
 const DEFAULT_ASSETS: Asset[] = [
   { name: '1 Week of Groceries', cost: 1500 },
@@ -13,8 +13,10 @@ const DEFAULT_ASSETS: Asset[] = [
   { name: '1 Month of Medicine', cost: 1200 },
 ]
 
+const STEPS = [1, 2, 3, 4] as const
+
 export default function Onboarding() {
-  const { loaded, monthlyPay, saveSettings } = useSettingsStore()
+  const { loaded, monthlyPay, voidType, saveSettings } = useSettingsStore()
   const [visible, setVisible] = useState(false)
   const [step, setStep] = useState(1)
   const t = useT()
@@ -25,24 +27,28 @@ export default function Onboarding() {
 
   useEffect(() => {
     if (!loaded) return
-    const done = localStorage.getItem(LS_KEY)
-    if (!done && monthlyPay === 0) setVisible(true)
-  }, [loaded, monthlyPay])
+    if (!localStorage.getItem(LS_KEY)) setVisible(true)
+  }, [loaded])
 
-  function skip() {
+  function markDone() {
     localStorage.setItem(LS_KEY, '1')
     setVisible(false)
   }
 
-  async function finish() {
+  async function persistSetup() {
     const validAssets = assets.filter((a) => a.name.trim() && a.cost > 0)
+    const pay = parseFloat(monthly) || monthlyPay || 0
     await saveSettings({
-      monthlyPay: parseFloat(monthly) || 0,
+      monthlyPay: pay,
       hoursPerMonth: parseFloat(hours) || 176,
-      assets: validAssets,
+      assets: validAssets.length ? validAssets : assets.filter((a) => a.cost > 0),
+      voidType,
     })
-    localStorage.setItem(LS_KEY, '1')
-    setVisible(false)
+  }
+
+  async function finish() {
+    await persistSetup()
+    markDone()
   }
 
   function updateAsset(i: number, field: 'name' | 'cost', value: string) {
@@ -57,13 +63,22 @@ export default function Onboarding() {
     ? (parseFloat(monthly) / (parseFloat(hours) || 176)).toFixed(2)
     : null
 
+  const tools = [
+    t.onboarding.toolSweat,
+    t.onboarding.toolAssets,
+    t.onboarding.toolJournal,
+    t.onboarding.toolMiss,
+    t.onboarding.toolTrap,
+    t.onboarding.toolProgress,
+  ]
+
   if (!visible) return null
 
   return (
     <div className="fixed inset-0 z-50 bg-bg flex flex-col overflow-y-auto">
       <div className="flex items-center justify-between px-6 pt-6 pb-2 shrink-0">
         <div className="flex gap-2">
-          {[1, 2, 3].map((s) => (
+          {STEPS.map((s) => (
             <div
               key={s}
               className={`h-1.5 rounded-full transition-all duration-300 ${
@@ -72,9 +87,6 @@ export default function Onboarding() {
             />
           ))}
         </div>
-        <button onClick={skip} className="text-xs text-muted hover:text-white transition-colors">
-          {t.common.skip}
-        </button>
       </div>
 
       <div className="flex-1 flex flex-col justify-center px-6 py-8 max-w-lg w-full mx-auto">
@@ -82,7 +94,7 @@ export default function Onboarding() {
         {step === 1 && (
           <div>
             <p className="text-[11px] tracking-widest uppercase text-muted font-bold mb-4">{t.onboarding.tag}</p>
-            <h1 className="text-5xl font-black text-white leading-none mb-4">{t.onboarding.title}</h1>
+            <h1 className="text-4xl font-black text-white leading-none mb-4">{t.onboarding.title}</h1>
             <p className="text-accent font-bold text-lg mb-6">{t.onboarding.tagline}</p>
             <p className="text-white text-[15px] leading-relaxed mb-4">{t.onboarding.body1}</p>
             <p className="text-white text-[15px] leading-relaxed mb-10">{t.onboarding.body2}</p>
@@ -137,6 +149,12 @@ export default function Onboarding() {
             >
               {t.onboarding.step2Next}
             </button>
+            <button
+              onClick={() => setStep(4)}
+              className="w-full mt-3 py-3 text-sm text-muted hover:text-white transition-colors"
+            >
+              {t.onboarding.laterBtn}
+            </button>
           </div>
         )}
 
@@ -180,10 +198,30 @@ export default function Onboarding() {
             </button>
 
             <button
-              onClick={finish}
+              onClick={() => setStep(4)}
               className="w-full bg-accent text-white font-black py-4 rounded-xl text-sm tracking-wider hover:opacity-90 transition-opacity"
             >
               {t.onboarding.step3Finish}
+            </button>
+          </div>
+        )}
+
+        {step === 4 && (
+          <div>
+            <h2 className="text-3xl font-black text-white mb-2">{t.onboarding.toolsTitle}</h2>
+            <p className="text-muted text-sm leading-relaxed mb-6">{t.onboarding.toolsSub}</p>
+            <ul className="space-y-3 mb-10">
+              {tools.map((line) => (
+                <li key={line} className="text-white text-[15px] leading-snug border-l-2 border-accent pl-3">
+                  {line}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={finish}
+              className="w-full bg-accent text-white font-black py-4 rounded-xl text-sm tracking-wider hover:opacity-90 transition-opacity"
+            >
+              {t.onboarding.finishCta}
             </button>
           </div>
         )}
