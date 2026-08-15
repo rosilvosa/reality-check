@@ -222,6 +222,7 @@ export const fil: Translation = {
     sourceCode: 'Source sa GitHub',
     sourceHint: 'I-fork, patakbuhin ang sarili mo, o magpadala ng pull request.',
     missionLink: "Tulungan ang David's Beacon",
+    contactLink: 'Makipag-ugnayan',
   },
 
   mission: {

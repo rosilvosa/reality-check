@@ -34,7 +34,10 @@ export default function Terms() {
       <h3 className="text-white font-bold pt-2">Liability</h3>
       <p>
         The operator is not liable for decisions you make after using this tool, for data loss on a device you
-        did not back up, or for PayMongo / Firebase outages. Use at your own risk.
+        did not back up, or for Firebase outages. Use at your own risk.
+      </p>
+      <p>
+        Questions: <a href="mailto:hello@davidsbeacon.com" className="text-accent hover:text-white">hello@davidsbeacon.com</a>
       </p>
     </div>
   )

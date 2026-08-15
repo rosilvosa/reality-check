@@ -34,10 +34,11 @@ export default function Privacy() {
       <h3 className="text-white font-bold pt-2">Your rights</h3>
       <p>
         You can delete your account and cloud data from Settings. That wipes your Firestore tree and local
-        Reality Check keys. Under the Philippine Data Privacy Act you may also email the operator to request
-        access or deletion.
+        Reality Check keys. Under the Philippine Data Privacy Act you may also email
+        {' '}<a href="mailto:hello@davidsbeacon.com" className="text-accent hover:text-white">hello@davidsbeacon.com</a>
+        {' '}to request access or deletion.
       </p>
-      <p>Operator: Ron Silvosa. Contact via Ko-fi (ko-fi.com/rosilvosa) or the GitHub repo owner.</p>
+      <p>Operator: Ron Silvosa. Contact: hello@davidsbeacon.com</p>
     </div>
   )
 }

@@ -307,6 +307,8 @@ export default function Settings() {
         <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">{t.settings.sourceCode}</a>
         {' · '}
         <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
+        {' · '}
+        <a href="mailto:hello@davidsbeacon.com" className="hover:text-white">{t.settings.contactLink}</a>
       </p>
 
       <AuthModal isOpen={showAuth} onClose={afterAuthClose} />

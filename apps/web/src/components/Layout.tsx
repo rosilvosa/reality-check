@@ -81,6 +81,8 @@ export default function Layout() {
         </a>
         {' · '}
         <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
+        {' · '}
+        <a href="mailto:hello@davidsbeacon.com" className="hover:text-white">{t.settings.contactLink}</a>
       </footer>
 
       <nav className="fixed bottom-0 inset-x-0 z-30 bg-surface/95 backdrop-blur border-t border-border pb-[env(safe-area-inset-bottom)]">

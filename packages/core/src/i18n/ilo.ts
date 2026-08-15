@@ -222,6 +222,7 @@ export const ilo: Translation = {
     sourceCode: 'Source iti GitHub',
     sourceHint: 'I-fork, pagtarayem ti kukuam, wenno agipatulod iti pull request.',
     missionLink: "Tulongan ti David's Beacon",
+    contactLink: 'Kontaken',
   },
 
   mission: {

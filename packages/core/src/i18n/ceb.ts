@@ -222,6 +222,7 @@ export const ceb: Translation = {
     sourceCode: 'Source sa GitHub',
     sourceHint: 'I-fork, padagana ang imoha, o padala og pull request.',
     missionLink: "Tabangi ang David's Beacon",
+    contactLink: 'Kontaka',
   },
 
   mission: {

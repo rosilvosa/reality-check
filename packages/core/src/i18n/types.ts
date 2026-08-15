@@ -145,6 +145,7 @@ export interface Translation {
     privacyLink: string; termsLink: string
     sourceCode: string; sourceHint: string
     missionLink: string
+    contactLink: string
   }
 
   onboarding: {

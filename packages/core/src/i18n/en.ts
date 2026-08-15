@@ -222,6 +222,7 @@ export const en: Translation = {
     sourceCode: 'Source on GitHub',
     sourceHint: 'Fork it, run your own, or send a pull request.',
     missionLink: "Help David's Beacon",
+    contactLink: 'Contact',
   },
 
   mission: {

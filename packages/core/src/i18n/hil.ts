@@ -222,6 +222,7 @@ export const hil: Translation = {
     sourceCode: 'Source sa GitHub',
     sourceHint: 'I-fork, padagana ang imo, ukon padala sang pull request.',
     missionLink: "Buligi ang David's Beacon",
+    contactLink: 'Kontaka',
   },
 
   mission: {
