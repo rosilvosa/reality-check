@@ -69,7 +69,7 @@ export const en: Translation = {
     btn: 'CALCULATE THE REAL COST',
     notConfigured: '⚠ Set your monthly pay in ⚙ Settings first.',
     resultHours: '{hours} hours of your life.',
-    resultBody: 'You did not just lose {loss}.\nYou threw away {hours} hours of hard physical labor — that is {days} full working days.\n\nAt {rate}/hr, you must sit at your desk and work {ceilHours} hours straight just to recover this loss.',
+    resultBody: 'You did not just lose {loss}.\nYou threw away {hours} hours of work — that is {days} full working days.\n\nAt {rate}/hr, you must work {ceilHours} hours straight just to recover this loss.',
     rateNote: 'Rate: {monthly} ÷ {hoursPerMonth} hrs = {rate}/hr',
   },
 

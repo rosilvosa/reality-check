@@ -69,7 +69,7 @@ export const fil: Translation = {
     btn: 'KALKULAHIN ANG TUNAY NA HALAGA',
     notConfigured: '⚠ I-set muna ang iyong buwanang sahod sa ⚙ Mga Setting.',
     resultHours: '{hours} oras ng iyong buhay.',
-    resultBody: 'Hindi ka lang natalo ng {loss}.\nNasayang mo ang {hours} oras ng iyong trabaho — iyon ay {days} buong araw ng trabaho.\n\nSa {rate}/hr, kailangang umupo ka at magtrabaho ng {ceilHours} oras tuloy-tuloy para lang mabawi ang pagkaluging ito.',
+    resultBody: 'Hindi ka lang natalo ng {loss}.\nNasayang mo ang {hours} oras ng iyong trabaho — iyon ay {days} buong araw ng trabaho.\n\nSa {rate}/hr, kailangan mong magtrabaho ng {ceilHours} oras tuloy-tuloy para lang mabawi ang pagkaluging ito.',
     rateNote: 'Rate: {monthly} ÷ {hoursPerMonth} oras = {rate}/oras',
   },
 

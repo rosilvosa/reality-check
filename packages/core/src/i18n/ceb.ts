@@ -69,7 +69,7 @@ export const ceb: Translation = {
     btn: 'KUWENTAHON ANG TINUOD NGA GASTO',
     notConfigured: '⚠ I-set una ang imong buwan-buwan nga sweldo sa ⚙ Mga Setting.',
     resultHours: '{hours} oras sa imong kinabuhi.',
-    resultBody: 'Wala ka lang kawad-i og {loss}.\nNalugi ka og {hours} oras sa imong pagpakabudlay — kana mao ang {days} ka tibuok adlaw sa trabaho.\n\nSa {rate}/oras, kinahanglan kang molingkod ug trabaho og {ceilHours} oras padayon para lang mabawi kining pagkawala.',
+    resultBody: 'Wala ka lang kawad-i og {loss}.\nNalugi ka og {hours} oras sa imong trabaho — kana mao ang {days} ka tibuok adlaw sa trabaho.\n\nSa {rate}/oras, kinahanglan kang motrabaho og {ceilHours} oras padayon para lang mabawi kining pagkawala.',
     rateNote: 'Rate: {monthly} ÷ {hoursPerMonth} oras = {rate}/oras',
   },
 
