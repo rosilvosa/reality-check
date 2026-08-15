@@ -9,3 +9,9 @@ apps/mobile/.env
 apps/mobile/.env.local
 apps/web/.env
 apps/web/.env.local
+*.pem
+*.p12
+*serviceAccount*.json
+google-services.json
+GoogleService-Info.plist
+.gstack/

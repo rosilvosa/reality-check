@@ -65,15 +65,17 @@ export const paymongoWebhook = region.https.onRequest(async (req, res) => {
   if (req.method !== 'POST') { res.status(405).send('Method Not Allowed'); return }
 
   const webhookSecret = process.env.PAYMONGO_WEBHOOK_SECRET
-  if (webhookSecret) {
-    const sig = req.headers['paymongo-signature'] as string ?? ''
-    const parts = Object.fromEntries(sig.split(',').map((p) => p.split('=')))
-    const timestamp = parts['t']
-    const v1 = parts['v1'] ?? ''
-    const payload = `${timestamp}.${JSON.stringify(req.body)}`
-    const expected = crypto.createHmac('sha256', webhookSecret).update(payload).digest('hex')
-    if (expected !== v1) { res.status(400).send('Invalid signature'); return }
+  if (!webhookSecret) {
+    res.status(500).send('Webhook secret not configured')
+    return
   }
+  const sig = req.headers['paymongo-signature'] as string ?? ''
+  const parts = Object.fromEntries(sig.split(',').map((p) => p.split('=')))
+  const timestamp = parts['t']
+  const v1 = parts['v1'] ?? ''
+  const payload = `${timestamp}.${JSON.stringify(req.body)}`
+  const expected = crypto.createHmac('sha256', webhookSecret).update(payload).digest('hex')
+  if (expected !== v1) { res.status(400).send('Invalid signature'); return }
 
   const event = req.body?.data?.attributes?.type as string
   if (event === 'checkout_session.payment.paid') {
