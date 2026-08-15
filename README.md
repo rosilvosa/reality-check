@@ -8,11 +8,11 @@ Casinos sell a digital illusion: chips, spins, “almost won.” This app breaks
 **Source:** https://github.com/rosilvosa/reality-check  
 **Languages:** English, Filipino, Cebuano, Hiligaynon, Ilocano
 
-The web app is the product. There is no App Store / Play Store release. Add it to your phone home screen from the browser.
+The product is a website. Add it to your phone home screen from the browser.
 
 ---
 
-## What works today
+## What it does
 
 | Tool | What it does |
 |---|---|
@@ -21,55 +21,25 @@ The web app is the product. There is no App Store / Play Store release. Add it t
 | **Journal** | Write the panic after a loss. Next time, you must re-read that entry before you can write again |
 | **Near-miss** | A near-miss is a 100% financial loss dressed up as hope |
 | **Trap** | Skinner box, house-edge math, why the game is built to keep you playing |
-| **Barriers** | Checklist: self-exclusion, delete apps, block sites, cut payment methods, tell someone, helpline |
+| **Barriers** | Checklist: self-exclusion, delete apps, block sites, cut payment methods, tell someone, helpline — numbers match the country in Settings |
+| **Find Help** | Helplines, self-exclusion programs, and meetings for where you live |
+| **Community** | Anonymous tips, wins, questions, and hard days |
 | **Progress** | Daily check-in. Badges at 1, 3, 7, 14, 30, 60, 90, 180, 365 clean days |
-| **Onboarding** | When to use it, income, real costs, then a map of the tabs |
 
-Free use needs no account. Data stays in this browser (`localStorage`). Nothing is uploaded.
+No account required. Without sign-in, data stays in this browser. Sign in with Google or email if you want the same journal on another device. Sync is free. Nothing in the app is locked behind a payment.
 
----
-
-## Cloud sync (the remaining job)
-
-Sign in with Google (or email). Your journal, settings, streak, and barriers copy to Firestore and follow you to every device.
-
-**Sync is free.** It is not a Pro upsell.
-
-Why: the journal is the intercept. The person most likely to lose a phone, clear a browser, or open this on a second device is the person in a binge. Charging them ₱299 to keep that record is the wrong product.
-
-**Status (2026-08-14):** sign-in sync and PayMongo donations are wired for launch. See [`docs/CONTRACTOR_BRIEF.md`](docs/CONTRACTOR_BRIEF.md) only if you are extending this.
-
-How sync works:
-
-1. Use the app with no account. Everything stays on this device.
-2. Sign in. Local data migrates to `users/{uid}/…` and then reads/writes go to the cloud.
-3. Same Google account on another browser or phone → same journal, settings, streak.
-4. Delete account wipes Firestore + local `rc_*` keys.
-
----
-
-## How this stays alive (donations, not a paywall)
-
-This is a recovery tool for people who already have a money problem. A subscription is out. A paywall on backup is out.
-
-**Money path: donations.** Settings has ₱50 / ₱100 / ₱299 chips plus custom, via PayMongo (GCash, Maya, QRPH, card). Ko-fi is the backup for people outside PH: https://ko-fi.com/rosilvosa
-
-This repo is public. Fork it, run your own instance, or send a PR.
-
-Donations do not unlock features. They keep **cloud sync free for anyone** who signs in — Firebase is a real bill — and they fund a safety app that will be released soon.
-
-Do not add Stripe.
+If Reality Check helped you, the useful thing is not paying for this app. It is telling a special-needs family about [David's Beacon](https://davidsbeacon.com). That page lives at `/mission`.
 
 ---
 
 ## Repo layout
 
 ```
-apps/web          ← the product (React + Vite). Deploy this.
-apps/mobile       ← Expo scaffold. Frozen. Do not work here.
-packages/core     ← shared types, calculations, i18n
-functions         ← PayMongo donation checkout + webhook
-docs/             ← architecture, setup, failure modes, contractor brief
+apps/web          the product (React + Vite)
+apps/mobile       Expo scaffold, not the live product
+packages/core     shared types, calculations, i18n
+functions         optional Cloud Functions
+docs/             architecture, setup, failure modes
 ```
 
 ---
@@ -77,14 +47,8 @@ docs/             ← architecture, setup, failure modes, contractor brief
 ## Stack
 
 - Web: React 18, TypeScript, Vite, Zustand, react-router v7, Tailwind
-- Backend: Firebase Auth (anonymous + Google), Firestore, Hosting
-- Functions: `asia-southeast1` only (never `us-central1`)
-- Payments (parked): PayMongo
-- Donations: Ko-fi
-
-**Firebase project ID** (cannot change): `reality-check-5fffe`  
-**Public site:** `reality-check-ph` → https://reality-check-ph.web.app  
-**Old URL** https://reality-check-5fffe.web.app 301s to the public site.
+- Backend: Firebase Auth, Firestore, Hosting
+- Functions region: `asia-southeast1`
 
 ---
 
@@ -97,7 +61,6 @@ git clone https://github.com/rosilvosa/reality-check.git
 cd reality-check
 npm install
 cd apps/web && npm install && cd ../..
-cd functions && npm install && cd ..
 ```
 
 Web env: copy `apps/web/.env.example` → `apps/web/.env` and fill Firebase web config.
@@ -106,18 +69,14 @@ Web env: copy `apps/web/.env.example` → `apps/web/.env` and fill Firebase web 
 npm run web          # http://localhost:5173
 ```
 
-Do not run mobile unless you were asked to. Metro is port **8082** if you ever do.
-
-### Deploy (web)
+### Deploy
 
 ```bash
-cd apps/web
-npm run build
-cd ../..
+npm run build:web
 firebase deploy --only hosting
 ```
 
-Hosting deploys both the public site and the legacy redirect. Functions only need a deploy if you change `functions/`.
+See [`docs/SETUP.md`](docs/SETUP.md) for env vars and console setup.
 
 ---
 
@@ -125,17 +84,9 @@ Hosting deploys both the public site and the legacy redirect. Functions only nee
 
 | File | What |
 |---|---|
-| [`docs/CONTRACTOR_BRIEF.md`](docs/CONTRACTOR_BRIEF.md) | Outsource brief: scope, schema, acceptance test |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Why each stack choice |
 | [`docs/SETUP.md`](docs/SETUP.md) | Env vars, Firebase console, gotchas |
 | [`docs/FAILURE_MODES.md`](docs/FAILURE_MODES.md) | What breaks and how to recover |
-| [`docs/HANDOFF_Latest.md`](docs/HANDOFF_Latest.md) | Session notes |
-
----
-
-## Out of scope (do not build)
-
-App Store / Play Store, Expo features (camera, push, biometrics, widgets), grocery barcode scan, bank SMS parser, community feed, Gut Check (separate product).
 
 ---
 
