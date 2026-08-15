@@ -5,10 +5,9 @@ A gambling recovery tool. It re-sensitizes you to the real value of money.
 Casinos sell a digital illusion: chips, spins, “almost won.” This app breaks that. A loss is not a number on a screen. It is hours of your life, weeks of groceries, months of rent.
 
 **Live:** https://reality-check-ph.web.app  
-**Source:** https://github.com/rosilvosa/reality-check  
 **Languages:** English, Filipino, Cebuano, Hiligaynon, Ilocano
 
-The product is a website. On a phone it can install as a PWA (Add to Home Screen). There is no store app.
+The product is a website. On a phone, add it to the home screen from the browser. There is no store listing.
 
 ---
 
@@ -24,9 +23,7 @@ The product is a website. On a phone it can install as a PWA (Add to Home Screen
 | **Community** | Anonymous tips, urges, questions, and hard days |
 | **Progress** | Daily check-in. Badges at 1, 3, 7, 14, 30, 60, 90, 180, 365 clean days |
 
-No account required. Without sign-in, data stays in this browser. Sign in with Google or email if you want the same journal on another device. Sync is free. Nothing in the app is locked behind a payment.
-
-If Reality Check helped you, the useful thing is not paying for this app. See `/mission` for the related safety project (not public yet).
+No account required. Without sign-in, data stays in this browser. Sign in with Google or email if you want the same journal on another device. Sync is free. Nothing is locked behind a payment.
 
 ---
 
@@ -34,9 +31,8 @@ If Reality Check helped you, the useful thing is not paying for this app. See `/
 
 ```
 apps/web          the product (React + Vite)
-apps/mobile       Expo scaffold, not the live product
 packages/core     shared types, calculations, i18n
-functions         optional Cloud Functions
+functions         Cloud Functions (donations)
 docs/             architecture, setup, failure modes
 ```
 
@@ -44,37 +40,33 @@ docs/             architecture, setup, failure modes
 
 ## Stack
 
-- Web: React 18, TypeScript, Vite, Zustand, react-router v7, Tailwind
-- Backend: Firebase Auth, Firestore, Hosting
-- Functions region: `asia-southeast1`
+- React 18, TypeScript, Vite, Zustand, react-router, Tailwind
+- Firebase Auth, Firestore, Hosting
 
 ---
 
 ## Develop
 
-Need Node 20+ and `firebase-tools`.
+Need Node 20+.
 
 ```bash
 git clone https://github.com/rosilvosa/reality-check.git
 cd reality-check
 npm install
-cd apps/web && npm install && cd ../..
 ```
 
-Web env: copy `apps/web/.env.example` → `apps/web/.env` and fill Firebase web config.
+Copy `apps/web/.env.example` → `apps/web/.env` and fill the Firebase web config.
 
 ```bash
 npm run web          # http://localhost:5173
 ```
-
-### Deploy
 
 ```bash
 npm run build:web
 firebase deploy --only hosting
 ```
 
-See [`docs/SETUP.md`](docs/SETUP.md) for env vars and console setup.
+More detail: [`docs/SETUP.md`](docs/SETUP.md).
 
 ---
 
@@ -83,7 +75,7 @@ See [`docs/SETUP.md`](docs/SETUP.md) for env vars and console setup.
 | File | What |
 |---|---|
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Why each stack choice |
-| [`docs/SETUP.md`](docs/SETUP.md) | Env vars, Firebase console, gotchas |
+| [`docs/SETUP.md`](docs/SETUP.md) | Env vars and Firebase setup |
 | [`docs/FAILURE_MODES.md`](docs/FAILURE_MODES.md) | What breaks and how to recover |
 
 ---
