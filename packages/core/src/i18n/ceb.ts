@@ -8,6 +8,7 @@ export const ceb: Translation = {
     sweat: '💧 Pawis', assets: '🔥 Gasto', journal: '📓 Dyornal',
     nearmiss: '⚠️ Hapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
     community: 'Komunidad', help: 'Tabang',
+    lost: 'Pildi',
     more: 'Uban pa',
   },
 
@@ -37,6 +38,15 @@ export const ceb: Translation = {
     installBtn: 'I-install',
     installIos: 'Sa iPhone: i-tap ang Share, unya Add to Home Screen.',
     installDismiss: 'Dili karon',
+  },
+
+  lost: {
+    title: 'Bag-o ko kapildi',
+    subtitle: 'Usa ka kantidad. Unsa kini sa oras sa imong kinabuhi, ug sa mga butang nga imong gibayran.',
+    almostQ: 'Murag hapit ka nidaog?',
+    almostYes: 'Oo — hapit',
+    almostNo: 'Dili',
+    writeNext: 'Isulat',
   },
 
   sweat: {

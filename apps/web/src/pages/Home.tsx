@@ -60,7 +60,7 @@ export default function Home() {
 
       <div className="grid grid-cols-1 gap-3 mb-4">
         <Link
-          to="/sweat"
+          to="/lost"
           className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
         >
           <p className="text-white font-black text-lg">{t.home.lostBtn}</p>

@@ -8,6 +8,7 @@ export const en: Translation = {
     sweat: '💧 Sweat', assets: '🔥 Assets', journal: '📓 Journal',
     nearmiss: '⚠️ Miss', trap: '🧠 Trap', progress: '🏆 Progress', settings: '⚙ Settings',
     community: 'Community', help: 'Help',
+    lost: 'Lost',
     more: 'More',
   },
 
@@ -37,6 +38,15 @@ export const en: Translation = {
     installBtn: 'Install',
     installIos: 'On iPhone: tap Share, then Add to Home Screen.',
     installDismiss: 'Not now',
+  },
+
+  lost: {
+    title: 'I just lost',
+    subtitle: 'One amount. What it cost in hours of your life, and in the things you actually pay for.',
+    almostQ: 'Did it feel like you almost won?',
+    almostYes: 'Yes — it felt close',
+    almostNo: 'No',
+    writeNext: 'Write it down',
   },
 
   sweat: {

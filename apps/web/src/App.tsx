@@ -1,12 +1,10 @@
 import { useEffect } from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { LangProvider } from './i18n'
 import Layout from './components/Layout'
 import Home from './pages/Home'
-import SweatHours from './pages/SweatHours'
-import AssetReality from './pages/AssetReality'
+import Lost from './pages/Lost'
 import Journal from './pages/Journal'
-import NearMiss from './pages/NearMiss'
 import Trap from './pages/Trap'
 import Barriers from './pages/Barriers'
 import Settings from './pages/Settings'
@@ -30,10 +28,11 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'sweat', element: <SweatHours /> },
-      { path: 'assets', element: <AssetReality /> },
+      { path: 'lost', element: <Lost /> },
+      { path: 'sweat', element: <Navigate to="/lost" replace /> },
+      { path: 'assets', element: <Navigate to="/lost" replace /> },
+      { path: 'nearmiss', element: <Navigate to="/lost" replace /> },
       { path: 'journal', element: <Journal /> },
-      { path: 'nearmiss', element: <NearMiss /> },
       { path: 'trap', element: <Trap /> },
       { path: 'barriers', element: <Barriers /> },
       { path: 'progress', element: <Progress /> },

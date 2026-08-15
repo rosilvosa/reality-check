@@ -8,6 +8,7 @@ export const fil: Translation = {
     sweat: '💧 Pawis', assets: '🔥 Gastos', journal: '📓 Talaarawan',
     nearmiss: '⚠️ Halos', trap: '🧠 Bitag', progress: '🏆 Progreso', settings: '⚙ Mga Setting',
     community: 'Komunidad', help: 'Tulong',
+    lost: 'Talo',
     more: 'Iba pa',
   },
 
@@ -37,6 +38,15 @@ export const fil: Translation = {
     installBtn: 'I-install',
     installIos: 'Sa iPhone: i-tap ang Share, tapos Add to Home Screen.',
     installDismiss: 'Huwag muna',
+  },
+
+  lost: {
+    title: 'Kaka-talo ko lang',
+    subtitle: 'Isang halaga. Ano ang halaga nito sa oras ng buhay mo, at sa mga bagay na talagang binabayaran mo.',
+    almostQ: 'Para bang halos nanalo ka?',
+    almostYes: 'Oo — malapit',
+    almostNo: 'Hindi',
+    writeNext: 'Isulat',
   },
 
   sweat: {

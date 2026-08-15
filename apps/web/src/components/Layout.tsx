@@ -51,9 +51,7 @@ export default function Layout() {
   ]
 
   const bottom = [
-    { to: '/sweat', label: t.nav.sweat, icon: '💧' },
-    { to: '/assets', label: t.nav.assets, icon: '🔥' },
-    { to: '/nearmiss', label: t.nav.nearmiss, icon: '⚠️' },
+    { to: '/lost', label: t.nav.lost, icon: '💧' },
     { to: '/trap', label: t.nav.trap, icon: '🧠' },
     { to: '/barriers', label: t.settings.barriersTitle, icon: '🛡' },
     { to: '/help', label: t.nav.help, icon: '🤝' },

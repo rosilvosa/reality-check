@@ -8,6 +8,7 @@ export const hil: Translation = {
     sweat: '💧 Pawis', assets: '🔥 Gastus', journal: '📓 Dyornal',
     nearmiss: '⚠️ Malapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
     community: 'Komunidad', help: 'Bulig',
+    lost: 'Pildi',
     more: 'Iban pa',
   },
 
@@ -37,6 +38,15 @@ export const hil: Translation = {
     installBtn: 'I-install',
     installIos: 'Sa iPhone: i-tap ang Share, dayon Add to Home Screen.',
     installDismiss: 'Indi anay',
+  },
+
+  lost: {
+    title: 'Bag-o lang ako napildi',
+    subtitle: 'Isa ka kantidad. Ano ini sa oras sang imo kabuhi, kag sa mga butang nga imo ginabayad.',
+    almostQ: 'Daw halos nagsudaog ka?',
+    almostYes: 'Huo — malapit',
+    almostNo: 'Indi',
+    writeNext: 'Isulat',
   },
 
   sweat: {

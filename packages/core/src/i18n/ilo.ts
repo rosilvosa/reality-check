@@ -8,6 +8,7 @@ export const ilo: Translation = {
     sweat: '💧 Balitok', assets: '🔥 Gasto', journal: '📓 Diario',
     nearmiss: '⚠️ Asideg', trap: '🧠 Lit-ag', progress: '🏆 Nalibtaan', settings: '⚙ Settings',
     community: 'Komunidad', help: 'Tulong',
+    lost: 'Naabak',
     more: 'Ad-adu',
   },
 
@@ -37,6 +38,15 @@ export const ilo: Translation = {
     installBtn: 'I-install',
     installIos: 'Iti iPhone: i-tap ti Share, ket Add to Home Screen.',
     installDismiss: 'Saan pay',
+  },
+
+  lost: {
+    title: 'Kakaabakak laeng',
+    subtitle: 'Maysa a gatad. Ania ti gatadna iti oras ti biagmo, ken kadagiti banag a pudno a bayadam.',
+    almostQ: 'Kasla asidegen a nanaloka?',
+    almostYes: 'Wen — asideg',
+    almostNo: 'Saan',
+    writeNext: 'Isurat',
   },
 
   sweat: {

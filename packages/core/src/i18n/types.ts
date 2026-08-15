@@ -8,6 +8,7 @@ export interface Translation {
     sweat: string; assets: string; journal: string
     nearmiss: string; trap: string; progress: string; settings: string
     community: string; help: string
+    lost: string
     more: string
   }
 
@@ -37,6 +38,15 @@ export interface Translation {
     installBtn: string
     installIos: string
     installDismiss: string
+  }
+
+  lost: {
+    title: string
+    subtitle: string
+    almostQ: string
+    almostYes: string
+    almostNo: string
+    writeNext: string
   }
 
   sweat: {
