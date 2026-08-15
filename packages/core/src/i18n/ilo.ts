@@ -235,7 +235,7 @@ export const ilo: Translation = {
     title: "Tulongan ti David's Beacon",
     tag: 'Sabali nga app. Isu met laeng a tao.',
     body1: 'Libre ti Reality Check. No nakatulong daytoy, saan a agbayad para itoy. Tulongam ti pamilia a special needs tapno mas natalgedda.',
-    body2: "Ti David's Beacon ket libre a safety platform para kadagiti pamilia ti ubing nga addaan iti autism ken dadduma pay a special needs — SOS, location, QR emergency card. Naaramid para kenni Davie, 8, ken kadagiti pamilia a kas kanyana. Libre kanayon ti core safety.",
+    body2: "Ti David's Beacon ket libre a safety platform para kadagiti pamilia ti ubing nga addaan iti autism ken dadduma pay a special needs — SOS, location, QR emergency card. Libre kanayon ti core safety.",
     belief1Title: 'Kalintegan ti seguridad, saan a feature',
     belief1Body: 'Masapul nga adda emergency tools ti tunggal pamilia, uray ania ti gundawayda.',
     belief2Title: 'Libre para kadagiti pamilia, kanayon',

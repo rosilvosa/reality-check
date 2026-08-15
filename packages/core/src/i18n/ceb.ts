@@ -235,7 +235,7 @@ export const ceb: Translation = {
     title: "Tabangi ang David's Beacon",
     tag: 'Lain nga app. Parehas nga tawo.',
     body1: 'Libre ang Reality Check. Kung nakatabang kini, ayaw bayad para niini. Tabangi ang pamilya nga special needs nga mas luwas.',
-    body2: "Ang David's Beacon libre nga safety platform para sa pamilya sa bata nga adunay autism ug uban pang special needs — SOS, location, QR emergency card. Gibuhat para kang Davie, 8, ug sa pamilya sama kaniya. Libre gihapon ang core safety.",
+    body2: "Ang David's Beacon libre nga safety platform para sa pamilya sa bata nga adunay autism ug uban pang special needs — SOS, location, QR emergency card. Libre gihapon ang core safety.",
     belief1Title: 'Katungod ang kaluwasan, dili feature',
     belief1Body: 'Ang matag pamilya angayan og emergency tools, bisan unsang kita.',
     belief2Title: 'Libre para sa pamilya, kanunay',

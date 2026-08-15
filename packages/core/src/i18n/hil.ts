@@ -235,7 +235,7 @@ export const hil: Translation = {
     title: "Buligi ang David's Beacon",
     tag: 'Iban nga app. Pareho nga tawo.',
     body1: 'Libre ang Reality Check. Kung nakabulig ini, indi magbayad para diri. Buligi ang pamilya nga special needs nga mas luwas.',
-    body2: "Ang David's Beacon libre nga safety platform para sa pamilya sang bata nga may autism kag iban pa nga special needs — SOS, location, QR emergency card. Ginhimo para kay Davie, 8, kag sa pamilya nga pareho sa iya. Libre gihapon ang core safety.",
+    body2: "Ang David's Beacon libre nga safety platform para sa pamilya sang bata nga may autism kag iban pa nga special needs — SOS, location, QR emergency card. Libre gihapon ang core safety.",
     belief1Title: 'Kinamatarong ang kaluwasan, indi feature',
     belief1Body: 'Ang kada pamilya dapat may emergency tools, bisan ano nga kita.',
     belief2Title: 'Libre para sa pamilya, pirme',

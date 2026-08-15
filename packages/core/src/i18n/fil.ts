@@ -235,7 +235,7 @@ export const fil: Translation = {
     title: "Tulungan ang David's Beacon",
     tag: 'Ibang app. Parehong tao.',
     body1: 'Libre ang Reality Check. Kung nakatulong ito, huwag magbayad para dito. Tulungan ang pamilyang special needs na mas maging ligtas.',
-    body2: "Ang David's Beacon ay libreng safety platform para sa pamilya ng batang may autism at ibang special needs — SOS, location, QR emergency card. Ginawa para kay Davie, 8, at sa mga pamilyang katulad nila. Libre palagi ang core safety.",
+    body2: "Ang David's Beacon ay libreng safety platform para sa pamilya ng batang may autism at ibang special needs — SOS, location, QR emergency card. Libre palagi ang core safety.",
     belief1Title: 'Karapatan ang kaligtasan, hindi feature',
     belief1Body: 'Dapat may emergency tools ang bawat pamilya, kahit anong kita.',
     belief2Title: 'Libre para sa pamilya, palagi',

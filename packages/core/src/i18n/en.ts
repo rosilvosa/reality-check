@@ -235,7 +235,7 @@ export const en: Translation = {
     title: "Help David's Beacon",
     tag: 'A different app. Same person.',
     body1: 'Reality Check stays free. If it helped you, do not pay for this app. Help a special-needs family stay safer.',
-    body2: "David's Beacon is a free safety platform for families of children with autism and other special needs — SOS, location, QR emergency cards. Built for Davie, 8, and families like his. Core safety stays free. Always.",
+    body2: "David's Beacon is a free safety platform for families of children with autism and other special needs — SOS, location, QR emergency cards. Core safety stays free. Always.",
     belief1Title: 'Safety is a right, not a feature',
     belief1Body: 'Every family deserves emergency tools that work, regardless of income.',
     belief2Title: 'Free for families, always',
