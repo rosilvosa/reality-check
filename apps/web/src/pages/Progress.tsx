@@ -39,7 +39,6 @@ export default function Progress() {
 
   return (
     <div className="px-4 py-6 pb-24 max-w-lg mx-auto">
-      <p className="text-[11px] tracking-widest text-muted uppercase mb-1">Gambling Recovery Tool</p>
       <h1 className="text-2xl font-black text-white mb-6">{t.progress.title}</h1>
 
       {/* Current streak */}

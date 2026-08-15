@@ -20,7 +20,9 @@ export default function Home() {
 
   return (
     <div>
-      <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-4">{t.home.tag}</p>
+      <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Recovery tool</p>
+      <h1 className="text-[22px] font-black text-white tracking-tight mb-1">Reality Check</h1>
+      <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-5">{t.home.tag}</p>
 
       <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
         {currentStreak > 0 ? (

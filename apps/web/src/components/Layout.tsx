@@ -57,20 +57,13 @@ export default function Layout() {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg">
-      <header className="border-b border-border bg-surface">
-        <NavLink
-          to="/"
-          className="block px-5 pt-4 pb-3 hover:bg-surface2/50 transition-colors"
-        >
-          <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Recovery tool</p>
-          <h1 className="text-[22px] font-black text-white tracking-tight">Reality Check</h1>
-        </NavLink>
-        <nav className="flex border-t border-border max-w-2xl mx-auto">
+      <nav className="border-b border-border bg-surface pt-[env(safe-area-inset-top)]">
+        <div className="flex max-w-2xl mx-auto">
           {top.map((tab) => (
             <Tab key={tab.to} {...tab} />
           ))}
-        </nav>
-      </header>
+        </div>
+      </nav>
 
       <main className="flex-1 px-4 py-6 max-w-2xl w-full mx-auto pb-8">
         <Outlet />
