@@ -2,9 +2,29 @@
   "functions": {
     "source": "functions"
   },
-  "hosting": {
-    "public": "apps/web/dist",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [{ "source": "**", "destination": "/index.html" }]
-  }
+  "hosting": [
+    {
+      "site": "reality-check-ph",
+      "public": "apps/web/dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    },
+    {
+      "site": "reality-check-5fffe",
+      "public": "apps/web/dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "redirects": [
+        {
+          "source": "/",
+          "destination": "https://reality-check-ph.web.app",
+          "type": 301
+        },
+        {
+          "source": "/:path*",
+          "destination": "https://reality-check-ph.web.app/:path",
+          "type": 301
+        }
+      ]
+    }
+  ]
 }

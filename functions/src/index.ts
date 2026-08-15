@@ -17,7 +17,7 @@ export const createPaymongoCheckout = region.https.onCall(
     if (!uid) throw new functions.https.HttpsError('invalid-argument', 'uid required')
 
     const secretKey = process.env.PAYMONGO_SECRET_KEY
-    const appUrl    = process.env.APP_URL ?? 'https://reality-check.web.app'
+    const appUrl    = process.env.APP_URL ?? 'https://reality-check-ph.web.app'
 
     if (!secretKey) {
       throw new functions.https.HttpsError('internal', 'PayMongo key not configured')

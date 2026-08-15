@@ -171,5 +171,5 @@ build: {
 
 **Recovery:**
 1. Enable Google in Firebase Console
-2. Add `localhost` and `reality-check-5fffe.web.app` to authorized domains
+2. Add `localhost` and `reality-check-ph.web.app` to authorized domains
 3. Tell user to allow popups for the site
