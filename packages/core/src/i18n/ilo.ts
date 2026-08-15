@@ -6,6 +6,7 @@ export const ilo: Translation = {
   nav: {
     sweat: '💧 Balitok', assets: '🔥 Gasto', journal: '📓 Diario',
     nearmiss: '⚠️ Asideg', trap: '🧠 Lit-ag', progress: '🏆 Nalibtaan', settings: '⚙ Settings',
+    more: 'Ad-adu',
   },
 
   common: {

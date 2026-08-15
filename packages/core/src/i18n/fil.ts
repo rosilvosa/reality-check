@@ -6,6 +6,7 @@ export const fil: Translation = {
   nav: {
     sweat: '💧 Pawis', assets: '🔥 Gastos', journal: '📓 Talaarawan',
     nearmiss: '⚠️ Halos', trap: '🧠 Bitag', progress: '🏆 Progreso', settings: '⚙ Mga Setting',
+    more: 'Iba pa',
   },
 
   common: {

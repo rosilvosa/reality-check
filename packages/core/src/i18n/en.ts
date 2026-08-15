@@ -6,6 +6,7 @@ export const en: Translation = {
   nav: {
     sweat: '💧 Sweat', assets: '🔥 Assets', journal: '📓 Journal',
     nearmiss: '⚠️ Miss', trap: '🧠 Trap', progress: '🏆 Progress', settings: '⚙ Settings',
+    more: 'More',
   },
 
   common: {

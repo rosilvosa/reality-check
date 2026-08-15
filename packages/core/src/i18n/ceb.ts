@@ -6,6 +6,7 @@ export const ceb: Translation = {
   nav: {
     sweat: '💧 Pawis', assets: '🔥 Gasto', journal: '📓 Dyornal',
     nearmiss: '⚠️ Hapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
+    more: 'Uban pa',
   },
 
   common: {

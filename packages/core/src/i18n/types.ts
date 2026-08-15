@@ -6,6 +6,7 @@ export interface Translation {
   nav: {
     sweat: string; assets: string; journal: string
     nearmiss: string; trap: string; progress: string; settings: string
+    more: string
   }
 
   common: {

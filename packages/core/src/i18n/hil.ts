@@ -6,6 +6,7 @@ export const hil: Translation = {
   nav: {
     sweat: '💧 Pawis', assets: '🔥 Gastus', journal: '📓 Dyornal',
     nearmiss: '⚠️ Malapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
+    more: 'Iban pa',
   },
 
   common: {

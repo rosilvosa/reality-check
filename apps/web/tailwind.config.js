@@ -13,7 +13,7 @@ export default {
         'accent-dim': '#7f1d1d',
         amber: '#d97706',
         'amber-dim': '#78350f',
-        muted: '#6b6b80',
+        muted: '#8b8b9e',
       },
     },
   },
