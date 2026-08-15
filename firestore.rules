@@ -47,7 +47,10 @@ service cloud.firestore {
         && request.resource.data.text is string
         && request.resource.data.text.size() > 0
         && request.resource.data.text.size() <= 500
-        && request.resource.data.country in ['PH', 'US', 'UK', 'AU', 'SG', 'INTL']
+        && (
+          !('country' in request.resource.data)
+          || request.resource.data.country in ['PH', 'US', 'UK', 'AU', 'SG', 'INTL']
+        )
         && request.resource.data.hearts == 0;
       allow update: if request.auth != null
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hearts'])
