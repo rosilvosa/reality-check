@@ -10,7 +10,7 @@ const BARRIER_IDS = [
 ] as const
 
 const BARRIER_URLS = [
-  'https://www.pagcor.gov.ph', null, null, null, null, 'tel:1553',
+  null, null, null, null, null, 'tel:1553',
 ] as const
 
 export default function Barriers() {

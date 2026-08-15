@@ -92,6 +92,7 @@ function firestoreAdapter(uid: string): StorageAdapter {
         hoursPerMonth: d.hoursPerMonth ?? 176,
         assets: d.assets ?? [],
         voidType: d.voidType ?? null,
+        currency: d.currency ?? 'PHP',
       }
     },
 

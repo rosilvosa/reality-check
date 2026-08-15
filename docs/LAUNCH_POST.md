@@ -8,7 +8,7 @@ I shipped a web app today because I could not afford to put it on the stores.
 
 **Reality Check** — https://reality-check-ph.web.app
 
-It is a gambling recovery tool for the Philippines. You type a loss. It tells you what that money actually was: hours of your life, weeks of groceries, a month of rent. There is a journal that forces you to re-read the last entry before you write another one. That is the intercept. There is also a near-miss reframe, a house-edge calculator, a barriers checklist (PAGCOR self-exclusion, delete the apps, block the sites), and a streak tracker.
+It is a gambling recovery tool. Anyone can use it — pick your currency in Settings. You type a loss. It tells you what that money actually was: hours of your life, weeks of groceries, a month of rent. There is a journal that forces you to re-read the last entry before you write another one. That is the intercept. There is also a near-miss reframe, a house-edge calculator, a barriers checklist (PAGCOR self-exclusion, delete the apps, block the sites), and a streak tracker.
 
 I built it because digital chips do not feel like money. ₱5,000 on a screen feels like nothing. Three weeks of groceries does not.
 
@@ -40,6 +40,6 @@ https://reality-check-ph.web.app
 
 **Shorter version (FB / IG / X)**
 
-Shipped Reality Check today — a PH gambling recovery tool. Type a loss, see the hours and the groceries it actually cost. Journal that makes you re-read the last entry first. Free. Web, not the stores (I could not afford the listing). Open source. Donations via GCash keep cloud sync free for anyone, and fund a safety app I am releasing soon.
+Shipped Reality Check today — a gambling recovery tool. Pick your currency. Type a loss, see the hours and the groceries it actually cost. Journal that makes you re-read the last entry first. Free. Web, not the stores (I could not afford the listing). Open source. Donations via GCash keep cloud sync free for anyone, and fund a safety app I am releasing soon.
 
 https://reality-check-ph.web.app

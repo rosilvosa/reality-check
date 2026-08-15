@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { useSettingsStore } from '../stores/settingsStore'
 import { auth } from '../lib/firebase'
 import { useT } from '../i18n'
-import { tpl } from '@rc/core'
+import { tpl, formatMoney } from '@rc/core'
 
 export default function AssetReality() {
-  const { assets, loaded, loadSettings } = useSettingsStore()
+  const { assets, currency, loaded, loadSettings } = useSettingsStore()
   const [loss, setLoss] = useState('')
   const [calculated, setCalculated] = useState(false)
   const t = useT()
@@ -47,10 +47,10 @@ export default function AssetReality() {
       {calculated && lossVal > 0 && (
         <div className="bg-surface border border-border rounded-xl p-5">
           <p className="text-xs font-bold uppercase tracking-wider text-muted mb-1">
-            {tpl(t.assets.resultTitle, { amount: lossVal.toLocaleString() })}
+            {tpl(t.assets.resultTitle, { amount: formatMoney(lossVal, currency) })}
           </p>
           <p className="text-2xl font-extrabold text-amber mb-4">
-            {tpl(t.assets.resultBurned, { amount: lossVal.toLocaleString() })}
+            {tpl(t.assets.resultBurned, { amount: formatMoney(lossVal, currency) })}
           </p>
 
           {assets.length === 0 && (

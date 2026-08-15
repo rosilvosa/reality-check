@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams, NavLink } from 'react-router-dom'
 import { useT, useLang } from '../i18n'
-import { tpl } from '@rc/core'
+import { tpl, CURRENCIES, formatMoney } from '@rc/core'
 import { useSettingsStore, Asset } from '../stores/settingsStore'
 import { useAuthStore } from '../stores/authStore'
 import { useJournalStore } from '../stores/journalStore'
@@ -17,7 +17,7 @@ const REPO_URL = 'https://github.com/rosilvosa/reality-check'
 const DONATE_AMOUNTS = [50, 100, 299]
 
 export default function Settings() {
-  const { monthlyPay, hoursPerMonth, assets, voidType, loaded, loadSettings, saveSettings } = useSettingsStore()
+  const { monthlyPay, hoursPerMonth, assets, voidType, currency, loaded, loadSettings, saveSettings } = useSettingsStore()
   const { user } = useAuthStore()
   const t = useT()
   const { lang, setLang, languages } = useLang()
@@ -32,6 +32,7 @@ export default function Settings() {
   const [donateError, setDonateError] = useState('')
   const [donateLoading, setDonateLoading] = useState<number | null>(null)
   const [customAmount, setCustomAmount] = useState('')
+  const [currencyCode, setCurrencyCode] = useState('PHP')
   const [deleting, setDeleting] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -55,8 +56,9 @@ export default function Settings() {
       setMonthly(monthlyPay > 0 ? String(monthlyPay) : '')
       setHours(String(hoursPerMonth))
       setLocalAssets(assets.map((a) => ({ ...a })))
+      setCurrencyCode(currency || 'PHP')
     }
-  }, [loaded, monthlyPay, hoursPerMonth, assets])
+  }, [loaded, monthlyPay, hoursPerMonth, assets, currency])
 
   const monthlyVal  = parseFloat(monthly) || 0
   const hoursVal    = parseFloat(hours) || 176
@@ -86,6 +88,7 @@ export default function Settings() {
       hoursPerMonth: hoursVal,
       assets: validAssets,
       voidType,
+      currency: currencyCode,
     })
     setSaved(true)
     setTimeout(() => setSaved(false), 2500)
@@ -236,6 +239,20 @@ export default function Settings() {
       </div>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.currencySection}</p>
+        <p className="text-sm text-muted mb-3 leading-relaxed">{t.settings.currencyHint}</p>
+        <select
+          value={currencyCode}
+          onChange={(e) => setCurrencyCode(e.target.value)}
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent"
+        >
+          {CURRENCIES.map((c) => (
+            <option key={c.code} value={c.code}>{c.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-4">{t.settings.incomeSection}</p>
 
         <label className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelMonthly}</label>
@@ -257,7 +274,7 @@ export default function Settings() {
         />
 
         {derivedRate && (
-          <p className="text-sm text-muted">{tpl(t.settings.hourlyRate, { rate: derivedRate })}</p>
+          <p className="text-sm text-muted">{tpl(t.settings.hourlyRate, { rate: formatMoney(parseFloat(derivedRate), currencyCode) })}</p>
         )}
       </div>
 
@@ -279,7 +296,7 @@ export default function Settings() {
                 type="number"
                 value={a.cost || ''}
                 onChange={(e) => updateAsset(i, 'cost', e.target.value)}
-                placeholder="Cost (₱)"
+                placeholder={t.settings.assetCostPlaceholder}
                 className="w-28 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
               />
               <button

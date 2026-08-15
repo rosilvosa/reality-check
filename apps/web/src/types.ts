@@ -10,6 +10,7 @@ export interface Settings {
   hoursPerMonth: number
   assets: Asset[]
   voidType?: VoidType | null
+  currency?: string
 }
 
 export interface JournalEntry {

@@ -111,7 +111,9 @@ export interface Translation {
     // params: {rate}
     hourlyRate: string
     assetsSection: string; assetsHint: string; assetNamePlaceholder: string
+    assetCostPlaceholder: string
     addAsset: string; saveBtn: string; savedBtn: string
+    currencySection: string; currencyHint: string
     langSection: string; supportSection: string; supportHint: string; kofiBtn: string
     recoveryTools: string; barriersTitle: string; barriersDesc: string
     syncActive: string; donateNow: string; donateSuccess: string; donateFail: string

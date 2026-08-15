@@ -1,6 +1,6 @@
 # Reality Check
 
-A gambling recovery tool for the Philippines. It re-sensitizes you to the real value of money.
+A gambling recovery tool. It re-sensitizes you to the real value of money.
 
 Casinos sell a digital illusion: chips, spins, “almost won.” This app breaks that. A loss is not a number on a screen. It is hours of your life, weeks of groceries, months of rent.
 
@@ -23,7 +23,7 @@ The web app is the product. There is no App Store / Play Store release. Add it t
 | **Trap** | Skinner box, house-edge math, why the game is built to keep you playing |
 | **Barriers** | Checklist: self-exclusion, delete apps, block sites, cut payment methods, tell someone, helpline |
 | **Progress** | Daily check-in. Badges at 1, 3, 7, 14, 30, 60, 90, 180, 365 clean days |
-| **Onboarding** | 3 screens: welcome → income → the real costs in your life |
+| **Onboarding** | When to use it, income, real costs, then a map of the tabs |
 
 Free use needs no account. Data stays in this browser (`localStorage`). Nothing is uploaded.
 

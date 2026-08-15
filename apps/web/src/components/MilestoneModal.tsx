@@ -1,6 +1,7 @@
 import { useStreakStore } from '../stores/streakStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { useT } from '../i18n'
+import { formatMoney } from '@rc/core'
 
 const BADGE: Record<number, string> = {
   1: '🌱', 3: '🌿', 7: '🔥', 14: '⚡', 30: '🏆', 60: '💎', 90: '🛡️', 180: '👑', 365: '🌟',
@@ -8,7 +9,7 @@ const BADGE: Record<number, string> = {
 
 export default function MilestoneModal() {
   const { showMilestoneModal, newMilestone, getTotalSaved, dismissMilestone } = useStreakStore()
-  const { assets } = useSettingsStore()
+  const { assets, currency } = useSettingsStore()
   const t = useT()
 
   if (!showMilestoneModal || newMilestone === null) return null
@@ -33,7 +34,7 @@ export default function MilestoneModal() {
           <p className="text-muted text-sm mb-3">
             You've protected{' '}
             <span className="text-white font-bold">
-              ₱{totalSaved.toLocaleString()}
+              {formatMoney(totalSaved, currency)}
             </span>
             {assetLines.length > 0 && (
               <> — {assetLines.join(', ')}</>

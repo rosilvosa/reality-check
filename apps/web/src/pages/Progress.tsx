@@ -2,7 +2,7 @@ import { useStreakStore } from '../stores/streakStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import VoidSection from '../components/VoidSection'
 import { useT } from '../i18n'
-import { tpl } from '@rc/core'
+import { tpl, formatMoney } from '@rc/core'
 
 const MILESTONES = [1, 3, 7, 14, 30, 60, 90, 180, 365]
 
@@ -12,7 +12,7 @@ const BADGE: Record<number, string> = {
 
 function toDateLabel(iso: string | null): string {
   if (!iso) return '—'
-  return new Date(iso).toLocaleDateString('en-PH', { dateStyle: 'medium' })
+  return new Date(iso).toLocaleDateString(undefined, { dateStyle: 'medium' })
 }
 
 function isCheckedInToday(lastCheckInDate: string | null): boolean {
@@ -25,7 +25,7 @@ export default function Progress() {
     currentStreak, longestStreak, lastCheckInDate, milestonesSeen,
     startDate, loading, checkIn,
   } = useStreakStore()
-  const { assets } = useSettingsStore()
+  const { assets, currency } = useSettingsStore()
   const t = useT()
 
   const checkedInToday = isCheckedInToday(lastCheckInDate)
@@ -102,7 +102,7 @@ export default function Progress() {
         <div className="bg-[#111118] border border-[#232330] rounded-xl p-5 mb-4">
           <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-3">{t.progress.protectedLabel}</div>
           <div className="text-2xl font-black text-white mb-3">
-            ₱{totalSaved.toLocaleString()}
+            {formatMoney(totalSaved, currency)}
           </div>
           {assetLines.length > 0 ? (
             <div className="space-y-2">

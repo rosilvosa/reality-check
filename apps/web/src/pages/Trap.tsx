@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useT } from '../i18n'
-import { tpl } from '@rc/core'
+import { tpl, formatMoney } from '@rc/core'
+import { useSettingsStore } from '../stores/settingsStore'
 
 const HOUSE_EDGES = [
   { edge: 0.0455 },
@@ -14,6 +15,7 @@ export default function Trap() {
   const [edgeIndex, setEdgeIndex] = useState(0)
   const [result, setResult] = useState<number | null>(null)
   const t = useT()
+  const currency = useSettingsStore((s) => s.currency) ?? 'PHP'
 
   function calculate() {
     const bet = parseFloat(weeklyBet)
@@ -98,17 +100,17 @@ export default function Trap() {
           <div className="mt-4 bg-[#0f0a0a] border-2 border-accent rounded-xl p-5">
             <p className="text-[11px] font-bold uppercase tracking-wider text-accent mb-3">{t.trap.calcResultTag}</p>
             <p className="text-3xl font-extrabold text-accent mb-2">
-              {tpl(t.trap.calcResultYear, { amount: Math.round(result).toLocaleString() })}
+              {tpl(t.trap.calcResultYear, { amount: formatMoney(Math.round(result), currency) })}
             </p>
             <p className="text-white text-[15px] leading-relaxed">
               {tpl(t.trap.calcResultBody, {
-                bet: parseFloat(weeklyBet).toLocaleString(),
+                bet: formatMoney(parseFloat(weeklyBet), currency),
                 type: t.trap.houseEdgeLabels[edgeIndex],
-                amount: Math.round(result).toLocaleString(),
+                amount: formatMoney(Math.round(result), currency),
               })}
             </p>
             <p className="text-white text-[15px] leading-relaxed mt-3">
-              {tpl(t.trap.calc5year, { amount: Math.round(result * 5).toLocaleString() })}
+              {tpl(t.trap.calc5year, { amount: formatMoney(Math.round(result * 5), currency) })}
             </p>
             <p className="text-muted text-sm mt-3 leading-relaxed">{t.trap.calcFooter}</p>
           </div>

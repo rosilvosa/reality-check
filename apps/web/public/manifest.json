@@ -1,7 +1,7 @@
 {
   "name": "Reality Check",
   "short_name": "Reality Check",
-  "description": "Gambling recovery tool for the Philippines",
+  "description": "Gambling recovery tool. See what a loss actually costs.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b0b10",

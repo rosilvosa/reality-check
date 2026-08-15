@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { useSettingsStore } from '../stores/settingsStore'
 import { auth } from '../lib/firebase'
 import { useT } from '../i18n'
-import { tpl } from '@rc/core'
+import { tpl, formatMoney } from '@rc/core'
 
 export default function SweatHours() {
-  const { monthlyPay, hoursPerMonth, loaded, loadSettings } = useSettingsStore()
+  const { monthlyPay, hoursPerMonth, currency, loaded, loadSettings } = useSettingsStore()
   const [loss, setLoss] = useState('')
   const [result, setResult] = useState<{ hours: number; days: number; rate: number } | null>(null)
   const t = useT()
@@ -66,10 +66,10 @@ export default function SweatHours() {
           </span>
           <p className="text-white leading-relaxed text-[15px] whitespace-pre-line">
             {tpl(t.sweat.resultBody, {
-              loss: parseFloat(loss).toLocaleString(),
+              loss: formatMoney(parseFloat(loss), currency),
               hours: result.hours.toFixed(1),
               days: result.days.toFixed(1),
-              rate: result.rate.toFixed(2),
+              rate: formatMoney(result.rate, currency),
               ceilHours: String(Math.ceil(result.hours)),
             })}
           </p>
@@ -79,9 +79,9 @@ export default function SweatHours() {
       {loaded && monthlyPay > 0 && (
         <p className="mt-4 text-xs text-muted">
           {tpl(t.sweat.rateNote, {
-            monthly: monthlyPay.toLocaleString(),
+            monthly: formatMoney(monthlyPay, currency),
             hoursPerMonth: String(hoursPerMonth),
-            rate: (monthlyPay / hoursPerMonth).toFixed(2),
+            rate: formatMoney(monthlyPay / hoursPerMonth, currency),
           })}
         </p>
       )}

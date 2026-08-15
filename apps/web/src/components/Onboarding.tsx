@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSettingsStore } from '../stores/settingsStore'
 import type { Asset } from '@rc/core'
 import { useT } from '../i18n'
-import { tpl } from '@rc/core'
+import { tpl, formatMoney } from '@rc/core'
 
 const LS_KEY = 'rc_onboarded_v2'
 
@@ -16,7 +16,7 @@ const DEFAULT_ASSETS: Asset[] = [
 const STEPS = [1, 2, 3, 4] as const
 
 export default function Onboarding() {
-  const { loaded, monthlyPay, voidType, saveSettings } = useSettingsStore()
+  const { loaded, monthlyPay, voidType, currency, saveSettings } = useSettingsStore()
   const [visible, setVisible] = useState(false)
   const [step, setStep] = useState(1)
   const t = useT()
@@ -43,6 +43,7 @@ export default function Onboarding() {
       hoursPerMonth: parseFloat(hours) || 176,
       assets: validAssets.length ? validAssets : assets.filter((a) => a.cost > 0),
       voidType,
+      currency: currency || 'PHP',
     })
   }
 
@@ -137,7 +138,7 @@ export default function Onboarding() {
 
             {rate && (
               <p className="text-sm text-muted mb-8">
-                {tpl(t.onboarding.step2HourlyRate, { rate })}
+                {tpl(t.onboarding.step2HourlyRate, { rate: formatMoney(parseFloat(rate), currency || 'PHP') })}
               </p>
             )}
             {!rate && <div className="mb-8" />}
@@ -177,7 +178,7 @@ export default function Onboarding() {
                     type="number"
                     value={a.cost || ''}
                     onChange={(e) => updateAsset(i, 'cost', e.target.value)}
-                    placeholder="₱"
+                    placeholder={t.settings.assetCostPlaceholder}
                     className="w-24 bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent"
                   />
                   <button

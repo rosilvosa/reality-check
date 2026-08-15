@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import { useJournalStore } from '../stores/journalStore'
 import { auth } from '../lib/firebase'
 import { useT } from '../i18n'
-import { tpl } from '@rc/core'
+import { tpl, formatMoney } from '@rc/core'
+import { useSettingsStore } from '../stores/settingsStore'
 
 export default function Journal() {
   const { entries, loaded, loadJournal, addEntry } = useJournalStore()
+  const currency = useSettingsStore((s) => s.currency) ?? 'PHP'
   const [acknowledged, setAcknowledged] = useState(false)
   const [chasingAcknowledged, setChasingAcknowledged] = useState(false)
   const [amount, setAmount] = useState('')
@@ -60,12 +62,12 @@ export default function Journal() {
           <p className="text-sm text-muted mb-4">
             {t.journal.interceptSub}
             {' '}
-            {mostRecent.createdAt.toLocaleString('en-PH', { dateStyle: 'medium', timeStyle: 'short' })}.
+            {mostRecent.createdAt.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}.
           </p>
           <div className="bg-bg rounded-lg p-4 mb-4 border-l-4 border-accent-dim">
             {mostRecent.amount > 0 && (
               <p className="text-xs text-muted uppercase tracking-wider mb-1">
-                ₱{mostRecent.amount.toLocaleString()} lost
+                {formatMoney(mostRecent.amount, currency)} lost
               </p>
             )}
             <p className="text-white text-sm leading-relaxed whitespace-pre-wrap">{mostRecent.text}</p>
@@ -137,8 +139,8 @@ export default function Journal() {
             {entries.map((e) => (
               <div key={e.id} className="bg-bg border-l-4 border-accent-dim rounded-r-lg p-3">
                 <p className="text-[11px] text-muted uppercase tracking-wider mb-1">
-                  {e.createdAt.toLocaleString('en-PH', { dateStyle: 'medium', timeStyle: 'short' })}
-                  {e.amount > 0 && ` · ₱${e.amount.toLocaleString()} lost`}
+                  {e.createdAt.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}
+                  {e.amount > 0 && ` · ${formatMoney(e.amount, currency)} lost`}
                 </p>
                 <p className="text-sm text-white leading-relaxed whitespace-pre-wrap">{e.text}</p>
               </div>
