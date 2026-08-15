@@ -22,8 +22,8 @@ export default function Privacy() {
       <h3 className="text-white font-bold pt-2">Donations</h3>
       <p>
         Optional donations are processed by PayMongo (GCash, Maya, cards, QRPH) or Ko-fi. We do not store card
-        numbers. PayMongo may store payment records under their own policy. Donations keep this app online and
-        help fund a safety app. They are voluntary payments, not tax-deductible charity gifts.
+        numbers. PayMongo may store payment records under their own policy. Donations keep cloud sync available
+        to anyone and help fund a safety app. They are voluntary payments, not tax-deductible charity gifts.
       </p>
       <h3 className="text-white font-bold pt-2">Your rights</h3>
       <p>

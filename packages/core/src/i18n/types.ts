@@ -117,6 +117,7 @@ export interface Translation {
     syncActive: string; donateNow: string; donateSuccess: string; donateFail: string
     customAmount: string; deleteAccount: string; deleteConfirm: string
     privacyLink: string; termsLink: string
+    sourceCode: string; sourceHint: string
   }
 
   onboarding: {

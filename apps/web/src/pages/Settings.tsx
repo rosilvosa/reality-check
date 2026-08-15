@@ -13,6 +13,7 @@ import { migrateToFirestore } from '../lib/storage'
 import AuthModal from '../components/AuthModal'
 
 const KOFI_URL = 'https://ko-fi.com/rosilvosa'
+const REPO_URL = 'https://github.com/rosilvosa/reality-check'
 const DONATE_AMOUNTS = [50, 100, 299]
 
 export default function Settings() {
@@ -219,9 +220,18 @@ export default function Settings() {
           href={KOFI_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-2.5 border border-border rounded-lg text-muted font-semibold text-sm hover:border-accent hover:text-accent transition-colors"
+          className="flex items-center justify-center gap-2 w-full py-2.5 border border-border rounded-lg text-muted font-semibold text-sm hover:border-accent hover:text-accent transition-colors mb-3"
         >
           {t.settings.kofiBtn}
+        </a>
+        <p className="text-xs text-muted mb-2 leading-relaxed">{t.settings.sourceHint}</p>
+        <a
+          href={REPO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 w-full py-2.5 border border-border rounded-lg text-muted font-semibold text-sm hover:border-accent hover:text-white transition-colors"
+        >
+          {t.settings.sourceCode}
         </a>
       </div>
 
@@ -331,6 +341,8 @@ export default function Settings() {
         <NavLink to="/privacy" className="hover:text-white">{t.settings.privacyLink}</NavLink>
         {' · '}
         <NavLink to="/terms" className="hover:text-white">{t.settings.termsLink}</NavLink>
+        {' · '}
+        <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">{t.settings.sourceCode}</a>
       </p>
 
       <AuthModal isOpen={showAuth} onClose={afterAuthClose} />

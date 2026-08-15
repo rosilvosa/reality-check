@@ -29,6 +29,10 @@ export default function Layout() {
         <NavLink to="/privacy" className="hover:text-white">{t.settings.privacyLink}</NavLink>
         {' · '}
         <NavLink to="/terms" className="hover:text-white">{t.settings.termsLink}</NavLink>
+        {' · '}
+        <a href="https://github.com/rosilvosa/reality-check" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+          {t.settings.sourceCode}
+        </a>
       </footer>
 
       <nav className="fixed bottom-0 inset-x-0 bg-surface border-t border-border flex">

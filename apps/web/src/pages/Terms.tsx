@@ -17,9 +17,9 @@ export default function Terms() {
       </p>
       <h3 className="text-white font-bold pt-2">Donations</h3>
       <p>
-        Donations are optional. They do not unlock features. They keep hosting running and help fund a safety
-        app. Payments go through PayMongo or Ko-fi. Refunds follow the payment provider’s process; contact us
-        if a charge was a mistake.
+        Donations are optional. They do not unlock features. They keep cloud sync available to anyone and help
+        fund a safety app. Payments go through PayMongo or Ko-fi. Refunds follow the payment provider’s
+        process; contact us if a charge was a mistake.
       </p>
       <h3 className="text-white font-bold pt-2">Acceptable use</h3>
       <p>

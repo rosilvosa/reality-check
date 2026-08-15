@@ -5,6 +5,7 @@ A gambling recovery tool for the Philippines. It re-sensitizes you to the real v
 Casinos sell a digital illusion: chips, spins, “almost won.” This app breaks that. A loss is not a number on a screen. It is hours of your life, weeks of groceries, months of rent.
 
 **Live:** https://reality-check-ph.web.app  
+**Source:** https://github.com/rosilvosa/reality-check  
 **Languages:** English, Filipino, Cebuano, Hiligaynon, Ilocano
 
 The web app is the product. There is no App Store / Play Store release. Add it to your phone home screen from the browser.
@@ -53,7 +54,9 @@ This is a recovery tool for people who already have a money problem. A subscript
 
 **Money path: donations.** Settings has ₱50 / ₱100 / ₱299 chips plus custom, via PayMongo (GCash, Maya, QRPH, card). Ko-fi is the backup for people outside PH: https://ko-fi.com/rosilvosa
 
-Donations keep Reality Check online **and** fund a safety app that will be released soon. They unlock nothing.
+This repo is public. Fork it, run your own instance, or send a PR.
+
+Donations do not unlock features. They keep **cloud sync free for anyone** who signs in — Firebase is a real bill — and they fund a safety app that will be released soon.
 
 Do not add Stripe.
 
