@@ -136,12 +136,12 @@ export const ilo: Translation = {
     whyP1: 'Ti betting app iti telepono inpabaro tapno nalaka ti panakaadal ken narigat ti withdrawal. Ti tunggal sagam-at nga inarmidmo mangbaligtad dayta a asymmetry.',
     whyP2: 'Masapsapulam ti willpower no 10 ti addang tapno makaadal iti sugal kaysa maysa laeng a tap. Dagiti sagam-at saan maipanggep iti pammati. Maipanggep daytoy iti panangted ti nasirib a ulom ti tiempo tapno malabsaan ti panagnanasa.',
     items: [
-      { title: 'Magparehistro para iti Self-Exclusion', description: 'Adda self-exclusion program ti PAGCOR nga agbara sika iti amin a nakalitsensya a casino iti Pilipinas. Direkta da a kontaken tapno magparehistro.', actionLabel: 'pagcor.gov.ph' },
+      { title: 'Agparehistro iti PAGCOR self-exclusion', description: 'Mabalin ka a baraen ti PAGCOR kadagiti lisensyado a casino ken site iti 6 a bulan, 1 a tawen, wenno 5 a tawen. Punnoem ti form iti sitioda.', actionLabel: 'Form ti PAGCOR' },
       { title: 'Yalis ti Amin a Betting Apps', description: 'Yalisem ti tunggal gambling app iti teleponomo ita dagus. Haan mo i-archive — yalisem. Kasino met ti "minsan laeng nagagamit." Amin.' },
       { title: 'I-block dagiti Betting Website', description: 'I-install ti site blocker (BlockSite iti Chrome/Android, 1Blocker iti iOS) ket idungam ti tunggal site nga us-usarem. Butangan ti password nga di mo matanda. Palisdan ti dalan a sumasubli.' },
       { title: 'Yalisen dagiti Na-save a Payment Methods', description: 'Mag-login iti tunggal betting account ket yalisem ti na-save a GCash, Maya, wenno detalye ti card. Ti friction mangtangtangken iti impulsibong deposit. Ti tunggal nadumaan a addang kuarta nga natiponen.' },
       { title: 'Ibagam iti Maysa a Pagtalinaeden', description: 'Ibagam iti maysa a tao — miyembro ti pamilia, abogado, bisan sinnoman a pagtalinaeden. Masapsapulam a maipaganab ti amin. Maysa laeng: "Agsusukat ak a mangirugi iti sugal ket masapul a ammoem."' },
-      { title: 'I-save ti Helpline ti NCMH', description: 'NCMH Crisis Line: 1553. Libre, 24/7, nasakup ti addiction. I-save ti numero ita — haan no kasapulan mo, ta no kasapulan mo, di mo met laeng biruken.', actionLabel: 'Tawagan ti 1553' },
+      { title: 'I-save ti helpline ti PAGCOR', description: 'PAGCOR National Problem Gambling Helpline: (02) 8248-9568. 24/7. Ti NCMH 1553 ket linia para iti mental health, saan a serbisio iti sugal.', actionLabel: 'Tawagan ti (02) 8248-9568' },
     ],
   },
 
@@ -190,6 +190,8 @@ export const ilo: Translation = {
     assetCostPlaceholder: 'Halaga',
     currencySection: 'KUARTA',
     currencyHint: 'Daytoy ti us-usaren dagiti calculator. Ti donasion ket peso pay laeng (PayMongo).',
+    helpRegionSection: 'TULONG KADAGITI PAGILIAN',
+    helpRegionHint: 'Ti self-exclusion ken helpline iti Barriers ket agtulad iti daytoy a pagilian.',
     saveBtn: 'I-SAVE DAGITI SETTINGS',
     savedBtn: '✓ NA-SAVE',
     langSection: 'PAGSASAO',

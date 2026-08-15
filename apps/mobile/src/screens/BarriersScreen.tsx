@@ -8,10 +8,10 @@ const AS_KEY = 'rc_barriers'
 const BARRIERS = [
   {
     id: 'self_exclusion',
-    title: 'Register for Self-Exclusion',
+    title: 'Register for PAGCOR self-exclusion',
     description:
-      'PAGCOR runs a self-exclusion program that bans you from all licensed casinos in the Philippines. Contact them directly to register.',
-    action: { label: 'pagcor.gov.ph', url: 'https://www.pagcor.gov.ph' },
+      'PAGCOR can ban you from licensed casinos and gaming sites for 6 months, 1 year, or 5 years. Fill out the self-exclusion form on their site.',
+    action: { label: 'PAGCOR exclusion form', url: 'https://www.pagcor.ph/regulatory/exclusion.php' },
   },
   {
     id: 'delete_apps',
@@ -43,10 +43,10 @@ const BARRIERS = [
   },
   {
     id: 'helpline',
-    title: 'Save the NCMH Helpline',
+    title: 'Save the PAGCOR gambling helpline',
     description:
-      'NCMH Crisis Line: 1553. Free, 24/7, covers addiction. Save the number now — not when you need it, because when you need it you will not look it up.',
-    action: { label: 'Call 1553', url: 'tel:1553' },
+      'PAGCOR National Problem Gambling Helpline: (02) 8248-9568. 24/7. NCMH 1553 is a mental-health crisis line, not a gambling service.',
+    action: { label: 'Call (02) 8248-9568', url: 'tel:+63282489568' },
   },
 ]
 

@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useT } from '../i18n'
-import { tpl } from '@rc/core'
+import { tpl, REGION_HELP, resolveHelpRegion } from '@rc/core'
 import { getAdapter } from '../lib/storage'
 import { useAuthStore } from '../stores/authStore'
+import { useSettingsStore } from '../stores/settingsStore'
 
 const BARRIER_IDS = [
   'self_exclusion', 'delete_apps', 'block_sites', 'payment_methods', 'tell_someone', 'helpline',
 ] as const
 
-const BARRIER_URLS = [
-  null, null, null, null, null, 'tel:1553',
-] as const
-
 export default function Barriers() {
   const [done, setDone] = useState<Set<string>>(new Set())
   const t = useT()
+  const helpRegion = resolveHelpRegion(useSettingsStore((s) => s.helpRegion))
+  const help = REGION_HELP[helpRegion]
 
   const user = useAuthStore((s) => s.user)
   const loading = useAuthStore((s) => s.loading)
@@ -35,6 +34,20 @@ export default function Barriers() {
     })
   }
 
+  const ph = helpRegion === 'PH'
+  const items = [
+    ph
+      ? { title: t.barriers.items[0].title, description: t.barriers.items[0].description, actionLabel: t.barriers.items[0].actionLabel, url: help.exclusionUrl }
+      : { title: help.exclusionTitle, description: help.exclusionBody, actionLabel: help.exclusionAction, url: help.exclusionUrl },
+    { title: t.barriers.items[1].title, description: t.barriers.items[1].description, actionLabel: undefined, url: null },
+    { title: t.barriers.items[2].title, description: t.barriers.items[2].description, actionLabel: undefined, url: null },
+    { title: t.barriers.items[3].title, description: ph ? t.barriers.items[3].description : help.paymentsBody, actionLabel: undefined, url: null },
+    { title: t.barriers.items[4].title, description: t.barriers.items[4].description, actionLabel: undefined, url: null },
+    ph
+      ? { title: t.barriers.items[5].title, description: t.barriers.items[5].description, actionLabel: t.barriers.items[5].actionLabel, url: help.helplineUrl }
+      : { title: help.helplineTitle, description: help.helplineBody, actionLabel: help.helplineAction, url: help.helplineUrl },
+  ]
+
   const count = done.size
   const total = BARRIER_IDS.length
   const allDone = count === total
@@ -47,8 +60,11 @@ export default function Barriers() {
 
       <h2 className="text-lg font-extrabold text-white mb-1">{t.barriers.title}</h2>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.barriers.subtitle}</p>
+      <p className="text-xs text-muted mb-5">
+        {t.settings.helpRegionHint}{' '}
+        <NavLink to="/settings" className="text-accent hover:text-white">{t.settings.helpRegionSection}</NavLink>
+      </p>
 
-      {/* Progress bar */}
       <div className="bg-surface border border-border rounded-xl p-5 mb-5">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-bold uppercase tracking-wider text-muted">{t.barriers.progressLabel}</span>
@@ -72,13 +88,10 @@ export default function Barriers() {
         )}
       </div>
 
-      {/* Checklist */}
       <div className="space-y-3 mb-6">
         {BARRIER_IDS.map((id, i) => {
           const checked = done.has(id)
-          const item = t.barriers.items[i]
-          const url = BARRIER_URLS[i]
-          const actionLabel = 'actionLabel' in item ? item.actionLabel : undefined
+          const item = items[i]
           return (
             <div
               key={id}
@@ -110,14 +123,14 @@ export default function Barriers() {
                   <p className={`text-sm leading-relaxed ${checked ? 'text-muted/60' : 'text-muted'}`}>
                     {item.description}
                   </p>
-                  {url && actionLabel && !checked && (
+                  {item.url && item.actionLabel && !checked && (
                     <a
-                      href={url}
-                      target={url.startsWith('tel:') ? '_self' : '_blank'}
+                      href={item.url}
+                      target={item.url.startsWith('tel:') ? '_self' : '_blank'}
                       rel="noopener noreferrer"
                       className="inline-block mt-3 text-xs font-bold text-accent border border-accent-dim px-3 py-1.5 rounded-lg hover:bg-accent-dim transition-colors"
                     >
-                      {actionLabel} →
+                      {item.actionLabel} →
                     </a>
                   )}
                 </div>
@@ -127,7 +140,6 @@ export default function Barriers() {
         })}
       </div>
 
-      {/* Closing */}
       <div className="bg-surface border border-border rounded-xl p-5">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.barriers.whyTitle}</p>
         <p className="text-white text-[15px] leading-relaxed mb-3">{t.barriers.whyP1}</p>

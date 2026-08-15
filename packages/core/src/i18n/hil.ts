@@ -136,12 +136,12 @@ export const hil: Translation = {
     whyP1: 'Ang betting app sa imo telepono dinisenyo para mahimo ang pag-abot dayon kag mahinay ang withdrawal. Ang kada babag nga imo ginhimo nagabaligtad sining asymmetry.',
     whyP2: 'Indi mo kinahanglan ang willpower kung 10 ang mga tikang para makaabot sa sugal kaysa isa lang ka tap. Ang mga babag indi mahitungod sa pagtuo. Mahitungod ini sa paghatag sang imo madumdumol nga utok sang oras para malabawi ang pagnanasa.',
     items: [
-      { title: 'Magparehistro para sa Self-Exclusion', description: 'May self-exclusion program ang PAGCOR nga nagdili sa imo sa tanan nga lisensiyadong casino sa Pilipinas. Direkta sila kontakon para magparehistro.', actionLabel: 'pagcor.gov.ph' },
+      { title: 'Magparehistro sa PAGCOR self-exclusion', description: 'Pwede ka i-ban sang PAGCOR sa mga lisensiyadong casino kag site sulod sang 6 ka bulan, 1 ka tuig, ukon 5 ka tuig. Pun-a ang form sa ila site.', actionLabel: 'Form sang PAGCOR' },
       { title: 'Tanggalon ang Tanan nga Betting Apps', description: 'Kuhaa ang kada gambling app sa imo telepono subong dayon. Indi i-archive — tanggalon. Pati na ang "usahay lang ginagamit." Tanan.' },
       { title: 'I-block ang mga Betting Website', description: 'I-install ang site blocker (BlockSite sa Chrome/Android, 1Blocker sa iOS) kag idugang ang kada site nga ginagamit mo. Butangi sang password nga indi mo mahinumduman. Palisdon ang dalan sa pagbalik.' },
       { title: 'Kuhaa ang mga Saved Payment Methods', description: 'Mag-login sa kada betting account kag tanggalon ang imo na-save nga GCash, Maya, ukon card details. Ang friction nagapugong sang impulsibong deposit. Ang kada dugang nga tikang kwarta nga natipon mo.' },
       { title: 'Sultihi ang Isa ka Ginatuuhan nga Tawo', description: 'Sultihi ang isa ka tawo — miyembro sang pamilya, abyan, bisan sin-o nga ginatuuhan mo. Indi mo kinahanglan ipaliwanag ang tanan. Basta: "Nagatinguha ako nga hunong sa sugal kag kinahanglan mo mahibaluan."' },
-      { title: 'I-save ang Helpline sang NCMH', description: 'NCMH Crisis Line: 1553. Libre, 24/7, nasakop ang addiction. I-save ang numero subong — indi kung kinahanglan ka na, kay kung kinahanglan ka na, indi mo na mabiling-bili.', actionLabel: 'Tawga ang 1553' },
+      { title: 'I-save ang helpline sang PAGCOR', description: 'PAGCOR National Problem Gambling Helpline: (02) 8248-9568. 24/7. Ang NCMH 1553 linya para sa mental health, indi serbisyo sa sugal.', actionLabel: 'Tawga ang (02) 8248-9568' },
     ],
   },
 
@@ -190,6 +190,8 @@ export const hil: Translation = {
     assetCostPlaceholder: 'Kantidad',
     currencySection: 'KWARTA',
     currencyHint: 'Ini ang ginagamit sang mga calculator. Ang donasyon peso gihapon (PayMongo).',
+    helpRegionSection: 'BULIG SUNO SA PUNGSOD',
+    helpRegionHint: 'Ang self-exclusion kag helpline sa Barriers nagasunod sa sini nga pungsod.',
     saveBtn: 'I-SAVE ANG MGA SETTING',
     savedBtn: '✓ NA-SAVE',
     langSection: 'PAMULONG',

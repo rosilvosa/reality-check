@@ -136,12 +136,12 @@ export const en: Translation = {
     whyP1: 'The betting app on your phone was designed to make access instant and withdrawal slow. Every barrier you create reverses that asymmetry.',
     whyP2: 'You do not need willpower if gambling requires 10 steps instead of one tap. Barriers are not about trust. They are about giving your rational brain time to catch up to the urge.',
     items: [
-      { title: 'Register for Self-Exclusion', description: 'Most countries have a self-exclusion program that bans you from licensed venues (PAGCOR in the Philippines, GamStop in the UK, and similar). Register with yours.', actionLabel: 'Find your regulator' },
+      { title: 'Register for PAGCOR self-exclusion', description: 'PAGCOR can ban you from licensed casinos and gaming sites for 6 months, 1 year, or 5 years.', actionLabel: 'PAGCOR exclusion form' },
       { title: 'Delete All Betting Apps', description: 'Remove every gambling app from your phone right now. Not archive — delete. Including the ones you "only use sometimes." All of them.' },
       { title: 'Block Betting Websites', description: 'Install a site blocker (BlockSite on Chrome/Android, 1Blocker on iOS) and add every site you use. Set a password you will not remember. Make the path back require effort.' },
       { title: 'Remove Saved Payment Methods', description: 'Log into every betting account and delete your saved GCash, Maya, or card details. Friction stops impulsive deposits. Every extra step is money you keep.' },
       { title: 'Tell One Trusted Person', description: 'Tell one person — a family member, a friend, anyone you trust. You do not have to explain everything. Just: "I am trying to stop gambling and I need you to know."' },
-      { title: 'Save the NCMH Helpline', description: 'NCMH Crisis Line: 1553. Free, 24/7, covers addiction. Save the number now — not when you need it, because when you need it you will not look it up.', actionLabel: 'Call 1553' },
+      { title: 'Save the PAGCOR gambling helpline', description: 'PAGCOR National Problem Gambling Helpline: (02) 8248-9568. 24/7. NCMH 1553 is a mental-health crisis line, not a gambling service.', actionLabel: 'Call (02) 8248-9568' },
     ],
   },
 
@@ -190,6 +190,8 @@ export const en: Translation = {
     addAsset: '+ Add Asset',
     currencySection: 'CURRENCY',
     currencyHint: 'Calculators use this. Donations stay in Philippine pesos because PayMongo pays out in PHP.',
+    helpRegionSection: 'HELP WHERE YOU LIVE',
+    helpRegionHint: 'Self-exclusion and the helpline on Barriers change to match this country.',
     saveBtn: 'SAVE SETTINGS',
     savedBtn: '✓ SAVED',
     langSection: 'LANGUAGE',

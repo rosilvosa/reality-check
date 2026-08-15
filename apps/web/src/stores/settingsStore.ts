@@ -34,6 +34,7 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
   assets: DEFAULT_ASSETS,
   voidType: null,
   currency: 'PHP',
+  helpRegion: 'PH',
   loaded: false,
 
   loadSettings: async () => {
@@ -61,6 +62,7 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
       assets: s.assets,
       voidType,
       currency: s.currency ?? 'PHP',
+      helpRegion: s.helpRegion ?? 'PH',
     })
     set({ voidType })
   },

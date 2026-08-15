@@ -11,6 +11,7 @@ export interface Settings {
   assets: Asset[]
   voidType?: VoidType | null
   currency?: string
+  helpRegion?: string
 }
 
 export interface JournalEntry {

@@ -31,7 +31,9 @@ const localStorageAdapter: StorageAdapter = {
   async getSettings() {
     try {
       const raw = localStorage.getItem(LS_SETTINGS)
-      return raw ? JSON.parse(raw) : null
+      if (!raw) return null
+      const d = JSON.parse(raw)
+      return { ...d, helpRegion: d.helpRegion ?? 'PH', currency: d.currency ?? 'PHP' }
     } catch { return null }
   },
 
@@ -93,6 +95,7 @@ function firestoreAdapter(uid: string): StorageAdapter {
         assets: d.assets ?? [],
         voidType: d.voidType ?? null,
         currency: d.currency ?? 'PHP',
+        helpRegion: d.helpRegion ?? 'PH',
       }
     },
 

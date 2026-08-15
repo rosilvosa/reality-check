@@ -8,7 +8,7 @@ export default function Privacy() {
       <p>Last updated: 14 August 2026</p>
       <p>
         Reality Check is a personal gambling-recovery tool. It is not a medical service, therapy, or crisis hotline.
-        If you are in immediate danger, contact local emergency services or the PH gambling helpline 1553.
+        If you are in immediate danger, contact local emergency services. In the Philippines the gambling helpline is PAGCOR NPGH (02) 8248-9568. NCMH 1553 is a mental-health crisis line, not a gambling service.
       </p>
       <h3 className="text-white font-bold pt-2">What we store</h3>
       <p>

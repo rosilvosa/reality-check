@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams, NavLink } from 'react-router-dom'
 import { useT, useLang } from '../i18n'
-import { tpl, CURRENCIES, formatMoney } from '@rc/core'
+import { tpl, CURRENCIES, HELP_REGIONS, formatMoney } from '@rc/core'
 import { useSettingsStore, Asset } from '../stores/settingsStore'
 import { useAuthStore } from '../stores/authStore'
 import { useJournalStore } from '../stores/journalStore'
@@ -17,7 +17,7 @@ const REPO_URL = 'https://github.com/rosilvosa/reality-check'
 const DONATE_AMOUNTS = [50, 100, 299]
 
 export default function Settings() {
-  const { monthlyPay, hoursPerMonth, assets, voidType, currency, loaded, loadSettings, saveSettings } = useSettingsStore()
+  const { monthlyPay, hoursPerMonth, assets, voidType, currency, helpRegion, loaded, loadSettings, saveSettings } = useSettingsStore()
   const { user } = useAuthStore()
   const t = useT()
   const { lang, setLang, languages } = useLang()
@@ -33,6 +33,7 @@ export default function Settings() {
   const [donateLoading, setDonateLoading] = useState<number | null>(null)
   const [customAmount, setCustomAmount] = useState('')
   const [currencyCode, setCurrencyCode] = useState('PHP')
+  const [regionCode, setRegionCode] = useState('PH')
   const [deleting, setDeleting] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
 
@@ -57,8 +58,9 @@ export default function Settings() {
       setHours(String(hoursPerMonth))
       setLocalAssets(assets.map((a) => ({ ...a })))
       setCurrencyCode(currency || 'PHP')
+      setRegionCode(helpRegion || 'PH')
     }
-  }, [loaded, monthlyPay, hoursPerMonth, assets, currency])
+  }, [loaded, monthlyPay, hoursPerMonth, assets, currency, helpRegion])
 
   const monthlyVal  = parseFloat(monthly) || 0
   const hoursVal    = parseFloat(hours) || 176
@@ -89,6 +91,7 @@ export default function Settings() {
       assets: validAssets,
       voidType,
       currency: currencyCode,
+      helpRegion: regionCode,
     })
     setSaved(true)
     setTimeout(() => setSaved(false), 2500)
@@ -248,6 +251,20 @@ export default function Settings() {
         >
           {CURRENCIES.map((c) => (
             <option key={c.code} value={c.code}>{c.label}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.helpRegionSection}</p>
+        <p className="text-sm text-muted mb-3 leading-relaxed">{t.settings.helpRegionHint}</p>
+        <select
+          value={regionCode}
+          onChange={(e) => setRegionCode(e.target.value)}
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent"
+        >
+          {HELP_REGIONS.map((r) => (
+            <option key={r.code} value={r.code}>{r.label}</option>
           ))}
         </select>
       </div>

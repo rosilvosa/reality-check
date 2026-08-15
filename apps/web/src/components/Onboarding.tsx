@@ -16,7 +16,7 @@ const DEFAULT_ASSETS: Asset[] = [
 const STEPS = [1, 2, 3, 4] as const
 
 export default function Onboarding() {
-  const { loaded, monthlyPay, voidType, currency, saveSettings } = useSettingsStore()
+  const { loaded, monthlyPay, voidType, currency, helpRegion, saveSettings } = useSettingsStore()
   const [visible, setVisible] = useState(false)
   const [step, setStep] = useState(1)
   const t = useT()
@@ -44,6 +44,7 @@ export default function Onboarding() {
       assets: validAssets.length ? validAssets : assets.filter((a) => a.cost > 0),
       voidType,
       currency: currency || 'PHP',
+      helpRegion: helpRegion || 'PH',
     })
   }
 
