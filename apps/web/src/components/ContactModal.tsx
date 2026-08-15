@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
+import { sendContactMessage } from '../lib/contact'
 
 const TYPES = ['typeBug', 'typeQuestion', 'typePrivacy', 'typeOther'] as const
 
@@ -33,24 +34,12 @@ export default function ContactModal() {
     setSending(true)
     setError('')
     try {
-      const key = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined
-      if (!key) throw new Error('missing key')
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: key,
-          subject: `[Reality Check] ${t.contact[kind]}`,
-          name: name.trim() || 'Anonymous',
-          email: email.trim() || 'noreply@form.invalid',
-          message: text,
-          category: t.contact[kind],
-          from_app: 'Reality Check',
-          botcheck: '',
-        }),
+      await sendContactMessage({
+        kind: t.contact[kind],
+        name,
+        email,
+        message: text,
       })
-      const data = await res.json() as { success?: boolean }
-      if (!data.success) throw new Error('send failed')
       setSent(true)
     } catch {
       setError(t.contact.fail)

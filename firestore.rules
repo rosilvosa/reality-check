@@ -9,6 +9,14 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    match /contact_messages/{id} {
+      allow create: if request.auth != null
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 2000;
+      allow read, update, delete: if false;
+    }
+
     match /community_posts/{id} {
       allow read: if request.auth != null;
       allow create: if request.auth != null
