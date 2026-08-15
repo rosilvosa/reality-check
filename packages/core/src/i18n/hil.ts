@@ -15,6 +15,7 @@ export const hil: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahon', back: 'Balik', next: 'Sunod', skip: 'Laktawan',
     change: 'Usbon', close: 'Sarhan', calculate: 'Kuwentahon', saved: '✓ Na-save',
+    themeLight: 'Masanag nga mode', themeDark: 'Madulom nga mode',
   },
 
   home: {
@@ -33,6 +34,8 @@ export const hil: Translation = {
     seeProgress: 'Tibuok pag-uswag',
     helpBtn: 'Pangita sang bulig',
     helpHint: 'Helpline, exclusion, kag meeting sa imo pungsod',
+    insteadBtn: 'Himua Ini sa Baylo',
+    insteadHint: 'Lakat. Text. Indi taya.',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, pamangkot. Pirme anonymous.',
     installTitle: 'Idugang sa telepono',
@@ -44,6 +47,9 @@ export const hil: Translation = {
     openBrowserBody: 'Ini Messenger ukon iban nga in-app browser. Indi maggana diri ang sign-in kag install.',
     openBrowserBtn: 'Buksan sa browser',
     openBrowserHow: 'Kung wala sang natabo: i-tap ang ··· dayon Open in Chrome ukon Safari.',
+    togetherToday: '{n} ka tawo nag-check in subong',
+    togetherWeek: 'Karong semana, nagsulat ang mga tawo diri sang {amount}',
+    togetherHint: 'Wala sang ngalan. Ang kuwarto lang.',
   },
 
   lost: {
@@ -232,6 +238,8 @@ export const hil: Translation = {
     barriersDesc: 'Self-exclusion, pagtanggal sang app, checklist sa pag-block sang site',
     findHelpTitle: 'Pangita sang Bulig',
     findHelpDesc: 'Helpline, self-exclusion, kag meeting sa imo pungsod',
+    insteadTitle: 'Himua Ini sa Baylo',
+    insteadDesc: 'Mga butang nga himuon kung mag-abot ang pagnanasa',
     communityTitle: 'Komunidad',
     communityDesc: 'Anonymous nga tip, pagnanasa, kag mabudlay nga adlaw',
     syncActive: 'Naka-sync sa cloud — ini nga account, bisan ano nga device.',
@@ -331,6 +339,20 @@ export const hil: Translation = {
     fail: 'Indi ma-load ang lista.',
     openGithub: 'Tanan nga issue sa GitHub',
     seeList: 'Tan-awa ang mga sayop kag plano',
+  },
+
+  instead: {
+    title: 'Himua Ini sa Baylo',
+    subtitle: 'Kung gusto mo magtaya, pagpili sang isa ka butang. Ginsulat ini diri sa hungod. Indi feed. Indi hampang.',
+    nowTitle: 'Himua ang Isa Sini Subong',
+    now: [
+      'Bugnaw nga tubig sa nawong. Duha ka minuto.',
+      'Maglakaw sa gawas. Ang telepono mabilin sa bulsa.',
+      'Mag-text sa isa ka tawo. Indi bahin sa taya.',
+      'Ginhawa: 4 humot, 4 pundo, 4 luwa. Liwati tubtob mag-untat ang kagana.',
+    ],
+    forYou: 'Tungod sang imo ginpili',
+    allTitle: 'Kung lain ang imo ginabatyag',
   },
 
   findHelp: {

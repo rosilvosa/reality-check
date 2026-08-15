@@ -24,7 +24,7 @@ export default function VoidSection() {
 
   if (!voidType || selecting) {
     return (
-      <div className="bg-[#111118] border border-[#232330] rounded-xl p-5 mb-4">
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
         <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-1">
           {selecting ? t.progress.voidChanging : t.progress.voidLabel}
         </div>
@@ -40,11 +40,11 @@ export default function VoidSection() {
                 className={`text-left p-4 rounded-xl border transition-all ${
                   pending === o.type
                     ? 'border-accent bg-accent/10'
-                    : 'border-[#232330] bg-[#0d0d14] hover:border-accent/40'
+                    : 'border-border bg-bg hover:border-accent/40'
                 }`}
               >
                 <div className="text-2xl mb-2">{ot.emoji}</div>
-                <div className="text-white font-bold text-sm mb-1">{ot.label}</div>
+                <div className="text-ink font-bold text-sm mb-1">{ot.label}</div>
                 <div className="text-muted text-[12px] leading-snug">{ot.description}</div>
               </button>
             )
@@ -62,7 +62,7 @@ export default function VoidSection() {
           {selecting && (
             <button
               onClick={() => { setSelecting(false); setPending(null) }}
-              className="px-4 py-3 border border-[#232330] text-muted font-bold rounded-lg text-sm hover:text-white transition-colors"
+              className="px-4 py-3 border border-border text-muted font-bold rounded-lg text-sm hover:text-ink transition-colors"
             >
               {t.common.cancel}
             </button>
@@ -73,12 +73,12 @@ export default function VoidSection() {
   }
 
   return (
-    <div className="bg-[#111118] border border-[#232330] rounded-xl p-5 mb-4">
+    <div className="bg-surface border border-border rounded-xl p-5 mb-4">
       <div className="flex items-center justify-between mb-3">
         <div className="text-[11px] text-muted uppercase tracking-widest font-bold">{t.progress.voidWhenUrge}</div>
         <button
           onClick={() => setSelecting(true)}
-          className="text-[11px] text-muted hover:text-white border border-[#232330] px-2.5 py-1 rounded-lg transition-colors"
+          className="text-[11px] text-muted hover:text-ink border border-border px-2.5 py-1 rounded-lg transition-colors"
         >
           {t.progress.voidChange}
         </button>
@@ -87,12 +87,12 @@ export default function VoidSection() {
       <div className="flex items-center gap-3 mb-3">
         <span className="text-3xl">{activeT!.emoji}</span>
         <div>
-          <div className="text-white font-black text-base">{activeT!.label}</div>
+          <div className="text-ink font-black text-base">{activeT!.label}</div>
           <div className="text-muted text-[12px]">{activeT!.description}</div>
         </div>
       </div>
 
-      <div className="bg-[#0d0d14] border-l-4 border-accent rounded-r-lg p-3 mb-4">
+      <div className="bg-bg border-l-4 border-accent rounded-r-lg p-3 mb-4">
         <p className="text-accent text-[13px] font-bold leading-relaxed">{activeT!.reframe}</p>
       </div>
 
@@ -101,7 +101,7 @@ export default function VoidSection() {
         {activeT!.alternatives.map((alt) => (
           <div key={alt} className="flex items-start gap-2">
             <span className="text-accent text-sm mt-0.5 shrink-0">→</span>
-            <span className="text-white text-sm leading-relaxed">{alt}</span>
+            <span className="text-ink text-sm leading-relaxed">{alt}</span>
           </div>
         ))}
       </div>

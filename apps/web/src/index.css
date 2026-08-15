@@ -2,13 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --rc-bg: #f3f3f6;
+  --rc-surface: #ffffff;
+  --rc-surface2: #ececf2;
+  --rc-border: #d0d0da;
+  --rc-ink: #14141c;
+  --rc-muted: #6a6a7a;
+  --rc-accent: #dc2626;
+  --rc-accent-dim: #fecaca;
+  --rc-danger: #fff1f1;
+  --rc-theme: #f3f3f6;
+  color-scheme: light;
+}
+
+html.dark {
+  --rc-bg: #08080f;
+  --rc-surface: #111118;
+  --rc-surface2: #18181f;
+  --rc-border: #232330;
+  --rc-ink: #ffffff;
+  --rc-muted: #8b8b9e;
+  --rc-accent: #dc2626;
+  --rc-accent-dim: #7f1d1d;
+  --rc-danger: #0f0a0a;
+  --rc-theme: #08080f;
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #08080f;
-  color: #d4d4e0;
+  background-color: var(--rc-bg);
+  color: var(--rc-ink);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -16,9 +44,9 @@ body {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #08080f;
+  background: var(--rc-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #232330;
+  background: var(--rc-border);
   border-radius: 3px;
 }

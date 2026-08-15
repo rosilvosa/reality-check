@@ -178,7 +178,7 @@ export default function Settings() {
 
   return (
     <div>
-      <h2 className="text-lg font-extrabold text-white mb-1">{t.settings.title}</h2>
+      <h2 className="text-lg font-extrabold text-ink mb-1">{t.settings.title}</h2>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.settings.subtitle}</p>
 
       {formError && (
@@ -195,7 +195,7 @@ export default function Settings() {
             <p className="text-sm text-muted mb-3">{t.settings.signInHint}</p>
             <button
               onClick={() => setShowAuth(true)}
-              className="w-full py-2.5 bg-surface2 border border-border text-white font-semibold rounded-lg hover:border-accent transition-colors text-sm"
+              className="w-full py-2.5 bg-surface2 border border-border text-ink font-semibold rounded-lg hover:border-accent transition-colors text-sm"
             >
               {t.settings.signInBtn}
             </button>
@@ -204,19 +204,19 @@ export default function Settings() {
 
         {isRealUser && (
           <div>
-            <p className="text-sm font-semibold text-white">{user.email ?? user.displayName ?? 'Signed in'}</p>
+            <p className="text-sm font-semibold text-ink">{user.email ?? user.displayName ?? 'Signed in'}</p>
             <p className="text-xs text-muted mb-3">{t.settings.syncActive}</p>
             <p className="text-xs text-muted mb-2 leading-relaxed">{t.settings.syncNowHint}</p>
             <button
               type="button"
               onClick={handleSync}
               disabled={syncing}
-              className="w-full mb-3 py-2.5 bg-surface2 border border-border text-white font-semibold rounded-lg hover:border-accent transition-colors text-sm disabled:opacity-50"
+              className="w-full mb-3 py-2.5 bg-surface2 border border-border text-ink font-semibold rounded-lg hover:border-accent transition-colors text-sm disabled:opacity-50"
             >
               {syncing ? t.settings.syncingBtn : synced ? t.settings.syncDoneBtn : t.settings.syncNowBtn}
             </button>
             <div className="flex gap-2">
-              <button onClick={signOut} className="text-xs text-muted hover:text-white transition-colors border border-border px-3 py-1.5 rounded-lg">
+              <button onClick={signOut} className="text-xs text-muted hover:text-ink transition-colors border border-border px-3 py-1.5 rounded-lg">
                 {t.settings.signOut}
               </button>
               <button
@@ -237,7 +237,7 @@ export default function Settings() {
         <select
           value={currencyCode}
           onChange={(e) => setCurrencyCode(e.target.value)}
-          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent"
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent"
         >
           {CURRENCIES.map((c) => (
             <option key={c.code} value={c.code}>{c.label}</option>
@@ -251,7 +251,7 @@ export default function Settings() {
         <select
           value={regionCode}
           onChange={(e) => setRegionCode(e.target.value)}
-          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent"
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent"
         >
           {HELP_REGIONS.map((r) => (
             <option key={r.code} value={r.code}>{r.label}</option>
@@ -268,7 +268,7 @@ export default function Settings() {
           value={monthly}
           onChange={(e) => setMonthly(e.target.value)}
           placeholder="e.g. 25000"
-          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-base outline-none focus:border-accent mb-4"
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4"
         />
 
         <label className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelHours}</label>
@@ -277,7 +277,7 @@ export default function Settings() {
           value={hours}
           onChange={(e) => setHours(e.target.value)}
           placeholder="176"
-          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-base outline-none focus:border-accent mb-2"
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-2"
         />
 
         {derivedRate && (
@@ -297,14 +297,14 @@ export default function Settings() {
                 value={a.name}
                 onChange={(e) => updateAsset(i, 'name', e.target.value)}
                 placeholder={t.settings.assetNamePlaceholder}
-                className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
+                className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-ink text-sm outline-none focus:border-accent"
               />
               <input
                 type="number"
                 value={a.cost || ''}
                 onChange={(e) => updateAsset(i, 'cost', e.target.value)}
                 placeholder={t.settings.assetCostPlaceholder}
-                className="w-28 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
+                className="w-28 bg-surface2 border border-border rounded-lg px-3 py-2 text-ink text-sm outline-none focus:border-accent"
               />
               <button
                 onClick={() => removeAsset(i)}
@@ -316,7 +316,7 @@ export default function Settings() {
           ))}
         </div>
 
-        <button onClick={addAsset} className="text-sm text-muted border border-border rounded-lg px-3 py-2 hover:text-white transition-colors">
+        <button onClick={addAsset} className="text-sm text-muted border border-border rounded-lg px-3 py-2 hover:text-ink transition-colors">
           {t.settings.addAsset}
         </button>
       </div>
@@ -328,30 +328,30 @@ export default function Settings() {
           className="flex items-center justify-between w-full text-left hover:bg-surface2 rounded-lg px-3 py-2.5 transition-colors group"
         >
           <div>
-            <p className="text-white font-semibold text-sm">{t.settings.barriersTitle}</p>
+            <p className="text-ink font-semibold text-sm">{t.settings.barriersTitle}</p>
             <p className="text-muted text-xs">{t.settings.barriersDesc}</p>
           </div>
-          <span className="text-muted group-hover:text-white transition-colors text-sm">→</span>
+          <span className="text-muted group-hover:text-ink transition-colors text-sm">→</span>
         </NavLink>
         <NavLink
           to="/help"
           className="flex items-center justify-between w-full text-left hover:bg-surface2 rounded-lg px-3 py-2.5 transition-colors group"
         >
           <div>
-            <p className="text-white font-semibold text-sm">{t.settings.findHelpTitle}</p>
+            <p className="text-ink font-semibold text-sm">{t.settings.findHelpTitle}</p>
             <p className="text-muted text-xs">{t.settings.findHelpDesc}</p>
           </div>
-          <span className="text-muted group-hover:text-white transition-colors text-sm">→</span>
+          <span className="text-muted group-hover:text-ink transition-colors text-sm">→</span>
         </NavLink>
         <NavLink
           to="/community"
           className="flex items-center justify-between w-full text-left hover:bg-surface2 rounded-lg px-3 py-2.5 transition-colors group"
         >
           <div>
-            <p className="text-white font-semibold text-sm">{t.settings.communityTitle}</p>
+            <p className="text-ink font-semibold text-sm">{t.settings.communityTitle}</p>
             <p className="text-muted text-xs">{t.settings.communityDesc}</p>
           </div>
-          <span className="text-muted group-hover:text-white transition-colors text-sm">→</span>
+          <span className="text-muted group-hover:text-ink transition-colors text-sm">→</span>
         </NavLink>
       </div>
 
@@ -365,7 +365,7 @@ export default function Settings() {
               className={`px-3 py-1.5 rounded-lg text-sm font-semibold border transition-colors ${
                 lang === l.code
                   ? 'bg-accent text-white border-accent'
-                  : 'bg-surface2 text-muted border-border hover:border-accent hover:text-white'
+                  : 'bg-surface2 text-muted border-border hover:border-accent hover:text-ink'
               }`}
             >
               {l.native}
@@ -384,10 +384,10 @@ export default function Settings() {
       <div className="border border-border rounded-xl p-5 mb-4">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-2">{t.settings.supportSection}</p>
         <p className="text-xs text-muted leading-relaxed mb-3">{t.settings.supportHint}</p>
-        <NavLink to="/mission" className="text-xs text-accent hover:text-white mb-2 inline-block">
+        <NavLink to="/mission" className="text-xs text-accent hover:text-ink mb-2 inline-block">
           {t.settings.missionLink} →
         </NavLink>
-        <NavLink to="/updates" className="block text-xs text-accent hover:text-white mb-4">
+        <NavLink to="/updates" className="block text-xs text-accent hover:text-ink mb-4">
           {t.settings.updatesLink} →
         </NavLink>
 
@@ -402,7 +402,7 @@ export default function Settings() {
               type="button"
               onClick={() => handleDonate(n)}
               disabled={donateLoading !== null}
-              className="py-2.5 border border-border rounded-lg text-sm font-semibold text-muted hover:text-white hover:border-white/40 disabled:opacity-50"
+              className="py-2.5 border border-border rounded-lg text-sm font-semibold text-muted hover:text-ink hover:border-ink/40 disabled:opacity-50"
             >
               {donateLoading === n ? '…' : `₱${n}`}
             </button>
@@ -412,7 +412,7 @@ export default function Settings() {
             onClick={() => setCustomOpen((v) => !v)}
             disabled={donateLoading !== null}
             className={`py-2.5 border rounded-lg text-sm font-semibold disabled:opacity-50 ${
-              customOpen ? 'border-white/40 text-white' : 'border-border text-muted hover:text-white hover:border-white/40'
+              customOpen ? 'border-ink/40 text-ink' : 'border-border text-muted hover:text-ink hover:border-ink/40'
             }`}
           >
             {t.settings.donateOther}
@@ -427,13 +427,13 @@ export default function Settings() {
               value={customAmount}
               onChange={(e) => setCustomAmount(e.target.value)}
               placeholder={t.settings.customAmount}
-              className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
+              className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-ink text-sm outline-none focus:border-accent"
             />
             <button
               type="button"
               onClick={handleCustomDonate}
               disabled={donateLoading !== null}
-              className="px-3 py-2 border border-border text-muted font-semibold rounded-lg text-xs hover:text-white disabled:opacity-50"
+              className="px-3 py-2 border border-border text-muted font-semibold rounded-lg text-xs hover:text-ink disabled:opacity-50"
             >
               {donateLoading !== null && !DONATE_AMOUNTS.includes(donateLoading) ? '…' : t.settings.donateNow}
             </button>
@@ -446,7 +446,7 @@ export default function Settings() {
           href={KOFI_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-muted hover:text-white"
+          className="text-xs text-muted hover:text-ink"
         >
           {t.settings.kofiBtn}
         </a>

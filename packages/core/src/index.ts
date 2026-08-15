@@ -1,6 +1,7 @@
 export * from './types'
 export * from './calculations'
 export * from './milestones'
+export * from './dates'
 export * from './void'
 export * from './i18n'
 export * from './help'

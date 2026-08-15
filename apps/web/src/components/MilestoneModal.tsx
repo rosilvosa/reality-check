@@ -25,15 +25,15 @@ export default function MilestoneModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="w-full max-w-sm bg-[#111118] border-2 border-accent rounded-2xl p-8 text-center">
+      <div className="w-full max-w-sm bg-surface border-2 border-accent rounded-2xl p-8 text-center">
         <div className="text-7xl mb-4">{badge}</div>
-        <h2 className="text-3xl font-black text-white mb-1">
+        <h2 className="text-3xl font-black text-ink mb-1">
           {newMilestone} {newMilestone === 1 ? 'Day' : 'Days'} Clean.
         </h2>
         {totalSaved > 0 && (
           <p className="text-muted text-sm mb-3">
             You've protected{' '}
-            <span className="text-white font-bold">
+            <span className="text-ink font-bold">
               {formatMoney(totalSaved, currency)}
             </span>
             {assetLines.length > 0 && (
@@ -41,7 +41,7 @@ export default function MilestoneModal() {
             )}
           </p>
         )}
-        <p className="text-white font-semibold text-base leading-relaxed mb-8">
+        <p className="text-ink font-semibold text-base leading-relaxed mb-8">
           {message}
         </p>
         <button

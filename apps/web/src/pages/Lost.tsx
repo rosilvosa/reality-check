@@ -37,11 +37,11 @@ export default function Lost() {
 
   return (
     <div>
-      <h2 className="text-lg font-extrabold text-white mb-1">{t.lost.title}</h2>
+      <h2 className="text-lg font-extrabold text-ink mb-1">{t.lost.title}</h2>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.lost.subtitle}</p>
 
       {notConfigured && (
-        <div className="mb-4 p-3 rounded-lg bg-accent-dim border border-accent text-sm text-white">
+        <div className="mb-4 p-3 rounded-lg bg-accent-dim border border-accent text-sm text-ink">
           {t.sweat.notConfigured}
         </div>
       )}
@@ -55,7 +55,7 @@ export default function Lost() {
           value={loss}
           onChange={(e) => { setLoss(e.target.value); setResult(null) }}
           placeholder={t.sweat.placeholder}
-          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-base outline-none focus:border-accent mb-4"
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4"
         />
         <button
           type="button"
@@ -74,7 +74,7 @@ export default function Lost() {
               <span className="block text-2xl font-extrabold text-accent mb-3">
                 {tpl(t.sweat.resultHours, { hours: result.hours.toFixed(1) })}
               </span>
-              <p className="text-white leading-relaxed text-[15px] whitespace-pre-line">
+              <p className="text-ink leading-relaxed text-[15px] whitespace-pre-line">
                 {tpl(t.sweat.resultBody, {
                   loss: formatMoney(lossVal, currency),
                   hours: result.hours.toFixed(1),
@@ -90,7 +90,7 @@ export default function Lost() {
             <p className="text-xs font-bold uppercase tracking-wider text-muted mb-1">
               {tpl(t.assets.resultTitle, { amount: formatMoney(lossVal, currency) })}
             </p>
-            <p className="text-2xl font-extrabold text-white mb-4">
+            <p className="text-2xl font-extrabold text-ink mb-4">
               {tpl(t.assets.resultBurned, { amount: formatMoney(lossVal, currency) })}
             </p>
             {assets.length === 0 && <p className="text-sm text-muted">{t.assets.noAssets}</p>}
@@ -98,7 +98,7 @@ export default function Lost() {
               const units = lossVal / a.cost
               return (
                 <div key={i} className="bg-bg rounded-lg p-3 mb-2 last:mb-0">
-                  <p className="font-bold text-white text-sm">{a.name}</p>
+                  <p className="font-bold text-ink text-sm">{a.name}</p>
                   <p className="text-muted text-[15px] mt-0.5">
                     {units >= 1
                       ? tpl(t.assets.unitsGe1, { units: units.toFixed(1), name: a.name })
@@ -110,13 +110,13 @@ export default function Lost() {
           </div>
 
           <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-            <p className="text-white font-bold text-[15px] mb-3">{t.lost.almostQ}</p>
+            <p className="text-ink font-bold text-[15px] mb-3">{t.lost.almostQ}</p>
             <div className="flex gap-2">
               <button
                 type="button"
                 onClick={() => setAlmost(true)}
                 className={`flex-1 py-2.5 rounded-lg text-sm font-bold border ${
-                  almost === true ? 'border-accent text-white bg-accent-dim' : 'border-border text-muted hover:text-white'
+                  almost === true ? 'border-accent text-ink bg-accent-dim' : 'border-border text-muted hover:text-ink'
                 }`}
               >
                 {t.lost.almostYes}
@@ -125,7 +125,7 @@ export default function Lost() {
                 type="button"
                 onClick={() => { setAlmost(false); setReframe('') }}
                 className={`flex-1 py-2.5 rounded-lg text-sm font-bold border ${
-                  almost === false ? 'border-accent text-white bg-accent-dim' : 'border-border text-muted hover:text-white'
+                  almost === false ? 'border-accent text-ink bg-accent-dim' : 'border-border text-muted hover:text-ink'
                 }`}
               >
                 {t.lost.almostNo}
@@ -138,7 +138,7 @@ export default function Lost() {
               <span className="inline-block text-[11px] font-bold uppercase tracking-wider bg-accent-dim text-accent px-2 py-0.5 rounded mb-3">
                 {t.nearmiss.factTag}
               </span>
-              <p className="text-white text-[15px] leading-relaxed mb-4">{t.nearmiss.factBody}</p>
+              <p className="text-ink text-[15px] leading-relaxed mb-4">{t.nearmiss.factBody}</p>
               <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
                 {t.nearmiss.labelWhat}
               </label>
@@ -147,7 +147,7 @@ export default function Lost() {
                 value={nearInput}
                 onChange={(e) => { setNearInput(e.target.value); setReframe('') }}
                 placeholder={t.nearmiss.placeholder}
-                className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-base outline-none focus:border-accent mb-3"
+                className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-3"
               />
               <button
                 type="button"
@@ -158,20 +158,20 @@ export default function Lost() {
                 {t.nearmiss.btn}
               </button>
               {reframe && (
-                <div className="bg-[#0f0a0a] border-2 border-accent rounded-xl p-5 mb-3">
+                <div className="bg-danger border-2 border-accent rounded-xl p-5 mb-3">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-accent mb-3">{t.nearmiss.overrideTag}</p>
-                  <p className="text-white font-bold text-[15px] leading-relaxed whitespace-pre-line">
+                  <p className="text-ink font-bold text-[15px] leading-relaxed whitespace-pre-line">
                     {tpl(t.nearmiss.overrideBody, { input: reframe })}
                   </p>
                 </div>
               )}
-              <p className="text-white text-sm leading-relaxed">{t.nearmiss.truthBody}</p>
+              <p className="text-ink text-sm leading-relaxed">{t.nearmiss.truthBody}</p>
             </div>
           )}
 
           <Link
             to={`/journal?amount=${encodeURIComponent(String(lossVal))}`}
-            className="block w-full text-center bg-surface2 border border-border text-white font-bold py-3 rounded-lg hover:border-accent"
+            className="block w-full text-center bg-surface2 border border-border text-ink font-bold py-3 rounded-lg hover:border-accent"
           >
             {t.lost.writeNext} →
           </Link>

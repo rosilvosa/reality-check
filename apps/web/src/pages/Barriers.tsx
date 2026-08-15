@@ -54,21 +54,21 @@ export default function Barriers() {
 
   return (
     <div>
-      <NavLink to="/trap" className="text-xs text-muted hover:text-white transition-colors mb-4 inline-block">
+      <NavLink to="/trap" className="text-xs text-muted hover:text-ink transition-colors mb-4 inline-block">
         ← {t.common.back}
       </NavLink>
 
-      <h2 className="text-lg font-extrabold text-white mb-1">{t.barriers.title}</h2>
+      <h2 className="text-lg font-extrabold text-ink mb-1">{t.barriers.title}</h2>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.barriers.subtitle}</p>
       <p className="text-xs text-muted mb-5">
         {t.settings.helpRegionHint}{' '}
-        <NavLink to="/settings" className="text-accent hover:text-white">{t.settings.helpRegionSection}</NavLink>
+        <NavLink to="/settings" className="text-accent hover:text-ink">{t.settings.helpRegionSection}</NavLink>
       </p>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-5">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-bold uppercase tracking-wider text-muted">{t.barriers.progressLabel}</span>
-          <span className={`text-sm font-black ${allDone ? 'text-green-400' : 'text-white'}`}>
+          <span className={`text-sm font-black ${allDone ? 'text-green-400' : 'text-ink'}`}>
             {count} / {total}
           </span>
         </div>
@@ -96,7 +96,7 @@ export default function Barriers() {
             <div
               key={id}
               className={`bg-surface rounded-xl p-5 border transition-all ${
-                checked ? 'border-green-800 bg-[#0a1a0a]' : 'border-border'
+                checked ? 'border-green-800 bg-danger' : 'border-border'
               }`}
             >
               <div className="flex items-start gap-4">
@@ -117,7 +117,7 @@ export default function Barriers() {
                 </button>
 
                 <div className="flex-1 min-w-0">
-                  <p className={`font-bold text-[15px] mb-1 ${checked ? 'text-muted line-through' : 'text-white'}`}>
+                  <p className={`font-bold text-[15px] mb-1 ${checked ? 'text-muted line-through' : 'text-ink'}`}>
                     {item.title}
                   </p>
                   <p className={`text-sm leading-relaxed ${checked ? 'text-muted/60' : 'text-muted'}`}>
@@ -142,8 +142,8 @@ export default function Barriers() {
 
       <div className="bg-surface border border-border rounded-xl p-5">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.barriers.whyTitle}</p>
-        <p className="text-white text-[15px] leading-relaxed mb-3">{t.barriers.whyP1}</p>
-        <p className="text-white text-[15px] leading-relaxed">{t.barriers.whyP2}</p>
+        <p className="text-ink text-[15px] leading-relaxed mb-3">{t.barriers.whyP1}</p>
+        <p className="text-ink text-[15px] leading-relaxed">{t.barriers.whyP2}</p>
       </div>
     </div>
   )

@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { getAdapter } from '../lib/storage'
+import { recordRoomAmount } from '../lib/room'
 import { useAuthStore } from './authStore'
+import { useSettingsStore } from './settingsStore'
 import type { JournalEntry } from '../types'
 
 export type { JournalEntry }
@@ -48,6 +50,8 @@ export const useJournalStore = create<JournalState>((set, get) => ({
         createdAt: new Date(),
       })
       set({ entries: [entry, ...get().entries], error: null })
+      const currency = useSettingsStore.getState().currency ?? 'PHP'
+      await recordRoomAmount(amount, currency).catch(() => undefined)
     } catch (e) {
       set({ error: e instanceof Error ? e.message : 'Could not save journal entry' })
       throw e

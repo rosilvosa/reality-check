@@ -15,6 +15,7 @@ export const fil: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahin', back: 'Bumalik', next: 'Susunod', skip: 'Laktawan',
     change: 'Palitan', close: 'Isara', calculate: 'Kalkulahin', saved: '✓ Na-save',
+    themeLight: 'Maliwanag na mode', themeDark: 'Madilim na mode',
   },
 
   home: {
@@ -33,6 +34,8 @@ export const fil: Translation = {
     seeProgress: 'Buong progreso',
     helpBtn: 'Humanap ng tulong',
     helpHint: 'Helpline, exclusion, at meeting sa iyong bansa',
+    insteadBtn: 'Gawin ito sa halip',
+    insteadHint: 'Lakad. Text. Hindi taya.',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, tanong. Laging anonymous.',
     installTitle: 'Idagdag sa telepono',
@@ -44,6 +47,9 @@ export const fil: Translation = {
     openBrowserBody: 'Ito ay Messenger o ibang in-app browser. Hindi gagana dito ang sign-in at install.',
     openBrowserBtn: 'Buksan sa browser',
     openBrowserHow: 'Kung walang nangyari: i-tap ang ··· tapos Open in Chrome o Safari.',
+    togetherToday: '{n} tao ang nag-check in ngayong araw',
+    togetherWeek: 'Ngayong linggo, nagsulat ang mga tao rito ng {amount}',
+    togetherHint: 'Walang pangalan. Ang silid lang.',
   },
 
   lost: {
@@ -232,6 +238,8 @@ export const fil: Translation = {
     barriersDesc: 'Self-exclusion, pagtanggal ng app, checklist ng pag-block ng site',
     findHelpTitle: 'Humanap ng Tulong',
     findHelpDesc: 'Helpline, self-exclusion, at meeting sa iyong bansa',
+    insteadTitle: 'Gawin ito sa halip',
+    insteadDesc: 'Mga bagay na gagawin kapag dumating ang pagnanasa',
     communityTitle: 'Komunidad',
     communityDesc: 'Anonymous na tip, pagnanasa, at mahirap na araw',
     syncActive: 'Naka-sync sa cloud — account na ito, kahit anong device.',
@@ -331,6 +339,20 @@ export const fil: Translation = {
     fail: 'Hindi ma-load ang lista.',
     openGithub: 'Lahat ng issue sa GitHub',
     seeList: 'Tingnan ang mga bug at plano',
+  },
+
+  instead: {
+    title: 'Gawin ito sa halip',
+    subtitle: 'Kapag gusto mong tumaya, pumili ng isa. Naka-sulat ito dito. Hindi feed. Hindi laro.',
+    nowTitle: 'Gawin ang isa ngayon',
+    now: [
+      'Malamig na tubig sa mukha. Dalawang minuto.',
+      'Maglakad sa labas. Nasa bulsa ang telepono.',
+      'I-text ang isang tao. Hindi tungkol sa taya.',
+      'Huminga: 4 pasok, 4 hold, 4 labas. Ulitin hanggang humupa.',
+    ],
+    forYou: 'Dahil dito ka pumili',
+    allTitle: 'Kung iba ang nararamdaman',
   },
 
   findHelp: {

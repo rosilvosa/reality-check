@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
 import ContactModal from './ContactModal'
+import ThemeToggle from './ThemeToggle'
 
 function word(label: string) {
   return label.replace(/^[^\p{L}\p{N}]+/u, '').trim()
@@ -24,7 +25,7 @@ function Tab({
       end={end}
       className={({ isActive }) =>
         `flex-1 min-h-[56px] flex flex-col items-center justify-center gap-0.5 px-0.5 pt-2 pb-1.5 ${
-          isActive ? 'text-white' : 'text-muted'
+          isActive ? 'text-ink' : 'text-muted'
         }`
       }
     >
@@ -61,10 +62,11 @@ export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen bg-bg">
       <nav className="border-b border-border bg-surface pt-[env(safe-area-inset-top)]">
-        <div className="flex max-w-2xl mx-auto">
+        <div className="flex max-w-2xl mx-auto items-stretch">
           {top.map((tab) => (
             <Tab key={tab.to} {...tab} />
           ))}
+          <ThemeToggle />
         </div>
       </nav>
 
@@ -73,19 +75,19 @@ export default function Layout() {
       </main>
 
       <footer className="max-w-2xl w-full mx-auto px-4 pb-28 text-center text-[11px] text-muted">
-        <NavLink to="/privacy" className="hover:text-white">{t.settings.privacyLink}</NavLink>
+        <NavLink to="/privacy" className="hover:text-ink">{t.settings.privacyLink}</NavLink>
         {' · '}
-        <NavLink to="/terms" className="hover:text-white">{t.settings.termsLink}</NavLink>
+        <NavLink to="/terms" className="hover:text-ink">{t.settings.termsLink}</NavLink>
         {' · '}
-        <a href="https://github.com/rosilvosa/reality-check" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+        <a href="https://github.com/rosilvosa/reality-check" target="_blank" rel="noopener noreferrer" className="hover:text-ink">
           {t.settings.sourceCode}
         </a>
         {' · '}
-        <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
+        <NavLink to="/mission" className="hover:text-ink">{t.settings.missionLink}</NavLink>
         {' · '}
-        <NavLink to="/updates" className="hover:text-white">{t.settings.updatesLink}</NavLink>
+        <NavLink to="/updates" className="hover:text-ink">{t.settings.updatesLink}</NavLink>
         {' · '}
-        <button type="button" onClick={showContact} className="hover:text-white">
+        <button type="button" onClick={showContact} className="hover:text-ink">
           {t.settings.contactLink}
         </button>
       </footer>

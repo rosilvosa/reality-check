@@ -15,6 +15,7 @@ export const ceb: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahon', back: 'Balik', next: 'Sunod', skip: 'Priso',
     change: 'Usbon', close: 'Sirado', calculate: 'Kuwentahon', saved: '✓ Na-save',
+    themeLight: 'Hayag nga mode', themeDark: 'Ngitngit nga mode',
   },
 
   home: {
@@ -33,6 +34,8 @@ export const ceb: Translation = {
     seeProgress: 'Tibuok pag-uswag',
     helpBtn: 'Pangita og tabang',
     helpHint: 'Helpline, exclusion, ug meeting sa imong nasud',
+    insteadBtn: 'Buhata Kini Imbes',
+    insteadHint: 'Lakaw. Text. Dili taya.',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, pangutana. Kanunay anonymous.',
     installTitle: 'Idugang sa telepono',
@@ -44,6 +47,9 @@ export const ceb: Translation = {
     openBrowserBody: 'Kini Messenger o laing in-app browser. Dili molihok dinhi ang sign-in ug install.',
     openBrowserBtn: 'Ablihi sa browser',
     openBrowserHow: 'Kung walay mahitabo: i-tap ang ··· unya Open in Chrome o Safari.',
+    togetherToday: '{n} ka tawo nag-check in karon',
+    togetherWeek: 'Karong semanaha, nagsulat ang mga tawo dinhi og {amount}',
+    togetherHint: 'Walay ngalan. Ang lawak ra.',
   },
 
   lost: {
@@ -232,6 +238,8 @@ export const ceb: Translation = {
     barriersDesc: 'Self-exclusion, pagtanggal sa app, checklist sa pag-block sa site',
     findHelpTitle: 'Pangita og Tabang',
     findHelpDesc: 'Helpline, self-exclusion, ug meeting sa imong nasud',
+    insteadTitle: 'Buhata Kini Imbes',
+    insteadDesc: 'Mga butang nga buhaton kung moabot ang pagnanasa',
     communityTitle: 'Komunidad',
     communityDesc: 'Anonymous nga tip, pagnanasa, ug lisod nga adlaw',
     syncActive: 'Naka-sync sa cloud — kining account, bisan unsang device.',
@@ -331,6 +339,20 @@ export const ceb: Translation = {
     fail: 'Wala ma-load ang lista.',
     openGithub: 'Tanan nga issue sa GitHub',
     seeList: 'Tan-awa ang mga sayop ug unsay umaabot',
+  },
+
+  instead: {
+    title: 'Buhata Kini Imbes',
+    subtitle: 'Kung gusto mo motaya, pagpili og usa ka butang. Gisulat kini dinhi tinuyo. Dili feed. Dili duwa.',
+    nowTitle: 'Buhata ang Usa Niini Karon',
+    now: [
+      'Bugnaw nga tubig sa nawong. Duha ka minuto.',
+      'Lakaw sa gawas. Naa sa bulsa ang telepono.',
+      'Mag-text sa usa ka tawo. Dili bahin sa taya.',
+      'Ginhawa: 4 humot, 4 pundo, 4 luwa. Balika hangtud mohunong ang kagana.',
+    ],
+    forYou: 'Tungod sa imong gipili',
+    allTitle: 'Kung lahi ang imong gibati',
   },
 
   findHelp: {

@@ -21,10 +21,10 @@ export default function Updates() {
 
   return (
     <div>
-      <NavLink to="/settings" className="text-xs text-muted hover:text-white mb-4 inline-block">
+      <NavLink to="/settings" className="text-xs text-muted hover:text-ink mb-4 inline-block">
         ← {t.common.back}
       </NavLink>
-      <h2 className="text-lg font-extrabold text-white mb-1">{t.updates.title}</h2>
+      <h2 className="text-lg font-extrabold text-ink mb-1">{t.updates.title}</h2>
       <p className="text-sm text-muted leading-relaxed mb-6">{t.updates.subtitle}</p>
 
       {fail && <p className="text-sm text-accent mb-4">{t.updates.fail}</p>}
@@ -41,7 +41,7 @@ export default function Updates() {
         href={ISSUES_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="block text-center text-xs text-muted hover:text-white py-2"
+        className="block text-center text-xs text-muted hover:text-ink py-2"
       >
         {t.updates.openGithub} →
       </a>
@@ -74,7 +74,7 @@ function Section({
               className="block bg-surface border border-border rounded-xl p-4 hover:border-accent"
             >
               <p className="text-[11px] text-muted mb-1">#{item.number}</p>
-              <p className="text-white text-sm font-semibold leading-snug">{item.title}</p>
+              <p className="text-ink text-sm font-semibold leading-snug">{item.title}</p>
             </a>
           ))}
         </div>

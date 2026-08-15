@@ -67,12 +67,12 @@ export default function AuthModal({ isOpen, onClose }: Props) {
       <div className="relative z-10 w-full max-w-sm bg-surface border border-border rounded-xl p-6 shadow-2xl">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-muted hover:text-white transition-colors text-lg"
+          className="absolute top-4 right-4 text-muted hover:text-ink transition-colors text-lg"
         >
           ✕
         </button>
 
-        <h2 className="text-lg font-bold text-white mb-1">Account</h2>
+        <h2 className="text-lg font-bold text-ink mb-1">Account</h2>
         <p className="text-sm text-muted mb-5">Sign in to enable cloud sync across devices.</p>
 
         {/* Tabs */}
@@ -82,7 +82,7 @@ export default function AuthModal({ isOpen, onClose }: Props) {
               key={t}
               onClick={() => { setTab(t); setError('') }}
               className={`flex-1 py-2 text-sm font-semibold transition-colors ${
-                tab === t ? 'bg-surface2 text-white' : 'text-muted hover:text-white'
+                tab === t ? 'bg-surface2 text-ink' : 'text-muted hover:text-ink'
               }`}
             >
               {t === 'signin' ? 'Sign In' : 'Create Account'}
@@ -117,7 +117,7 @@ export default function AuthModal({ isOpen, onClose }: Props) {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-sm text-white placeholder-muted outline-none focus:border-accent mb-2"
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-sm text-ink placeholder-muted outline-none focus:border-accent mb-2"
         />
         <input
           type="password"
@@ -125,7 +125,7 @@ export default function AuthModal({ isOpen, onClose }: Props) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleEmail()}
-          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-sm text-white placeholder-muted outline-none focus:border-accent mb-3"
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-sm text-ink placeholder-muted outline-none focus:border-accent mb-3"
         />
 
         {error && <p className="text-sm text-accent mb-3">{error}</p>}

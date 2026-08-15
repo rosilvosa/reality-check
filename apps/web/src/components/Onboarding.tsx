@@ -3,8 +3,7 @@ import { useSettingsStore } from '../stores/settingsStore'
 import type { Asset } from '@rc/core'
 import { useT } from '../i18n'
 import { tpl, formatMoney } from '@rc/core'
-
-const LS_KEY = 'rc_onboarded_v2'
+import { ONBOARDED_KEY, markOnboarded } from '../lib/pwa'
 
 const DEFAULT_ASSETS: Asset[] = [
   { name: '1 Week of Groceries', cost: 1500 },
@@ -27,11 +26,11 @@ export default function Onboarding() {
 
   useEffect(() => {
     if (!loaded) return
-    if (!localStorage.getItem(LS_KEY)) setVisible(true)
+    if (!localStorage.getItem(ONBOARDED_KEY)) setVisible(true)
   }, [loaded])
 
   function markDone() {
-    localStorage.setItem(LS_KEY, '1')
+    markOnboarded()
     setVisible(false)
   }
 
@@ -96,10 +95,10 @@ export default function Onboarding() {
         {step === 1 && (
           <div>
             <p className="text-[11px] tracking-widest uppercase text-muted font-bold mb-4">{t.onboarding.tag}</p>
-            <h1 className="text-4xl font-black text-white leading-none mb-4">{t.onboarding.title}</h1>
+            <h1 className="text-4xl font-black text-ink leading-none mb-4">{t.onboarding.title}</h1>
             <p className="text-accent font-bold text-lg mb-6">{t.onboarding.tagline}</p>
-            <p className="text-white text-[15px] leading-relaxed mb-4">{t.onboarding.body1}</p>
-            <p className="text-white text-[15px] leading-relaxed mb-10">{t.onboarding.body2}</p>
+            <p className="text-ink text-[15px] leading-relaxed mb-4">{t.onboarding.body1}</p>
+            <p className="text-ink text-[15px] leading-relaxed mb-10">{t.onboarding.body2}</p>
             <button
               onClick={() => setStep(2)}
               className="w-full bg-accent text-white font-black py-4 rounded-xl text-sm tracking-wider hover:opacity-90 transition-opacity"
@@ -111,7 +110,7 @@ export default function Onboarding() {
 
         {step === 2 && (
           <div>
-            <h2 className="text-3xl font-black text-white mb-2">{t.onboarding.step2Title}</h2>
+            <h2 className="text-3xl font-black text-ink mb-2">{t.onboarding.step2Title}</h2>
             <p className="text-muted text-sm leading-relaxed mb-8">{t.onboarding.step2Sub}</p>
 
             <label className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
@@ -122,7 +121,7 @@ export default function Onboarding() {
               value={monthly}
               onChange={(e) => setMonthly(e.target.value)}
               placeholder="e.g. 25000"
-              className="w-full bg-surface2 border border-border rounded-lg px-4 py-3 text-white text-base outline-none focus:border-accent mb-5"
+              className="w-full bg-surface2 border border-border rounded-lg px-4 py-3 text-ink text-base outline-none focus:border-accent mb-5"
               autoFocus
             />
 
@@ -134,7 +133,7 @@ export default function Onboarding() {
               value={hours}
               onChange={(e) => setHours(e.target.value)}
               placeholder="176"
-              className="w-full bg-surface2 border border-border rounded-lg px-4 py-3 text-white text-base outline-none focus:border-accent mb-2"
+              className="w-full bg-surface2 border border-border rounded-lg px-4 py-3 text-ink text-base outline-none focus:border-accent mb-2"
             />
 
             {rate && (
@@ -153,7 +152,7 @@ export default function Onboarding() {
             </button>
             <button
               onClick={() => setStep(4)}
-              className="w-full mt-3 py-3 text-sm text-muted hover:text-white transition-colors"
+              className="w-full mt-3 py-3 text-sm text-muted hover:text-ink transition-colors"
             >
               {t.onboarding.laterBtn}
             </button>
@@ -162,7 +161,7 @@ export default function Onboarding() {
 
         {step === 3 && (
           <div>
-            <h2 className="text-3xl font-black text-white mb-2">{t.onboarding.step3Title}</h2>
+            <h2 className="text-3xl font-black text-ink mb-2">{t.onboarding.step3Title}</h2>
             <p className="text-muted text-sm leading-relaxed mb-6">{t.onboarding.step3Sub}</p>
 
             <div className="space-y-2 mb-3">
@@ -173,14 +172,14 @@ export default function Onboarding() {
                     value={a.name}
                     onChange={(e) => updateAsset(i, 'name', e.target.value)}
                     placeholder={t.onboarding.step3AssetPh}
-                    className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent"
+                    className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent"
                   />
                   <input
                     type="number"
                     value={a.cost || ''}
                     onChange={(e) => updateAsset(i, 'cost', e.target.value)}
                     placeholder={t.settings.assetCostPlaceholder}
-                    className="w-24 bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent"
+                    className="w-24 bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent"
                   />
                   <button
                     onClick={() => setAssets((prev) => prev.filter((_, idx) => idx !== i))}
@@ -194,7 +193,7 @@ export default function Onboarding() {
 
             <button
               onClick={() => setAssets((prev) => [...prev, { name: '', cost: 0 }])}
-              className="text-sm text-muted border border-border rounded-lg px-3 py-2 hover:text-white transition-colors mb-8"
+              className="text-sm text-muted border border-border rounded-lg px-3 py-2 hover:text-ink transition-colors mb-8"
             >
               {t.onboarding.step3Add}
             </button>
@@ -210,11 +209,11 @@ export default function Onboarding() {
 
         {step === 4 && (
           <div>
-            <h2 className="text-3xl font-black text-white mb-2">{t.onboarding.toolsTitle}</h2>
+            <h2 className="text-3xl font-black text-ink mb-2">{t.onboarding.toolsTitle}</h2>
             <p className="text-muted text-sm leading-relaxed mb-6">{t.onboarding.toolsSub}</p>
             <ul className="space-y-3 mb-10">
               {tools.map((line) => (
-                <li key={line} className="text-white text-[15px] leading-snug border-l-2 border-accent pl-3">
+                <li key={line} className="text-ink text-[15px] leading-snug border-l-2 border-accent pl-3">
                   {line}
                 </li>
               ))}

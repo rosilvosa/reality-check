@@ -58,14 +58,14 @@ export default function ContactModal() {
         <button
           type="button"
           onClick={hide}
-          className="absolute top-4 right-4 text-muted hover:text-white text-lg"
+          className="absolute top-4 right-4 text-muted hover:text-ink text-lg"
         >
           ✕
         </button>
 
         {sent ? (
           <div>
-            <h2 className="text-lg font-bold text-white mb-2">{t.contact.sentTitle}</h2>
+            <h2 className="text-lg font-bold text-ink mb-2">{t.contact.sentTitle}</h2>
             <p className="text-sm text-muted leading-relaxed mb-5">{t.contact.sentBody}</p>
             <button
               type="button"
@@ -77,12 +77,12 @@ export default function ContactModal() {
           </div>
         ) : (
           <div>
-            <h2 className="text-lg font-bold text-white mb-1">{t.contact.title}</h2>
+            <h2 className="text-lg font-bold text-ink mb-1">{t.contact.title}</h2>
             <p className="text-sm text-muted leading-relaxed mb-3">{t.contact.subtitle}</p>
             <NavLink
               to="/updates"
               onClick={hide}
-              className="block text-xs text-accent hover:text-white mb-4"
+              className="block text-xs text-accent hover:text-ink mb-4"
             >
               {t.updates.seeList} →
             </NavLink>
@@ -91,7 +91,7 @@ export default function ContactModal() {
             <select
               value={kind}
               onChange={(e) => setKind(e.target.value as (typeof TYPES)[number])}
-              className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent mb-3"
+              className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent mb-3"
             >
               {TYPES.map((id) => (
                 <option key={id} value={id}>{t.contact[id]}</option>
@@ -106,7 +106,7 @@ export default function ContactModal() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={t.contact.namePh}
-              className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent mb-3"
+              className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent mb-3"
             />
 
             <label className="block text-xs font-bold text-muted mb-1.5">
@@ -117,7 +117,7 @@ export default function ContactModal() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t.contact.emailPh}
-              className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent mb-3"
+              className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent mb-3"
             />
 
             <label className="block text-xs font-bold text-muted mb-1.5">{t.contact.messageLabel}</label>
@@ -126,7 +126,7 @@ export default function ContactModal() {
               onChange={(e) => setMessage(e.target.value)}
               rows={4}
               placeholder={t.contact.messagePh}
-              className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-sm outline-none focus:border-accent mb-3 resize-none"
+              className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent mb-3 resize-none"
             />
 
             {error && <p className="text-sm text-accent mb-3">{error}</p>}
@@ -143,7 +143,7 @@ export default function ContactModal() {
               <button
                 type="button"
                 onClick={hide}
-                className="px-4 py-2.5 border border-border rounded-lg text-sm text-muted hover:text-white"
+                className="px-4 py-2.5 border border-border rounded-lg text-sm text-muted hover:text-ink"
               >
                 {t.common.cancel}
               </button>

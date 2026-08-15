@@ -123,7 +123,7 @@ export default function Community() {
 
   return (
     <div>
-      <h2 className="text-lg font-extrabold text-white mb-1">{t.community.title}</h2>
+      <h2 className="text-lg font-extrabold text-ink mb-1">{t.community.title}</h2>
       <p className="text-sm text-muted mb-3 leading-relaxed">{t.community.subtitle}</p>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.community.hero}</p>
 
@@ -134,7 +134,7 @@ export default function Community() {
             type="button"
             onClick={() => setFilter(f.id)}
             className={`flex-1 min-w-fit px-2 py-2 rounded-lg text-xs font-bold whitespace-nowrap ${
-              filter === f.id ? 'bg-surface2 text-white' : 'text-muted hover:text-white'
+              filter === f.id ? 'bg-surface2 text-ink' : 'text-muted hover:text-ink'
             }`}
           >
             {t.community[f.key]}
@@ -159,7 +159,7 @@ export default function Community() {
                 type="button"
                 onClick={() => setType(pt.id)}
                 className={`text-xs font-bold px-3 py-1.5 rounded-lg border ${
-                  type === pt.id ? 'border-accent text-white' : 'border-border text-muted'
+                  type === pt.id ? 'border-accent text-ink' : 'border-border text-muted'
                 }`}
               >
                 {t.community[pt.key]}
@@ -171,7 +171,7 @@ export default function Community() {
             onChange={(e) => setText(e.target.value.slice(0, MAX))}
             rows={4}
             placeholder={t.community.composeHint}
-            className="w-full bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent mb-2"
+            className="w-full bg-surface2 border border-border rounded-lg px-3 py-2 text-ink text-sm outline-none focus:border-accent mb-2"
           />
           <p className="text-[11px] text-muted mb-3">{t.community.postedAs} · {text.length}/{MAX}</p>
           <p className="text-[11px] text-muted mb-3">{t.community.rules}</p>
@@ -188,7 +188,7 @@ export default function Community() {
             <button
               type="button"
               onClick={() => { setOpen(false); setError('') }}
-              className="px-4 py-2.5 border border-border rounded-lg text-sm text-muted hover:text-white"
+              className="px-4 py-2.5 border border-border rounded-lg text-sm text-muted hover:text-ink"
             >
               {t.common.cancel}
             </button>
@@ -216,12 +216,12 @@ export default function Community() {
                         : 'typeVent'
                 ]}</span>
               </div>
-              <p className="text-white text-[15px] leading-relaxed whitespace-pre-wrap">{post.text}</p>
+              <p className="text-ink text-[15px] leading-relaxed whitespace-pre-wrap">{post.text}</p>
               <div className="flex items-center gap-3 mt-3">
                 <button
                   type="button"
                   onClick={() => onHeart(post)}
-                  className={`text-xs font-bold ${liked ? 'text-white' : 'text-muted hover:text-white'}`}
+                  className={`text-xs font-bold ${liked ? 'text-ink' : 'text-muted hover:text-ink'}`}
                 >
                   {liked ? '♥' : '♡'} {post.hearts}
                 </button>
@@ -229,7 +229,7 @@ export default function Community() {
                   <button
                     type="button"
                     onClick={() => onDelete(post.id)}
-                    className="text-xs text-muted hover:text-white"
+                    className="text-xs text-muted hover:text-ink"
                   >
                     {t.community.deletePost}
                   </button>

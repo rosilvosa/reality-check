@@ -15,6 +15,7 @@ export const ilo: Translation = {
   common: {
     save: 'I-save', cancel: 'Ikansela', back: 'Umay', next: 'Sumaganad', skip: 'Brisan',
     change: 'Balbalen', close: 'Saraan', calculate: 'Kalkularen', saved: '✓ Na-save',
+    themeLight: 'Naraniag a mode', themeDark: 'Nasipnget a mode',
   },
 
   home: {
@@ -33,6 +34,8 @@ export const ilo: Translation = {
     seeProgress: 'Amin a progreso',
     helpBtn: 'Biruken ti tulong',
     helpHint: 'Helpline, exclusion, ken meeting iti pagilianmo',
+    insteadBtn: 'Aramidem Daytoy Imbes',
+    insteadHint: 'Magna. Mensahe. Saan a taya.',
     communityBtn: 'Komunidad',
     communityHint: 'Dagiti tip, panagnanasa, saludsod. Kanayon nga anonymous.',
     installTitle: 'Inayon iti telepono',
@@ -44,6 +47,9 @@ export const ilo: Translation = {
     openBrowserBody: 'Daytoy Messenger wenno sabali nga in-app browser. Saan nga agtrabaho ditoy ti sign-in ken install.',
     openBrowserBtn: 'Lukatan iti browser',
     openBrowserHow: 'No awan ti mapasamak: i-tap ti ··· sa Open in Chrome wenno Safari.',
+    togetherToday: '{n} a tattao ti nag-check in ita',
+    togetherWeek: 'Iti daytoy a lawas, nagsurat dagiti tattao ditoy iti {amount}',
+    togetherHint: 'Awan nagan. Ti kuarto laeng.',
   },
 
   lost: {
@@ -232,6 +238,8 @@ export const ilo: Translation = {
     barriersDesc: 'Self-exclusion, panayalis ti app, checklist ti panagtangtangken ti site',
     findHelpTitle: 'Biruken ti Tulong',
     findHelpDesc: 'Helpline, self-exclusion, ken meeting iti pagilianmo',
+    insteadTitle: 'Aramidem Daytoy Imbes',
+    insteadDesc: 'Dagiti banag nga aramiden no dumteng ti panagnanasa',
     communityTitle: 'Komunidad',
     communityDesc: 'Anonymous a tip, panagnanasa, ken narigat nga aldaw',
     syncActive: 'Naka-sync iti cloud — daytoy nga account, uray ania a device.',
@@ -331,6 +339,20 @@ export const ilo: Translation = {
     fail: 'Saan a na-load ti lista.',
     openGithub: 'Amin nga issue iti GitHub',
     seeList: 'Kitaen dagiti biddut ken umadani',
+  },
+
+  instead: {
+    title: 'Aramidem Daytoy Imbes',
+    subtitle: 'No kayatmo nga agsugal, agpili iti maysa a banag. Naisurat daytoy ditoy iti gagara. Saan a feed. Saan a ay-ayam.',
+    nowTitle: 'Aramidem ti Maysa Kadagitoy Ita',
+    now: [
+      'Nalamiis a danum iti rupa. Dua a minuto.',
+      'Magna iti ruar. Adda iti bulsa ti telepono.',
+      'Mag-text iti maysa a tao. Saan maipanggep iti taya.',
+      'Aganges: sumruk 4, agpundo 4, pulsien 4. Ulitem agingga bumaba ti tignay.',
+    ],
+    forYou: 'Gapu iti pinilim',
+    allTitle: 'No sabali ti mariknam',
   },
 
   findHelp: {

@@ -15,6 +15,7 @@ export interface Translation {
   common: {
     save: string; cancel: string; back: string; next: string; skip: string
     change: string; close: string; calculate: string; saved: string
+    themeLight: string; themeDark: string
   }
 
   home: {
@@ -33,6 +34,8 @@ export interface Translation {
     seeProgress: string
     helpBtn: string
     helpHint: string
+    insteadBtn: string
+    insteadHint: string
     communityBtn: string
     communityHint: string
     installTitle: string
@@ -44,6 +47,9 @@ export interface Translation {
     openBrowserBody: string
     openBrowserBtn: string
     openBrowserHow: string
+    togetherToday: string
+    togetherWeek: string
+    togetherHint: string
   }
 
   lost: {
@@ -163,6 +169,7 @@ export interface Translation {
     langSection: string; supportSection: string; supportHint: string; kofiBtn: string
     recoveryTools: string; barriersTitle: string; barriersDesc: string
     findHelpTitle: string; findHelpDesc: string
+    insteadTitle: string; insteadDesc: string
     communityTitle: string; communityDesc: string
     syncActive: string
     syncNowBtn: string; syncNowHint: string; syncingBtn: string; syncDoneBtn: string; syncFail: string
@@ -265,6 +272,15 @@ export interface Translation {
     fail: string
     openGithub: string
     seeList: string
+  }
+
+  instead: {
+    title: string
+    subtitle: string
+    nowTitle: string
+    now: [string, string, string, string]
+    forYou: string
+    allTitle: string
   }
 
   findHelp: {

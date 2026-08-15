@@ -1,5 +1,7 @@
 import { create } from 'zustand'
+import { localISODate, localYesterdayISODate } from '@rc/core'
 import { getAdapter } from '../lib/storage'
+import { recordRoomCheckIn } from '../lib/room'
 import { useAuthStore } from './authStore'
 import { useJournalStore } from './journalStore'
 import type { StreakData } from '../types'
@@ -7,13 +9,11 @@ import type { StreakData } from '../types'
 const MILESTONES = [1, 3, 7, 14, 30, 60, 90, 180, 365]
 
 function today(): string {
-  return new Date().toISOString().slice(0, 10)
+  return localISODate()
 }
 
 function yesterday(): string {
-  const d = new Date()
-  d.setDate(d.getDate() - 1)
-  return d.toISOString().slice(0, 10)
+  return localYesterdayISODate()
 }
 
 function defaultStreak(): StreakData {
@@ -38,12 +38,11 @@ interface StreakState extends StreakData {
 
 export const useStreakStore = create<StreakState>((set, get) => ({
   ...defaultStreak(),
-  loading: false,
+  loading: true,
   showMilestoneModal: false,
   newMilestone: null,
 
   loadStreak: async () => {
-    set({ loading: true })
     const { user } = useAuthStore.getState()
     const adapter = getAdapter(user)
     const data = await adapter.getStreak()
@@ -79,6 +78,7 @@ export const useStreakStore = create<StreakState>((set, get) => ({
 
     const { user } = useAuthStore.getState()
     await getAdapter(user).saveStreak(updated)
+    await recordRoomCheckIn().catch(() => undefined)
 
     set({
       ...updated,

@@ -68,7 +68,7 @@ export default function Journal() {
 
   return (
     <div>
-      <h2 className="text-lg font-extrabold text-white mb-1">{t.journal.title}</h2>
+      <h2 className="text-lg font-extrabold text-ink mb-1">{t.journal.title}</h2>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.journal.interceptSub}</p>
 
       {mustIntercept && mostRecent && (
@@ -85,7 +85,7 @@ export default function Journal() {
                 {formatMoney(mostRecent.amount, currency)} lost
               </p>
             )}
-            <p className="text-white text-sm leading-relaxed whitespace-pre-wrap">{mostRecent.text}</p>
+            <p className="text-ink text-sm leading-relaxed whitespace-pre-wrap">{mostRecent.text}</p>
           </div>
           <button
             onClick={() => setAcknowledged(true)}
@@ -100,9 +100,9 @@ export default function Journal() {
         <div className="border-2 border-red-500 rounded-xl p-5 mb-6 bg-surface">
           <p className="text-[11px] font-bold uppercase tracking-wider text-red-400 mb-1">{t.journal.chasingTitle}</p>
           <div className="bg-bg rounded-lg p-4 mb-4 border-l-4 border-red-500">
-            <p className="text-white text-[15px] leading-relaxed mb-2">{t.journal.chasingBody1}</p>
-            <p className="text-white text-[15px] leading-relaxed mb-2">{t.journal.chasingBody2}</p>
-            <p className="text-white text-[15px] leading-relaxed">{t.journal.chasingBody3}</p>
+            <p className="text-ink text-[15px] leading-relaxed mb-2">{t.journal.chasingBody1}</p>
+            <p className="text-ink text-[15px] leading-relaxed mb-2">{t.journal.chasingBody2}</p>
+            <p className="text-ink text-[15px] leading-relaxed">{t.journal.chasingBody3}</p>
           </div>
           <button
             onClick={() => setChasingAcknowledged(true)}
@@ -123,7 +123,7 @@ export default function Journal() {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder={t.journal.placeholderAmount}
-            className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-base outline-none focus:border-accent mb-4"
+            className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4"
           />
           <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
             {t.journal.labelFeeling}
@@ -133,7 +133,7 @@ export default function Journal() {
             onChange={(e) => setText(e.target.value)}
             placeholder={t.journal.placeholderFeeling}
             rows={5}
-            className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-white text-base outline-none focus:border-accent mb-4 resize-y"
+            className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4 resize-y"
           />
           <button
             onClick={handleSave}
@@ -157,7 +157,7 @@ export default function Journal() {
                   {e.createdAt.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}
                   {e.amount > 0 && ` · ${formatMoney(e.amount, currency)} lost`}
                 </p>
-                <p className="text-sm text-white leading-relaxed whitespace-pre-wrap">{e.text}</p>
+                <p className="text-sm text-ink leading-relaxed whitespace-pre-wrap">{e.text}</p>
               </div>
             ))}
           </div>

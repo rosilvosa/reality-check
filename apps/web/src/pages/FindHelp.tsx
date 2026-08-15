@@ -22,11 +22,11 @@ export default function FindHelp() {
 
   return (
     <div>
-      <h2 className="text-lg font-extrabold text-white mb-1">{t.findHelp.title}</h2>
+      <h2 className="text-lg font-extrabold text-ink mb-1">{t.findHelp.title}</h2>
       <p className="text-sm text-muted mb-4 leading-relaxed">{t.findHelp.subtitle}</p>
       <p className="text-xs text-muted mb-5">
         {t.findHelp.regionHint}{' '}
-        <NavLink to="/settings" className="text-accent hover:text-white">{regionLabel}</NavLink>
+        <NavLink to="/settings" className="text-accent hover:text-ink">{regionLabel}</NavLink>
       </p>
 
       <div className="flex gap-1 mb-5 bg-surface border border-border rounded-xl p-1">
@@ -36,7 +36,7 @@ export default function FindHelp() {
             type="button"
             onClick={() => setTab(id)}
             className={`flex-1 py-2 rounded-lg text-xs font-bold ${
-              tab === id ? 'bg-surface2 text-white' : 'text-muted hover:text-white'
+              tab === id ? 'bg-surface2 text-ink' : 'text-muted hover:text-ink'
             }`}
           >
             {labels[id]}
@@ -51,7 +51,7 @@ export default function FindHelp() {
           const internal = item.url?.startsWith('/')
           return (
             <div key={item.id} className="bg-surface border border-border rounded-xl p-5">
-              <p className="text-white font-bold text-[15px] mb-1">{item.title}</p>
+              <p className="text-ink font-bold text-[15px] mb-1">{item.title}</p>
               <p className="text-sm text-muted leading-relaxed">{item.body}</p>
               {item.url && (
                 internal ? (

@@ -1,18 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { useT } from '../i18n'
+import { ONBOARDED_EVENT, isInAppBrowser, isOnboarded, isStandalone } from '../lib/pwa'
 
 const HIDE_KEY = 'rc_pwa_hide'
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
-}
-
-function isStandalone(): boolean {
-  return (
-    window.matchMedia('(display-mode: standalone)').matches
-    || ('standalone' in navigator && Boolean((navigator as Navigator & { standalone?: boolean }).standalone))
-  )
 }
 
 function isIos(): boolean {
@@ -25,21 +19,26 @@ export default function InstallHint() {
   const [mode, setMode] = useState<'hidden' | 'install' | 'ios'>('hidden')
 
   useEffect(() => {
-    if (localStorage.getItem(HIDE_KEY) || isStandalone()) return
+    if (localStorage.getItem(HIDE_KEY) || isStandalone() || isInAppBrowser()) return
+
+    function reveal() {
+      if (!isOnboarded() || localStorage.getItem(HIDE_KEY) || isStandalone() || isInAppBrowser()) return
+      if (deferred.current) setMode('install')
+      else if (isIos()) setMode('ios')
+    }
 
     const onPrompt = (e: Event) => {
       e.preventDefault()
       deferred.current = e as BeforeInstallPromptEvent
-      setMode('install')
+      reveal()
     }
     window.addEventListener('beforeinstallprompt', onPrompt)
-
-    const timer = window.setTimeout(() => {
-      if (!deferred.current && isIos()) setMode('ios')
-    }, 600)
+    window.addEventListener(ONBOARDED_EVENT, reveal)
+    const timer = window.setTimeout(reveal, 600)
 
     return () => {
       window.removeEventListener('beforeinstallprompt', onPrompt)
+      window.removeEventListener(ONBOARDED_EVENT, reveal)
       window.clearTimeout(timer)
     }
   }, [])
@@ -60,7 +59,7 @@ export default function InstallHint() {
 
   return (
     <div className="bg-surface border border-border rounded-2xl p-4 mb-4">
-      <p className="text-white font-bold text-sm mb-1">{t.home.installTitle}</p>
+      <p className="text-ink font-bold text-sm mb-1">{t.home.installTitle}</p>
       {mode === 'ios' ? (
         <p className="text-xs text-muted leading-relaxed mb-3">{t.home.installIos}</p>
       ) : (
@@ -79,7 +78,7 @@ export default function InstallHint() {
         <button
           type="button"
           onClick={hide}
-          className="px-3 py-2 border border-border text-muted rounded-lg text-xs hover:text-white"
+          className="px-3 py-2 border border-border text-muted rounded-lg text-xs hover:text-ink"
         >
           {t.home.installDismiss}
         </button>

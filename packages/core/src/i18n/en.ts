@@ -15,6 +15,7 @@ export const en: Translation = {
   common: {
     save: 'Save', cancel: 'Cancel', back: 'Back', next: 'Next', skip: 'Skip',
     change: 'Change', close: 'Close', calculate: 'Calculate', saved: '✓ Saved',
+    themeLight: 'Light mode', themeDark: 'Dark mode',
   },
 
   home: {
@@ -33,6 +34,8 @@ export const en: Translation = {
     seeProgress: 'Full progress',
     helpBtn: 'Find help',
     helpHint: 'Helplines, exclusion, meetings where you live',
+    insteadBtn: 'Do this instead',
+    insteadHint: 'A walk. A text. Not a bet.',
     communityBtn: 'Community',
     communityHint: 'Tips, urges, questions. Always anonymous.',
     installTitle: 'Add to your phone',
@@ -44,6 +47,9 @@ export const en: Translation = {
     openBrowserBody: 'This is Messenger or another in-app browser. Sign-in and install will not work here.',
     openBrowserBtn: 'Open in browser',
     openBrowserHow: 'If the button does nothing: tap ··· then Open in Chrome or Safari.',
+    togetherToday: '{n} people checked in today',
+    togetherWeek: 'This week people here wrote down {amount}',
+    togetherHint: 'No names. Just the room.',
   },
 
   lost: {
@@ -232,6 +238,8 @@ export const en: Translation = {
     barriersDesc: 'Self-exclusion, app deletion, site blocking checklist',
     findHelpTitle: 'Find Help',
     findHelpDesc: 'Helplines, self-exclusion, and meetings for your country',
+    insteadTitle: 'Do this instead',
+    insteadDesc: 'Hard-coded things to do when the urge hits',
     communityTitle: 'Community',
     communityDesc: 'Anonymous tips, urges, and hard days',
     syncActive: 'Cloud sync on — this account, every device.',
@@ -331,6 +339,20 @@ export const en: Translation = {
     fail: 'Could not load the list.',
     openGithub: 'All issues on GitHub',
     seeList: 'See bugs and what is coming',
+  },
+
+  instead: {
+    title: 'Do this instead',
+    subtitle: 'When you want to bet, pick one thing. These are written here on purpose. Not a feed. Not a game.',
+    nowTitle: 'Do one of these now',
+    now: [
+      'Cold water on your face. Two minutes.',
+      'Walk outside. Phone stays in your pocket.',
+      'Text one person. Not about betting.',
+      'Breathe: in 4, hold 4, out 4. Repeat until the spike drops.',
+    ],
+    forYou: 'Because of what you picked',
+    allTitle: 'If it is something else',
   },
 
   findHelp: {

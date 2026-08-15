@@ -17,6 +17,28 @@ service cloud.firestore {
       allow read, update, delete: if false;
     }
 
+    match /public_stats/{id} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /checkins/{date}/users/{uid} {
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+      allow read, update, delete: if false;
+    }
+
+    match /room_amounts/{id} {
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.amount is number
+        && request.resource.data.amount > 0
+        && request.resource.data.amount <= 5000000
+        && request.resource.data.keys().hasOnly(['amount', 'uid']);
+      allow read, update, delete: if false;
+    }
+
     match /community_posts/{id} {
       allow read: if request.auth != null;
       allow create: if request.auth != null
