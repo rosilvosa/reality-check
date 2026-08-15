@@ -70,6 +70,20 @@ export default function Home() {
           <p className="text-white font-black text-lg">{t.home.writeBtn}</p>
           <p className="text-muted text-sm mt-1">{t.home.writeHint}</p>
         </Link>
+        <Link
+          to="/help"
+          className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
+        >
+          <p className="text-white font-black text-lg">{t.home.helpBtn}</p>
+          <p className="text-muted text-sm mt-1">{t.home.helpHint}</p>
+        </Link>
+        <Link
+          to="/community"
+          className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
+        >
+          <p className="text-white font-black text-lg">{t.home.communityBtn}</p>
+          <p className="text-muted text-sm mt-1">{t.home.communityHint}</p>
+        </Link>
       </div>
 
       {latest && (

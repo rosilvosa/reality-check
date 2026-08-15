@@ -4,6 +4,7 @@ import {
 } from 'firebase/firestore'
 import { db } from './firebase'
 import type { Settings, JournalEntry, StreakData } from '../types'
+import { deletePostsByUser } from './community'
 
 const LS_SETTINGS = 'rc_settings'
 const LS_JOURNAL  = 'rc_journal'
@@ -184,5 +185,6 @@ export async function deleteUserCloudData(uid: string): Promise<void> {
     deleteDoc(doc(db, 'users', uid, 'data', 'settings')).catch(() => undefined),
     deleteDoc(doc(db, 'users', uid, 'data', 'streak')).catch(() => undefined),
     deleteDoc(doc(db, 'users', uid, 'data', 'barriers')).catch(() => undefined),
+    deletePostsByUser(uid).catch(() => undefined),
   ])
 }

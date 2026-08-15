@@ -287,6 +287,26 @@ export default function Settings() {
           </div>
           <span className="text-muted group-hover:text-white transition-colors text-sm">→</span>
         </NavLink>
+        <NavLink
+          to="/help"
+          className="flex items-center justify-between w-full text-left hover:bg-surface2 rounded-lg px-3 py-2.5 transition-colors group"
+        >
+          <div>
+            <p className="text-white font-semibold text-sm">{t.settings.findHelpTitle}</p>
+            <p className="text-muted text-xs">{t.settings.findHelpDesc}</p>
+          </div>
+          <span className="text-muted group-hover:text-white transition-colors text-sm">→</span>
+        </NavLink>
+        <NavLink
+          to="/community"
+          className="flex items-center justify-between w-full text-left hover:bg-surface2 rounded-lg px-3 py-2.5 transition-colors group"
+        >
+          <div>
+            <p className="text-white font-semibold text-sm">{t.settings.communityTitle}</p>
+            <p className="text-muted text-xs">{t.settings.communityDesc}</p>
+          </div>
+          <span className="text-muted group-hover:text-white transition-colors text-sm">→</span>
+        </NavLink>
       </div>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">

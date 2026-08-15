@@ -26,6 +26,12 @@ export default function Terms() {
         Do not abuse the service, scrape it, or use it to target people in crisis. We may disable accounts that
         harm the service or other users.
       </p>
+      <h3 className="text-white font-bold pt-2">Community</h3>
+      <p>
+        Posts are anonymous to other users. Do not share betting links, ask for money, or name another person.
+        We may remove posts that break these rules. Community is not therapy and not a crisis line — use Find Help
+        if you need a real number.
+      </p>
       <h3 className="text-white font-bold pt-2">Liability</h3>
       <p>
         The operator is not liable for decisions you make after using this tool, for data loss on a device you

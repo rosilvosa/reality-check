@@ -7,6 +7,7 @@ export interface Translation {
     home: string
     sweat: string; assets: string; journal: string
     nearmiss: string; trap: string; progress: string; settings: string
+    community: string; help: string
     more: string
   }
 
@@ -27,6 +28,10 @@ export interface Translation {
     writeHint: string
     lastEntry: string
     seeProgress: string
+    helpBtn: string
+    helpHint: string
+    communityBtn: string
+    communityHint: string
   }
 
   sweat: {
@@ -133,6 +138,8 @@ export interface Translation {
     helpRegionSection: string; helpRegionHint: string
     langSection: string; supportSection: string; supportHint: string; kofiBtn: string
     recoveryTools: string; barriersTitle: string; barriersDesc: string
+    findHelpTitle: string; findHelpDesc: string
+    communityTitle: string; communityDesc: string
     syncActive: string; donateNow: string; donateSuccess: string; donateFail: string
     customAmount: string; deleteAccount: string; deleteConfirm: string
     privacyLink: string; termsLink: string
@@ -151,6 +158,40 @@ export interface Translation {
     toolSweat: string; toolAssets: string; toolJournal: string
     toolMiss: string; toolTrap: string; toolProgress: string
     finishCta: string
+  }
+
+  community: {
+    title: string
+    subtitle: string
+    hero: string
+    filterAll: string
+    filterTips: string
+    filterWins: string
+    filterQuestions: string
+    filterVent: string
+    composeHint: string
+    typeTip: string
+    typeWin: string
+    typeQuestion: string
+    typeVent: string
+    postedAs: string
+    postBtn: string
+    empty: string
+    rules: string
+    deletePost: string
+    posting: string
+    failed: string
+  }
+
+  findHelp: {
+    title: string
+    subtitle: string
+    regionHint: string
+    tabCrisis: string
+    tabExclusion: string
+    tabMeetings: string
+    tabGuides: string
+    empty: string
   }
 
   urge: {

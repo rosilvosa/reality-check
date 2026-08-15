@@ -19,6 +19,12 @@ export default function Privacy() {
         If you sign in, that same data is copied to Google Firebase (Firestore) in asia-southeast1, scoped to your
         user ID. We use Firebase Authentication (anonymous, Google, or email).
       </p>
+      <h3 className="text-white font-bold pt-2">Community</h3>
+      <p>
+        Community posts are stored in Firestore and shown to other signed-in users as Anonymous. We store your
+        user ID on the post so you can delete it. Deleting your account also deletes your posts. Do not put
+        your name, address, or anyone else’s identity in a post.
+      </p>
       <h3 className="text-white font-bold pt-2">Donations</h3>
       <p>
         Optional donations are processed by PayMongo (GCash, Maya, cards, QRPH) or Ko-fi. We do not store card

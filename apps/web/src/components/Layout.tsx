@@ -53,6 +53,8 @@ export default function Layout() {
     { to: '/nearmiss', label: t.nav.nearmiss, icon: '⚠️' },
     { to: '/trap', label: t.nav.trap, icon: '🧠' },
     { to: '/barriers', label: t.settings.barriersTitle, icon: '🛡' },
+    { to: '/help', label: t.nav.help, icon: '🤝' },
+    { to: '/community', label: t.nav.community, icon: '💬' },
   ]
 
   return (
