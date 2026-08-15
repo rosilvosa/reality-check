@@ -1,19 +1,33 @@
 import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useJournalStore } from '../stores/journalStore'
 import { auth } from '../lib/firebase'
 import { useT } from '../i18n'
 import { tpl, formatMoney } from '@rc/core'
 import { useSettingsStore } from '../stores/settingsStore'
 
+function amountFromQuery(raw: string | null): string {
+  if (!raw) return ''
+  const n = parseFloat(raw)
+  if (!Number.isFinite(n) || n <= 0) return ''
+  return String(n)
+}
+
 export default function Journal() {
   const { entries, loaded, loadJournal, addEntry } = useJournalStore()
   const currency = useSettingsStore((s) => s.currency) ?? 'PHP'
+  const [searchParams, setSearchParams] = useSearchParams()
   const [acknowledged, setAcknowledged] = useState(false)
   const [chasingAcknowledged, setChasingAcknowledged] = useState(false)
-  const [amount, setAmount] = useState('')
+  const [amount, setAmount] = useState(() => amountFromQuery(searchParams.get('amount')))
   const [text, setText] = useState('')
   const [saving, setSaving] = useState(false)
   const t = useT()
+
+  useEffect(() => {
+    const next = amountFromQuery(searchParams.get('amount'))
+    if (next) setAmount(next)
+  }, [searchParams])
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((u) => {
@@ -29,6 +43,7 @@ export default function Journal() {
       await addEntry({ amount: parseFloat(amount) || 0, text: text.trim() })
       setAmount('')
       setText('')
+      if (searchParams.get('amount')) setSearchParams({}, { replace: true })
     } catch {
       /* error shown via store */
     }

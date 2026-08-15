@@ -24,8 +24,9 @@ export default function Terms() {
       </p>
       <h3 className="text-white font-bold pt-2">Source code</h3>
       <p>
-        Some of the source may be visible on GitHub so you can see how the tool works. That is not permission
-        to copy it, modify it, or run your own public instance. All rights reserved.
+        The source is MIT-licensed. You may copy it, change it, and run your own public instance. Please keep
+        the name Reality Check and append your country or region (this site is Reality Check PH). Do not present
+        a copy as this Philippine site.
       </p>
       <h3 className="text-white font-bold pt-2">Acceptable use</h3>
       <p>

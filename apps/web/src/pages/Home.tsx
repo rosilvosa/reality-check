@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useT } from '../i18n'
-import { formatMoney, MILESTONES, MILESTONE_EMOJI } from '@rc/core'
+import { formatMoney, MILESTONES, MILESTONE_EMOJI, localISODate, visibleStreak } from '@rc/core'
 import { useStreakStore } from '../stores/streakStore'
 import { useJournalStore } from '../stores/journalStore'
 import { useSettingsStore } from '../stores/settingsStore'
@@ -8,7 +8,7 @@ import InstallHint from '../components/InstallHint'
 
 function isCheckedInToday(lastCheckInDate: string | null): boolean {
   if (!lastCheckInDate) return false
-  return lastCheckInDate === new Date().toISOString().slice(0, 10)
+  return lastCheckInDate === localISODate()
 }
 
 export default function Home() {
@@ -18,38 +18,40 @@ export default function Home() {
   const currency = useSettingsStore((s) => s.currency) ?? 'PHP'
   const checkedIn = isCheckedInToday(lastCheckInDate)
   const latest = entries[0]
-  const earned = [...MILESTONES].reverse().find((m) => currentStreak >= m)
+  const days = visibleStreak(currentStreak, lastCheckInDate)
+  const earned = [...MILESTONES].reverse().find((m) => days >= m)
   const badge = earned ? MILESTONE_EMOJI[earned] : null
 
   return (
     <div>
       <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Recovery tool</p>
-      <h1 className="text-[22px] font-black text-white tracking-tight mb-1">Reality Check</h1>
+      <h1 className="text-[22px] font-black text-white tracking-tight mb-1">Reality Check PH</h1>
       <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-5">{t.home.tag}</p>
 
       <InstallHint />
 
       <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
-        {currentStreak > 0 ? (
-          <div className="flex items-end justify-between gap-4 mb-4">
-            <div>
-              <div className="flex items-end gap-3">
-                {badge && (
-                  <span className="text-4xl leading-none" aria-hidden>
-                    {badge}
-                  </span>
-                )}
-                <div className="text-5xl font-black text-white leading-none">{currentStreak}</div>
+        <div className="flex items-end justify-between gap-4 mb-4">
+          <div>
+            <div className="flex items-end gap-3">
+              {badge && (
+                <span className="text-4xl leading-none" aria-hidden>
+                  {badge}
+                </span>
+              )}
+              <div className={`text-5xl font-black leading-none ${loading ? 'text-muted' : 'text-white'}`}>
+                {loading ? '—' : days}
               </div>
-              <div className="text-muted text-xs font-semibold uppercase tracking-wider mt-1">{t.home.daysLabel}</div>
             </div>
-            <Link to="/progress" className="text-xs font-bold text-muted hover:text-white shrink-0">
-              {t.home.seeProgress} →
-            </Link>
+            <div className="text-muted text-xs font-semibold uppercase tracking-wider mt-1">{t.home.daysLabel}</div>
+            {!loading && days === 0 && (
+              <p className="text-white text-sm mt-3">{t.home.startHint}</p>
+            )}
           </div>
-        ) : (
-          <p className="text-white text-sm mb-4">{t.home.startHint}</p>
-        )}
+          <Link to="/progress" className="text-xs font-bold text-muted hover:text-white shrink-0">
+            {t.home.seeProgress} →
+          </Link>
+        </div>
 
         {checkedIn ? (
           <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
@@ -74,6 +76,13 @@ export default function Home() {
         >
           <p className="text-white font-black text-lg">{t.home.lostBtn}</p>
           <p className="text-muted text-sm mt-1">{t.home.lostHint}</p>
+        </Link>
+        <Link
+          to="/trap/why"
+          className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
+        >
+          <p className="text-white font-black text-lg">{t.home.whyBtn}</p>
+          <p className="text-muted text-sm mt-1">{t.home.whyHint}</p>
         </Link>
         <Link
           to="/journal"

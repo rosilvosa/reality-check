@@ -1,4 +1,4 @@
-# Reality Check
+# Reality Check PH
 
 A gambling recovery tool. It re-sensitizes you to the real value of money.
 
@@ -36,4 +36,8 @@ No account required. Without sign-in, data stays in this browser. Sign in with G
 
 ## License
 
-All rights reserved. See [LICENSE](LICENSE). The source is visible so you can inspect it. It is not a license to copy or run your own public instance.
+[MIT](LICENSE). Copy it, change the help numbers, run your own instance.
+
+Keep the name **Reality Check** and append your country or region so people know which one they opened. This site is **Reality Check PH**. Yours might be Reality Check US, Reality Check UK, Reality Check SG.
+
+Do not present a copy as this Philippine site.

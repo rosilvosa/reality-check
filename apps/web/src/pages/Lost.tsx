@@ -170,7 +170,7 @@ export default function Lost() {
           )}
 
           <Link
-            to="/journal"
+            to={`/journal?amount=${encodeURIComponent(String(lossVal))}`}
             className="block w-full text-center bg-surface2 border border-border text-white font-bold py-3 rounded-lg hover:border-accent"
           >
             {t.lost.writeNext} →
