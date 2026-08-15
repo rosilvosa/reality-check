@@ -26,7 +26,7 @@ The product is a website. On a phone it can install as a PWA (Add to Home Screen
 
 No account required. Without sign-in, data stays in this browser. Sign in with Google or email if you want the same journal on another device. Sync is free. Nothing in the app is locked behind a payment.
 
-If Reality Check helped you, the useful thing is not paying for this app. It is telling a special-needs family about [David's Beacon](https://davidsbeacon.com). That page lives at `/mission`.
+If Reality Check helped you, the useful thing is not paying for this app. See `/mission` for the related safety project (not public yet).
 
 ---
 
