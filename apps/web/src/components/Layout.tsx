@@ -1,5 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { useT } from '../i18n'
+import { useContactStore } from '../stores/contactStore'
+import ContactModal from './ContactModal'
 
 function word(label: string) {
   return label.replace(/^[^\p{L}\p{N}]+/u, '').trim()
@@ -39,6 +41,7 @@ function Tab({
 
 export default function Layout() {
   const t = useT()
+  const showContact = useContactStore((s) => s.show)
 
   const top = [
     { to: '/', label: t.nav.home, icon: '🏠', end: true },
@@ -82,8 +85,12 @@ export default function Layout() {
         {' · '}
         <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
         {' · '}
-        <a href="mailto:hello@davidsbeacon.com" className="hover:text-white">{t.settings.contactLink}</a>
+        <button type="button" onClick={showContact} className="hover:text-white">
+          {t.settings.contactLink}
+        </button>
       </footer>
+
+      <ContactModal />
 
       <nav className="fixed bottom-0 inset-x-0 z-30 bg-surface/95 backdrop-blur border-t border-border pb-[env(safe-area-inset-bottom)]">
         <div className="max-w-2xl mx-auto flex">

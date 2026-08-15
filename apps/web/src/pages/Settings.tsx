@@ -11,6 +11,7 @@ import { signOut, deleteAccountAndData } from '../lib/auth'
 import { migrateToFirestore, syncNowToCloud } from '../lib/storage'
 import { createDonationCheckout } from '../lib/paymongo'
 import AuthModal from '../components/AuthModal'
+import { useContactStore } from '../stores/contactStore'
 
 const REPO_URL = 'https://github.com/rosilvosa/reality-check'
 const KOFI_URL = 'https://ko-fi.com/rosilvosa'
@@ -21,6 +22,7 @@ export default function Settings() {
   const { user } = useAuthStore()
   const t = useT()
   const { lang, setLang, languages } = useLang()
+  const showContact = useContactStore((s) => s.show)
   const { loadJournal } = useJournalStore()
   const loadStreak = useStreakStore((s) => s.loadStreak)
   const streak = useStreakStore()
@@ -459,7 +461,7 @@ export default function Settings() {
         {' · '}
         <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
         {' · '}
-        <a href="mailto:hello@davidsbeacon.com" className="hover:text-white">{t.settings.contactLink}</a>
+        <button type="button" onClick={showContact} className="hover:text-white">{t.settings.contactLink}</button>
       </p>
 
       <AuthModal isOpen={showAuth} onClose={afterAuthClose} />

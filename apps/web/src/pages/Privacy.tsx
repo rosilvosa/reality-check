@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom'
+import { useContactStore } from '../stores/contactStore'
 
 export default function Privacy() {
+  const showContact = useContactStore((s) => s.show)
   return (
     <div className="text-sm text-muted leading-relaxed space-y-4">
       <NavLink to="/settings" className="text-xs hover:text-white">← Settings</NavLink>
@@ -34,9 +36,9 @@ export default function Privacy() {
       <h3 className="text-white font-bold pt-2">Your rights</h3>
       <p>
         You can delete your account and cloud data from Settings. That wipes your Firestore tree and local
-        Reality Check keys. Under the Philippine Data Privacy Act you may also email
-        {' '}<a href="mailto:hello@davidsbeacon.com" className="text-accent hover:text-white">hello@davidsbeacon.com</a>
-        {' '}to request access or deletion.
+        Reality Check keys. Under the Philippine Data Privacy Act you may also
+        {' '}<button type="button" onClick={showContact} className="text-accent hover:text-white">use Contact</button>
+        {' '}or email hello@davidsbeacon.com to request access or deletion.
       </p>
       <p>Operator: Ron Silvosa. Contact: hello@davidsbeacon.com</p>
     </div>

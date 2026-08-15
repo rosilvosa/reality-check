@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom'
+import { useContactStore } from '../stores/contactStore'
 
 export default function Terms() {
+  const showContact = useContactStore((s) => s.show)
   return (
     <div className="text-sm text-muted leading-relaxed space-y-4">
       <NavLink to="/settings" className="text-xs hover:text-white">← Settings</NavLink>
@@ -37,7 +39,8 @@ export default function Terms() {
         did not back up, or for Firebase outages. Use at your own risk.
       </p>
       <p>
-        Questions: <a href="mailto:hello@davidsbeacon.com" className="text-accent hover:text-white">hello@davidsbeacon.com</a>
+        Questions: <button type="button" onClick={showContact} className="text-accent hover:text-white">Contact</button>
+        {' '}or hello@davidsbeacon.com
       </p>
     </div>
   )

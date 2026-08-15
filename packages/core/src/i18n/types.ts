@@ -206,6 +206,29 @@ export interface Translation {
     failed: string
   }
 
+  contact: {
+    title: string
+    subtitle: string
+    typeLabel: string
+    typeBug: string
+    typeQuestion: string
+    typePrivacy: string
+    typeOther: string
+    nameLabel: string
+    nameOptional: string
+    emailLabel: string
+    emailOptional: string
+    messageLabel: string
+    send: string
+    sending: string
+    sentTitle: string
+    sentBody: string
+    fail: string
+    namePh: string
+    emailPh: string
+    messagePh: string
+  }
+
   findHelp: {
     title: string
     subtitle: string
