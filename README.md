@@ -44,29 +44,6 @@ functions         Cloud Functions (donations)
 
 ---
 
-## Develop
-
-Need Node 20+.
-
-```bash
-git clone https://github.com/rosilvosa/reality-check.git
-cd reality-check
-npm install
-```
-
-Copy `apps/web/.env.example` → `apps/web/.env` and fill the Firebase web config.
-
-```bash
-npm run web          # http://localhost:5173
-```
-
-```bash
-npm run build:web
-firebase deploy --only hosting
-```
-
----
-
 ## License
 
 MIT
