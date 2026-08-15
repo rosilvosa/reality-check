@@ -252,6 +252,7 @@ export const fil: Translation = {
     sourceCode: 'Tingnan ang source',
     sourceHint: 'Nakikita ang source. Pwede ang sarili mong libreng kopya. Huwag ibenta. Panatilihin ang Reality Check at dagdagan ng bansa.',
     missionLink: "Tulungan ang David's Beacon",
+    updatesLink: 'Mga update',
     contactLink: 'Makipag-ugnayan',
   },
 
@@ -318,6 +319,18 @@ export const fil: Translation = {
     namePh: 'Pangalan',
     emailPh: 'ikaw@email.com',
     messagePh: 'Ano ang kailangan mo?',
+  },
+
+  updates: {
+    title: 'Mga update',
+    subtitle: 'Mga bug at mga plano. I-tap ang row para mabasa.',
+    bugs: 'Mga bug',
+    features: 'Paparating',
+    empty: 'Wala pang nakalista.',
+    loading: 'Naglo-load…',
+    fail: 'Hindi ma-load ang lista.',
+    openGithub: 'Lahat ng issue sa GitHub',
+    seeList: 'Tingnan ang mga bug at plano',
   },
 
   findHelp: {

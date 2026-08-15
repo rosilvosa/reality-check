@@ -252,6 +252,7 @@ export const en: Translation = {
     sourceCode: 'View source',
     sourceHint: 'Source is public. Run your own free copy. Do not sell it. Keep the name Reality Check and append your country.',
     missionLink: "Help David's Beacon",
+    updatesLink: 'Updates',
     contactLink: 'Contact',
   },
 
@@ -318,6 +319,18 @@ export const en: Translation = {
     namePh: 'Name',
     emailPh: 'you@email.com',
     messagePh: 'What do you need?',
+  },
+
+  updates: {
+    title: 'Updates',
+    subtitle: 'Open bugs and things we still want. Tap a row to read it.',
+    bugs: 'Bugs',
+    features: 'Coming',
+    empty: 'Nothing listed yet.',
+    loading: 'Loading…',
+    fail: 'Could not load the list.',
+    openGithub: 'All issues on GitHub',
+    seeList: 'See bugs and what is coming',
   },
 
   findHelp: {

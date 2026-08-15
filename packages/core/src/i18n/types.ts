@@ -25,6 +25,8 @@ export interface Translation {
     startHint: string
     lostBtn: string
     lostHint: string
+    whyBtn: string
+    whyHint: string
     writeBtn: string
     writeHint: string
     lastEntry: string
@@ -38,6 +40,10 @@ export interface Translation {
     installBtn: string
     installIos: string
     installDismiss: string
+    openBrowserTitle: string
+    openBrowserBody: string
+    openBrowserBtn: string
+    openBrowserHow: string
   }
 
   lost: {
@@ -111,6 +117,7 @@ export interface Translation {
     ]
     truthTag: string; truthP1: string; truthP2: string; truthP3: string
     ctaBarriers: string
+    calcTab: string
     whyLink: string
     whyTitle: string
     // labels for the 3 house edge options (just the name, edge pct appended in code)
@@ -165,6 +172,7 @@ export interface Translation {
     privacyLink: string; termsLink: string
     sourceCode: string; sourceHint: string
     missionLink: string
+    updatesLink: string
     contactLink: string
   }
 
@@ -245,6 +253,18 @@ export interface Translation {
     namePh: string
     emailPh: string
     messagePh: string
+  }
+
+  updates: {
+    title: string
+    subtitle: string
+    bugs: string
+    features: string
+    empty: string
+    loading: string
+    fail: string
+    openGithub: string
+    seeList: string
   }
 
   findHelp: {

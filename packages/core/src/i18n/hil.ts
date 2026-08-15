@@ -252,6 +252,7 @@ export const hil: Translation = {
     sourceCode: 'Tan-awa ang source',
     sourceHint: 'Makita ang source. Pwede ang imo kaugalingon nga libre nga kopya. Indi ibaligya. Ipadayon ang Reality Check kag idugang ang pungsod.',
     missionLink: "Buligi ang David's Beacon",
+    updatesLink: 'Mga update',
     contactLink: 'Kontaka',
   },
 
@@ -318,6 +319,18 @@ export const hil: Translation = {
     namePh: 'Ngalan',
     emailPh: 'ikaw@email.com',
     messagePh: 'Ano ang kinahanglan mo?',
+  },
+
+  updates: {
+    title: 'Mga update',
+    subtitle: 'Mga sayop kag plano. I-tap ang row para mabasa.',
+    bugs: 'Mga sayop',
+    features: 'Umaabot',
+    empty: 'Wala pa sang lista.',
+    loading: 'Nagaload…',
+    fail: 'Indi ma-load ang lista.',
+    openGithub: 'Tanan nga issue sa GitHub',
+    seeList: 'Tan-awa ang mga sayop kag plano',
   },
 
   findHelp: {

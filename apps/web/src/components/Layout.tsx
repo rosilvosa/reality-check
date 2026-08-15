@@ -83,6 +83,8 @@ export default function Layout() {
         {' · '}
         <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
         {' · '}
+        <NavLink to="/updates" className="hover:text-white">{t.settings.updatesLink}</NavLink>
+        {' · '}
         <button type="button" onClick={showContact} className="hover:text-white">
           {t.settings.contactLink}
         </button>

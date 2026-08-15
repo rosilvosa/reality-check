@@ -252,6 +252,7 @@ export const ceb: Translation = {
     sourceCode: 'Tan-awa ang source',
     sourceHint: 'Makita ang source. Pwede ang imong kaugalingong libreng kopya. Ayaw ibaligya. Ipadayon ang Reality Check ug idugang ang nasud.',
     missionLink: "Tabangi ang David's Beacon",
+    updatesLink: 'Mga update',
     contactLink: 'Kontaka',
   },
 
@@ -318,6 +319,18 @@ export const ceb: Translation = {
     namePh: 'Ngalan',
     emailPh: 'ikaw@email.com',
     messagePh: 'Unsa ang imong kinahanglan?',
+  },
+
+  updates: {
+    title: 'Mga update',
+    subtitle: 'Mga sayop ug unsay plano. I-tap ang row aron mabasa.',
+    bugs: 'Mga sayop',
+    features: 'Umaabot',
+    empty: 'Wala pay lista.',
+    loading: 'Nag-load…',
+    fail: 'Wala ma-load ang lista.',
+    openGithub: 'Tanan nga issue sa GitHub',
+    seeList: 'Tan-awa ang mga sayop ug unsay umaabot',
   },
 
   findHelp: {

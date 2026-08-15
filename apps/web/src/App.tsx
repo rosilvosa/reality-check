@@ -15,8 +15,10 @@ import Terms from './pages/Terms'
 import Community from './pages/Community'
 import FindHelp from './pages/FindHelp'
 import Mission from './pages/Mission'
+import Updates from './pages/Updates'
 import MilestoneModal from './components/MilestoneModal'
 import Onboarding from './components/Onboarding'
+import OpenInBrowser from './components/OpenInBrowser'
 import { useAuthStore } from './stores/authStore'
 import { useStreakStore } from './stores/streakStore'
 import { useSettingsStore } from './stores/settingsStore'
@@ -44,6 +46,7 @@ const router = createBrowserRouter([
       { path: 'community', element: <Community /> },
       { path: 'help', element: <FindHelp /> },
       { path: 'mission', element: <Mission /> },
+      { path: 'updates', element: <Updates /> },
     ],
   },
 ])
@@ -78,6 +81,7 @@ export default function App() {
       <RouterProvider router={router} />
       <MilestoneModal />
       <Onboarding />
+      <OpenInBrowser />
     </LangProvider>
   )
 }

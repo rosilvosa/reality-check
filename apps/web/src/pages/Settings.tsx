@@ -11,9 +11,7 @@ import { signOut, deleteAccountAndData } from '../lib/auth'
 import { migrateToFirestore, syncNowToCloud } from '../lib/storage'
 import { createDonationCheckout } from '../lib/paymongo'
 import AuthModal from '../components/AuthModal'
-import { useContactStore } from '../stores/contactStore'
 
-const REPO_URL = 'https://github.com/rosilvosa/reality-check'
 const KOFI_URL = 'https://ko-fi.com/rosilvosa'
 const DONATE_AMOUNTS = [50, 100, 200]
 
@@ -22,7 +20,6 @@ export default function Settings() {
   const { user } = useAuthStore()
   const t = useT()
   const { lang, setLang, languages } = useLang()
-  const showContact = useContactStore((s) => s.show)
   const { loadJournal } = useJournalStore()
   const loadStreak = useStreakStore((s) => s.loadStreak)
   const streak = useStreakStore()
@@ -387,8 +384,11 @@ export default function Settings() {
       <div className="border border-border rounded-xl p-5 mb-4">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-2">{t.settings.supportSection}</p>
         <p className="text-xs text-muted leading-relaxed mb-3">{t.settings.supportHint}</p>
-        <NavLink to="/mission" className="text-xs text-accent hover:text-white mb-4 inline-block">
+        <NavLink to="/mission" className="text-xs text-accent hover:text-white mb-2 inline-block">
           {t.settings.missionLink} →
+        </NavLink>
+        <NavLink to="/updates" className="block text-xs text-accent hover:text-white mb-4">
+          {t.settings.updatesLink} →
         </NavLink>
 
         {donateSuccess && (
@@ -451,18 +451,6 @@ export default function Settings() {
           {t.settings.kofiBtn}
         </a>
       </div>
-
-      <p className="text-center text-xs text-muted mt-4 mb-4">
-        <NavLink to="/privacy" className="hover:text-white">{t.settings.privacyLink}</NavLink>
-        {' · '}
-        <NavLink to="/terms" className="hover:text-white">{t.settings.termsLink}</NavLink>
-        {' · '}
-        <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">{t.settings.sourceCode}</a>
-        {' · '}
-        <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
-        {' · '}
-        <button type="button" onClick={showContact} className="hover:text-white">{t.settings.contactLink}</button>
-      </p>
 
       <AuthModal isOpen={showAuth} onClose={afterAuthClose} />
     </div>

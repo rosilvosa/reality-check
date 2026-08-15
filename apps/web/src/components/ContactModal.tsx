@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
 import { sendContactMessage } from '../lib/contact'
@@ -77,7 +78,14 @@ export default function ContactModal() {
         ) : (
           <div>
             <h2 className="text-lg font-bold text-white mb-1">{t.contact.title}</h2>
-            <p className="text-sm text-muted leading-relaxed mb-4">{t.contact.subtitle}</p>
+            <p className="text-sm text-muted leading-relaxed mb-3">{t.contact.subtitle}</p>
+            <NavLink
+              to="/updates"
+              onClick={hide}
+              className="block text-xs text-accent hover:text-white mb-4"
+            >
+              {t.updates.seeList} →
+            </NavLink>
 
             <label className="block text-xs font-bold text-muted mb-1.5">{t.contact.typeLabel}</label>
             <select

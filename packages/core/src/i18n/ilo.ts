@@ -252,6 +252,7 @@ export const ilo: Translation = {
     sourceCode: 'Kitaen ti source',
     sourceHint: 'Makita ti source. Mabalin ti kukuam a libre a kopia. Saan a ilako. Iyulog ti Reality Check ket inayon ti pagilian.',
     missionLink: "Tulongan ti David's Beacon",
+    updatesLink: 'Dagiti update',
     contactLink: 'Kontaken',
   },
 
@@ -318,6 +319,18 @@ export const ilo: Translation = {
     namePh: 'Nagan',
     emailPh: 'sika@email.com',
     messagePh: 'Ania ti masapulmo?',
+  },
+
+  updates: {
+    title: 'Dagiti update',
+    subtitle: 'Dagiti biddut ken plano. I-tap ti row tapno mabasa.',
+    bugs: 'Dagiti biddut',
+    features: 'Umadani',
+    empty: 'Awan pay ti lista.',
+    loading: 'Agload…',
+    fail: 'Saan a na-load ti lista.',
+    openGithub: 'Amin nga issue iti GitHub',
+    seeList: 'Kitaen dagiti biddut ken umadani',
   },
 
   findHelp: {
