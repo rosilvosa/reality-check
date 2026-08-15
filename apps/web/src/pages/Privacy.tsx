@@ -25,11 +25,11 @@ export default function Privacy() {
         user ID on the post so you can delete it. Deleting your account also deletes your posts. Do not put
         your name, address, or anyone else’s identity in a post.
       </p>
-      <h3 className="text-white font-bold pt-2">Donations</h3>
+      <h3 className="text-white font-bold pt-2">Support</h3>
       <p>
-        Optional donations are processed by PayMongo (GCash, Maya, cards, QRPH) or Ko-fi. We do not store card
-        numbers. PayMongo may store payment records under their own policy. Donations keep cloud sync available
-        to anyone and help fund a safety app. They are voluntary payments, not tax-deductible charity gifts.
+        Reality Check does not sell features. If you want to help, we ask you to support David’s Beacon — a free
+        safety platform for special-needs families — by telling a family or opening davidsbeacon.com. There is
+        no donation checkout in this app.
       </p>
       <h3 className="text-white font-bold pt-2">Your rights</h3>
       <p>

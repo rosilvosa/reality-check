@@ -15,11 +15,10 @@ export default function Terms() {
         You may use the calculators, journal, streak tracker, and related tools. Local use needs no account.
         Signing in is optional and enables cloud backup. We do not sell your journal.
       </p>
-      <h3 className="text-white font-bold pt-2">Donations</h3>
+      <h3 className="text-white font-bold pt-2">Support</h3>
       <p>
-        Donations are optional. They do not unlock features. They keep cloud sync available to anyone and help
-        fund a safety app. Payments go through PayMongo or Ko-fi. Refunds follow the payment provider’s
-        process; contact us if a charge was a mistake.
+        This app is free. We do not charge for features. Optional support is directed at David’s Beacon’s
+        mission (safety tools for special-needs families), not at unlocking Reality Check.
       </p>
       <h3 className="text-white font-bold pt-2">Acceptable use</h3>
       <p>

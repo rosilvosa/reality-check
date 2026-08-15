@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useSearchParams, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useT, useLang } from '../i18n'
 import { tpl, CURRENCIES, HELP_REGIONS, formatMoney } from '@rc/core'
 import { useSettingsStore, Asset } from '../stores/settingsStore'
@@ -8,13 +8,10 @@ import { useJournalStore } from '../stores/journalStore'
 import { useStreakStore } from '../stores/streakStore'
 import { auth } from '../lib/firebase'
 import { signOut, deleteAccountAndData } from '../lib/auth'
-import { createDonationCheckout } from '../lib/paymongo'
 import { migrateToFirestore } from '../lib/storage'
 import AuthModal from '../components/AuthModal'
 
-const KOFI_URL = 'https://ko-fi.com/rosilvosa'
 const REPO_URL = 'https://github.com/rosilvosa/reality-check'
-const DONATE_AMOUNTS = [50, 100, 299]
 
 export default function Settings() {
   const { monthlyPay, hoursPerMonth, assets, voidType, currency, helpRegion, loaded, loadSettings, saveSettings } = useSettingsStore()
@@ -28,14 +25,10 @@ export default function Settings() {
   const [localAssets, setLocalAssets] = useState<Asset[]>([])
   const [saved, setSaved] = useState(false)
   const [showAuth, setShowAuth] = useState(false)
-  const [donateSuccess, setDonateSuccess] = useState(false)
-  const [donateError, setDonateError] = useState('')
-  const [donateLoading, setDonateLoading] = useState<number | null>(null)
-  const [customAmount, setCustomAmount] = useState('')
+  const [formError, setFormError] = useState('')
   const [currencyCode, setCurrencyCode] = useState('PHP')
   const [regionCode, setRegionCode] = useState('PH')
   const [deleting, setDeleting] = useState(false)
-  const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((u) => {
@@ -43,14 +36,6 @@ export default function Settings() {
     })
     return unsub
   }, [loaded, loadSettings])
-
-  useEffect(() => {
-    if (searchParams.get('donation') === 'success') {
-      setSearchParams({})
-      setDonateSuccess(true)
-      setTimeout(() => setDonateSuccess(false), 6000)
-    }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (loaded) {
@@ -97,27 +82,6 @@ export default function Settings() {
     setTimeout(() => setSaved(false), 2500)
   }
 
-  async function handleDonate(pesos: number) {
-    setDonateError('')
-    setDonateLoading(pesos)
-    try {
-      const url = await createDonationCheckout(pesos)
-      window.location.href = url
-    } catch (e: unknown) {
-      setDonateError(e instanceof Error ? e.message : t.settings.donateFail)
-      setDonateLoading(null)
-    }
-  }
-
-  async function handleCustomDonate() {
-    const pesos = Math.round(parseFloat(customAmount))
-    if (!Number.isFinite(pesos) || pesos < 20) {
-      setDonateError(t.settings.donateFail)
-      return
-    }
-    await handleDonate(pesos)
-  }
-
   async function handleDelete() {
     if (!window.confirm(t.settings.deleteConfirm)) return
     setDeleting(true)
@@ -125,7 +89,7 @@ export default function Settings() {
       await deleteAccountAndData()
       window.location.href = '/'
     } catch (e: unknown) {
-      setDonateError(e instanceof Error ? e.message : 'Could not delete account')
+      setFormError(e instanceof Error ? e.message : 'Could not delete account')
       setDeleting(false)
     }
   }
@@ -144,9 +108,9 @@ export default function Settings() {
       <h2 className="text-lg font-extrabold text-white mb-1">{t.settings.title}</h2>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.settings.subtitle}</p>
 
-      {donateSuccess && (
-        <div className="bg-green-900/40 border border-green-700 rounded-xl px-4 py-3 mb-4 text-sm text-green-300 font-semibold">
-          {t.settings.donateSuccess}
+      {formError && (
+        <div className="bg-red-900/30 border border-red-800 rounded-xl px-4 py-3 mb-4 text-sm text-red-300">
+          {formError}
         </div>
       )}
 
@@ -341,54 +305,9 @@ export default function Settings() {
         <NavLink to="/terms" className="hover:text-white">{t.settings.termsLink}</NavLink>
         {' · '}
         <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">{t.settings.sourceCode}</a>
+        {' · '}
+        <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
       </p>
-
-      <details id="support" className="text-muted">
-        <summary className="text-xs cursor-pointer hover:text-white list-outside pl-1">
-          {t.settings.supportSection}
-        </summary>
-        <div className="mt-3 border border-border rounded-xl p-4">
-          <p className="text-xs leading-relaxed mb-3">{t.settings.supportHint}</p>
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            {DONATE_AMOUNTS.map((n) => (
-              <button
-                key={n}
-                onClick={() => handleDonate(n)}
-                disabled={donateLoading !== null}
-                className="py-2 border border-border text-muted font-semibold rounded-lg text-xs hover:text-white hover:border-white/30 disabled:opacity-50"
-              >
-                {donateLoading === n ? '…' : `₱${n}`}
-              </button>
-            ))}
-          </div>
-          <div className="flex gap-2 mb-3">
-            <input
-              type="number"
-              min={20}
-              value={customAmount}
-              onChange={(e) => setCustomAmount(e.target.value)}
-              placeholder={t.settings.customAmount}
-              className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
-            />
-            <button
-              onClick={handleCustomDonate}
-              disabled={donateLoading !== null}
-              className="px-3 py-2 border border-border text-muted font-semibold rounded-lg text-xs hover:text-white disabled:opacity-50"
-            >
-              {t.settings.donateNow}
-            </button>
-          </div>
-          {donateError && <p className="text-sm text-accent mb-3">{donateError}</p>}
-          <a
-            href={KOFI_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs hover:text-white"
-          >
-            {t.settings.kofiBtn}
-          </a>
-        </div>
-      </details>
 
       <AuthModal isOpen={showAuth} onClose={afterAuthClose} />
     </div>

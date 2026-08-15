@@ -144,6 +144,7 @@ export interface Translation {
     customAmount: string; deleteAccount: string; deleteConfirm: string
     privacyLink: string; termsLink: string
     sourceCode: string; sourceHint: string
+    missionLink: string
   }
 
   onboarding: {
@@ -158,6 +159,24 @@ export interface Translation {
     toolSweat: string; toolAssets: string; toolJournal: string
     toolMiss: string; toolTrap: string; toolProgress: string
     finishCta: string
+  }
+
+  mission: {
+    title: string
+    tag: string
+    body1: string
+    body2: string
+    belief1Title: string
+    belief1Body: string
+    belief2Title: string
+    belief2Body: string
+    howTitle: string
+    how1Title: string
+    how1Body: string
+    how2Title: string
+    how2Body: string
+    ctaSite: string
+    ctaAbout: string
   }
 
   community: {

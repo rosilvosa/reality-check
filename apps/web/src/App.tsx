@@ -15,6 +15,7 @@ import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Community from './pages/Community'
 import FindHelp from './pages/FindHelp'
+import Mission from './pages/Mission'
 import MilestoneModal from './components/MilestoneModal'
 import Onboarding from './components/Onboarding'
 import { useAuthStore } from './stores/authStore'
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
       { path: 'terms', element: <Terms /> },
       { path: 'community', element: <Community /> },
       { path: 'help', element: <FindHelp /> },
+      { path: 'mission', element: <Mission /> },
     ],
   },
 ])

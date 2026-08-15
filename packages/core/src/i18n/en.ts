@@ -221,6 +221,25 @@ export const en: Translation = {
     termsLink: 'Terms',
     sourceCode: 'Source on GitHub',
     sourceHint: 'Fork it, run your own, or send a pull request.',
+    missionLink: "Help David's Beacon",
+  },
+
+  mission: {
+    title: "Help David's Beacon",
+    tag: 'A different app. Same person.',
+    body1: 'Reality Check stays free. If it helped you, do not pay for this app. Help a special-needs family stay safer.',
+    body2: "David's Beacon is a free safety platform for families of children with autism and other special needs — SOS, location, QR emergency cards. Built for Davie, 8, and families like his. Core safety stays free. Always.",
+    belief1Title: 'Safety is a right, not a feature',
+    belief1Body: 'Every family deserves emergency tools that work, regardless of income.',
+    belief2Title: 'Free for families, always',
+    belief2Body: 'QR codes, SOS, location, emergency contacts — never paywalled. The work is funded by telling the next family, not by charging this one.',
+    howTitle: 'How you can help',
+    how1Title: 'Tell a family',
+    how1Body: 'If you know a parent, carer, school, or therapist — send them davidsbeacon.com.',
+    how2Title: 'See the mission',
+    how2Body: 'Read the story and the tools. Share the page if it fits someone you know.',
+    ctaSite: "Open David's Beacon",
+    ctaAbout: 'About the mission',
   },
 
   community: {

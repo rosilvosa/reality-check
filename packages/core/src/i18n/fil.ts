@@ -221,6 +221,25 @@ export const fil: Translation = {
     termsLink: 'Mga Tuntunin',
     sourceCode: 'Source sa GitHub',
     sourceHint: 'I-fork, patakbuhin ang sarili mo, o magpadala ng pull request.',
+    missionLink: "Tulungan ang David's Beacon",
+  },
+
+  mission: {
+    title: "Tulungan ang David's Beacon",
+    tag: 'Ibang app. Parehong tao.',
+    body1: 'Libre ang Reality Check. Kung nakatulong ito, huwag magbayad para dito. Tulungan ang pamilyang special needs na mas maging ligtas.',
+    body2: "Ang David's Beacon ay libreng safety platform para sa pamilya ng batang may autism at ibang special needs — SOS, location, QR emergency card. Ginawa para kay Davie, 8, at sa mga pamilyang katulad nila. Libre palagi ang core safety.",
+    belief1Title: 'Karapatan ang kaligtasan, hindi feature',
+    belief1Body: 'Dapat may emergency tools ang bawat pamilya, kahit anong kita.',
+    belief2Title: 'Libre para sa pamilya, palagi',
+    belief2Body: 'QR, SOS, location, emergency contacts — hindi kailanman may bayad. Ang gawain ay sa pagsabi sa susunod na pamilya, hindi sa pagsingil sa iyo.',
+    howTitle: 'Paano ka makakatulong',
+    how1Title: 'Sabihin sa isang pamilya',
+    how1Body: 'Kung may kilala kang magulang, tagapag-alaga, eskwelahan, o therapist — ipadala ang davidsbeacon.com.',
+    how2Title: 'Tingnan ang misyon',
+    how2Body: 'Basahin ang kuwento at ang mga tool. I-share kung bagay sa may kilala ka.',
+    ctaSite: "Buksan ang David's Beacon",
+    ctaAbout: 'Tungkol sa misyon',
   },
 
   community: {

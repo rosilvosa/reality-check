@@ -79,6 +79,8 @@ export default function Layout() {
         <a href="https://github.com/rosilvosa/reality-check" target="_blank" rel="noopener noreferrer" className="hover:text-white">
           {t.settings.sourceCode}
         </a>
+        {' · '}
+        <NavLink to="/mission" className="hover:text-white">{t.settings.missionLink}</NavLink>
       </footer>
 
       <nav className="fixed bottom-0 inset-x-0 z-30 bg-surface/95 backdrop-blur border-t border-border pb-[env(safe-area-inset-bottom)]">

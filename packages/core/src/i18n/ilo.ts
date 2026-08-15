@@ -221,6 +221,25 @@ export const ilo: Translation = {
     termsLink: 'Dagiti Termino',
     sourceCode: 'Source iti GitHub',
     sourceHint: 'I-fork, pagtarayem ti kukuam, wenno agipatulod iti pull request.',
+    missionLink: "Tulongan ti David's Beacon",
+  },
+
+  mission: {
+    title: "Tulongan ti David's Beacon",
+    tag: 'Sabali nga app. Isu met laeng a tao.',
+    body1: 'Libre ti Reality Check. No nakatulong daytoy, saan a agbayad para itoy. Tulongam ti pamilia a special needs tapno mas natalgedda.',
+    body2: "Ti David's Beacon ket libre a safety platform para kadagiti pamilia ti ubing nga addaan iti autism ken dadduma pay a special needs — SOS, location, QR emergency card. Naaramid para kenni Davie, 8, ken kadagiti pamilia a kas kanyana. Libre kanayon ti core safety.",
+    belief1Title: 'Kalintegan ti seguridad, saan a feature',
+    belief1Body: 'Masapul nga adda emergency tools ti tunggal pamilia, uray ania ti gundawayda.',
+    belief2Title: 'Libre para kadagiti pamilia, kanayon',
+    belief2Body: 'QR, SOS, location, emergency contacts — saan a mabayadan. Ti trabaho ket ibagam iti sumaruno a pamilia, saan a pabayadam.',
+    howTitle: 'Kasano a makatulongka',
+    how1Title: 'Ibagam iti maysa a pamilia',
+    how1Body: 'No adda ammom a nagannak, agaywan, eskuela, wenno therapist — ipatulodmo ti davidsbeacon.com.',
+    how2Title: 'Kitaem ti mision',
+    how2Body: 'Basaem ti istoria ken dagiti ramit. I-share no umiso iti ammom.',
+    ctaSite: "Lukatan ti David's Beacon",
+    ctaAbout: 'Maipanggep iti mision',
   },
 
   community: {

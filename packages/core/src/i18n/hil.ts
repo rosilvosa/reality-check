@@ -221,6 +221,25 @@ export const hil: Translation = {
     termsLink: 'Mga Termino',
     sourceCode: 'Source sa GitHub',
     sourceHint: 'I-fork, padagana ang imo, ukon padala sang pull request.',
+    missionLink: "Buligi ang David's Beacon",
+  },
+
+  mission: {
+    title: "Buligi ang David's Beacon",
+    tag: 'Iban nga app. Pareho nga tawo.',
+    body1: 'Libre ang Reality Check. Kung nakabulig ini, indi magbayad para diri. Buligi ang pamilya nga special needs nga mas luwas.',
+    body2: "Ang David's Beacon libre nga safety platform para sa pamilya sang bata nga may autism kag iban pa nga special needs — SOS, location, QR emergency card. Ginhimo para kay Davie, 8, kag sa pamilya nga pareho sa iya. Libre gihapon ang core safety.",
+    belief1Title: 'Kinamatarong ang kaluwasan, indi feature',
+    belief1Body: 'Ang kada pamilya dapat may emergency tools, bisan ano nga kita.',
+    belief2Title: 'Libre para sa pamilya, pirme',
+    belief2Body: 'QR, SOS, location, emergency contacts — indi gid pagabayron. Ang obra amo ang pagsugid sa masunod nga pamilya, indi ang pagpabayad sa imo.',
+    howTitle: 'Paano ka makabulig',
+    how1Title: 'Sugiri ang isa ka pamilya',
+    how1Body: 'Kung may kilala ka nga ginikanan, manugbantay, eskwelahan, ukon therapist — ipadala ang davidsbeacon.com.',
+    how2Title: 'Tan-awa ang misyon',
+    how2Body: 'Basaha ang istorya kag ang mga gamit. I-share kung bagay sa imo kilala.',
+    ctaSite: "Abrihi ang David's Beacon",
+    ctaAbout: 'Tuhoy sa misyon',
   },
 
   community: {
