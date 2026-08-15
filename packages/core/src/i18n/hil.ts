@@ -242,11 +242,12 @@ export const hil: Translation = {
     belief2Body: 'QR, SOS, location, emergency contacts — indi gid pagabayron. Ang obra amo ang pagsugid sa masunod nga pamilya, indi ang pagpabayad sa imo.',
     howTitle: 'Paano ka makabulig',
     how1Title: 'Sugiri ang isa ka pamilya',
-    how1Body: 'Kung may kilala ka nga ginikanan, manugbantay, eskwelahan, ukon therapist — ipadala ang davidsbeacon.com.',
+    how1Body: 'Kung may kilala ka nga ginikanan, manugbantay, eskwelahan, ukon therapist — sugiri sila kung mailunsad na.',
     how2Title: 'Tan-awa ang misyon',
-    how2Body: 'Basaha ang istorya kag ang mga gamit. I-share kung bagay sa imo kilala.',
+    how2Body: 'Amo ini ang misyon subong. Wala pa pampubliko nga site.',
     ctaSite: "Abrihi ang David's Beacon",
     ctaAbout: 'Tuhoy sa misyon',
+    ctaSoon: "David's Beacon — ginahimo pa",
   },
 
   community: {

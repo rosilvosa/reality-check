@@ -242,11 +242,12 @@ export const ceb: Translation = {
     belief2Body: 'QR, SOS, location, emergency contacts — dili gyud bayran. Ang trabaho mao ang pagsulti sa sunod nga pamilya, dili ang pagpabayad nimo.',
     howTitle: 'Unsaon nimo pagtabang',
     how1Title: 'Sultihi ang usa ka pamilya',
-    how1Body: 'Kung aduna kay kaila nga ginikanan, tig-atiman, eskwelahan, o therapist — ipadala ang davidsbeacon.com.',
+    how1Body: 'Kung aduna kay kaila nga ginikanan, tig-atiman, eskwelahan, o therapist — sultihi sila kung mailunsad na.',
     how2Title: 'Tan-awa ang misyon',
-    how2Body: 'Basaha ang istorya ug ang mga himan. I-share kung angay sa imong kaila.',
+    how2Body: 'Mao ni ang misyon karon. Wala pa publikong site.',
     ctaSite: "Ablihi ang David's Beacon",
     ctaAbout: 'Mahitungod sa misyon',
+    ctaSoon: "David's Beacon — ginahimo pa",
   },
 
   community: {

@@ -242,11 +242,12 @@ export const ilo: Translation = {
     belief2Body: 'QR, SOS, location, emergency contacts — saan a mabayadan. Ti trabaho ket ibagam iti sumaruno a pamilia, saan a pabayadam.',
     howTitle: 'Kasano a makatulongka',
     how1Title: 'Ibagam iti maysa a pamilia',
-    how1Body: 'No adda ammom a nagannak, agaywan, eskuela, wenno therapist — ipatulodmo ti davidsbeacon.com.',
+    how1Body: 'No adda ammom a nagannak, agaywan, eskuela, wenno therapist — ibagam kadakuada no nairuaren.',
     how2Title: 'Kitaem ti mision',
-    how2Body: 'Basaem ti istoria ken dagiti ramit. I-share no umiso iti ammom.',
+    how2Body: 'Daytoy ti mision ita. Saan pay a publiko ti sitio.',
     ctaSite: "Lukatan ti David's Beacon",
     ctaAbout: 'Maipanggep iti mision',
+    ctaSoon: "David's Beacon — maisangsangaili pay",
   },
 
   community: {

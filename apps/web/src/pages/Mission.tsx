@@ -1,9 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useT } from '../i18n'
 
-const BEACON = 'https://davidsbeacon.com'
-const ABOUT = 'https://davidsbeacon.com/about'
-
 export default function Mission() {
   const t = useT()
 
@@ -40,22 +37,13 @@ export default function Mission() {
         </div>
       </div>
 
-      <a
-        href={BEACON}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block w-full text-center bg-accent text-white font-bold py-3 rounded-lg mb-3 hover:opacity-90"
+      <button
+        type="button"
+        disabled
+        className="w-full text-center border border-border text-muted font-bold py-3 rounded-lg cursor-not-allowed opacity-70"
       >
-        {t.mission.ctaSite}
-      </a>
-      <a
-        href={ABOUT}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block w-full text-center border border-border text-muted font-semibold py-3 rounded-lg hover:text-white hover:border-white/30"
-      >
-        {t.mission.ctaAbout}
-      </a>
+        {t.mission.ctaSoon}
+      </button>
     </div>
   )
 }

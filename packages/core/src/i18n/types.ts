@@ -181,6 +181,7 @@ export interface Translation {
     how2Body: string
     ctaSite: string
     ctaAbout: string
+    ctaSoon: string
   }
 
   community: {

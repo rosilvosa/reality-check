@@ -30,8 +30,8 @@ export default function Privacy() {
       <h3 className="text-white font-bold pt-2">Support</h3>
       <p>
         Reality Check does not sell features. Optional donations (GCash, Maya, card via PayMongo, or Ko-fi) keep
-        cloud sync on and help David’s Beacon stay free for special-needs families. Telling a family about
-        davidsbeacon.com still helps more than money.
+        cloud sync on and help David’s Beacon stay free for special-needs families when it launches. Telling a
+        family about the mission still helps more than money.
       </p>
       <h3 className="text-white font-bold pt-2">Your rights</h3>
       <p>

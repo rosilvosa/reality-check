@@ -242,11 +242,12 @@ export const fil: Translation = {
     belief2Body: 'QR, SOS, location, emergency contacts — hindi kailanman may bayad. Ang gawain ay sa pagsabi sa susunod na pamilya, hindi sa pagsingil sa iyo.',
     howTitle: 'Paano ka makakatulong',
     how1Title: 'Sabihin sa isang pamilya',
-    how1Body: 'Kung may kilala kang magulang, tagapag-alaga, eskwelahan, o therapist — ipadala ang davidsbeacon.com.',
+    how1Body: 'Kung may kilala kang magulang, tagapag-alaga, eskwelahan, o therapist — sabihin sa kanila kapag nailunsad na.',
     how2Title: 'Tingnan ang misyon',
-    how2Body: 'Basahin ang kuwento at ang mga tool. I-share kung bagay sa may kilala ka.',
+    how2Body: 'Ito muna ang misyon. Hindi pa pampubliko ang site.',
     ctaSite: "Buksan ang David's Beacon",
     ctaAbout: 'Tungkol sa misyon',
+    ctaSoon: "David's Beacon — isinasagawa",
   },
 
   community: {

@@ -242,11 +242,12 @@ export const en: Translation = {
     belief2Body: 'QR codes, SOS, location, emergency contacts — never paywalled. The work is funded by telling the next family, not by charging this one.',
     howTitle: 'How you can help',
     how1Title: 'Tell a family',
-    how1Body: 'If you know a parent, carer, school, or therapist — send them davidsbeacon.com.',
+    how1Body: 'If you know a parent, carer, school, or therapist — tell them when it launches.',
     how2Title: 'See the mission',
-    how2Body: 'Read the story and the tools. Share the page if it fits someone you know.',
+    how2Body: 'This page is the mission for now. The site is not public yet.',
     ctaSite: "Open David's Beacon",
     ctaAbout: 'About the mission',
+    ctaSoon: "David's Beacon — in progress",
   },
 
   community: {
