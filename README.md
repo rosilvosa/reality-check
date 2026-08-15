@@ -33,7 +33,6 @@ No account required. Without sign-in, data stays in this browser. Sign in with G
 apps/web          the product (React + Vite)
 packages/core     shared types, calculations, i18n
 functions         Cloud Functions (donations)
-docs/             architecture, setup, failure modes
 ```
 
 ---
@@ -65,18 +64,6 @@ npm run web          # http://localhost:5173
 npm run build:web
 firebase deploy --only hosting
 ```
-
-More detail: [`docs/SETUP.md`](docs/SETUP.md).
-
----
-
-## Docs
-
-| File | What |
-|---|---|
-| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Why each stack choice |
-| [`docs/SETUP.md`](docs/SETUP.md) | Env vars and Firebase setup |
-| [`docs/FAILURE_MODES.md`](docs/FAILURE_MODES.md) | What breaks and how to recover |
 
 ---
 
