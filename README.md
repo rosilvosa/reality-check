@@ -1,10 +1,10 @@
-# Reality Check PH
+# Reality Check
 
 A gambling recovery tool. It re-sensitizes you to the real value of money.
 
 Casinos sell a digital illusion: chips, spins, “almost won.” This app breaks that. A loss is not a number on a screen. It is hours of your life, weeks of groceries, months of rent.
 
-**Live:** https://reality-check-ph.web.app  
+**Live instance:** [Reality Check PH](https://reality-check-ph.web.app)  
 **Languages:** English, Filipino, Cebuano, Hiligaynon, Ilocano
 
 The product is a website. On a phone, add it to the home screen from the browser. There is no store listing.
