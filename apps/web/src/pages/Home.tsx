@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useT } from '../i18n'
-import { formatMoney } from '@rc/core'
+import { formatMoney, MILESTONES, MILESTONE_EMOJI } from '@rc/core'
 import { useStreakStore } from '../stores/streakStore'
 import { useJournalStore } from '../stores/journalStore'
 import { useSettingsStore } from '../stores/settingsStore'
@@ -18,6 +18,8 @@ export default function Home() {
   const currency = useSettingsStore((s) => s.currency) ?? 'PHP'
   const checkedIn = isCheckedInToday(lastCheckInDate)
   const latest = entries[0]
+  const earned = [...MILESTONES].reverse().find((m) => currentStreak >= m)
+  const badge = earned ? MILESTONE_EMOJI[earned] : null
 
   return (
     <div>
@@ -31,7 +33,14 @@ export default function Home() {
         {currentStreak > 0 ? (
           <div className="flex items-end justify-between gap-4 mb-4">
             <div>
-              <div className="text-5xl font-black text-white leading-none">{currentStreak}</div>
+              <div className="flex items-end gap-3">
+                {badge && (
+                  <span className="text-4xl leading-none" aria-hidden>
+                    {badge}
+                  </span>
+                )}
+                <div className="text-5xl font-black text-white leading-none">{currentStreak}</div>
+              </div>
               <div className="text-muted text-xs font-semibold uppercase tracking-wider mt-1">{t.home.daysLabel}</div>
             </div>
             <Link to="/progress" className="text-xs font-bold text-muted hover:text-white shrink-0">
