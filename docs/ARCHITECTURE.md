@@ -40,9 +40,13 @@ Stripe is the global default but it's optimized for card-first markets. The Phil
 
 ---
 
-## One-time ₱299 over subscription
+## Donations over a paywall
 
-A monthly subscription on a gambling addiction recovery tool is contradictory. The user is in recovery from a behavior that costs them money repeatedly. Adding a recurring charge — even a small one — reintroduces financial guilt and decision fatigue. One-time ₱299 is a single commitment: pay once, synced forever. It also lowers the psychological barrier to upgrading ("it's not a trap, it ends") and eliminates churn tracking as a concern.
+A subscription on a gambling recovery tool is contradictory — it reintroduces a recurring charge to someone trying to stop spending. A one-time ₱299 Pro fee for cloud backup is better than a subscription, and PayMongo is still in the repo if we ever need it.
+
+It is still the wrong lock. The journal is the intercept. The person most likely to lose a phone or switch devices is the person in a binge. Gating that backup behind payment punishes the user who needs the product most.
+
+Launch rule: local-first with no account, free cloud sync on sign-in, Ko-fi donations to keep Firebase on. If donation volume ever fails to cover Blaze-plan cost at real scale, an optional Supporter thank-you can come back. Sync itself stays free.
 
 ---
 

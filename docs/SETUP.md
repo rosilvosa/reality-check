@@ -62,15 +62,17 @@ FIREBASE_MESSAGING_SENDER_ID=
 FIREBASE_APP_ID=
 ```
 
-### Cloud Functions — `functions/.env`
+### Cloud Functions — `functions/.env` (optional — PayMongo is parked)
+
+Launch money path is Ko-fi donations, not checkout. You only need this file if you are touching the dormant PayMongo functions.
 
 ```env
-PAYMONGO_SECRET_KEY=sk_live_...
+PAYMONGO_SECRET_KEY=sk_test_...
 PAYMONGO_WEBHOOK_SECRET=whsec_...
-APP_URL=https://reality-check-5fffe.web.app
+APP_URL=https://reality-check-ph.web.app
 ```
 
-> For local testing: use `sk_test_...` keys from PayMongo Dashboard → Developers → API Keys. Test mode doesn't charge real money.
+> Use `sk_test_...` keys for local testing. Never commit this file.
 
 Get Firebase values from: [Firebase Console](https://console.firebase.google.com) → Project Settings → Your apps → Web app → SDK config.
 

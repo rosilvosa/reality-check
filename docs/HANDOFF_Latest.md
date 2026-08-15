@@ -1,6 +1,18 @@
 # Reality Check — Session Handoff
 
-**Last updated:** 2026-06-26 - Session 3
+**Last updated:** 2026-08-14
+
+---
+
+## Completed This Session (2026-08-14)
+
+- Public URL is now **https://reality-check-ph.web.app** (Firebase Hosting site `reality-check-ph` on project `reality-check-5fffe`)
+- `reality-check.web.app` is taken globally — cannot use it
+- Legacy `https://reality-check-5fffe.web.app` 301s to the new site
+- Auth authorized domains include `reality-check-ph.web.app`
+- `functions/.env` `APP_URL` pointed at the new domain
+- Contractor brief written: `docs/CONTRACTOR_BRIEF.md`
+- Monetization decision: **free cloud sync on sign-in + Ko-fi donations**. Do not paywall journal backup. PayMongo stays in the repo, dormant.
 
 ---
 
@@ -38,7 +50,10 @@
 - **Backend:** Firebase (Auth, Firestore, Cloud Functions — asia-southeast1)
 - **Payments:** PayMongo (GCash, Maya, QRPH, card) — KYC done
 - **Repo:** https://github.com/rosilvosa/reality-check (private)
-- **Live:** https://reality-check-5fffe.web.app
+- **Live:** https://reality-check-ph.web.app
+- **Legacy URL:** https://reality-check-5fffe.web.app (301 → live)
+- **Project ID (unchanged):** reality-check-5fffe
+- **Contractor brief:** `docs/CONTRACTOR_BRIEF.md`
 
 ---
 
