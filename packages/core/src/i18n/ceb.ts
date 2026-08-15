@@ -289,7 +289,7 @@ export const ceb: Translation = {
     sending: 'GIPADALA…',
     sentTitle: 'Napadala',
     sentBody: 'Gibasa namo ang matag mensahe. Mahimong hinay ang tubag.',
-    fail: 'Wala napadala. Sulayi pag-usab, o i-email ang hello@davidsbeacon.com.',
+    fail: 'Wala napadala. Sulayi pag-usab.',
     namePh: 'Ngalan',
     emailPh: 'ikaw@email.com',
     messagePh: 'Unsa ang imong kinahanglan?',

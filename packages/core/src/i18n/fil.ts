@@ -289,7 +289,7 @@ export const fil: Translation = {
     sending: 'PINAPADALA…',
     sentTitle: 'Naipadala',
     sentBody: 'Binabasa namin ang bawat mensahe. Puwedeng mabagal ang sagot.',
-    fail: 'Hindi naipadala. Subukan ulit, o i-email ang hello@davidsbeacon.com.',
+    fail: 'Hindi naipadala. Subukan ulit.',
     namePh: 'Pangalan',
     emailPh: 'ikaw@email.com',
     messagePh: 'Ano ang kailangan mo?',

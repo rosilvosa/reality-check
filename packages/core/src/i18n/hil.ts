@@ -289,7 +289,7 @@ export const hil: Translation = {
     sending: 'GINAPADALA…',
     sentTitle: 'Napadala',
     sentBody: 'Ginabasa namon ang kada mensahe. Mahimo mahinay ang sabat.',
-    fail: 'Wala napadala. Tilawi liwat, ukon i-email ang hello@davidsbeacon.com.',
+    fail: 'Wala napadala. Tilawi liwat.',
     namePh: 'Ngalan',
     emailPh: 'ikaw@email.com',
     messagePh: 'Ano ang kinahanglan mo?',

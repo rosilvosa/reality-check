@@ -289,7 +289,7 @@ export const en: Translation = {
     sending: 'SENDING…',
     sentTitle: 'Sent',
     sentBody: 'We read every message. Replies can be slow.',
-    fail: 'Could not send. Try again, or email hello@davidsbeacon.com.',
+    fail: 'Could not send. Try again.',
     namePh: 'Name',
     emailPh: 'you@email.com',
     messagePh: 'What do you need?',

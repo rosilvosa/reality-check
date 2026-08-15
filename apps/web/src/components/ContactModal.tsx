@@ -42,7 +42,7 @@ export default function ContactModal() {
           access_key: key,
           subject: `[Reality Check] ${t.contact[kind]}`,
           name: name.trim() || 'Anonymous',
-          email: email.trim() || 'no-reply@davidsbeacon.com',
+          email: email.trim() || 'noreply@form.invalid',
           message: text,
           category: t.contact[kind],
           from_app: 'Reality Check',

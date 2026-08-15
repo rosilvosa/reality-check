@@ -289,7 +289,7 @@ export const ilo: Translation = {
     sending: 'MAIPATULOD…',
     sentTitle: 'Naitulod',
     sentBody: 'Basaenmi ti tunggal mensahe. Mabalin a nabayag ti sungbat.',
-    fail: 'Saan a naitulod. Padasem manen, wenno i-email ti hello@davidsbeacon.com.',
+    fail: 'Saan a naitulod. Padasem manen.',
     namePh: 'Nagan',
     emailPh: 'sika@email.com',
     messagePh: 'Ania ti masapulmo?',

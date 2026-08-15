@@ -40,7 +40,6 @@ export default function Terms() {
       </p>
       <p>
         Questions: <button type="button" onClick={showContact} className="text-accent hover:text-white">Contact</button>
-        {' '}or hello@davidsbeacon.com
       </p>
     </div>
   )
