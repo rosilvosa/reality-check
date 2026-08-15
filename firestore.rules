@@ -13,7 +13,7 @@ service cloud.firestore {
       allow read: if request.auth != null;
       allow create: if request.auth != null
         && request.resource.data.uid == request.auth.uid
-        && request.resource.data.type in ['tip', 'win', 'question', 'vent']
+        && request.resource.data.type in ['tip', 'urge', 'question', 'vent']
         && request.resource.data.text is string
         && request.resource.data.text.size() > 0
         && request.resource.data.text.size() <= 500

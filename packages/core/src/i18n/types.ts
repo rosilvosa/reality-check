@@ -188,12 +188,12 @@ export interface Translation {
     hero: string
     filterAll: string
     filterTips: string
-    filterWins: string
+    filterUrge: string
     filterQuestions: string
     filterVent: string
     composeHint: string
     typeTip: string
-    typeWin: string
+    typeUrge: string
     typeQuestion: string
     typeVent: string
     postedAs: string

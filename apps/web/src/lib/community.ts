@@ -15,8 +15,13 @@ import {
 } from 'firebase/firestore'
 import { db } from './firebase'
 
-export const POST_TYPES = ['tip', 'win', 'question', 'vent'] as const
+export const POST_TYPES = ['tip', 'urge', 'question', 'vent'] as const
 export type PostType = (typeof POST_TYPES)[number]
+
+export function normalizePostType(raw: unknown): PostType {
+  if (raw === 'tip' || raw === 'urge' || raw === 'question' || raw === 'vent') return raw
+  return 'vent'
+}
 
 export interface CommunityPost {
   id: string
@@ -56,7 +61,7 @@ export async function fetchPosts(): Promise<CommunityPost[]> {
     return {
       id: d.id,
       uid: String(data.uid ?? ''),
-      type: POST_TYPES.includes(data.type) ? data.type : 'vent',
+      type: normalizePostType(data.type),
       text: String(data.text ?? ''),
       hearts: Number(data.hearts ?? 0),
       createdAt: asDate(data.createdAt),

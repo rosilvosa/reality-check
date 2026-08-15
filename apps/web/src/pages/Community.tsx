@@ -13,17 +13,17 @@ import {
   type PostType,
 } from '../lib/community'
 
-const FILTERS: Array<{ id: 'all' | PostType; key: 'filterAll' | 'filterTips' | 'filterWins' | 'filterQuestions' | 'filterVent' }> = [
+const FILTERS: Array<{ id: 'all' | PostType; key: 'filterAll' | 'filterTips' | 'filterUrge' | 'filterQuestions' | 'filterVent' }> = [
   { id: 'all', key: 'filterAll' },
   { id: 'tip', key: 'filterTips' },
-  { id: 'win', key: 'filterWins' },
+  { id: 'urge', key: 'filterUrge' },
   { id: 'question', key: 'filterQuestions' },
   { id: 'vent', key: 'filterVent' },
 ]
 
-const TYPES: Array<{ id: PostType; key: 'typeTip' | 'typeWin' | 'typeQuestion' | 'typeVent' }> = [
+const TYPES: Array<{ id: PostType; key: 'typeTip' | 'typeUrge' | 'typeQuestion' | 'typeVent' }> = [
   { id: 'tip', key: 'typeTip' },
-  { id: 'win', key: 'typeWin' },
+  { id: 'urge', key: 'typeUrge' },
   { id: 'question', key: 'typeQuestion' },
   { id: 'vent', key: 'typeVent' },
 ]
@@ -211,7 +211,7 @@ export default function Community() {
                 </p>
                 <span className="text-[11px] text-muted">{t.community[
                   post.type === 'tip' ? 'typeTip'
-                    : post.type === 'win' ? 'typeWin'
+                    : post.type === 'urge' ? 'typeUrge'
                       : post.type === 'question' ? 'typeQuestion'
                         : 'typeVent'
                 ]}</span>
