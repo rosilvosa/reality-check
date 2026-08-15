@@ -140,7 +140,9 @@ export interface Translation {
     recoveryTools: string; barriersTitle: string; barriersDesc: string
     findHelpTitle: string; findHelpDesc: string
     communityTitle: string; communityDesc: string
-    syncActive: string; donateNow: string; donateSuccess: string; donateFail: string
+    syncActive: string
+    syncNowBtn: string; syncNowHint: string; syncingBtn: string; syncDoneBtn: string; syncFail: string
+    donateNow: string; donateSuccess: string; donateFail: string
     customAmount: string; deleteAccount: string; deleteConfirm: string
     privacyLink: string; termsLink: string
     sourceCode: string; sourceHint: string

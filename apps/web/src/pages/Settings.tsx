@@ -8,7 +8,7 @@ import { useJournalStore } from '../stores/journalStore'
 import { useStreakStore } from '../stores/streakStore'
 import { auth } from '../lib/firebase'
 import { signOut, deleteAccountAndData } from '../lib/auth'
-import { migrateToFirestore } from '../lib/storage'
+import { migrateToFirestore, syncNowToCloud } from '../lib/storage'
 import AuthModal from '../components/AuthModal'
 
 const REPO_URL = 'https://github.com/rosilvosa/reality-check'
@@ -20,6 +20,7 @@ export default function Settings() {
   const { lang, setLang, languages } = useLang()
   const { loadJournal } = useJournalStore()
   const loadStreak = useStreakStore((s) => s.loadStreak)
+  const streak = useStreakStore()
   const [monthly, setMonthly] = useState('')
   const [hours, setHours] = useState('176')
   const [localAssets, setLocalAssets] = useState<Asset[]>([])
@@ -29,6 +30,8 @@ export default function Settings() {
   const [currencyCode, setCurrencyCode] = useState('PHP')
   const [regionCode, setRegionCode] = useState('PH')
   const [deleting, setDeleting] = useState(false)
+  const [syncing, setSyncing] = useState(false)
+  const [synced, setSynced] = useState(false)
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((u) => {
@@ -82,6 +85,40 @@ export default function Settings() {
     setTimeout(() => setSaved(false), 2500)
   }
 
+  async function handleSync() {
+    if (!user || user.isAnonymous) return
+    setSyncing(true)
+    setFormError('')
+    try {
+      const nextSettings = {
+        monthlyPay: monthlyVal,
+        hoursPerMonth: hoursVal,
+        assets: localAssets.filter((a) => a.name.trim() && a.cost > 0),
+        voidType,
+        currency: currencyCode,
+        helpRegion: regionCode,
+      }
+      await saveSettings(nextSettings)
+      await syncNowToCloud(user.uid, {
+        settings: nextSettings,
+        streak: {
+          currentStreak: streak.currentStreak,
+          longestStreak: streak.longestStreak,
+          lastCheckInDate: streak.lastCheckInDate,
+          milestonesSeen: streak.milestonesSeen,
+          startDate: streak.startDate,
+        },
+      })
+      await Promise.all([loadSettings(), loadJournal(), loadStreak()])
+      setSynced(true)
+      setTimeout(() => setSynced(false), 2500)
+    } catch (e: unknown) {
+      setFormError(e instanceof Error ? e.message : t.settings.syncFail)
+    } finally {
+      setSyncing(false)
+    }
+  }
+
   async function handleDelete() {
     if (!window.confirm(t.settings.deleteConfirm)) return
     setDeleting(true)
@@ -133,6 +170,15 @@ export default function Settings() {
           <div>
             <p className="text-sm font-semibold text-white">{user.email ?? user.displayName ?? 'Signed in'}</p>
             <p className="text-xs text-muted mb-3">{t.settings.syncActive}</p>
+            <p className="text-xs text-muted mb-2 leading-relaxed">{t.settings.syncNowHint}</p>
+            <button
+              type="button"
+              onClick={handleSync}
+              disabled={syncing}
+              className="w-full mb-3 py-2.5 bg-surface2 border border-border text-white font-semibold rounded-lg hover:border-accent transition-colors text-sm disabled:opacity-50"
+            >
+              {syncing ? t.settings.syncingBtn : synced ? t.settings.syncDoneBtn : t.settings.syncNowBtn}
+            </button>
             <div className="flex gap-2">
               <button onClick={signOut} className="text-xs text-muted hover:text-white transition-colors border border-border px-3 py-1.5 rounded-lg">
                 {t.settings.signOut}

@@ -155,6 +155,53 @@ export function clearLocalRc(): void {
   for (const key of LOCAL_KEYS) localStorage.removeItem(key)
 }
 
+function mergeStreak(a: StreakData, b: StreakData): StreakData {
+  const aDate = a.lastCheckInDate ?? ''
+  const bDate = b.lastCheckInDate ?? ''
+  const later = bDate > aDate ? b : a
+  return {
+    currentStreak: Math.max(a.currentStreak, b.currentStreak),
+    longestStreak: Math.max(a.longestStreak, b.longestStreak),
+    lastCheckInDate: later.lastCheckInDate,
+    milestonesSeen: [...new Set([...(a.milestonesSeen ?? []), ...(b.milestonesSeen ?? [])])],
+    startDate: a.startDate && b.startDate
+      ? (a.startDate < b.startDate ? a.startDate : b.startDate)
+      : (a.startDate ?? b.startDate),
+  }
+}
+
+/** Push current progress to Firestore, and pick up any leftover local data. */
+export async function syncNowToCloud(
+  uid: string,
+  data: { settings: Settings; streak: StreakData },
+): Promise<void> {
+  const remote = firestoreAdapter(uid)
+  await remote.saveSettings(data.settings)
+
+  const leftoverStreak = await localStorageAdapter.getStreak()
+  await remote.saveStreak(leftoverStreak ? mergeStreak(data.streak, leftoverStreak) : data.streak)
+
+  const leftoverBarriers = await localStorageAdapter.getBarriers()
+  const cloudBarriers = await remote.getBarriers()
+  await remote.saveBarriers([...new Set([...cloudBarriers, ...leftoverBarriers])])
+
+  const leftoverJournal = await localStorageAdapter.getJournalEntries()
+  if (leftoverJournal.length) {
+    const cloud = await remote.getJournalEntries()
+    for (const e of [...leftoverJournal].reverse()) {
+      const dup = cloud.some(
+        (c) => c.text === e.text && Math.abs((c.amount ?? 0) - (e.amount ?? 0)) < 0.01,
+      )
+      if (!dup) await remote.addJournalEntry(e)
+    }
+  }
+
+  localStorage.removeItem(LS_SETTINGS)
+  localStorage.removeItem(LS_JOURNAL)
+  localStorage.removeItem(LS_STREAK)
+  localStorage.removeItem(LS_BARRIERS)
+}
+
 export async function migrateToFirestore(uid: string): Promise<boolean> {
   const settings = await localStorageAdapter.getSettings()
   const entries = await localStorageAdapter.getJournalEntries()
