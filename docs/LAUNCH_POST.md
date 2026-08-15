@@ -22,7 +22,7 @@ Everything. No account required. Data stays in the browser. Sign in with Google 
 
 **How it stays alive**
 
-The code is open source: https://github.com/rosilvosa/reality-check
+The source is visible on GitHub so you can inspect it. It is not an open-source license to run your own copy.
 
 Optional donations through PayMongo (GCash / Maya / QRPH / card) or Ko-fi. That money keeps cloud sync free for anyone who needs a backup, and funds a safety app I am releasing soon. No features are locked behind it.
 

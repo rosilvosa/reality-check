@@ -7,7 +7,7 @@ export default function Terms() {
     <div className="text-sm text-muted leading-relaxed space-y-4">
       <NavLink to="/settings" className="text-xs hover:text-white">← Settings</NavLink>
       <h2 className="text-lg font-extrabold text-white">Terms of Use</h2>
-      <p>Last updated: 14 August 2026</p>
+      <p>Last updated: 15 August 2026</p>
       <p>
         Reality Check is provided free, as-is, for personal recovery use. It does not diagnose or treat addiction.
         It is not a substitute for professional help.
@@ -21,6 +21,11 @@ export default function Terms() {
       <p>
         This app is free. We do not charge for features. Optional donations go through PayMongo or Ko-fi and
         do not unlock anything. They keep cloud sync available and support David’s Beacon’s mission.
+      </p>
+      <h3 className="text-white font-bold pt-2">Source code</h3>
+      <p>
+        Some of the source may be visible on GitHub so you can see how the tool works. That is not permission
+        to copy it, modify it, or run your own public instance. All rights reserved.
       </p>
       <h3 className="text-white font-bold pt-2">Acceptable use</h3>
       <p>

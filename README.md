@@ -46,4 +46,4 @@ functions         Cloud Functions (donations)
 
 ## License
 
-MIT
+All rights reserved. See [LICENSE](LICENSE). The source is visible so you can inspect it. It is not a license to copy or run your own public instance.
