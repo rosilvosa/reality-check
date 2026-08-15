@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useSearchParams } from 'react-router-dom'
 import { useT, useLang } from '../i18n'
 import { tpl, CURRENCIES, HELP_REGIONS, formatMoney } from '@rc/core'
 import { useSettingsStore, Asset } from '../stores/settingsStore'
@@ -9,9 +9,12 @@ import { useStreakStore } from '../stores/streakStore'
 import { auth } from '../lib/firebase'
 import { signOut, deleteAccountAndData } from '../lib/auth'
 import { migrateToFirestore, syncNowToCloud } from '../lib/storage'
+import { createDonationCheckout } from '../lib/paymongo'
 import AuthModal from '../components/AuthModal'
 
 const REPO_URL = 'https://github.com/rosilvosa/reality-check'
+const KOFI_URL = 'https://ko-fi.com/rosilvosa'
+const DONATE_AMOUNTS = [50, 100, 200]
 
 export default function Settings() {
   const { monthlyPay, hoursPerMonth, assets, voidType, currency, helpRegion, loaded, loadSettings, saveSettings } = useSettingsStore()
@@ -32,6 +35,12 @@ export default function Settings() {
   const [deleting, setDeleting] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const [synced, setSynced] = useState(false)
+  const [donateSuccess, setDonateSuccess] = useState(false)
+  const [donateError, setDonateError] = useState('')
+  const [donateLoading, setDonateLoading] = useState<number | null>(null)
+  const [customOpen, setCustomOpen] = useState(false)
+  const [customAmount, setCustomAmount] = useState('')
+  const [searchParams, setSearchParams] = useSearchParams()
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((u) => {
@@ -39,6 +48,13 @@ export default function Settings() {
     })
     return unsub
   }, [loaded, loadSettings])
+
+  useEffect(() => {
+    if (searchParams.get('donation') === 'success') {
+      setSearchParams({})
+      setDonateSuccess(true)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (loaded) {
@@ -117,6 +133,27 @@ export default function Settings() {
     } finally {
       setSyncing(false)
     }
+  }
+
+  async function handleDonate(pesos: number) {
+    setDonateError('')
+    setDonateLoading(pesos)
+    try {
+      const url = await createDonationCheckout(pesos)
+      window.location.href = url
+    } catch (e: unknown) {
+      setDonateError(e instanceof Error ? e.message : t.settings.donateFail)
+      setDonateLoading(null)
+    }
+  }
+
+  async function handleCustomDonate() {
+    const pesos = Math.round(parseFloat(customAmount))
+    if (!Number.isFinite(pesos) || pesos < 20) {
+      setDonateError(t.settings.donateFail)
+      return
+    }
+    await handleDonate(pesos)
   }
 
   async function handleDelete() {
@@ -340,10 +377,78 @@ export default function Settings() {
 
       <button
         onClick={handleSave}
-        className="w-full bg-[#0891b2] text-white font-bold py-3 rounded-lg transition-opacity hover:opacity-90"
+        className="w-full bg-[#0891b2] text-white font-bold py-3 rounded-lg transition-opacity hover:opacity-90 mb-6"
       >
         {saved ? t.settings.savedBtn : t.settings.saveBtn}
       </button>
+
+      <div className="border border-border rounded-xl p-5 mb-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-2">{t.settings.supportSection}</p>
+        <p className="text-xs text-muted leading-relaxed mb-3">{t.settings.supportHint}</p>
+        <NavLink to="/mission" className="text-xs text-accent hover:text-white mb-4 inline-block">
+          {t.settings.missionLink} →
+        </NavLink>
+
+        {donateSuccess && (
+          <p className="text-sm text-green-400 font-semibold mb-3">{t.settings.donateSuccess}</p>
+        )}
+
+        <div className="grid grid-cols-4 gap-2 mb-3">
+          {DONATE_AMOUNTS.map((n) => (
+            <button
+              key={n}
+              type="button"
+              onClick={() => handleDonate(n)}
+              disabled={donateLoading !== null}
+              className="py-2.5 border border-border rounded-lg text-sm font-semibold text-muted hover:text-white hover:border-white/40 disabled:opacity-50"
+            >
+              {donateLoading === n ? '…' : `₱${n}`}
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={() => setCustomOpen((v) => !v)}
+            disabled={donateLoading !== null}
+            className={`py-2.5 border rounded-lg text-sm font-semibold disabled:opacity-50 ${
+              customOpen ? 'border-white/40 text-white' : 'border-border text-muted hover:text-white hover:border-white/40'
+            }`}
+          >
+            {t.settings.donateOther}
+          </button>
+        </div>
+
+        {customOpen && (
+          <div className="flex gap-2 mb-3">
+            <input
+              type="number"
+              min={20}
+              value={customAmount}
+              onChange={(e) => setCustomAmount(e.target.value)}
+              placeholder={t.settings.customAmount}
+              className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
+            />
+            <button
+              type="button"
+              onClick={handleCustomDonate}
+              disabled={donateLoading !== null}
+              className="px-3 py-2 border border-border text-muted font-semibold rounded-lg text-xs hover:text-white disabled:opacity-50"
+            >
+              {donateLoading !== null && !DONATE_AMOUNTS.includes(donateLoading) ? '…' : t.settings.donateNow}
+            </button>
+          </div>
+        )}
+
+        {donateError && <p className="text-sm text-accent mb-3">{donateError}</p>}
+
+        <a
+          href={KOFI_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs text-muted hover:text-white"
+        >
+          {t.settings.kofiBtn}
+        </a>
+      </div>
 
       <p className="text-center text-xs text-muted mt-4 mb-4">
         <NavLink to="/privacy" className="hover:text-white">{t.settings.privacyLink}</NavLink>

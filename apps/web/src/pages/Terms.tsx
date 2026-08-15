@@ -17,8 +17,8 @@ export default function Terms() {
       </p>
       <h3 className="text-white font-bold pt-2">Support</h3>
       <p>
-        This app is free. We do not charge for features. Optional support is directed at David’s Beacon’s
-        mission (safety tools for special-needs families), not at unlocking Reality Check.
+        This app is free. We do not charge for features. Optional donations go through PayMongo or Ko-fi and
+        do not unlock anything. They keep cloud sync available and support David’s Beacon’s mission.
       </p>
       <h3 className="text-white font-bold pt-2">Acceptable use</h3>
       <p>

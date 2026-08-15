@@ -143,7 +143,8 @@ export interface Translation {
     syncActive: string
     syncNowBtn: string; syncNowHint: string; syncingBtn: string; syncDoneBtn: string; syncFail: string
     donateNow: string; donateSuccess: string; donateFail: string
-    customAmount: string; deleteAccount: string; deleteConfirm: string
+    customAmount: string; donateOther: string
+    deleteAccount: string; deleteConfirm: string
     privacyLink: string; termsLink: string
     sourceCode: string; sourceHint: string
     missionLink: string

@@ -27,9 +27,9 @@ export default function Privacy() {
       </p>
       <h3 className="text-white font-bold pt-2">Support</h3>
       <p>
-        Reality Check does not sell features. If you want to help, we ask you to support David’s Beacon — a free
-        safety platform for special-needs families — by telling a family or opening davidsbeacon.com. There is
-        no donation checkout in this app.
+        Reality Check does not sell features. Optional donations (GCash, Maya, card via PayMongo, or Ko-fi) keep
+        cloud sync on and help David’s Beacon stay free for special-needs families. Telling a family about
+        davidsbeacon.com still helps more than money.
       </p>
       <h3 className="text-white font-bold pt-2">Your rights</h3>
       <p>
