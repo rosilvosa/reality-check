@@ -27,16 +27,6 @@ No account required. Without sign-in, data stays in this browser. Sign in with G
 
 ---
 
-## Repo layout
-
-```
-apps/web          the product (React + Vite)
-packages/core     shared types, calculations, i18n
-functions         Cloud Functions (donations)
-```
-
----
-
 ## Stack
 
 - React 18, TypeScript, Vite, Zustand, react-router, Tailwind
