@@ -36,9 +36,9 @@ Sign in with Google (or email). Your journal, settings, streak, and barriers cop
 
 Why: the journal is the intercept. The person most likely to lose a phone, clear a browser, or open this on a second device is the person in a binge. Charging them ₱299 to keep that record is the wrong product.
 
-**Status:** the UI, adapters, and Firebase project exist. The wiring is broken (invalid Firestore paths, checkout pointed at the wrong Functions region, web vs mobile schemas disagree). A contractor finishes this. See [`docs/CONTRACTOR_BRIEF.md`](docs/CONTRACTOR_BRIEF.md).
+**Status (2026-08-14):** sign-in sync and PayMongo donations are wired for launch. See [`docs/CONTRACTOR_BRIEF.md`](docs/CONTRACTOR_BRIEF.md) only if you are extending this.
 
-How it should work after that job:
+How sync works:
 
 1. Use the app with no account. Everything stays on this device.
 2. Sign in. Local data migrates to `users/{uid}/…` and then reads/writes go to the cloud.
@@ -51,15 +51,9 @@ How it should work after that job:
 
 This is a recovery tool for people who already have a money problem. A subscription is out. A paywall on backup is out.
 
-**Money path: donations.** Ko-fi is already in Settings: https://ko-fi.com/rosilvosa
+**Money path: donations.** Settings has ₱50 / ₱100 / ₱299 chips plus custom, via PayMongo (GCash, Maya, QRPH, card). Ko-fi is the backup for people outside PH: https://ko-fi.com/rosilvosa
 
-Donations keep Reality Check online **and** fund a safety app that will be released soon. Say that in the Settings copy (already wired in all five languages). After a 7-day streak, a quiet follow-up is enough:
-
-> This tool is free because people who used it kept it alive. A coffee here also builds the safety app. Send what one spin used to cost you — or nothing.
-
-That covers Firebase, some of your time, and the next project. A clear “this funds the next thing” ask beats a feature lock that makes the product feel like another extractor.
-
-PayMongo (₱299 Pro) is still in the repo and KYC is done. Leave it dormant. If donations never cover Blaze-plan costs at real scale, turn it on later as an optional **Supporter** thank-you — never as a lock on journal backup.
+Donations keep Reality Check online **and** fund a safety app that will be released soon. They unlock nothing.
 
 Do not add Stripe.
 
@@ -71,7 +65,7 @@ Do not add Stripe.
 apps/web          ← the product (React + Vite). Deploy this.
 apps/mobile       ← Expo scaffold. Frozen. Do not work here.
 packages/core     ← shared types, calculations, i18n
-functions         ← PayMongo (parked) + future server hooks
+functions         ← PayMongo donation checkout + webhook
 docs/             ← architecture, setup, failure modes, contractor brief
 ```
 

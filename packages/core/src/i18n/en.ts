@@ -180,6 +180,15 @@ export const en: Translation = {
     recoveryTools: 'RECOVERY TOOLS',
     barriersTitle: 'Build Your Barriers',
     barriersDesc: 'Self-exclusion, app deletion, site blocking checklist',
+    syncActive: 'Cloud sync on — this account, every device.',
+    donateNow: 'Donate with GCash / Maya',
+    donateSuccess: 'Thank you. That keeps this running and funds the safety app.',
+    donateFail: 'Payment did not start. Try again.',
+    customAmount: 'Other amount (₱)',
+    deleteAccount: 'Delete my account and data',
+    deleteConfirm: 'This erases your journal from this device and the cloud. This cannot be undone.',
+    privacyLink: 'Privacy',
+    termsLink: 'Terms',
   },
 
   onboarding: {

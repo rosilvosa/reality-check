@@ -180,6 +180,15 @@ export const ilo: Translation = {
     recoveryTools: 'KASANGKAPAN ITI RECOVERY',
     barriersTitle: 'Tukoren ti Sagam-atmo',
     barriersDesc: 'Self-exclusion, panayalis ti app, checklist ti panagtangtangken ti site',
+    syncActive: 'Naka-sync iti cloud — daytoy nga account, uray ania a device.',
+    donateNow: 'Agdonar babaen ti GCash / Maya',
+    donateSuccess: 'Agyamanak. Daytoy ti mangpataray itoy ken mangpondo iti safety app.',
+    donateFail: 'Saan a natuloy ti bayad. Padasem manen.',
+    customAmount: 'Sabali nga amount (₱)',
+    deleteAccount: 'Ikkaten ti account ken data',
+    deleteConfirm: 'Maikkat ti journal mo ditoy ken iti cloud. Saanen a maisubli.',
+    privacyLink: 'Privacy',
+    termsLink: 'Dagiti Termino',
   },
 
   onboarding: {

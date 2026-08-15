@@ -43,31 +43,34 @@ const axios_1 = __importDefault(require("axios"));
 const crypto = __importStar(require("crypto"));
 admin.initializeApp();
 const db = admin.firestore();
-// ── Create PayMongo checkout session ─────────────────────────────────────────
 const region = functions.region('asia-southeast1');
-exports.createPaymongoCheckout = region.https.onCall(async (data, context) => {
-    const uid = data.uid;
-    if (!uid)
-        throw new functions.https.HttpsError('invalid-argument', 'uid required');
+const MIN_PESOS = 20;
+const MAX_PESOS = 50000;
+exports.createPaymongoCheckout = region.https.onCall(async (data) => {
+    const pesos = Number(data?.amount);
+    if (!Number.isFinite(pesos) || pesos < MIN_PESOS || pesos > MAX_PESOS) {
+        throw new functions.https.HttpsError('invalid-argument', `Amount must be ₱${MIN_PESOS}–₱${MAX_PESOS.toLocaleString()}`);
+    }
     const secretKey = process.env.PAYMONGO_SECRET_KEY;
     const appUrl = process.env.APP_URL ?? 'https://reality-check-ph.web.app';
     if (!secretKey) {
         throw new functions.https.HttpsError('internal', 'PayMongo key not configured');
     }
+    const centavos = Math.round(pesos * 100);
     const encoded = Buffer.from(secretKey + ':').toString('base64');
     const response = await axios_1.default.post('https://api.paymongo.com/v1/checkout_sessions', {
         data: {
             attributes: {
                 line_items: [{
                         currency: 'PHP',
-                        amount: 29900,
-                        name: 'Reality Check — Lifetime Pro',
+                        amount: centavos,
+                        name: 'Donation — Reality Check + safety app',
                         quantity: 1,
                     }],
                 payment_method_types: ['gcash', 'paymaya', 'card', 'grab_pay', 'qrph'],
-                success_url: `${appUrl}/?payment=success`,
+                success_url: `${appUrl}/settings?donation=success`,
                 cancel_url: `${appUrl}/settings`,
-                metadata: { uid },
+                metadata: { kind: 'donation' },
             },
         },
     }, {
@@ -79,7 +82,6 @@ exports.createPaymongoCheckout = region.https.onCall(async (data, context) => {
     const checkoutUrl = response.data.data.attributes.checkout_url;
     return { checkoutUrl };
 });
-// ── PayMongo webhook ──────────────────────────────────────────────────────────
 exports.paymongoWebhook = region.https.onRequest(async (req, res) => {
     if (req.method !== 'POST') {
         res.status(405).send('Method Not Allowed');
@@ -100,15 +102,13 @@ exports.paymongoWebhook = region.https.onRequest(async (req, res) => {
     }
     const event = req.body?.data?.attributes?.type;
     if (event === 'checkout_session.payment.paid') {
-        const meta = req.body?.data?.attributes?.data?.attributes?.metadata ?? {};
-        const uid = meta.uid;
-        if (uid) {
-            await db.doc(`users/${uid}/subscription`).set({
-                isPro: true,
-                paidAt: admin.firestore.Timestamp.now(),
-                amount: 29900,
-            }, { merge: true });
-        }
+        const session = req.body?.data?.attributes?.data?.attributes ?? {};
+        const amount = session.line_items?.[0]?.amount ?? session.payment_intent_data?.amount ?? null;
+        await db.collection('donations').add({
+            kind: session.metadata?.kind ?? 'donation',
+            amount,
+            paidAt: admin.firestore.Timestamp.now(),
+        });
     }
     res.status(200).send('ok');
 });

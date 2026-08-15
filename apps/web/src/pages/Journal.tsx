@@ -23,9 +23,13 @@ export default function Journal() {
   async function handleSave() {
     if (!text.trim()) return
     setSaving(true)
-    await addEntry({ amount: parseFloat(amount) || 0, text: text.trim() })
-    setAmount('')
-    setText('')
+    try {
+      await addEntry({ amount: parseFloat(amount) || 0, text: text.trim() })
+      setAmount('')
+      setText('')
+    } catch {
+      /* error shown via store */
+    }
     setSaving(false)
   }
 

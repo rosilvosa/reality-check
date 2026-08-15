@@ -1,0 +1,10 @@
+{
+  "name": "Reality Check",
+  "short_name": "Reality Check",
+  "description": "Gambling recovery tool for the Philippines",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0b10",
+  "theme_color": "#0b0b10",
+  "lang": "en"
+}

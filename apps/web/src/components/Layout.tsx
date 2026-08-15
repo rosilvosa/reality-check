@@ -25,6 +25,12 @@ export default function Layout() {
         <Outlet />
       </main>
 
+      <footer className="max-w-2xl w-full mx-auto px-4 pb-20 text-center text-[11px] text-muted">
+        <NavLink to="/privacy" className="hover:text-white">{t.settings.privacyLink}</NavLink>
+        {' · '}
+        <NavLink to="/terms" className="hover:text-white">{t.settings.termsLink}</NavLink>
+      </footer>
+
       <nav className="fixed bottom-0 inset-x-0 bg-surface border-t border-border flex">
         {tabs.map((tab) => (
           <NavLink

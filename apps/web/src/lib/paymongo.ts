@@ -1,14 +1,11 @@
 import { httpsCallable } from 'firebase/functions'
-import { functions, auth } from './firebase'
+import { functions } from './firebase'
 
-export async function createCheckoutSession(): Promise<string> {
-  const uid = auth.currentUser?.uid
-  if (!uid) throw new Error('Must be signed in to upgrade')
-
-  const fn = httpsCallable<{ uid: string }, { checkoutUrl: string }>(
+export async function createDonationCheckout(amountPesos: number): Promise<string> {
+  const fn = httpsCallable<{ amount: number }, { checkoutUrl: string }>(
     functions,
     'createPaymongoCheckout',
   )
-  const result = await fn({ uid })
+  const result = await fn({ amount: amountPesos })
   return result.data.checkoutUrl
 }

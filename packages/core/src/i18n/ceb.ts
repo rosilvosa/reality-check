@@ -180,6 +180,15 @@ export const ceb: Translation = {
     recoveryTools: 'MGA HIMAN SA RECOVERY',
     barriersTitle: 'Tukuron ang Imong mga Babag',
     barriersDesc: 'Self-exclusion, pagtanggal sa app, checklist sa pag-block sa site',
+    syncActive: 'Naka-sync sa cloud — kining account, bisan unsang device.',
+    donateNow: 'Donar pinaagi sa GCash / Maya',
+    donateSuccess: 'Salamat. Mao ni ang nagpadagan niini ug nagpondo sa safety app.',
+    donateFail: 'Wala natuloy ang bayad. Sulayi pag-usab.',
+    customAmount: 'Lain nga amount (₱)',
+    deleteAccount: 'Papasa ang account ug data',
+    deleteConfirm: 'Mapapas ang imong journal dinhi ug sa cloud. Dili na kini mabalik.',
+    privacyLink: 'Privacy',
+    termsLink: 'Mga Termino',
   },
 
   onboarding: {

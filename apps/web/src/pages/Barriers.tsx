@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useT } from '../i18n'
 import { tpl } from '@rc/core'
-
-const LS_KEY = 'rc_barriers'
+import { getAdapter } from '../lib/storage'
+import { useAuthStore } from '../stores/authStore'
 
 const BARRIER_IDS = [
   'self_exclusion', 'delete_apps', 'block_sites', 'payment_methods', 'tell_someone', 'helpline',
@@ -17,19 +17,20 @@ export default function Barriers() {
   const [done, setDone] = useState<Set<string>>(new Set())
   const t = useT()
 
+  const user = useAuthStore((s) => s.user)
+  const loading = useAuthStore((s) => s.loading)
+
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(LS_KEY)
-      if (raw) setDone(new Set(JSON.parse(raw)))
-    } catch { /* ignore */ }
-  }, [])
+    if (loading) return
+    getAdapter(user).getBarriers().then((ids) => setDone(new Set(ids))).catch(() => undefined)
+  }, [loading, user])
 
   function toggle(id: string) {
     setDone((prev) => {
       const next = new Set(prev)
       if (next.has(id)) next.delete(id)
       else next.add(id)
-      localStorage.setItem(LS_KEY, JSON.stringify([...next]))
+      getAdapter(user).saveBarriers([...next]).catch(console.error)
       return next
     })
   }

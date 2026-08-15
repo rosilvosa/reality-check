@@ -180,6 +180,15 @@ export const hil: Translation = {
     recoveryTools: 'MGA GAMIT SA RECOVERY',
     barriersTitle: 'Tukora ang Imo mga Babag',
     barriersDesc: 'Self-exclusion, pagtanggal sang app, checklist sa pag-block sang site',
+    syncActive: 'Naka-sync sa cloud — ini nga account, bisan ano nga device.',
+    donateNow: 'Magdonar sa GCash / Maya',
+    donateSuccess: 'Salamat. Amo ini ang nagapadagan sini kag nagapondo sa safety app.',
+    donateFail: 'Wala natuloy ang bayad. Tilawi liwat.',
+    customAmount: 'Iban nga amount (₱)',
+    deleteAccount: 'Panason ang account kag data',
+    deleteConfirm: 'Mapanas ang imo journal diri kag sa cloud. Indi na ini mabalik.',
+    privacyLink: 'Privacy',
+    termsLink: 'Mga Termino',
   },
 
   onboarding: {

@@ -12,7 +12,8 @@
 - Auth authorized domains include `reality-check-ph.web.app`
 - `functions/.env` `APP_URL` pointed at the new domain
 - Contractor brief written: `docs/CONTRACTOR_BRIEF.md`
-- Monetization decision: **free cloud sync on sign-in + Ko-fi donations**. Donations keep RC online and fund an upcoming safety app. Do not paywall journal backup. PayMongo stays in the repo, dormant.
+- **Shipped 2026-08-14:** free cloud sync on sign-in, PayMongo donations (₱50/100/299 + custom), Privacy/Terms, account delete. Live: https://reality-check-ph.web.app
+- Community post copy: `docs/LAUNCH_POST.md`
 
 ---
 

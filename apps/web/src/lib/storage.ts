@@ -1,5 +1,5 @@
 import {
-  doc, getDoc, setDoc,
+  doc, getDoc, setDoc, deleteDoc,
   collection, addDoc, getDocs, query, orderBy, Timestamp,
 } from 'firebase/firestore'
 import { db } from './firebase'
@@ -8,6 +8,11 @@ import type { Settings, JournalEntry, StreakData } from '../types'
 const LS_SETTINGS = 'rc_settings'
 const LS_JOURNAL  = 'rc_journal'
 const LS_STREAK   = 'rc_streak'
+const LS_BARRIERS = 'rc_barriers'
+
+export const LOCAL_KEYS = [
+  LS_SETTINGS, LS_JOURNAL, LS_STREAK, LS_BARRIERS, 'rc_onboarded', 'rc_lang',
+] as const
 
 export interface StorageAdapter {
   getSettings(): Promise<Settings | null>
@@ -16,9 +21,11 @@ export interface StorageAdapter {
   addJournalEntry(e: Omit<JournalEntry, 'id'>): Promise<JournalEntry>
   getStreak(): Promise<StreakData | null>
   saveStreak(s: StreakData): Promise<void>
+  getBarriers(): Promise<string[]>
+  saveBarriers(ids: string[]): Promise<void>
 }
 
-// ── localStorage ──────────────────────────────────────────────────────────────
+type CloudUser = { uid: string; isAnonymous: boolean } | null
 
 const localStorageAdapter: StorageAdapter = {
   async getSettings() {
@@ -35,7 +42,7 @@ const localStorageAdapter: StorageAdapter = {
   async getJournalEntries() {
     try {
       const raw = localStorage.getItem(LS_JOURNAL)
-      const arr: any[] = raw ? JSON.parse(raw) : []
+      const arr: Array<JournalEntry & { createdAt: string | Date }> = raw ? JSON.parse(raw) : []
       return arr.map((e) => ({ ...e, createdAt: new Date(e.createdAt) }))
     } catch { return [] }
   },
@@ -61,9 +68,18 @@ const localStorageAdapter: StorageAdapter = {
   async saveStreak(s) {
     localStorage.setItem(LS_STREAK, JSON.stringify(s))
   },
-}
 
-// ── Firestore ─────────────────────────────────────────────────────────────────
+  async getBarriers() {
+    try {
+      const raw = localStorage.getItem(LS_BARRIERS)
+      return raw ? JSON.parse(raw) : []
+    } catch { return [] }
+  },
+
+  async saveBarriers(ids) {
+    localStorage.setItem(LS_BARRIERS, JSON.stringify(ids))
+  },
+}
 
 function firestoreAdapter(uid: string): StorageAdapter {
   return {
@@ -71,7 +87,12 @@ function firestoreAdapter(uid: string): StorageAdapter {
       const snap = await getDoc(doc(db, 'users', uid, 'data', 'settings'))
       if (!snap.exists()) return null
       const d = snap.data()
-      return { monthlyPay: d.monthlyPay ?? 0, hoursPerMonth: d.hoursPerMonth ?? 176, assets: d.assets ?? [], voidType: d.voidType ?? null }
+      return {
+        monthlyPay: d.monthlyPay ?? 0,
+        hoursPerMonth: d.hoursPerMonth ?? 176,
+        assets: d.assets ?? [],
+        voidType: d.voidType ?? null,
+      }
     },
 
     async saveSettings(s) {
@@ -99,33 +120,65 @@ function firestoreAdapter(uid: string): StorageAdapter {
     },
 
     async getStreak() {
-      const snap = await getDoc(doc(db, 'users', uid, 'streak', 'data'))
+      const snap = await getDoc(doc(db, 'users', uid, 'data', 'streak'))
       return snap.exists() ? (snap.data() as StreakData) : null
     },
 
     async saveStreak(s: StreakData) {
-      await setDoc(doc(db, 'users', uid, 'streak', 'data'), s)
+      await setDoc(doc(db, 'users', uid, 'data', 'streak'), s)
+    },
+
+    async getBarriers() {
+      const snap = await getDoc(doc(db, 'users', uid, 'data', 'barriers'))
+      if (!snap.exists()) return []
+      const ids = snap.data().ids
+      return Array.isArray(ids) ? ids : []
+    },
+
+    async saveBarriers(ids) {
+      await setDoc(doc(db, 'users', uid, 'data', 'barriers'), { ids })
     },
   }
 }
 
-// ── Factory ───────────────────────────────────────────────────────────────────
-export function getAdapter(isPro: boolean, uid: string | null): StorageAdapter {
-  if (isPro && uid) return firestoreAdapter(uid)
+export function getAdapter(user: CloudUser): StorageAdapter {
+  if (user && !user.isAnonymous) return firestoreAdapter(user.uid)
   return localStorageAdapter
 }
 
-export async function migrateToFirestore(uid: string): Promise<void> {
-  const remote = firestoreAdapter(uid)
+export function clearLocalRc(): void {
+  for (const key of LOCAL_KEYS) localStorage.removeItem(key)
+}
 
+export async function migrateToFirestore(uid: string): Promise<boolean> {
   const settings = await localStorageAdapter.getSettings()
-  if (settings) await remote.saveSettings(settings)
-
   const entries = await localStorageAdapter.getJournalEntries()
+  const streak = await localStorageAdapter.getStreak()
+  const barriers = await localStorageAdapter.getBarriers()
+  const hasLocal = !!(settings || entries.length || streak || barriers.length)
+  if (!hasLocal) return false
+
+  const remote = firestoreAdapter(uid)
+  if (settings) await remote.saveSettings(settings)
   for (const e of [...entries].reverse()) {
     await remote.addJournalEntry(e)
   }
+  if (streak) await remote.saveStreak(streak)
+  if (barriers.length) await remote.saveBarriers(barriers)
 
   localStorage.removeItem(LS_SETTINGS)
   localStorage.removeItem(LS_JOURNAL)
+  localStorage.removeItem(LS_STREAK)
+  localStorage.removeItem(LS_BARRIERS)
+  return true
+}
+
+export async function deleteUserCloudData(uid: string): Promise<void> {
+  const journal = await getDocs(collection(db, 'users', uid, 'journal'))
+  await Promise.all(journal.docs.map((d) => deleteDoc(d.ref)))
+  await Promise.all([
+    deleteDoc(doc(db, 'users', uid, 'data', 'settings')).catch(() => undefined),
+    deleteDoc(doc(db, 'users', uid, 'data', 'streak')).catch(() => undefined),
+    deleteDoc(doc(db, 'users', uid, 'data', 'barriers')).catch(() => undefined),
+  ])
 }

@@ -37,24 +37,24 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
 
   loadSettings: async () => {
     await waitForAuth()
-    const { isPro, user } = useAuthStore.getState()
-    const data = await getAdapter(isPro, user?.uid ?? null).getSettings()
+    const { user } = useAuthStore.getState()
+    const data = await getAdapter(user).getSettings()
     if (data) set({ ...data, loaded: true })
     else set({ loaded: true })
   },
 
   saveSettings: async (data) => {
     await waitForAuth()
-    const { isPro, user } = useAuthStore.getState()
-    await getAdapter(isPro, user?.uid ?? null).saveSettings(data)
+    const { user } = useAuthStore.getState()
+    await getAdapter(user).saveSettings(data)
     set({ ...data })
   },
 
   setVoidType: async (voidType) => {
     await waitForAuth()
-    const { isPro, user } = useAuthStore.getState()
+    const { user } = useAuthStore.getState()
     const s = get()
-    await getAdapter(isPro, user?.uid ?? null).saveSettings({
+    await getAdapter(user).saveSettings({
       monthlyPay: s.monthlyPay,
       hoursPerMonth: s.hoursPerMonth,
       assets: s.assets,

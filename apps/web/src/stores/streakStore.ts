@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { getAdapter } from '../lib/storage'
 import { useAuthStore } from './authStore'
+import { useJournalStore } from './journalStore'
 import type { StreakData } from '../types'
 
 const MILESTONES = [1, 3, 7, 14, 30, 60, 90, 180, 365]
@@ -43,8 +44,8 @@ export const useStreakStore = create<StreakState>((set, get) => ({
 
   loadStreak: async () => {
     set({ loading: true })
-    const { user, isPro } = useAuthStore.getState()
-    const adapter = getAdapter(isPro, user?.uid ?? null)
+    const { user } = useAuthStore.getState()
+    const adapter = getAdapter(user)
     const data = await adapter.getStreak()
     set({ ...(data ?? defaultStreak()), loading: false })
   },
@@ -76,8 +77,8 @@ export const useStreakStore = create<StreakState>((set, get) => ({
       startDate: newStartDate,
     }
 
-    const { user, isPro } = useAuthStore.getState()
-    await getAdapter(isPro, user?.uid ?? null).saveStreak(updated)
+    const { user } = useAuthStore.getState()
+    await getAdapter(user).saveStreak(updated)
 
     set({
       ...updated,
@@ -100,22 +101,17 @@ export const useStreakStore = create<StreakState>((set, get) => ({
       startDate: state.startDate,
     }
 
-    const { user, isPro } = useAuthStore.getState()
-    await getAdapter(isPro, user?.uid ?? null).saveStreak(updated)
+    const { user } = useAuthStore.getState()
+    await getAdapter(user).saveStreak(updated)
 
     set({ milestonesSeen: seen, showMilestoneModal: false, newMilestone: null })
   },
 
   getTotalSaved: () => {
-    // Dynamically import to avoid circular dep — read journal entries from localStorage/store
-    try {
-      const raw = localStorage.getItem('rc_journal')
-      if (!raw) return 0
-      const entries = JSON.parse(raw) as { amount: number }[]
-      return entries.reduce((sum, e) => sum + (Number(e.amount) || 0), 0)
-    } catch {
-      return 0
-    }
+    return useJournalStore.getState().entries.reduce(
+      (sum, e) => sum + (Number(e.amount) || 0),
+      0,
+    )
   },
 }))
 

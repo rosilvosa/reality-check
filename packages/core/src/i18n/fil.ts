@@ -180,6 +180,15 @@ export const fil: Translation = {
     recoveryTools: 'MGA KAGAMITAN SA RECOVERY',
     barriersTitle: 'Itayo ang Iyong mga Hadlang',
     barriersDesc: 'Self-exclusion, pagtanggal ng app, checklist ng pag-block ng site',
+    syncActive: 'Naka-sync sa cloud — account na ito, kahit anong device.',
+    donateNow: 'Mag-donate sa GCash / Maya',
+    donateSuccess: 'Salamat. Iyon ang nagpapatakbo nito at tumutulong sa safety app.',
+    donateFail: 'Hindi natuloy ang bayad. Subukan ulit.',
+    customAmount: 'Ibang amount (₱)',
+    deleteAccount: 'Burahin ang account at data',
+    deleteConfirm: 'Mabubura ang journal mo dito at sa cloud. Hindi na ito maibabalik.',
+    privacyLink: 'Privacy',
+    termsLink: 'Mga Tuntunin',
   },
 
   onboarding: {

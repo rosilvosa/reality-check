@@ -8,6 +8,7 @@ export type { JournalEntry }
 interface JournalState {
   entries: JournalEntry[]
   loaded: boolean
+  error: string | null
   loadJournal: () => Promise<void>
   addEntry: (data: { amount: number; text: string }) => Promise<void>
 }
@@ -24,22 +25,32 @@ async function waitForAuth(): Promise<void> {
 export const useJournalStore = create<JournalState>((set, get) => ({
   entries: [],
   loaded: false,
+  error: null,
 
   loadJournal: async () => {
     await waitForAuth()
-    const { isPro, user } = useAuthStore.getState()
-    const entries = await getAdapter(isPro, user?.uid ?? null).getJournalEntries()
-    set({ entries, loaded: true })
+    const { user } = useAuthStore.getState()
+    try {
+      const entries = await getAdapter(user).getJournalEntries()
+      set({ entries, loaded: true, error: null })
+    } catch (e) {
+      set({ loaded: true, error: e instanceof Error ? e.message : 'Could not load journal' })
+    }
   },
 
   addEntry: async ({ amount, text }) => {
     await waitForAuth()
-    const { isPro, user } = useAuthStore.getState()
-    const entry = await getAdapter(isPro, user?.uid ?? null).addJournalEntry({
-      amount,
-      text,
-      createdAt: new Date(),
-    })
-    set({ entries: [entry, ...get().entries] })
+    const { user } = useAuthStore.getState()
+    try {
+      const entry = await getAdapter(user).addJournalEntry({
+        amount,
+        text,
+        createdAt: new Date(),
+      })
+      set({ entries: [entry, ...get().entries], error: null })
+    } catch (e) {
+      set({ error: e instanceof Error ? e.message : 'Could not save journal entry' })
+      throw e
+    }
   },
 }))

@@ -114,6 +114,9 @@ export interface Translation {
     addAsset: string; saveBtn: string; savedBtn: string
     langSection: string; supportSection: string; supportHint: string; kofiBtn: string
     recoveryTools: string; barriersTitle: string; barriersDesc: string
+    syncActive: string; donateNow: string; donateSuccess: string; donateFail: string
+    customAmount: string; deleteAccount: string; deleteConfirm: string
+    privacyLink: string; termsLink: string
   }
 
   onboarding: {
