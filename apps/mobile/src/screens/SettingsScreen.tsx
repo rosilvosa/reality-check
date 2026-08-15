@@ -168,16 +168,9 @@ export default function SettingsScreen() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.card}>
-        <Text style={styles.fieldLabel}>{t.settings.supportSection}</Text>
-        <Text style={[styles.syncHint, { marginBottom: 12 }]}>{t.settings.supportHint}</Text>
-        <TouchableOpacity
-          style={styles.kofiBtn}
-          onPress={() => Linking.openURL(KOFI_URL)}
-        >
-          <Text style={styles.kofiBtnText}>{t.settings.kofiBtn}</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={() => Linking.openURL(KOFI_URL)} style={{ marginTop: 8, marginBottom: 8 }}>
+        <Text style={[styles.syncHint, { textAlign: 'center' }]}>{t.settings.supportSection}</Text>
+      </TouchableOpacity>
     </ScrollView>
   )
 }

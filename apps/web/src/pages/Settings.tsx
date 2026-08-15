@@ -186,62 +186,6 @@ export default function Settings() {
       </div>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.supportSection}</p>
-        <p className="text-sm text-muted mb-4 leading-relaxed">{t.settings.supportHint}</p>
-
-        <div className="grid grid-cols-3 gap-2 mb-3">
-          {DONATE_AMOUNTS.map((n) => (
-            <button
-              key={n}
-              onClick={() => handleDonate(n)}
-              disabled={donateLoading !== null}
-              className="py-2.5 bg-accent text-white font-bold rounded-lg text-sm hover:opacity-90 disabled:opacity-50"
-            >
-              {donateLoading === n ? '…' : `₱${n}`}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex gap-2 mb-3">
-          <input
-            type="number"
-            min={20}
-            value={customAmount}
-            onChange={(e) => setCustomAmount(e.target.value)}
-            placeholder={t.settings.customAmount}
-            className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
-          />
-          <button
-            onClick={handleCustomDonate}
-            disabled={donateLoading !== null}
-            className="px-3 py-2 bg-surface2 border border-border text-white font-semibold rounded-lg text-sm hover:border-accent disabled:opacity-50"
-          >
-            {t.settings.donateNow}
-          </button>
-        </div>
-
-        {donateError && <p className="text-sm text-accent mb-3">{donateError}</p>}
-
-        <a
-          href={KOFI_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-2.5 border border-border rounded-lg text-muted font-semibold text-sm hover:border-accent hover:text-accent transition-colors mb-3"
-        >
-          {t.settings.kofiBtn}
-        </a>
-        <p className="text-xs text-muted mb-2 leading-relaxed">{t.settings.sourceHint}</p>
-        <a
-          href={REPO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-2.5 border border-border rounded-lg text-muted font-semibold text-sm hover:border-accent hover:text-white transition-colors"
-        >
-          {t.settings.sourceCode}
-        </a>
-      </div>
-
-      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.currencySection}</p>
         <p className="text-sm text-muted mb-3 leading-relaxed">{t.settings.currencyHint}</p>
         <select
@@ -371,13 +315,60 @@ export default function Settings() {
         {saved ? t.settings.savedBtn : t.settings.saveBtn}
       </button>
 
-      <p className="text-center text-xs text-muted mt-4 mb-2">
+      <p className="text-center text-xs text-muted mt-4 mb-4">
         <NavLink to="/privacy" className="hover:text-white">{t.settings.privacyLink}</NavLink>
         {' · '}
         <NavLink to="/terms" className="hover:text-white">{t.settings.termsLink}</NavLink>
         {' · '}
         <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white">{t.settings.sourceCode}</a>
       </p>
+
+      <details id="support" className="text-muted">
+        <summary className="text-xs cursor-pointer hover:text-white list-outside pl-1">
+          {t.settings.supportSection}
+        </summary>
+        <div className="mt-3 border border-border rounded-xl p-4">
+          <p className="text-xs leading-relaxed mb-3">{t.settings.supportHint}</p>
+          <div className="grid grid-cols-3 gap-2 mb-3">
+            {DONATE_AMOUNTS.map((n) => (
+              <button
+                key={n}
+                onClick={() => handleDonate(n)}
+                disabled={donateLoading !== null}
+                className="py-2 border border-border text-muted font-semibold rounded-lg text-xs hover:text-white hover:border-white/30 disabled:opacity-50"
+              >
+                {donateLoading === n ? '…' : `₱${n}`}
+              </button>
+            ))}
+          </div>
+          <div className="flex gap-2 mb-3">
+            <input
+              type="number"
+              min={20}
+              value={customAmount}
+              onChange={(e) => setCustomAmount(e.target.value)}
+              placeholder={t.settings.customAmount}
+              className="flex-1 bg-surface2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent"
+            />
+            <button
+              onClick={handleCustomDonate}
+              disabled={donateLoading !== null}
+              className="px-3 py-2 border border-border text-muted font-semibold rounded-lg text-xs hover:text-white disabled:opacity-50"
+            >
+              {t.settings.donateNow}
+            </button>
+          </div>
+          {donateError && <p className="text-sm text-accent mb-3">{donateError}</p>}
+          <a
+            href={KOFI_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs hover:text-white"
+          >
+            {t.settings.kofiBtn}
+          </a>
+        </div>
+      </details>
 
       <AuthModal isOpen={showAuth} onClose={afterAuthClose} />
     </div>
