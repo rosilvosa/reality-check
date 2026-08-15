@@ -6,6 +6,20 @@ interface Props {
   onClose: () => void
 }
 
+function authErrorMessage(e: unknown): string {
+  const code = typeof e === 'object' && e && 'code' in e ? String((e as { code: string }).code) : ''
+  if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') return ''
+  if (code === 'auth/credential-already-in-use' || code === 'auth/email-already-in-use') {
+    return 'That account already exists. Try Sign In.'
+  }
+  if (code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found') {
+    return 'Wrong email or password.'
+  }
+  if (code === 'auth/weak-password') return 'Password must be at least 6 characters.'
+  if (e instanceof Error) return e.message
+  return 'Sign-in failed'
+}
+
 type Tab = 'signin' | 'signup'
 
 export default function AuthModal({ isOpen, onClose }: Props) {
@@ -23,8 +37,9 @@ export default function AuthModal({ isOpen, onClose }: Props) {
     try {
       await signInWithGoogle()
       onClose()
-    } catch (e: any) {
-      setError(e.message ?? 'Sign-in failed')
+    } catch (e: unknown) {
+      const msg = authErrorMessage(e)
+      if (msg) setError(msg)
     } finally {
       setLoading(false)
     }
@@ -38,8 +53,9 @@ export default function AuthModal({ isOpen, onClose }: Props) {
       if (tab === 'signin') await signInWithEmail(email, password)
       else await signUpWithEmail(email, password)
       onClose()
-    } catch (e: any) {
-      setError(e.message ?? 'Failed')
+    } catch (e: unknown) {
+      const msg = authErrorMessage(e)
+      if (msg) setError(msg)
     } finally {
       setLoading(false)
     }
