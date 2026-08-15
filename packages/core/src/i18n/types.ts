@@ -32,6 +32,11 @@ export interface Translation {
     helpHint: string
     communityBtn: string
     communityHint: string
+    installTitle: string
+    installBody: string
+    installBtn: string
+    installIos: string
+    installDismiss: string
   }
 
   sweat: {

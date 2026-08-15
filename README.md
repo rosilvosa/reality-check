@@ -8,7 +8,7 @@ Casinos sell a digital illusion: chips, spins, “almost won.” This app breaks
 **Source:** https://github.com/rosilvosa/reality-check  
 **Languages:** English, Filipino, Cebuano, Hiligaynon, Ilocano
 
-The product is a website. Add it to your phone home screen from the browser.
+The product is a website. On a phone it can install as a PWA (Add to Home Screen). There is no store app.
 
 ---
 

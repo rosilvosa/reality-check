@@ -2,9 +2,32 @@
   "name": "Reality Check",
   "short_name": "Reality Check",
   "description": "Gambling recovery tool. See what a loss actually costs.",
+  "id": "/",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#0b0b10",
-  "theme_color": "#0b0b10",
-  "lang": "en"
+  "orientation": "portrait-primary",
+  "background_color": "#08080f",
+  "theme_color": "#08080f",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }

@@ -32,6 +32,11 @@ export const fil: Translation = {
     helpHint: 'Helpline, exclusion, at meeting sa iyong bansa',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, tanong. Laging anonymous.',
+    installTitle: 'Idagdag sa telepono',
+    installBody: 'Parang app. Walang store. Nasa home screen.',
+    installBtn: 'I-install',
+    installIos: 'Sa iPhone: i-tap ang Share, tapos Add to Home Screen.',
+    installDismiss: 'Huwag muna',
   },
 
   sweat: {

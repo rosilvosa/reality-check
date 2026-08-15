@@ -32,6 +32,11 @@ export const ilo: Translation = {
     helpHint: 'Helpline, exclusion, ken meeting iti pagilianmo',
     communityBtn: 'Komunidad',
     communityHint: 'Dagiti tip, panagnanasa, saludsod. Kanayon nga anonymous.',
+    installTitle: 'Inayon iti telepono',
+    installBody: 'Kasla app. Awan store. Adda iti home screen.',
+    installBtn: 'I-install',
+    installIos: 'Iti iPhone: i-tap ti Share, ket Add to Home Screen.',
+    installDismiss: 'Saan pay',
   },
 
   sweat: {

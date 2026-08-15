@@ -32,6 +32,11 @@ export const ceb: Translation = {
     helpHint: 'Helpline, exclusion, ug meeting sa imong nasud',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, pangutana. Kanunay anonymous.',
+    installTitle: 'Idugang sa telepono',
+    installBody: 'Sama sa app. Walay store. Na sa home screen.',
+    installBtn: 'I-install',
+    installIos: 'Sa iPhone: i-tap ang Share, unya Add to Home Screen.',
+    installDismiss: 'Dili karon',
   },
 
   sweat: {

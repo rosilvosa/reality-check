@@ -32,6 +32,11 @@ export const en: Translation = {
     helpHint: 'Helplines, exclusion, meetings where you live',
     communityBtn: 'Community',
     communityHint: 'Tips, urges, questions. Always anonymous.',
+    installTitle: 'Add to your phone',
+    installBody: 'Opens like an app. No store. Stays on the home screen.',
+    installBtn: 'Install',
+    installIos: 'On iPhone: tap Share, then Add to Home Screen.',
+    installDismiss: 'Not now',
   },
 
   sweat: {

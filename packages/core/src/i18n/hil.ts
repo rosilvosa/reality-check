@@ -32,6 +32,11 @@ export const hil: Translation = {
     helpHint: 'Helpline, exclusion, kag meeting sa imo pungsod',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, pamangkot. Pirme anonymous.',
+    installTitle: 'Idugang sa telepono',
+    installBody: 'Pareho sang app. Wala store. Ara sa home screen.',
+    installBtn: 'I-install',
+    installIos: 'Sa iPhone: i-tap ang Share, dayon Add to Home Screen.',
+    installDismiss: 'Indi anay',
   },
 
   sweat: {
