@@ -10,32 +10,26 @@ function Tab({
   label,
   icon,
   end,
-  compact,
 }: {
   to: string
   label: string
   icon: string
   end?: boolean
-  compact?: boolean
 }) {
   return (
     <NavLink
       to={to}
       end={end}
       className={({ isActive }) =>
-        `flex-1 min-h-[52px] flex flex-col items-center justify-center gap-0.5 px-0.5 ${
-          compact ? 'pt-1.5 pb-1' : 'pt-2 pb-1.5'
-        } ${isActive ? 'text-white' : 'text-muted'}`
+        `flex-1 min-h-[56px] flex flex-col items-center justify-center gap-0.5 px-0.5 pt-2 pb-1.5 ${
+          isActive ? 'text-white' : 'text-muted'
+        }`
       }
     >
       {({ isActive }) => (
         <>
-          <span className={`leading-none ${compact ? 'text-[18px]' : 'text-[22px]'} ${isActive ? '' : 'opacity-70'}`}>
-            {icon}
-          </span>
-          <span className={`font-bold tracking-wide leading-tight text-center ${compact ? 'text-[10px]' : 'text-[11px]'}`}>
-            {word(label)}
-          </span>
+          <span className={`text-[22px] leading-none ${isActive ? '' : 'opacity-70'}`}>{icon}</span>
+          <span className="text-[11px] font-bold tracking-wide leading-tight text-center">{word(label)}</span>
           <span className={`h-0.5 w-5 rounded-full ${isActive ? 'bg-accent' : 'bg-transparent'}`} />
         </>
       )}
@@ -46,19 +40,19 @@ function Tab({
 export default function Layout() {
   const t = useT()
 
-  const tools = [
+  const top = [
+    { to: '/', label: t.nav.home, icon: '🏠', end: true },
+    { to: '/journal', label: t.nav.journal, icon: '📓' },
+    { to: '/progress', label: t.nav.progress, icon: '🏆' },
+    { to: '/settings', label: t.nav.settings, icon: '⚙' },
+  ]
+
+  const bottom = [
     { to: '/sweat', label: t.nav.sweat, icon: '💧' },
     { to: '/assets', label: t.nav.assets, icon: '🔥' },
     { to: '/nearmiss', label: t.nav.nearmiss, icon: '⚠️' },
     { to: '/trap', label: t.nav.trap, icon: '🧠' },
     { to: '/barriers', label: t.settings.barriersTitle, icon: '🛡' },
-  ]
-
-  const primary = [
-    { to: '/', label: t.nav.home, icon: '🏠', end: true },
-    { to: '/journal', label: t.nav.journal, icon: '📓' },
-    { to: '/progress', label: t.nav.progress, icon: '🏆' },
-    { to: '/settings', label: t.nav.settings, icon: '⚙' },
   ]
 
   return (
@@ -71,13 +65,18 @@ export default function Layout() {
           <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Recovery tool</p>
           <h1 className="text-[22px] font-black text-white tracking-tight">Reality Check</h1>
         </NavLink>
+        <nav className="flex border-t border-border max-w-2xl mx-auto">
+          {top.map((tab) => (
+            <Tab key={tab.to} {...tab} />
+          ))}
+        </nav>
       </header>
 
       <main className="flex-1 px-4 py-6 max-w-2xl w-full mx-auto pb-8">
         <Outlet />
       </main>
 
-      <footer className="max-w-2xl w-full mx-auto px-4 pb-36 text-center text-[11px] text-muted">
+      <footer className="max-w-2xl w-full mx-auto px-4 pb-28 text-center text-[11px] text-muted">
         <NavLink to="/privacy" className="hover:text-white">{t.settings.privacyLink}</NavLink>
         {' · '}
         <NavLink to="/terms" className="hover:text-white">{t.settings.termsLink}</NavLink>
@@ -88,17 +87,10 @@ export default function Layout() {
       </footer>
 
       <nav className="fixed bottom-0 inset-x-0 z-30 bg-surface/95 backdrop-blur border-t border-border pb-[env(safe-area-inset-bottom)]">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex border-b border-border/80">
-            {tools.map((tab) => (
-              <Tab key={tab.to} {...tab} compact />
-            ))}
-          </div>
-          <div className="flex">
-            {primary.map((tab) => (
-              <Tab key={tab.to} {...tab} />
-            ))}
-          </div>
+        <div className="max-w-2xl mx-auto flex">
+          {bottom.map((tab) => (
+            <Tab key={tab.to} {...tab} />
+          ))}
         </div>
       </nav>
     </div>
