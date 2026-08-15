@@ -143,6 +143,8 @@ export const ilo: Translation = {
     truthP2: 'Naornal dayta a ulo nga naornal a tumtumbok iti maysa a sistema nga inpabaro tapno saanto malusad. Nagama ti lit-ag dagiti eksperto. Nadakep dita ti milyun-milyon.',
     truthP3: 'Sika saan a sirado. Sika target. Ken itan ammoem a ti kasano nga rumuar.',
     ctaBarriers: 'TUKOREN TI SAGAM-AT →',
+    whyLink: 'No apay a mapasamak daytoy',
+    whyTitle: 'No apay a saanmo a mapugngan',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
   },
 

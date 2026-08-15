@@ -143,6 +143,8 @@ export const en: Translation = {
     truthP2: 'That is a normal brain responding normally to a system designed to be inescapable. The trap was built by experts. It has captured millions.',
     truthP3: 'You are not broken. You are targeted. And now you know exactly how it works.',
     ctaBarriers: 'BUILD YOUR BARRIERS →',
+    whyLink: 'Why this happens',
+    whyTitle: 'Why you cannot stop',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
   },
 

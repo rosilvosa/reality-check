@@ -143,6 +143,8 @@ export const hil: Translation = {
     truthP2: 'Amo ato ang normal nga utok nga normal nga nagatubag sa isa ka sistema nga dinisenyo para indi makalusad. Ginhimo ang lit-ag sang mga eksperto. Nahuli na diri ang milyon-milyon.',
     truthP3: 'Indi ka sirado. Isa ka target. Kag subong nahibaluan mo na kun paano makagua diri.',
     ctaBarriers: 'TUKORA ANG IMO MGA BABAG →',
+    whyLink: 'Ngaa ini nagakatabo',
+    whyTitle: 'Ngaa indi mo mapugngan',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
   },
 

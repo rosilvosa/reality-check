@@ -143,6 +143,8 @@ export const ceb: Translation = {
     truthP2: 'Kana normal nga utok nga normal nga nagtubag sa usa ka sistema nga dinisenyo para dili makalingkawas. Gihimo ang lit-ag sa mga eksperto. Nahuli na niini ang milyon-milyon.',
     truthP3: 'Dili ka sira. Ikaw target. Ug karon nasayran na nimo kung unsaon kini pagguwa.',
     ctaBarriers: 'TUKURON ANG IMONG MGA BABAG →',
+    whyLink: 'Ngano kini mahitabo',
+    whyTitle: 'Ngano dili nimo mapugngan',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
   },
 

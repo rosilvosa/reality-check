@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Lost from './pages/Lost'
 import Journal from './pages/Journal'
 import Trap from './pages/Trap'
+import TrapWhy from './pages/TrapWhy'
 import Barriers from './pages/Barriers'
 import Settings from './pages/Settings'
 import Progress from './pages/Progress'
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: 'nearmiss', element: <Navigate to="/lost" replace /> },
       { path: 'journal', element: <Journal /> },
       { path: 'trap', element: <Trap /> },
+      { path: 'trap/why', element: <TrapWhy /> },
       { path: 'barriers', element: <Barriers /> },
       { path: 'progress', element: <Progress /> },
       { path: 'settings', element: <Settings /> },

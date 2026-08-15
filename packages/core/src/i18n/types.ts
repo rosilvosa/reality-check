@@ -111,6 +111,8 @@ export interface Translation {
     ]
     truthTag: string; truthP1: string; truthP2: string; truthP3: string
     ctaBarriers: string
+    whyLink: string
+    whyTitle: string
     // labels for the 3 house edge options (just the name, edge pct appended in code)
     houseEdgeLabels: [string, string, string]
   }
