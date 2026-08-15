@@ -46,7 +46,7 @@ A subscription on a gambling recovery tool is contradictory — it reintroduces 
 
 It is still the wrong lock. The journal is the intercept. The person most likely to lose a phone or switch devices is the person in a binge. Gating that backup behind payment punishes the user who needs the product most.
 
-Launch rule: local-first with no account, free cloud sync on sign-in, Ko-fi donations to keep Firebase on. If donation volume ever fails to cover Blaze-plan cost at real scale, an optional Supporter thank-you can come back. Sync itself stays free.
+Launch rule: local-first with no account, free cloud sync on sign-in, Ko-fi donations to keep Firebase on and to fund an upcoming safety app. If donation volume ever fails to cover Blaze-plan cost at real scale, an optional Supporter thank-you can come back. Sync itself stays free.
 
 ---
 

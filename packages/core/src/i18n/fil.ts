@@ -175,7 +175,7 @@ export const fil: Translation = {
     savedBtn: '✓ NA-SAVE',
     langSection: 'WIKA',
     supportSection: 'SUPORTAHAN ANG PROYEKTONG ITO',
-    supportHint: 'Libre ang Reality Check, magpakailanman. Kung nakatulong ito sa iyo, ang isang kape ay nagpapanatili ng ilaw.',
+    supportHint: 'Libre ang Reality Check, magpakailanman. Kung nakatulong ito sa iyo, ang isang kape ay nagpapanatili ng ilaw dito — at tumutulong pondohan ang isang safety app na ilalabas sa lalong madaling panahon.',
     kofiBtn: '☕ Bilhin Ako ng Kape',
     recoveryTools: 'MGA KAGAMITAN SA RECOVERY',
     barriersTitle: 'Itayo ang Iyong mga Hadlang',

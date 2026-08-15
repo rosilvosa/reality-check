@@ -12,7 +12,7 @@
 - Auth authorized domains include `reality-check-ph.web.app`
 - `functions/.env` `APP_URL` pointed at the new domain
 - Contractor brief written: `docs/CONTRACTOR_BRIEF.md`
-- Monetization decision: **free cloud sync on sign-in + Ko-fi donations**. Do not paywall journal backup. PayMongo stays in the repo, dormant.
+- Monetization decision: **free cloud sync on sign-in + Ko-fi donations**. Donations keep RC online and fund an upcoming safety app. Do not paywall journal backup. PayMongo stays in the repo, dormant.
 
 ---
 

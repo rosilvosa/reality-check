@@ -175,7 +175,7 @@ export const hil: Translation = {
     savedBtn: '✓ NA-SAVE',
     langSection: 'PAMULONG',
     supportSection: 'SUPORTAHAN INING PROYEKTO',
-    supportHint: 'Libre ang Reality Check, permi. Kung nakabulig ini sa imo, ang isa ka kape nagapadayon sang suga.',
+    supportHint: 'Libre ang Reality Check, permi. Kung nakabulig ini sa imo, ang isa ka kape nagapadayon sang suga diri — kag nagapondo man sang safety app nga ipagwa sa madali.',
     kofiBtn: '☕ Paliton Ako sang Kape',
     recoveryTools: 'MGA GAMIT SA RECOVERY',
     barriersTitle: 'Tukora ang Imo mga Babag',

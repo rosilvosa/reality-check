@@ -53,11 +53,11 @@ This is a recovery tool for people who already have a money problem. A subscript
 
 **Money path: donations.** Ko-fi is already in Settings: https://ko-fi.com/rosilvosa
 
-Suggested copy after a 7-day streak, not at first open:
+Donations keep Reality Check online **and** fund a safety app that will be released soon. Say that in the Settings copy (already wired in all five languages). After a 7-day streak, a quiet follow-up is enough:
 
-> This tool is free because people who used it kept it alive. If it helped, send what a loss used to cost you in one spin — or nothing.
+> This tool is free because people who used it kept it alive. A coffee here also builds the safety app. Send what one spin used to cost you — or nothing.
 
-That is enough to cover Firebase and, if people actually use it, some of your time. Conversion on a clear “keep the lights on” ask beats a feature lock that makes the product feel like another extractor.
+That covers Firebase, some of your time, and the next project. A clear “this funds the next thing” ask beats a feature lock that makes the product feel like another extractor.
 
 PayMongo (₱299 Pro) is still in the repo and KYC is done. Leave it dormant. If donations never cover Blaze-plan costs at real scale, turn it on later as an optional **Supporter** thank-you — never as a lock on journal backup.
 

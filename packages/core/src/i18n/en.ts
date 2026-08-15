@@ -175,7 +175,7 @@ export const en: Translation = {
     savedBtn: '✓ SAVED',
     langSection: 'LANGUAGE',
     supportSection: 'SUPPORT THIS PROJECT',
-    supportHint: 'Reality Check is free, forever. If it has helped you, a coffee keeps the lights on.',
+    supportHint: 'Reality Check is free, forever. If it has helped you, a coffee keeps this running — and funds a safety app that will be released soon.',
     kofiBtn: '☕ Buy Me a Coffee',
     recoveryTools: 'RECOVERY TOOLS',
     barriersTitle: 'Build Your Barriers',

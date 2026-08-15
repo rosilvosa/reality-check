@@ -175,7 +175,7 @@ export const ilo: Translation = {
     savedBtn: '✓ NA-SAVE',
     langSection: 'PAGSASAO',
     supportSection: 'SUPORTARAN DAYTOY A PROYEKTO',
-    supportHint: 'Libre ti Reality Check, kanayunan. No nakatulong daytoy kenka, ti maysa a kape mangitultuloy ti slaw.',
+    supportHint: 'Libre ti Reality Check, kanayunan. No nakatulong daytoy kenka, ti maysa a kape mangitultuloy ti slaw ditoy — ken mangpondo met iti safety app a maipablaak iti mabiit.',
     kofiBtn: '☕ Gatangen Kanak ti Kape',
     recoveryTools: 'KASANGKAPAN ITI RECOVERY',
     barriersTitle: 'Tukoren ti Sagam-atmo',

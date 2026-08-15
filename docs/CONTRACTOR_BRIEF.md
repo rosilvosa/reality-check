@@ -14,7 +14,7 @@ The web product is ~80% done. Local (no-account) use works. Cloud sync is scaffo
 
 Anyone can use the app in a browser with no account.  
 Anyone who **signs in** gets free cloud backup of journal, settings, streak, and barriers across devices.  
-Settings already has a Ko-fi button. Keep it. Do not put a payment wall in front of sync.
+Settings already has a Ko-fi button. Keep it. Do not put a payment wall in front of sync. Donation copy must say gifts keep Reality Check running **and** fund an upcoming safety app. Do not invent a product name — leave it as “a safety app.”
 
 ---
 

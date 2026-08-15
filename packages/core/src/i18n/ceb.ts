@@ -175,7 +175,7 @@ export const ceb: Translation = {
     savedBtn: '✓ NA-SAVE',
     langSection: 'PINULONGAN',
     supportSection: 'SUPORTAHAN KINING PROYEKTO',
-    supportHint: 'Libre ang Reality Check, sa kanunay. Kung nakaayo kini kanimo, ang usa ka kape nagpadayon sa suga.',
+    supportHint: 'Libre ang Reality Check, sa kanunay. Kung nakaayo kini kanimo, ang usa ka kape nagpadayon sa suga dinhi — ug nagpondo usab og safety app nga ipagawas sa madali.',
     kofiBtn: '☕ Palit Og Kape Para Kanako',
     recoveryTools: 'MGA HIMAN SA RECOVERY',
     barriersTitle: 'Tukuron ang Imong mga Babag',
