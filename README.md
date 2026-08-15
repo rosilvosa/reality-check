@@ -36,8 +36,10 @@ No account required. Without sign-in, data stays in this browser. Sign in with G
 
 ## License
 
-[MIT](LICENSE). Copy it, change the help numbers, run your own instance.
+[PolyForm Noncommercial 1.0.0](LICENSE). The source is public. You may copy it, change the help numbers, and run your own free instance. You may not sell the software or charge people to use a copy.
 
 Keep the name **Reality Check** and append your country or region so people know which one they opened. This site is **Reality Check PH**. Yours might be Reality Check US, Reality Check UK, Reality Check SG.
 
 Do not present a copy as this Philippine site.
+
+This is not an OSI open-source license. Those require permission to sell. This one does not.

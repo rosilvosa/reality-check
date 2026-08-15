@@ -24,9 +24,10 @@ export default function Terms() {
       </p>
       <h3 className="text-white font-bold pt-2">Source code</h3>
       <p>
-        The source is MIT-licensed. You may copy it, change it, and run your own public instance. Please keep
-        the name Reality Check and append your country or region (this site is Reality Check PH). Do not present
-        a copy as this Philippine site.
+        The source is public under the PolyForm Noncommercial License. You may copy it, change it, and run your
+        own free instance. You may not sell the software or charge people to use a copy. Please keep the name
+        Reality Check and append your country or region (this site is Reality Check PH). Do not present a copy
+        as this Philippine site.
       </p>
       <h3 className="text-white font-bold pt-2">Acceptable use</h3>
       <p>
