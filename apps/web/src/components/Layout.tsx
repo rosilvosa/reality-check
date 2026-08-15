@@ -63,7 +63,7 @@ export default function Layout() {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg">
-      <header className="sticky top-0 z-20 border-b border-border bg-surface/95 backdrop-blur">
+      <header className="border-b border-border bg-surface">
         <NavLink
           to="/"
           className="block px-5 pt-4 pb-3 hover:bg-surface2/50 transition-colors"
