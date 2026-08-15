@@ -30,9 +30,15 @@ export default function Layout() {
 
   return (
     <div className="flex flex-col min-h-screen bg-bg">
-      <header className="sticky top-0 z-20 border-b border-border bg-surface/95 backdrop-blur px-5 pt-4 pb-3">
-        <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Recovery tool</p>
-        <h1 className="text-[22px] font-black text-white tracking-tight">Reality Check</h1>
+      <header className="sticky top-0 z-20 border-b border-border bg-surface/95 backdrop-blur">
+        <NavLink
+          to="/"
+          onClick={() => setMoreOpen(false)}
+          className="block px-5 pt-4 pb-3 hover:bg-surface2/50 transition-colors"
+        >
+          <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Recovery tool</p>
+          <h1 className="text-[22px] font-black text-white tracking-tight">Reality Check</h1>
+        </NavLink>
       </header>
 
       <main className="flex-1 px-4 py-6 max-w-2xl w-full mx-auto pb-8">
