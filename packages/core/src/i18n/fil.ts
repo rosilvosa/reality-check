@@ -218,6 +218,8 @@ export const fil: Translation = {
     freeHint: 'Libre — data sa device na ito lang',
     proActive: '✓ Pro — Cloud Sync Aktibo',
     signOut: 'Mag-Sign Out',
+    signOutTitle: 'Mag-sign out?',
+    signOutBody: 'Mananatili sa telepono na ito ang streak at talaarawan mo. Walang mabubura maliban kung linisin mo ang browser, at nasa account mo pa rin ang lahat kapag nag-sign in ka ulit.',
     incomeSection: 'IYONG KITA',
     labelMonthly: 'Buwanang take-home pay — pagkatapos ng buwis',
     labelHours: 'Oras ng trabaho bawat buwan',

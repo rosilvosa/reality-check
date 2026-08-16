@@ -218,6 +218,8 @@ export const hil: Translation = {
     freeHint: 'Libre — datos sa device lang ini',
     proActive: '✓ Pro — Cloud Sync Aktibo',
     signOut: 'Mag-Sign Out',
+    signOutTitle: 'Mag-sign out?',
+    signOutBody: 'Magapabilin sa sini nga telepono ang imo streak kag dyornal. Wala sang mapanas tubtob indi mo limpyohan ang browser, kag yara gihapon ang tanan sa imo account kon mag-sign in ka liwat.',
     incomeSection: 'IMO KITA',
     labelMonthly: 'Bulan-bulan nga take-home pay — pagkatapos sang buhis',
     labelHours: 'Oras sang trabaho kada bulan',

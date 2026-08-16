@@ -218,6 +218,8 @@ export const ceb: Translation = {
     freeHint: 'Libre — datos sa device lang kini',
     proActive: '✓ Pro — Cloud Sync Aktibo',
     signOut: 'Mag-Sign Out',
+    signOutTitle: 'Mag-sign out?',
+    signOutBody: 'Magpabilin niining telepono ang imong streak ug dyornal. Walay mapapas hangtod nga limpyohan nimo ang browser, ug anaa gihapon ang tanan sa imong account kung mag-sign in ka pag-usab.',
     incomeSection: 'IMONG KITA',
     labelMonthly: 'Buwan-buwan nga take-home pay — human sa buhis',
     labelHours: 'Oras sa trabaho matag buwan',

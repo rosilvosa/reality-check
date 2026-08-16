@@ -160,6 +160,7 @@ export interface Translation {
   settings: {
     title: string; subtitle: string; accountSection: string; signInHint: string
     signInBtn: string; upgradeBtn: string; freeHint: string; proActive: string; signOut: string
+    signOutTitle: string; signOutBody: string
     incomeSection: string; labelMonthly: string; labelHours: string
     // params: {rate}
     hourlyRate: string

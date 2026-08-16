@@ -218,6 +218,8 @@ export const en: Translation = {
     freeHint: 'Free — data on this device only',
     proActive: '✓ Pro — Cloud Sync Active',
     signOut: 'Sign Out',
+    signOutTitle: 'Sign out?',
+    signOutBody: 'Your streak and journal stay on this phone. Nothing is deleted until you clear your browser, and everything is still in your account when you sign back in.',
     incomeSection: 'YOUR INCOME',
     labelMonthly: 'Monthly take-home pay — after taxes',
     labelHours: 'Working hours per month',

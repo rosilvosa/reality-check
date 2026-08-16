@@ -39,7 +39,7 @@ export default function Home() {
       <p className="text-[0.6875rem] tracking-[0.18em] uppercase text-muted mb-1">{t.home.tag}</p>
 
       <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
-        <div className={`flex items-end justify-between gap-4 ${checkedIn && !loading ? '' : 'mb-4'}`}>
+        <div className="flex items-end justify-between gap-4 mb-4">
           <div>
             <div className="flex items-end gap-3">
               {badge && (
@@ -56,12 +56,9 @@ export default function Home() {
               <p className="text-ink text-sm mt-3">{t.home.startHint}</p>
             )}
           </div>
-          {!loading && (
-            <Link
-              to="/progress"
-              className="min-w-0 text-right text-xs font-bold text-muted hover:text-ink"
-            >
-              {checkedIn ? t.home.checkedIn : t.home.seeProgress} →
+          {!loading && !checkedIn && (
+            <Link to="/progress" className="text-xs font-bold text-muted hover:text-ink shrink-0">
+              {t.home.seeProgress} →
             </Link>
           )}
         </div>
@@ -70,7 +67,15 @@ export default function Home() {
           <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
             —
           </div>
-        ) : checkedIn ? null : (
+        ) : checkedIn ? (
+          <Link
+            to="/progress"
+            className="block w-full py-3.5 bg-surface2 rounded-xl text-center hover:opacity-90"
+          >
+            <span className="block text-sm font-black tracking-wide text-ink">{t.home.checkedIn}</span>
+            <span className="block text-xs font-bold text-muted mt-0.5">{t.home.seeProgress} →</span>
+          </Link>
+        ) : (
           <button
             type="button"
             onClick={checkIn}

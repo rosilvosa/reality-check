@@ -12,6 +12,7 @@ import { buildBackup, downloadBackup, parseBackup, restoreBackup } from '../lib/
 import { persistTextSize, readTextSize, type TextSize } from '../lib/textSize'
 import { migrateToFirestore, syncNowToCloud } from '../lib/storage'
 import AuthModal from '../components/AuthModal'
+import ConfirmModal from '../components/ConfirmModal'
 
 
 export default function Settings() {
@@ -35,6 +36,8 @@ export default function Settings() {
   const [backupErr, setBackupErr] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [textSize, setTextSize] = useState<TextSize>(readTextSize)
+  const [confirmSignOut, setConfirmSignOut] = useState(false)
+  const [signingOut, setSigningOut] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const [synced, setSynced] = useState(false)
 
@@ -220,7 +223,7 @@ export default function Settings() {
               {syncing ? t.settings.syncingBtn : synced ? t.settings.syncDoneBtn : t.settings.syncNowBtn}
             </button>
             <div className="flex gap-2">
-              <button onClick={signOut} className="text-xs text-muted hover:text-ink transition-colors border border-border px-3 py-1.5 rounded-lg">
+              <button type="button" onClick={() => setConfirmSignOut(true)} className="text-xs text-muted hover:text-ink transition-colors border border-border px-3 py-1.5 rounded-lg">
                 {t.settings.signOut}
               </button>
               <button
@@ -442,6 +445,24 @@ export default function Settings() {
       </button>
 
       <AuthModal isOpen={showAuth} onClose={afterAuthClose} />
+
+      <ConfirmModal
+        open={confirmSignOut}
+        busy={signingOut}
+        title={t.settings.signOutTitle}
+        body={t.settings.signOutBody}
+        confirmLabel={t.settings.signOut}
+        onClose={() => setConfirmSignOut(false)}
+        onConfirm={async () => {
+          setSigningOut(true)
+          try {
+            await signOut()
+          } finally {
+            setSigningOut(false)
+            setConfirmSignOut(false)
+          }
+        }}
+      />
     </div>
   )
 }

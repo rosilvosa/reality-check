@@ -52,7 +52,10 @@ const localStorageAdapter: StorageAdapter = {
 
   async addJournalEntry(e) {
     const existing = await localStorageAdapter.getJournalEntries()
-    const entry: JournalEntry = { ...e, id: Date.now().toString(), createdAt: e.createdAt ?? new Date() }
+    // Restores add many entries within the same millisecond, so Date.now()
+    // alone produces duplicate ids and duplicate React keys.
+    const id = `-`
+    const entry: JournalEntry = { ...e, id, createdAt: e.createdAt ?? new Date() }
     const updated = [entry, ...existing]
     localStorage.setItem(
       LS_JOURNAL,

@@ -218,6 +218,8 @@ export const ilo: Translation = {
     freeHint: 'Libre — datos iti device laeng daytoy',
     proActive: '✓ Pro — Cloud Sync Aktibo',
     signOut: 'Mag-Sign Out',
+    signOutTitle: 'Ag-sign out?',
+    signOutBody: 'Agtalinaed iti daytoy a telepono ti streak ken diariom. Awan ti maikkat agingga a saanmo a dalusan ti browser, ken adda latta amin iti accountmo no ag-sign in ka manen.',
     incomeSection: 'TI GANANOM',
     labelMonthly: 'Bulan-bulan a take-home pay — kalpasan ti buhis',
     labelHours: 'Oras ti trabaho tunggal bulan',

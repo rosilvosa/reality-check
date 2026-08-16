@@ -13,6 +13,7 @@ import {
 } from 'firebase/auth'
 import { auth, googleProvider } from './firebase'
 import { clearLocalRc, deleteUserCloudData } from './storage'
+import { buildBackup, restoreBackup } from './backup'
 
 function isAlreadyInUse(e: unknown): boolean {
   const code = (e as { code?: string })?.code
@@ -54,7 +55,23 @@ export async function signUpWithEmail(email: string, password: string) {
   }
 }
 
+/**
+ * Signing out must not look like data loss. Cloud data is keyed to the uid, and
+ * local storage was emptied when they signed in, so a plain sign-out drops the
+ * user into an app with no streak and no journal. Their writing still exists in
+ * Firestore, but that is not what it feels like. Copy it down first; it stays on
+ * the device until they clear the browser themselves.
+ */
 export async function signOut() {
+  const user = auth.currentUser
+  if (user && !user.isAnonymous) {
+    try {
+      const snapshot = await buildBackup(user)
+      await restoreBackup(null, snapshot) // null forces the local adapter
+    } catch {
+      // A failed copy must never trap someone in a session they want to leave.
+    }
+  }
   return firebaseSignOut(auth)
 }
 
