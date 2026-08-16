@@ -213,10 +213,6 @@ export async function syncNowToCloud(
     }
   }
 
-  localStorage.removeItem(LS_SETTINGS)
-  localStorage.removeItem(LS_JOURNAL)
-  localStorage.removeItem(LS_STREAK)
-  localStorage.removeItem(LS_BARRIERS)
 }
 
 export async function migrateToFirestore(uid: string): Promise<boolean> {
@@ -229,16 +225,32 @@ export async function migrateToFirestore(uid: string): Promise<boolean> {
 
   const remote = firestoreAdapter(uid)
   if (settings) await remote.saveSettings(settings)
-  for (const e of [...entries].reverse()) {
-    await remote.addJournalEntry(e)
-  }
-  if (streak) await remote.saveStreak(streak)
-  if (barriers.length) await remote.saveBarriers(barriers)
 
-  localStorage.removeItem(LS_SETTINGS)
-  localStorage.removeItem(LS_JOURNAL)
-  localStorage.removeItem(LS_STREAK)
-  localStorage.removeItem(LS_BARRIERS)
+  if (streak) {
+    const cloudStreak = await remote.getStreak()
+    await remote.saveStreak(cloudStreak ? mergeStreak(cloudStreak, streak) : streak)
+  }
+
+  if (barriers.length) {
+    const cloudBarriers = await remote.getBarriers()
+    await remote.saveBarriers([...new Set([...cloudBarriers, ...barriers])])
+  }
+
+  if (entries.length) {
+    const cloud = await remote.getJournalEntries()
+    for (const e of [...entries].reverse()) {
+      const dup = cloud.some(
+        (c) => c.text === e.text && Math.abs((c.amount ?? 0) - (e.amount ?? 0)) < 0.01,
+      )
+      if (!dup) await remote.addJournalEntry(e)
+    }
+  }
+
+  // The device keeps its own copy until the user clears their browser. Erasing
+  // it here is what made signing out look like the journal had been deleted:
+  // a signed-out session reads local, and local had been emptied on sign-in.
+  // Because local now survives, this runs again on the next sign-in, so every
+  // write above has to be idempotent -- hence the dedupe and merges.
   return true
 }
 
