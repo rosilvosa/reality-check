@@ -42,4 +42,4 @@ This repo's own deployment is simply **Reality Check** — it is the reference i
 
 Do not present a copy as this instance.
 
-This is not an OSI open-source license. Those require permission to sell. This one does not.
+This is a source-available license, not an OSI-approved open-source license. Open-source licenses allow commercial sale, whereas this license strictly prohibits selling the software or charging for its use.
