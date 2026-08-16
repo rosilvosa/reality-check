@@ -56,9 +56,11 @@ export default function Home() {
               <p className="text-ink text-sm mt-3">{t.home.startHint}</p>
             )}
           </div>
-          <Link to="/progress" className="text-xs font-bold text-muted hover:text-ink shrink-0">
-            {t.home.seeProgress} →
-          </Link>
+          {!loading && !checkedIn && (
+            <Link to="/progress" className="text-xs font-bold text-muted hover:text-ink shrink-0">
+              {t.home.seeProgress} →
+            </Link>
+          )}
         </div>
 
         {loading ? (
@@ -66,9 +68,12 @@ export default function Home() {
             —
           </div>
         ) : checkedIn ? (
-          <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
-            {t.home.checkedIn}
-          </div>
+          <Link
+            to="/progress"
+            className="w-full flex items-center justify-center gap-2 py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide hover:text-ink"
+          >
+            {t.home.checkedIn} →
+          </Link>
         ) : (
           <button
             type="button"
