@@ -24,7 +24,7 @@ Redux introduces action creators, reducers, and boilerplate that don't pay off u
 
 ## Two storage adapters (localStorage vs Firestore)
 
-The psychological design goal requires zero friction at the moment of crisis — a user reaching for this app after a loss cannot hit a signup wall. The `StorageAdapter` interface (`storage.ts`) abstracts all reads and writes. Free tier uses `localStorageAdapter`; Pro tier uses `firestoreAdapter`. The calling code (Zustand stores) never knows which one it's talking to. When a user upgrades, `migrateToFirestore()` copies their local data to Firestore and clears localStorage — one function call, no UI changes needed.
+The psychological design goal requires zero friction at the moment of crisis — a user reaching for this app after a loss cannot hit a signup wall. The `StorageAdapter` interface (`storage.ts`) abstracts all reads and writes. Signed-out users get `localStorageAdapter`; signed-in users get `firestoreAdapter`. The calling code (Zustand stores) never knows which one it's talking to. When a user signs in, `migrateToFirestore()` copies their local data to Firestore and clears localStorage — one function call, no UI changes needed.
 
 ---
 
@@ -34,25 +34,19 @@ Firebase anonymous auth creates a real UID without requiring email, password, or
 
 ---
 
-## PayMongo over Stripe
+## No paywall and no payments
 
-Stripe is the global default but it's optimized for card-first markets. The Philippines is GCash-first. PayMongo is a PH-native gateway with direct GCash, Maya, GrabPay, and QRPH (instant QR bank transfer) integrations. Getting a Philippine user to enter a 16-digit card number is a conversion killer. Getting them to tap GCash is not. PayMongo's API is also well-documented, its webhook flow is straightforward, and KYC approval is faster for PH-registered businesses.
+A subscription on a gambling recovery tool is contradictory — it reintroduces a recurring charge to someone trying to stop spending. A one-time fee for cloud backup is no better.
 
----
+The journal is the intercept. The person most likely to lose a phone or switch devices is the person in a binge. Gating that backup behind payment punishes the user who needs the product most.
 
-## Donations over a paywall
-
-A subscription on a gambling recovery tool is contradictory — it reintroduces a recurring charge to someone trying to stop spending. A one-time ₱299 Pro fee for cloud backup is better than a subscription, and PayMongo is still in the repo if we ever need it.
-
-It is still the wrong lock. The journal is the intercept. The person most likely to lose a phone or switch devices is the person in a binge. Gating that backup behind payment punishes the user who needs the product most.
-
-Launch rule: local-first with no account, free cloud sync on sign-in, Ko-fi donations to keep Firebase on and to fund an upcoming safety app. If donation volume ever fails to cover Blaze-plan cost at real scale, an optional Supporter thank-you can come back. Sync itself stays free.
+So there is no paywall, no Pro tier, and no payment path at all. Cloud sync is free on sign-in. The app never asks for money: an audience being retrained away from impulsive spending is the wrong audience to put preset amount buttons in front of.
 
 ---
 
 ## Cloud Functions in Singapore (asia-southeast1)
 
-The Philippines has no GCP region. The two closest are Singapore (asia-southeast1, ~20ms) and Taiwan (asia-east1, ~40ms). Singapore is the standard choice for PH-hosted workloads. The PayMongo webhook must process fast enough that the response lands before PayMongo's timeout — using us-central1 (the Firebase default) adds ~200ms of unnecessary round-trip latency and has caused webhook failures in testing. All functions must deploy to asia-southeast1; the Firebase default region must never be used for this project.
+The Philippines has no GCP region. The two closest are Singapore (asia-southeast1, ~20ms) and Taiwan (asia-east1, ~40ms). Singapore is the standard choice for PH-hosted workloads. All functions must deploy to asia-southeast1; the Firebase default us-central1 adds ~200ms of unnecessary round-trip latency and must never be used for this project.
 
 ---
 

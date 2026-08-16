@@ -20,51 +20,11 @@ What breaks, why it breaks, and what to do. You do not need this document when t
 
 **Symptom:** Pro users' writes don't persist across devices. No visible error in current UI (known gap — toast on write failure not yet implemented).
 
-**Impact:** Pro tier data writes fail silently. Free tier unaffected. No data is destroyed — Firestore data from before the outage is intact.
+**Impact:** Cloud writes fail silently for signed-in users. Local-only users are unaffected. No data is destroyed — Firestore data from before the outage is intact.
 
 **Recovery:** `firestoreAdapter` in `storage.ts` throws on write; Zustand stores catch the error. The user's local session continues normally. Data written during the outage is lost (not queued).
 
 **Action:** Check [Firebase Status](https://status.firebase.google.com). Consider adding a write-failure toast in the next session.
-
----
-
-## PayMongo API down
-
-**Symptom:** Clicking "Upgrade to Pro" shows a spinner, then an error. No charge occurs.
-
-**Impact:** No new Pro upgrades can process. Existing Pro users are completely unaffected.
-
-**Recovery:** `createCheckoutSession()` in `paymongo.ts` calls the `createPaymongoCheckout` Cloud Function, which POSTs to PayMongo's API. If PayMongo is down, the Cloud Function returns an error that surfaces in the `UpgradeModal`. PayMongo handles checkout atomically — no partial charges are possible.
-
-**Action:** Check [PayMongo Status](https://status.paymongo.com). No rollback needed. Retry works once PayMongo recovers.
-
----
-
-## PayMongo webhook fails (user paid but didn't get Pro access)
-
-**Symptom:** User reports paying via GCash/Maya but the app still shows Free tier.
-
-**Impact:** User is charged but `users/{uid}/subscription.isPro` was never set to `true` in Firestore.
-
-**Recovery (manual):**
-1. PayMongo Dashboard → Developers → Webhooks → find the checkout session → **Retry**
-2. Or: Firebase Console → Firestore → `users/{uid}/subscription` → manually set `{ isPro: true, paidAt: <timestamp>, amount: 29900 }`
-
-**Prevention:** PayMongo automatically retries webhooks 3 times with exponential backoff. Check Cloud Function logs: Firebase Console → Functions → `paymongoWebhook` → Logs.
-
-**Root cause to investigate:** If webhooks fail consistently, check that `PAYMONGO_WEBHOOK_SECRET` in `functions/.env` matches the signing secret in PayMongo Dashboard exactly. A mismatch causes signature verification to reject all webhooks silently.
-
----
-
-## Cloud Functions cold start (checkout is slow)
-
-**Symptom:** First PayMongo checkout after a period of inactivity takes 3–8 seconds.
-
-**Impact:** UX delay only. No data or payment impact. Subsequent checkouts in the same session are fast.
-
-**Recovery:** Expected behavior for Gen 1 Cloud Functions with no minimum instances configured. Acceptable at current user scale.
-
-**Future fix:** If checkout latency complaints increase, upgrade to Gen 2 functions with `minInstances: 1` — keeps one instance warm at all times (~$1.50/month).
 
 ---
 
@@ -156,7 +116,7 @@ build: {
 
 **This is by design.** Free tier = local only. Cloud sync requires Pro (₱299 one-time).
 
-**Response to user:** "Your data is stored on your device. To back up and sync across devices, upgrade to Pro. If you haven't upgraded, your previous data cannot be recovered."
+**Response to user:** "Your data is stored on your device. Sign in to back it up and sync across devices — that is free. If you were never signed in, data from a cleared browser cannot be recovered."
 
 ---
 

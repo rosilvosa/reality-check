@@ -62,13 +62,8 @@ FIREBASE_MESSAGING_SENDER_ID=
 FIREBASE_APP_ID=
 ```
 
-### Cloud Functions — `functions/.env` (optional — PayMongo is parked)
+### Cloud Functions — `functions/.env`
 
-Launch money path is Ko-fi donations, not checkout. You only need this file if you are touching the dormant PayMongo functions.
-
-```env
-PAYMONGO_SECRET_KEY=sk_test_...
-PAYMONGO_WEBHOOK_SECRET=whsec_...
 APP_URL=https://reality-check-ph.web.app
 ```
 
@@ -167,12 +162,6 @@ Both projects use Expo Go. Each runs on a different port (RC: 8082, DB: 8081). M
 
 **Firebase Functions Node version**
 `functions/package.json` locks engines to Node 20. Do not change to 22 without testing — Firebase function runtimes lag behind Node releases.
-
-**PayMongo webhook URL must use Singapore region**
-```
-https://asia-southeast1-reality-check-5fffe.cloudfunctions.net/paymongoWebhook
-```
-Using the Firebase default `us-central1` URL will route to a non-existent function and silently fail webhooks.
 
 **`functions.config()` is deprecated — do not use it**
 All env vars for Cloud Functions live in `functions/.env`. The old `firebase functions:config:set` commands no longer work (deprecated March 2027). Any documentation or Stack Overflow answer suggesting `functions.config()` is outdated.
