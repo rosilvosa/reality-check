@@ -21,6 +21,7 @@ export const fil: Translation = {
 
   home: {
     tag: 'Ngayon',
+    subtitle: 'Kasangkapan sa recovery',
     checkInNow: 'Mag-check in ngayong araw',
     checkedIn: 'Nakapag-check in na ngayong araw',
     daysLabel: 'araw na malinis',

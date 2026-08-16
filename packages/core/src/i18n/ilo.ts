@@ -21,6 +21,7 @@ export const ilo: Translation = {
 
   home: {
     tag: 'Ita',
+    subtitle: 'Kasangkapan iti recovery',
     checkInNow: 'Ag-check in ita',
     checkedIn: 'Naka-check inen ita',
     daysLabel: 'aldaw a natalna',

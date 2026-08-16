@@ -21,6 +21,7 @@ export const hil: Translation = {
 
   home: {
     tag: 'Subong',
+    subtitle: 'Gamit sa recovery',
     checkInNow: 'Mag-check in subong',
     checkedIn: 'Naka-check in na subong',
     daysLabel: 'adlaw nga limpyo',

@@ -21,6 +21,7 @@ export const ceb: Translation = {
 
   home: {
     tag: 'Karon',
+    subtitle: 'Himan sa recovery',
     checkInNow: 'Pag-check in karon',
     checkedIn: 'Naka-check in na karon',
     daysLabel: 'adlaw nga limpyo',

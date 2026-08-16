@@ -36,7 +36,7 @@ export default function Progress() {
 
   return (
     <div>
-      <h1 className="text-2xl font-black text-ink mb-6">{t.progress.title}</h1>
+      <h1 className="text-lg font-extrabold text-ink mb-6">{t.progress.title}</h1>
 
       {/* Current streak */}
       <div className="bg-surface border border-border rounded-xl p-6 mb-4 text-center">

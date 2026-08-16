@@ -21,6 +21,7 @@ export interface Translation {
 
   home: {
     tag: string
+    subtitle: string
     checkInNow: string
     checkedIn: string
     daysLabel: string

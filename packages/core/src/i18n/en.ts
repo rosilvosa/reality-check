@@ -21,6 +21,7 @@ export const en: Translation = {
 
   home: {
     tag: 'Today',
+    subtitle: 'Recovery tool',
     checkInNow: 'Check in for today',
     checkedIn: 'Checked in today',
     daysLabel: 'days clean',
