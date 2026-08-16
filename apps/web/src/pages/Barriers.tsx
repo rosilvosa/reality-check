@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useT } from '../i18n'
 import { tpl, REGION_HELP, resolveHelpRegion } from '@rc/core'
-import { getAdapter } from '../lib/storage'
+import { getAdapter, readLocalBarriersSync } from '../lib/storage'
 import { useAuthStore } from '../stores/authStore'
 import { useSettingsStore } from '../stores/settingsStore'
 
@@ -11,17 +11,24 @@ const BARRIER_IDS = [
 ] as const
 
 export default function Barriers() {
-  const [done, setDone] = useState<Set<string>>(new Set())
+  const user = useAuthStore((s) => s.user)
+  const loading = useAuthStore((s) => s.loading)
+  const isCloud = !!user && !user.isAnonymous
+  // Local data is available synchronously, so seed from it and skip the flash.
+  const [done, setDone] = useState<Set<string>>(() => new Set(isCloud ? [] : readLocalBarriersSync()))
+  const [loaded, setLoaded] = useState(!isCloud)
   const t = useT()
   const helpRegion = resolveHelpRegion(useSettingsStore((s) => s.helpRegion))
   const help = REGION_HELP[helpRegion]
 
-  const user = useAuthStore((s) => s.user)
-  const loading = useAuthStore((s) => s.loading)
 
   useEffect(() => {
     if (loading) return
-    getAdapter(user).getBarriers().then((ids) => setDone(new Set(ids))).catch(() => undefined)
+    getAdapter(user)
+      .getBarriers()
+      .then((ids) => setDone(new Set(ids)))
+      .catch(() => undefined)
+      .finally(() => setLoaded(true))
   }, [loading, user])
 
   function toggle(id: string) {
@@ -50,7 +57,7 @@ export default function Barriers() {
 
   const count = done.size
   const total = BARRIER_IDS.length
-  const allDone = count === total
+  const allDone = loaded && count === total
 
   return (
     <div>
@@ -66,7 +73,7 @@ export default function Barriers() {
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-bold uppercase tracking-wider text-muted">{t.barriers.progressLabel}</span>
           <span className={`text-sm font-black ${allDone ? 'text-green-400' : 'text-ink'}`}>
-            {count} / {total}
+            {loaded ? count : '—'} / {total}
           </span>
         </div>
         <div className="w-full bg-surface2 rounded-full h-2">
@@ -87,7 +94,7 @@ export default function Barriers() {
 
       <div className="space-y-3 mb-6">
         {BARRIER_IDS.map((id, i) => {
-          const checked = done.has(id)
+          const checked = loaded && done.has(id)
           const item = items[i]
           return (
             <div

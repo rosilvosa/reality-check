@@ -151,6 +151,20 @@ export function getAdapter(user: CloudUser): StorageAdapter {
   return localStorageAdapter
 }
 
+/**
+ * Barriers, read synchronously. The async adapter resolves a microtask later,
+ * which is long enough to paint an empty checklist first and then snap to the
+ * real one. Signed-out users can skip that flash entirely.
+ */
+export function readLocalBarriersSync(): string[] {
+  try {
+    const raw = localStorage.getItem(LS_BARRIERS)
+    return raw ? JSON.parse(raw) : []
+  } catch {
+    return []
+  }
+}
+
 export function clearLocalRc(): void {
   for (const key of LOCAL_KEYS) localStorage.removeItem(key)
 }
