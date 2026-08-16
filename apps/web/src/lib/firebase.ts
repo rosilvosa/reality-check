@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
-import { getAuth, GoogleAuthProvider, signInAnonymously } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously } from 'firebase/auth'
 import { getFunctions } from 'firebase/functions'
 
 const firebaseConfig = {
@@ -18,5 +18,13 @@ export const auth = getAuth(app)
 export const functions = getFunctions(app, 'asia-southeast1')
 export const googleProvider = new GoogleAuthProvider()
 
-// Free-tier users get anonymous identity so existing page auth listeners fire.
-signInAnonymously(auth).catch(console.error)
+// Everyone needs an identity so page auth listeners fire, but this must wait
+// until Firebase has finished restoring a persisted session. Calling
+// signInAnonymously at module load races that restore: currentUser is still
+// null, so Firebase mints a NEW anonymous user and evicts the signed-in one,
+// orphaning their cloud journal. The PWA hid this -- a warm app never
+// re-evaluates this module, so it only surfaced after a deploy forced a
+// fresh load.
+onAuthStateChanged(auth, (user) => {
+  if (!user) signInAnonymously(auth).catch(console.error)
+})
