@@ -9,6 +9,7 @@ import { useStreakStore } from '../stores/streakStore'
 import { auth } from '../lib/firebase'
 import { signOut, deleteAccountAndData } from '../lib/auth'
 import { buildBackup, downloadBackup, parseBackup, restoreBackup } from '../lib/backup'
+import { persistTextSize, readTextSize, type TextSize } from '../lib/textSize'
 import { migrateToFirestore, syncNowToCloud } from '../lib/storage'
 import AuthModal from '../components/AuthModal'
 
@@ -33,6 +34,7 @@ export default function Settings() {
   const [backupMsg, setBackupMsg] = useState('')
   const [backupErr, setBackupErr] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [textSize, setTextSize] = useState<TextSize>(readTextSize)
   const [syncing, setSyncing] = useState(false)
   const [synced, setSynced] = useState(false)
 
@@ -231,6 +233,28 @@ export default function Settings() {
             </div>
           </div>
         )}
+      </div>
+
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.textSize.section}</p>
+        <p className="text-sm text-muted mb-3 leading-relaxed">{t.textSize.hint}</p>
+        <div className="flex gap-2">
+          {(['normal', 'large'] as TextSize[]).map((size) => (
+            <button
+              key={size}
+              type="button"
+              aria-pressed={textSize === size}
+              onClick={() => { setTextSize(size); persistTextSize(size) }}
+              className={`flex-1 rounded-lg border px-4 py-2.5 text-sm font-semibold ${
+                textSize === size
+                  ? 'border-accent text-ink'
+                  : 'border-border text-muted hover:text-ink hover:border-ink/40'
+              }`}
+            >
+              {size === 'normal' ? t.textSize.normal : t.textSize.large}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">

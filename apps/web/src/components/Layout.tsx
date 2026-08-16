@@ -31,8 +31,8 @@ function Tab({
     >
       {({ isActive }) => (
         <>
-          <span className={`text-[22px] leading-none ${isActive ? '' : 'opacity-70'}`}>{icon}</span>
-          <span className="w-full truncate text-[11px] font-bold tracking-wide leading-tight text-center">{word(label)}</span>
+          <span className={`text-[1.375rem] leading-none ${isActive ? '' : 'opacity-70'}`}>{icon}</span>
+          <span className="w-full truncate text-[0.6875rem] font-bold tracking-wide leading-tight text-center">{word(label)}</span>
           <span className={`h-0.5 w-5 rounded-full ${isActive ? 'bg-accent' : 'bg-transparent'}`} />
         </>
       )}
@@ -74,7 +74,7 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="max-w-2xl w-full mx-auto px-4 pb-28 text-center text-[11px] text-muted">
+      <footer className="max-w-2xl w-full mx-auto px-4 pb-28 text-center text-[0.6875rem] text-muted">
         <NavLink to="/privacy" className="hover:text-ink">{t.settings.privacyLink}</NavLink>
         {' · '}
         <NavLink to="/terms" className="hover:text-ink">{t.settings.termsLink}</NavLink>

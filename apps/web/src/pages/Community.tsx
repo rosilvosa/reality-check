@@ -203,8 +203,8 @@ export default function Community() {
             placeholder={t.community.composeHint}
             className="w-full bg-surface2 border border-border rounded-lg px-3 py-2 text-ink text-sm outline-none focus:border-accent mb-2"
           />
-          <p className="text-[11px] text-muted mb-3">{t.community.postedAs} · {text.length}/{MAX}</p>
-          <p className="text-[11px] text-muted mb-3">{t.community.rules}</p>
+          <p className="text-[0.6875rem] text-muted mb-3">{t.community.postedAs} · {text.length}/{MAX}</p>
+          <p className="text-[0.6875rem] text-muted mb-3">{t.community.rules}</p>
           {error && <p className="text-sm text-accent mb-3">{error}</p>}
           <div className="flex gap-2">
             <button
@@ -250,17 +250,17 @@ export default function Community() {
           return (
             <article key={post.id} className="bg-surface border border-border rounded-xl p-5">
               <div className="flex items-center justify-between gap-3 mb-2">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-muted">
+                <p className="text-[0.6875rem] font-bold uppercase tracking-wider text-muted">
                   Anonymous · {timeAgo(post.createdAt)}
                 </p>
-                <span className="text-[11px] text-muted">{t.community[
+                <span className="text-[0.6875rem] text-muted">{t.community[
                   post.type === 'tip' ? 'typeTip'
                     : post.type === 'urge' ? 'typeUrge'
                       : post.type === 'question' ? 'typeQuestion'
                         : 'typeVent'
                 ]}</span>
               </div>
-              <p className="text-ink text-[15px] leading-relaxed whitespace-pre-wrap">{post.text}</p>
+              <p className="text-ink text-[0.9375rem] leading-relaxed whitespace-pre-wrap">{post.text}</p>
               <div className="flex items-center gap-3 mt-3">
                 <button
                   type="button"

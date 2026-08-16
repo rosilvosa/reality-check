@@ -51,7 +51,7 @@ export default function FindHelp() {
           const internal = item.url?.startsWith('/')
           return (
             <div key={item.id} className="bg-surface border border-border rounded-xl p-5">
-              <p className="text-ink font-bold text-[15px] mb-1">{item.title}</p>
+              <p className="text-ink font-bold text-[0.9375rem] mb-1">{item.title}</p>
               <p className="text-sm text-muted leading-relaxed">{item.body}</p>
               {item.url && (
                 internal ? (

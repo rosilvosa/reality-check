@@ -20,7 +20,7 @@ export default function ThemeToggle() {
       aria-label={toLight ? t.common.themeLight : t.common.themeDark}
       title={toLight ? t.common.themeLight : t.common.themeDark}
     >
-      <span className="text-[20px] leading-none" aria-hidden>
+      <span className="text-[1.25rem] leading-none" aria-hidden>
         {toLight ? '☀️' : '🌙'}
       </span>
     </button>

@@ -307,6 +307,12 @@ export const fil: Translation = {
     retry: 'Subukan ulit',
   },
 
+  textSize: {
+    section: 'Laki ng teksto',
+    hint: 'Palakihin ang lahat kung mahirap basahin ang maliit na teksto.',
+    normal: 'Normal',
+    large: 'Malaki',
+  },
   backup: {
     section: 'Backup',
     hint: 'I-save ang progreso mo sa file, o ibalik mula sa file. Walang account na kailangan.',

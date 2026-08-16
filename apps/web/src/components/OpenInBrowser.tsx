@@ -29,7 +29,7 @@ export default function OpenInBrowser() {
             {t.common.close}
           </button>
         </div>
-        <p className="text-[11px] text-muted mt-2 leading-relaxed">{t.home.openBrowserHow}</p>
+        <p className="text-[0.6875rem] text-muted mt-2 leading-relaxed">{t.home.openBrowserHow}</p>
       </div>
     </div>
   )

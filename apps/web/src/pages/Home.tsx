@@ -36,7 +36,7 @@ export default function Home() {
 
       <InstallHint />
 
-      <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">{t.home.tag}</p>
+      <p className="text-[0.6875rem] tracking-[0.18em] uppercase text-muted mb-1">{t.home.tag}</p>
 
       <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
         <div className="flex items-end justify-between gap-4 mb-4">
@@ -83,12 +83,12 @@ export default function Home() {
       {(roomToday > 0 || roomPesos > 0) && (
         <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
           {roomToday > 0 && (
-            <p className="text-ink font-bold text-[15px] leading-snug">
+            <p className="text-ink font-bold text-[0.9375rem] leading-snug">
               {tpl(t.home.togetherToday, { n: String(roomToday) })}
             </p>
           )}
           {roomPesos > 0 && (
-            <p className={`text-ink font-bold text-[15px] leading-snug ${roomToday > 0 ? 'mt-2' : ''}`}>
+            <p className={`text-ink font-bold text-[0.9375rem] leading-snug ${roomToday > 0 ? 'mt-2' : ''}`}>
               {tpl(t.home.togetherWeek, { amount: formatMoney(roomPesos, 'PHP') })}
             </p>
           )}
@@ -136,7 +136,7 @@ export default function Home() {
 
       {latest && (
         <Link to="/journal" className="block bg-surface border border-border rounded-2xl p-5">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-muted mb-2">{t.home.lastEntry}</p>
+          <p className="text-[0.6875rem] font-bold uppercase tracking-widest text-muted mb-2">{t.home.lastEntry}</p>
           {latest.amount > 0 && (
             <p className="text-xs text-muted mb-1">{formatMoney(latest.amount, currency)}</p>
           )}

@@ -73,7 +73,7 @@ function Section({
               rel="noopener noreferrer"
               className="block bg-surface border border-border rounded-xl p-4 hover:border-accent"
             >
-              <p className="text-[11px] text-muted mb-1">#{item.number}</p>
+              <p className="text-[0.6875rem] text-muted mb-1">#{item.number}</p>
               <p className="text-ink text-sm font-semibold leading-snug">{item.title}</p>
             </a>
           ))}

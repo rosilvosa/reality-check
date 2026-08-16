@@ -307,6 +307,12 @@ export const hil: Translation = {
     retry: 'Tilawi liwat',
   },
 
+  textSize: {
+    section: 'Kadakuon sang teksto',
+    hint: 'Padakua ang tanan kon mabudlay basahon ang gamay nga teksto.',
+    normal: 'Normal',
+    large: 'Daku',
+  },
   backup: {
     section: 'Backup',
     hint: 'I-save ang imo progreso sa file, ukon ibalik halin sa file. Wala sang account nga kinahanglan.',

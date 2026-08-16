@@ -121,7 +121,7 @@ export default function Barriers() {
                 </button>
 
                 <div className="flex-1 min-w-0">
-                  <p className={`font-bold text-[15px] mb-1 ${checked ? 'text-muted line-through' : 'text-ink'}`}>
+                  <p className={`font-bold text-[0.9375rem] mb-1 ${checked ? 'text-muted line-through' : 'text-ink'}`}>
                     {item.title}
                   </p>
                   <p className={`text-sm leading-relaxed ${checked ? 'text-muted/60' : 'text-muted'}`}>
@@ -146,8 +146,8 @@ export default function Barriers() {
 
       <div className="bg-surface border border-border rounded-xl p-5">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.barriers.whyTitle}</p>
-        <p className="text-ink text-[15px] leading-relaxed mb-3">{t.barriers.whyP1}</p>
-        <p className="text-ink text-[15px] leading-relaxed">{t.barriers.whyP2}</p>
+        <p className="text-ink text-[0.9375rem] leading-relaxed mb-3">{t.barriers.whyP1}</p>
+        <p className="text-ink text-[0.9375rem] leading-relaxed">{t.barriers.whyP2}</p>
       </div>
     </div>
   )

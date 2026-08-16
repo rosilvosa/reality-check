@@ -68,18 +68,18 @@ export default function Trap() {
 
         {result !== null && (
           <div className="mt-4 bg-danger border-2 border-accent rounded-xl p-5">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-accent mb-3">{t.trap.calcResultTag}</p>
+            <p className="text-[0.6875rem] font-bold uppercase tracking-wider text-accent mb-3">{t.trap.calcResultTag}</p>
             <p className="text-3xl font-extrabold text-accent mb-2">
               {tpl(t.trap.calcResultYear, { amount: formatMoney(Math.round(result), currency) })}
             </p>
-            <p className="text-ink text-[15px] leading-relaxed">
+            <p className="text-ink text-[0.9375rem] leading-relaxed">
               {tpl(t.trap.calcResultBody, {
                 bet: formatMoney(parseFloat(weeklyBet), currency),
                 type: t.trap.houseEdgeLabels[edgeIndex],
                 amount: formatMoney(Math.round(result), currency),
               })}
             </p>
-            <p className="text-ink text-[15px] leading-relaxed mt-3">
+            <p className="text-ink text-[0.9375rem] leading-relaxed mt-3">
               {tpl(t.trap.calc5year, { amount: formatMoney(Math.round(result * 5), currency) })}
             </p>
             <p className="text-muted text-sm mt-3 leading-relaxed">{t.trap.calcFooter}</p>
@@ -87,7 +87,7 @@ export default function Trap() {
         )}
       </div>
 
-      <p className="text-ink font-bold text-[15px] leading-relaxed mb-5">{t.trap.skinnerCallout}</p>
+      <p className="text-ink font-bold text-[0.9375rem] leading-relaxed mb-5">{t.trap.skinnerCallout}</p>
 
       <NavLink
         to="/barriers"

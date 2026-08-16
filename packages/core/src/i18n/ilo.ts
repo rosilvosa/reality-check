@@ -307,6 +307,12 @@ export const ilo: Translation = {
     retry: 'Padasem manen',
   },
 
+  textSize: {
+    section: 'Kadakkel ti teksto',
+    hint: 'Padakkelem ti amin no narigat a basaen ti bassit a teksto.',
+    normal: 'Normal',
+    large: 'Dakkel',
+  },
   backup: {
     section: 'Backup',
     hint: 'Isalbar ti progresom iti file, wenno isubli manipud iti file. Awan kasapulan nga account.',

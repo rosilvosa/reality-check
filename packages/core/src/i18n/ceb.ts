@@ -307,6 +307,12 @@ export const ceb: Translation = {
     retry: 'Sulayi pag-usab',
   },
 
+  textSize: {
+    section: 'Gidak-on sa teksto',
+    hint: 'Padak-a ang tanan kung lisod basahon ang gagmay nga teksto.',
+    normal: 'Normal',
+    large: 'Dako',
+  },
   backup: {
     section: 'Backup',
     hint: 'I-save ang imong progreso sa file, o ibalik gikan sa file. Walay account nga kinahanglan.',

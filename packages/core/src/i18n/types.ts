@@ -243,6 +243,11 @@ export interface Translation {
     retry: string
   }
 
+  textSize: {
+    section: string; hint: string
+    normal: string; large: string
+  }
+
   backup: {
     section: string; hint: string
     exportBtn: string; importBtn: string

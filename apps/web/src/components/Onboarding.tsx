@@ -104,11 +104,11 @@ export default function Onboarding() {
 
         {step === 1 && (
           <div>
-            <p className="text-[11px] tracking-widest uppercase text-muted font-bold mb-4">{t.onboarding.tag}</p>
+            <p className="text-[0.6875rem] tracking-widest uppercase text-muted font-bold mb-4">{t.onboarding.tag}</p>
             <h1 className="text-4xl font-black text-ink leading-none mb-4">{t.onboarding.title}</h1>
             <p className="text-accent font-bold text-lg mb-6">{t.onboarding.tagline}</p>
-            <p className="text-ink text-[15px] leading-relaxed mb-4">{t.onboarding.body1}</p>
-            <p className="text-ink text-[15px] leading-relaxed mb-10">{t.onboarding.body2}</p>
+            <p className="text-ink text-[0.9375rem] leading-relaxed mb-4">{t.onboarding.body1}</p>
+            <p className="text-ink text-[0.9375rem] leading-relaxed mb-10">{t.onboarding.body2}</p>
             <button
               onClick={() => setStep(2)}
               className="w-full bg-accent text-white font-black py-4 rounded-xl text-sm tracking-wider hover:opacity-90 transition-opacity"
@@ -123,7 +123,7 @@ export default function Onboarding() {
             <h2 className="text-3xl font-black text-ink mb-2">{t.onboarding.step2Title}</h2>
             <p className="text-muted text-sm leading-relaxed mb-8">{t.onboarding.step2Sub}</p>
 
-            <label htmlFor="onboarding-pay" className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
+            <label htmlFor="onboarding-pay" className="block text-[0.6875rem] font-bold uppercase tracking-wider text-muted mb-2">
               {t.onboarding.step2LabelPay}
             </label>
             <input id="onboarding-pay"
@@ -135,7 +135,7 @@ export default function Onboarding() {
               autoFocus
             />
 
-            <label htmlFor="onboarding-hours" className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
+            <label htmlFor="onboarding-hours" className="block text-[0.6875rem] font-bold uppercase tracking-wider text-muted mb-2">
               {t.onboarding.step2LabelHours}
             </label>
             <input id="onboarding-hours"
@@ -225,7 +225,7 @@ export default function Onboarding() {
             <p className="text-muted text-sm leading-relaxed mb-6">{t.onboarding.toolsSub}</p>
             <ul className="space-y-3 mb-10">
               {tools.map((line) => (
-                <li key={line} className="text-ink text-[15px] leading-snug border-l-2 border-accent pl-3">
+                <li key={line} className="text-ink text-[0.9375rem] leading-snug border-l-2 border-accent pl-3">
                   {line}
                 </li>
               ))}

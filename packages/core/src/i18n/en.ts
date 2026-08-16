@@ -307,6 +307,12 @@ export const en: Translation = {
     retry: 'Try again',
   },
 
+  textSize: {
+    section: 'Text size',
+    hint: 'Make everything bigger if the small text is hard to read.',
+    normal: 'Normal',
+    large: 'Large',
+  },
   backup: {
     section: 'Backup',
     hint: 'Save your progress to a file, or restore it from one. No account needed.',

@@ -73,7 +73,7 @@ export default function Journal() {
 
       {mustIntercept && mostRecent && (
         <div className="border-2 border-accent rounded-xl p-5 mb-6 bg-surface">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-accent mb-1">{t.journal.interceptTitle}</p>
+          <p className="text-[0.6875rem] font-bold uppercase tracking-wider text-accent mb-1">{t.journal.interceptTitle}</p>
           <p className="text-sm text-muted mb-4">
             {t.journal.interceptSub}
             {' '}
@@ -98,11 +98,11 @@ export default function Journal() {
 
       {mustShowChasingWarning && (
         <div className="border-2 border-red-500 rounded-xl p-5 mb-6 bg-surface">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-red-400 mb-1">{t.journal.chasingTitle}</p>
+          <p className="text-[0.6875rem] font-bold uppercase tracking-wider text-red-400 mb-1">{t.journal.chasingTitle}</p>
           <div className="bg-bg rounded-lg p-4 mb-4 border-l-4 border-red-500">
-            <p className="text-ink text-[15px] leading-relaxed mb-2">{t.journal.chasingBody1}</p>
-            <p className="text-ink text-[15px] leading-relaxed mb-2">{t.journal.chasingBody2}</p>
-            <p className="text-ink text-[15px] leading-relaxed">{t.journal.chasingBody3}</p>
+            <p className="text-ink text-[0.9375rem] leading-relaxed mb-2">{t.journal.chasingBody1}</p>
+            <p className="text-ink text-[0.9375rem] leading-relaxed mb-2">{t.journal.chasingBody2}</p>
+            <p className="text-ink text-[0.9375rem] leading-relaxed">{t.journal.chasingBody3}</p>
           </div>
           <button
             onClick={() => setChasingAcknowledged(true)}
@@ -156,7 +156,7 @@ export default function Journal() {
           <div className="space-y-3">
             {entries.map((e) => (
               <div key={e.id} className="bg-bg border-l-4 border-accent-dim rounded-r-lg p-3">
-                <p className="text-[11px] text-muted uppercase tracking-wider mb-1">
+                <p className="text-[0.6875rem] text-muted uppercase tracking-wider mb-1">
                   {e.createdAt.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}
                   {e.amount > 0 && ` · ${formatMoney(e.amount, currency)} lost`}
                 </p>

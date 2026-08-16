@@ -55,10 +55,10 @@ export default function Progress() {
           </>
         ) : (
           <>
-            <div className="text-[12px] text-muted">
+            <div className="text-[0.75rem] text-muted">
               {tpl(t.progress.lastCheckIn, { date: toDateLabel(lastCheckInDate) })}
             </div>
-            <div className="text-[12px] text-muted mt-1">
+            <div className="text-[0.75rem] text-muted mt-1">
               {tpl(t.progress.personalBest, { n: String(longestStreak) })}
             </div>
           </>
@@ -67,7 +67,7 @@ export default function Progress() {
 
       {/* Check-in */}
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-3">{t.progress.dailyCheckIn}</div>
+        <div className="text-[0.6875rem] text-muted uppercase tracking-widest font-bold mb-3">{t.progress.dailyCheckIn}</div>
         {loading ? (
           <div className="w-full py-3 bg-surface2 text-muted font-black rounded-lg text-sm tracking-wider text-center">
             —
@@ -87,7 +87,7 @@ export default function Progress() {
             {t.progress.checkInBtn}
           </button>
         )}
-        <p className="text-muted text-[12px] text-center mt-3">{t.progress.checkInHint}</p>
+        <p className="text-muted text-[0.75rem] text-center mt-3">{t.progress.checkInHint}</p>
       </div>
 
       {/* Streak reset message */}
@@ -100,7 +100,7 @@ export default function Progress() {
       {/* What you've protected */}
       {totalSaved > 0 && (
         <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-          <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-3">{t.progress.protectedLabel}</div>
+          <div className="text-[0.6875rem] text-muted uppercase tracking-widest font-bold mb-3">{t.progress.protectedLabel}</div>
           <div className="text-2xl font-black text-ink mb-3">
             {formatMoney(totalSaved, currency)}
           </div>
@@ -124,7 +124,7 @@ export default function Progress() {
 
       {/* Milestone timeline */}
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <div className="text-[11px] text-muted uppercase tracking-widest font-bold mb-4">{t.progress.milestonesLabel}</div>
+        <div className="text-[0.6875rem] text-muted uppercase tracking-widest font-bold mb-4">{t.progress.milestonesLabel}</div>
         <div className="grid grid-cols-3 gap-3">
           {MILESTONES.map((m) => {
             const unlocked = milestonesSeen.includes(m) || days >= m
@@ -143,14 +143,14 @@ export default function Progress() {
                 <span className={`text-2xl ${unlocked ? '' : 'grayscale opacity-30'}`}>
                   {unlocked ? MILESTONE_EMOJI[m] : '🔒'}
                 </span>
-                <span className={`text-[11px] font-bold mt-1 ${unlocked ? 'text-ink' : 'text-muted'}`}>
+                <span className={`text-[0.6875rem] font-bold mt-1 ${unlocked ? 'text-ink' : 'text-muted'}`}>
                   {m}d
                 </span>
                 {isNext && !unlocked && (
-                  <span className="text-[9px] text-accent mt-0.5">{t.progress.nextLabel}</span>
+                  <span className="text-[0.5625rem] text-accent mt-0.5">{t.progress.nextLabel}</span>
                 )}
                 {unlocked && (
-                  <span className="text-[9px] text-accent mt-0.5">✓</span>
+                  <span className="text-[0.5625rem] text-accent mt-0.5">✓</span>
                 )}
               </div>
             )
