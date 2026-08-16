@@ -87,7 +87,7 @@ export default function Barriers() {
         )}
         {!allDone && count > 0 && (
           <p className="text-muted text-xs mt-2">
-            {tpl(t.barriers.remaining, { n: String(total - count) })}
+            {tpl(t.barriers.remaining, { n: String(total - count), s: total - count === 1 ? '' : 's' })}
           </p>
         )}
       </div>
