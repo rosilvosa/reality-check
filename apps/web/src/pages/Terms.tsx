@@ -19,8 +19,8 @@ export default function Terms() {
       </p>
       <h3 className="text-ink font-bold pt-2">Support</h3>
       <p>
-        This app is free. We do not charge for features and nothing is locked behind a payment. There is an
-        optional Ko-fi link if you want to support the work. It unlocks nothing.
+        This app is free. We do not charge for features, nothing is locked behind a payment, and there are no
+        ads. We do not sell anything and we do not ask you for money.
       </p>
       <h3 className="text-ink font-bold pt-2">Source code</h3>
       <p>

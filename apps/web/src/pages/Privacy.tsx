@@ -27,12 +27,6 @@ export default function Privacy() {
         user ID on the post so you can delete it. Deleting your account also deletes your posts. Do not put
         your name, address, or anyone else’s identity in a post.
       </p>
-      <h3 className="text-ink font-bold pt-2">Support</h3>
-      <p>
-        Reality Check does not sell features. Optional donations (GCash, Maya, card via PayMongo, or Ko-fi) keep
-        cloud sync on and help David’s Beacon stay free for special-needs families when it launches. Telling a
-        family about the mission still helps more than money.
-      </p>
       <h3 className="text-ink font-bold pt-2">Your rights</h3>
       <p>
         You can delete your account and cloud data from Settings. That wipes your Firestore tree and local
