@@ -167,15 +167,13 @@ export interface Translation {
     addAsset: string; saveBtn: string; savedBtn: string
     currencySection: string; currencyHint: string
     helpRegionSection: string; helpRegionHint: string
-    langSection: string; supportSection: string; supportHint: string; kofiBtn: string
+    langSection: string
     recoveryTools: string; barriersTitle: string; barriersDesc: string
     findHelpTitle: string; findHelpDesc: string
     insteadTitle: string; insteadDesc: string
     communityTitle: string; communityDesc: string
     syncActive: string
     syncNowBtn: string; syncNowHint: string; syncingBtn: string; syncDoneBtn: string; syncFail: string; saveFailed: string
-    donateNow: string; donateSuccess: string; donateFail: string
-    customAmount: string; donateOther: string
     deleteAccount: string; deleteConfirm: string
     privacyLink: string; termsLink: string
     sourceCode: string; sourceHint: string
@@ -342,7 +340,7 @@ export const LANGUAGES: { code: Lang; label: string; native: string }[] = [
   { code: 'ilo', label: 'Ilocano',     native: 'Ilocano'   },
 ]
 
-/** Replace {key} placeholders. tpl('Hello {name}', {name:'Ron'}) → 'Hello Ron' */
+/** Replace {key} placeholders. tpl('Hello {name}', {name:'Ana'}) → 'Hello Ana' */
 export function tpl(str: string, vars: Record<string, string | number>): string {
   return str.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ''))
 }

@@ -54,9 +54,6 @@ export default function Barriers() {
 
   return (
     <div>
-      <NavLink to="/trap" className="text-xs text-muted hover:text-ink transition-colors mb-4 inline-block">
-        ← {t.common.back}
-      </NavLink>
 
       <h2 className="text-lg font-extrabold text-ink mb-1">{t.barriers.title}</h2>
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.barriers.subtitle}</p>

@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div>
       <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-1">Recovery tool</p>
-      <h1 className="text-[22px] font-black text-ink tracking-tight mb-1">Reality Check PH</h1>
+      <h1 className="text-[22px] font-black text-ink tracking-tight mb-1">Reality Check</h1>
       <p className="text-[11px] tracking-[0.18em] uppercase text-muted mb-5">{t.home.tag}</p>
 
       <InstallHint />

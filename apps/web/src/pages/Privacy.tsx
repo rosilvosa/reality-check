@@ -40,7 +40,7 @@ export default function Privacy() {
         {' '}<button type="button" onClick={showContact} className="text-accent hover:text-ink">use Contact</button>
         {' '}to request access or deletion.
       </p>
-      <p>Operator: Ron Silvosa. Use Contact for operator requests.</p>
+      <p>This app is run by an independent maintainer. Use Contact for any data or privacy request.</p>
     </div>
   )
 }

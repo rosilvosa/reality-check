@@ -4,7 +4,7 @@ A gambling recovery tool. It re-sensitizes you to the real value of money.
 
 Casinos sell a digital illusion: chips, spins, “almost won.” This app breaks that. A loss is not a number on a screen. It is hours of your life, weeks of groceries, months of rent.
 
-**Live instance:** [Reality Check PH](https://reality-check-ph.web.app)  
+**Live instance:** [reality-check-ph.web.app](https://reality-check-ph.web.app) — the reference deployment, always running the current source.  
 **Languages:** English, Filipino, Cebuano, Hiligaynon, Ilocano
 
 The product is a website. On a phone, add it to the home screen from the browser. There is no store listing.
@@ -38,8 +38,8 @@ No account required. Without sign-in, data stays in this browser. Sign in with G
 
 [PolyForm Noncommercial 1.0.0](LICENSE). The source is public. You may copy it, change the help numbers, and run your own free instance. You may not sell the software or charge people to use a copy.
 
-Keep the name **Reality Check** and append your country or region so people know which one they opened. This site is **Reality Check PH**. Yours might be Reality Check US, Reality Check UK, Reality Check SG.
+This repo's own deployment is simply **Reality Check** — it is the reference instance and reflects the source directly. If you run your own copy, append your country or region so people know which one they opened: Reality Check US, Reality Check UK, Reality Check SG.
 
-Do not present a copy as this Philippine site.
+Do not present a copy as this instance.
 
 This is not an OSI open-source license. Those require permission to sell. This one does not.

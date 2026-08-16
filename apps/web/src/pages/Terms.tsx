@@ -19,15 +19,15 @@ export default function Terms() {
       </p>
       <h3 className="text-ink font-bold pt-2">Support</h3>
       <p>
-        This app is free. We do not charge for features. Optional donations go through PayMongo or Ko-fi and
-        do not unlock anything. They keep cloud sync available and support David’s Beacon’s mission.
+        This app is free. We do not charge for features and nothing is locked behind a payment. There is an
+        optional Ko-fi link if you want to support the work. It unlocks nothing.
       </p>
       <h3 className="text-ink font-bold pt-2">Source code</h3>
       <p>
         The source is public under the PolyForm Noncommercial License. You may copy it, change it, and run your
         own free instance. You may not sell the software or charge people to use a copy. Please keep the name
-        Reality Check and append your country or region (this site is Reality Check PH). Do not present a copy
-        as this Philippine site.
+        Reality Check and append your country or region — for example Reality Check US — so people know
+        which one they opened. Do not present a copy as this site.
       </p>
       <h3 className="text-ink font-bold pt-2">Acceptable use</h3>
       <p>

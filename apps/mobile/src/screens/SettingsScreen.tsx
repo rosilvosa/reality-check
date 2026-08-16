@@ -8,8 +8,6 @@ import type { Settings, Asset } from '@rc/core'
 import { useT, useLang } from '../i18n'
 import { tpl } from '@rc/core'
 
-const KOFI_URL = 'https://ko-fi.com/rosilvosa'
-
 export default function SettingsScreen() {
   const navigation = useNavigation<any>()
   const { settings, load, save } = useSettingsStore()
@@ -167,10 +165,6 @@ export default function SettingsScreen() {
           <Text style={styles.toolArrow}>→</Text>
         </TouchableOpacity>
       </View>
-
-      <TouchableOpacity onPress={() => Linking.openURL(KOFI_URL)} style={{ marginTop: 8, marginBottom: 8 }}>
-        <Text style={[styles.syncHint, { textAlign: 'center' }]}>{t.settings.supportSection}</Text>
-      </TouchableOpacity>
     </ScrollView>
   )
 }
@@ -201,8 +195,6 @@ const styles = StyleSheet.create({
   toolTitle: { fontSize: 15, fontWeight: '700', color: colors.white, marginBottom: 2 },
   toolDesc: { fontSize: 12, color: colors.muted },
   toolArrow: { fontSize: 16, color: colors.muted, marginLeft: 10 },
-  kofiBtn: { borderWidth: 1, borderColor: colors.border, borderRadius: 8, padding: 14, alignItems: 'center' },
-  kofiBtnText: { color: colors.white, fontWeight: '700', fontSize: 14 },
   langRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   langBtn: { borderWidth: 1, borderColor: colors.border, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 8 },
   langBtnActive: { backgroundColor: colors.red, borderColor: colors.red },
