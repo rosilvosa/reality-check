@@ -13,6 +13,7 @@ import { persistTextSize, readTextSize, type TextSize } from '../lib/textSize'
 import { migrateToFirestore, syncNowToCloud } from '../lib/storage'
 import AuthModal from '../components/AuthModal'
 import ConfirmModal from '../components/ConfirmModal'
+import DeleteAccountModal from '../components/DeleteAccountModal'
 
 
 export default function Settings() {
@@ -37,6 +38,7 @@ export default function Settings() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [textSize, setTextSize] = useState<TextSize>(readTextSize)
   const [confirmSignOut, setConfirmSignOut] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false)
   const [signingOut, setSigningOut] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const [synced, setSynced] = useState(false)
@@ -163,7 +165,6 @@ export default function Settings() {
   }
 
   async function handleDelete() {
-    if (!window.confirm(t.settings.deleteConfirm)) return
     setDeleting(true)
     try {
       await deleteAccountAndData()
@@ -225,13 +226,6 @@ export default function Settings() {
             <div className="flex gap-2">
               <button type="button" onClick={() => setConfirmSignOut(true)} className="text-xs text-muted hover:text-ink transition-colors border border-border px-3 py-1.5 rounded-lg">
                 {t.settings.signOut}
-              </button>
-              <button
-                onClick={handleDelete}
-                disabled={deleting}
-                className="text-xs text-red-400 hover:text-red-300 transition-colors border border-red-900 px-3 py-1.5 rounded-lg disabled:opacity-50"
-              >
-                {deleting ? '…' : t.settings.deleteAccount}
               </button>
             </div>
           </div>
@@ -444,7 +438,30 @@ export default function Settings() {
         {saved ? t.settings.savedBtn : t.settings.saveBtn}
       </button>
 
+      {isRealUser && (
+        <div className="border border-red-900/60 rounded-xl p-5 mb-4">
+          <p className="text-xs font-bold uppercase tracking-wider text-red-400 mb-3">{t.settings.dangerSection}</p>
+          <p className="text-sm text-muted leading-relaxed mb-3">{t.settings.deleteWhat}</p>
+          <button
+            type="button"
+            onClick={() => setConfirmDelete(true)}
+            disabled={deleting}
+            className="text-xs text-red-400 hover:text-red-300 transition-colors border border-red-900 px-3 py-1.5 rounded-lg disabled:opacity-50"
+          >
+            {deleting ? '…' : t.settings.deleteAccount}
+          </button>
+        </div>
+      )}
+
       <AuthModal isOpen={showAuth} onClose={afterAuthClose} />
+
+      <DeleteAccountModal
+        open={confirmDelete}
+        busy={deleting}
+        onSaveCopy={handleExport}
+        onClose={() => setConfirmDelete(false)}
+        onConfirm={handleDelete}
+      />
 
       <ConfirmModal
         open={confirmSignOut}

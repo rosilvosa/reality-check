@@ -89,6 +89,7 @@ export interface Translation {
     chasingTitle: string; chasingBody1: string; chasingBody2: string; chasingBody3: string; chasingBtn: string
     labelAmount: string; labelFeeling: string; placeholderAmount: string; placeholderFeeling: string
     recordBtn: string; recorded: string; saveFailed: string
+    nudgeBody: string; nudgeAction: string; nudgeDismiss: string
     // params: {n}
     pastEntries: string
   }
@@ -161,6 +162,8 @@ export interface Translation {
     title: string; subtitle: string; accountSection: string; signInHint: string
     signInBtn: string; upgradeBtn: string; freeHint: string; proActive: string; signOut: string
     signOutTitle: string; signOutBody: string
+    dangerSection: string; deleteWhat: string; deleteSaveFirst: string
+    deleteContinue: string; deleteFinalTitle: string; deleteFinalBody: string; deleteFinalBtn: string
     incomeSection: string; labelMonthly: string; labelHours: string
     // params: {rate}
     hourlyRate: string

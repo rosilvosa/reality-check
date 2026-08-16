@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useJournalStore } from '../stores/journalStore'
+import { useAuthStore } from '../stores/authStore'
 import { auth } from '../lib/firebase'
 import { useT } from '../i18n'
 import { tpl, formatMoney } from '@rc/core'
@@ -22,6 +24,13 @@ export default function Journal() {
   const [amount, setAmount] = useState(() => amountFromQuery(searchParams.get('amount')))
   const [text, setText] = useState('')
   const [saving, setSaving] = useState(false)
+  const authUser = useAuthStore((s) => s.user)
+  const isSignedIn = !!authUser && !authUser.isAnonymous
+  // One nudge, dismissible for good. A recovery tool should not nag.
+  const [nudgeHidden, setNudgeHidden] = useState(() => {
+    try { return localStorage.getItem('rc_backup_nudge') === 'off' } catch { return false }
+  })
+  const showBackupNudge = !isSignedIn && !nudgeHidden && entries.length > 0
   const t = useT()
 
   useEffect(() => {
@@ -148,6 +157,29 @@ export default function Journal() {
         </div>
       )}
 
+      {showBackupNudge && (
+        <div className="bg-surface border border-border rounded-xl p-4 mb-5">
+          <p className="text-sm text-muted leading-relaxed mb-3">{t.journal.nudgeBody}</p>
+          <div className="flex flex-wrap gap-2">
+            <NavLink
+              to="/settings"
+              className="border border-border rounded-lg px-3 py-2 text-xs font-bold text-ink hover:border-accent"
+            >
+              {t.journal.nudgeAction} →
+            </NavLink>
+            <button
+              type="button"
+              onClick={() => {
+                setNudgeHidden(true)
+                try { localStorage.setItem('rc_backup_nudge', 'off') } catch { /* ignore */ }
+              }}
+              className="px-3 py-2 text-xs font-bold text-muted hover:text-ink"
+            >
+              {t.journal.nudgeDismiss}
+            </button>
+          </div>
+        </div>
+      )}
       {entries.length > 0 && (
         <div className="bg-surface border border-border rounded-xl p-5">
           <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">
