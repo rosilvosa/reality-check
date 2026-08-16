@@ -314,7 +314,7 @@ export const en: Translation = {
     importBtn: 'Restore from file',
     privacyNote: 'The file is plain text and includes your journal. Keep it somewhere only you can reach.',
     restoreNote: 'Restoring keeps what is already on this device and only adds what is missing.',
-    done: 'Restored. {n} journal entries added.',
+    done: 'Restored. Journal entries added: {n}.',
     doneNone: 'Restored. Nothing new to add.',
     exported: 'Saved.',
     failed: 'Could not read that file. Make sure it is a Reality Check backup.',
