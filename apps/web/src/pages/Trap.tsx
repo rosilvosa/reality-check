@@ -31,10 +31,10 @@ export default function Trap() {
       <p className="text-sm text-muted mb-5 leading-relaxed">{t.trap.calcSub}</p>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
+        <label htmlFor="trap-bet" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
           {t.trap.calcLabelBet}
         </label>
-        <input
+        <input id="trap-bet"
           type="number"
           value={weeklyBet}
           onChange={(e) => { setWeeklyBet(e.target.value); setResult(null) }}
@@ -42,10 +42,10 @@ export default function Trap() {
           className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4"
         />
 
-        <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
+        <label htmlFor="trap-type" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
           {t.trap.calcLabelType}
         </label>
-        <select
+        <select id="trap-type"
           value={edgeIndex}
           onChange={(e) => { setEdgeIndex(parseInt(e.target.value)); setResult(null) }}
           className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4"

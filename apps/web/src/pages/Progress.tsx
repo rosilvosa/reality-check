@@ -1,14 +1,9 @@
 import { useStreakStore } from '../stores/streakStore'
 import { useSettingsStore } from '../stores/settingsStore'
+import { useJournalStore } from '../stores/journalStore'
 import VoidSection from '../components/VoidSection'
 import { useT } from '../i18n'
-import { tpl, formatMoney, localISODate, visibleStreak } from '@rc/core'
-
-const MILESTONES = [1, 3, 7, 14, 30, 60, 90, 180, 365]
-
-const BADGE: Record<number, string> = {
-  1: '🌱', 3: '🌿', 7: '🔥', 14: '⚡', 30: '🏆', 60: '💎', 90: '🛡️', 180: '👑', 365: '🌟',
-}
+import { tpl, formatMoney, localISODate, visibleStreak, MILESTONES, MILESTONE_EMOJI } from '@rc/core'
 
 function toDateLabel(iso: string | null): string {
   if (!iso) return '—'
@@ -30,7 +25,8 @@ export default function Progress() {
 
   const checkedInToday = isCheckedInToday(lastCheckInDate)
   const days = visibleStreak(currentStreak, lastCheckInDate)
-  const totalSaved = useStreakStore.getState().getTotalSaved()
+  const journalEntries = useJournalStore((s) => s.entries)
+  const totalSaved = journalEntries.reduce((sum, e) => sum + (Number(e.amount) || 0), 0)
 
   const nextMilestone = MILESTONES.find((m) => m > days)
 
@@ -39,7 +35,7 @@ export default function Progress() {
     .map((a) => ({ name: a.name, units: totalSaved / a.cost }))
 
   return (
-    <div className="px-4 py-6 pb-24 max-w-lg mx-auto">
+    <div>
       <h1 className="text-2xl font-black text-ink mb-6">{t.progress.title}</h1>
 
       {/* Current streak */}
@@ -145,7 +141,7 @@ export default function Progress() {
                 }`}
               >
                 <span className={`text-2xl ${unlocked ? '' : 'grayscale opacity-30'}`}>
-                  {unlocked ? BADGE[m] : '🔒'}
+                  {unlocked ? MILESTONE_EMOJI[m] : '🔒'}
                 </span>
                 <span className={`text-[11px] font-bold mt-1 ${unlocked ? 'text-ink' : 'text-muted'}`}>
                   {m}d

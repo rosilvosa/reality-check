@@ -1,23 +1,25 @@
 import { useState } from 'react'
 import { signInWithGoogle, signInWithEmail, signUpWithEmail } from '../lib/auth'
+import { useT } from '../i18n'
+import type { Translation } from '@rc/core'
 
 interface Props {
   isOpen: boolean
   onClose: () => void
 }
 
-function authErrorMessage(e: unknown): string {
+function authErrorMessage(e: unknown, t: Translation): string {
   const code = typeof e === 'object' && e && 'code' in e ? String((e as { code: string }).code) : ''
   if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') return ''
   if (code === 'auth/credential-already-in-use' || code === 'auth/email-already-in-use') {
-    return 'That account already exists. Try Sign In.'
+    return t.auth.errAccountExists
   }
   if (code === 'auth/invalid-credential' || code === 'auth/wrong-password' || code === 'auth/user-not-found') {
-    return 'Wrong email or password.'
+    return t.auth.errWrongCredentials
   }
-  if (code === 'auth/weak-password') return 'Password must be at least 6 characters.'
+  if (code === 'auth/weak-password') return t.auth.errWeakPassword
   if (e instanceof Error) return e.message
-  return 'Sign-in failed'
+  return t.auth.errGeneric
 }
 
 type Tab = 'signin' | 'signup'
@@ -28,6 +30,7 @@ export default function AuthModal({ isOpen, onClose }: Props) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const t = useT()
 
   if (!isOpen) return null
 
@@ -38,7 +41,7 @@ export default function AuthModal({ isOpen, onClose }: Props) {
       await signInWithGoogle()
       onClose()
     } catch (e: unknown) {
-      const msg = authErrorMessage(e)
+      const msg = authErrorMessage(e, t)
       if (msg) setError(msg)
     } finally {
       setLoading(false)
@@ -46,7 +49,7 @@ export default function AuthModal({ isOpen, onClose }: Props) {
   }
 
   async function handleEmail() {
-    if (!email || !password) { setError('Enter email and password'); return }
+    if (!email || !password) { setError(t.auth.errMissingFields); return }
     setError('')
     setLoading(true)
     try {
@@ -54,7 +57,7 @@ export default function AuthModal({ isOpen, onClose }: Props) {
       else await signUpWithEmail(email, password)
       onClose()
     } catch (e: unknown) {
-      const msg = authErrorMessage(e)
+      const msg = authErrorMessage(e, t)
       if (msg) setError(msg)
     } finally {
       setLoading(false)
@@ -67,25 +70,28 @@ export default function AuthModal({ isOpen, onClose }: Props) {
       <div className="relative z-10 w-full max-w-sm bg-surface border border-border rounded-xl p-6 shadow-2xl">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-muted hover:text-ink transition-colors text-lg"
+          type="button"
+          aria-label={t.common.close}
+          className="absolute top-4 right-4 inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-muted hover:text-ink transition-colors text-lg"
         >
           ✕
         </button>
 
-        <h2 className="text-lg font-bold text-ink mb-1">Account</h2>
-        <p className="text-sm text-muted mb-5">Sign in to enable cloud sync across devices.</p>
+        <h2 className="text-lg font-bold text-ink mb-1">{t.auth.title}</h2>
+        <p className="text-sm text-muted mb-5">{t.auth.subtitle}</p>
 
         {/* Tabs */}
         <div className="flex border border-border rounded-lg overflow-hidden mb-5">
-          {(['signin', 'signup'] as Tab[]).map((t) => (
+          {(['signin', 'signup'] as Tab[]).map((tabId) => (
             <button
-              key={t}
-              onClick={() => { setTab(t); setError('') }}
+              key={tabId}
+              type="button"
+              onClick={() => { setTab(tabId); setError('') }}
               className={`flex-1 py-2 text-sm font-semibold transition-colors ${
-                tab === t ? 'bg-surface2 text-ink' : 'text-muted hover:text-ink'
+                tab === tabId ? 'bg-surface2 text-ink' : 'text-muted hover:text-ink'
               }`}
             >
-              {t === 'signin' ? 'Sign In' : 'Create Account'}
+              {tabId === 'signin' ? t.auth.signIn : t.auth.createAccount}
             </button>
           ))}
         </div>
@@ -102,26 +108,26 @@ export default function AuthModal({ isOpen, onClose }: Props) {
             <path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 0 1 0-3.04V5.41H1.83a8 8 0 0 0 0 7.18z"/>
             <path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 0 0 1.83 5.4L4.5 7.49a4.77 4.77 0 0 1 4.48-3.3z"/>
           </svg>
-          Continue with Google
+          {t.auth.google}
         </button>
 
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-muted">or</span>
+          <span className="text-xs text-muted">{t.auth.or}</span>
           <div className="flex-1 h-px bg-border" />
         </div>
 
         {/* Email */}
         <input
           type="email"
-          placeholder="Email"
+          placeholder={t.auth.emailPh}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-sm text-ink placeholder-muted outline-none focus:border-accent mb-2"
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder={t.auth.passwordPh}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleEmail()}
@@ -135,7 +141,7 @@ export default function AuthModal({ isOpen, onClose }: Props) {
           disabled={loading}
           className="w-full py-2.5 bg-accent text-white font-bold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
         >
-          {loading ? 'Please wait…' : tab === 'signin' ? 'Sign In' : 'Create Account'}
+          {loading ? t.auth.wait : tab === 'signin' ? t.auth.signIn : t.auth.createAccount}
         </button>
       </div>
     </div>

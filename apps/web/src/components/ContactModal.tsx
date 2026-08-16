@@ -58,7 +58,8 @@ export default function ContactModal() {
         <button
           type="button"
           onClick={hide}
-          className="absolute top-4 right-4 text-muted hover:text-ink text-lg"
+          aria-label={t.common.close}
+          className="absolute top-4 right-4 inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-muted hover:text-ink text-lg"
         >
           ✕
         </button>
@@ -87,8 +88,8 @@ export default function ContactModal() {
               {t.updates.seeList} →
             </NavLink>
 
-            <label className="block text-xs font-bold text-muted mb-1.5">{t.contact.typeLabel}</label>
-            <select
+            <label htmlFor="contact-kind" className="block text-xs font-bold text-muted mb-1.5">{t.contact.typeLabel}</label>
+            <select id="contact-kind"
               value={kind}
               onChange={(e) => setKind(e.target.value as (typeof TYPES)[number])}
               className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent mb-3"
@@ -98,10 +99,10 @@ export default function ContactModal() {
               ))}
             </select>
 
-            <label className="block text-xs font-bold text-muted mb-1.5">
+            <label htmlFor="contact-name" className="block text-xs font-bold text-muted mb-1.5">
               {t.contact.nameLabel} <span className="font-normal">{t.contact.nameOptional}</span>
             </label>
-            <input
+            <input id="contact-name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -109,10 +110,10 @@ export default function ContactModal() {
               className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent mb-3"
             />
 
-            <label className="block text-xs font-bold text-muted mb-1.5">
+            <label htmlFor="contact-email" className="block text-xs font-bold text-muted mb-1.5">
               {t.contact.emailLabel} <span className="font-normal">{t.contact.emailOptional}</span>
             </label>
-            <input
+            <input id="contact-email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -120,8 +121,8 @@ export default function ContactModal() {
               className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent mb-3"
             />
 
-            <label className="block text-xs font-bold text-muted mb-1.5">{t.contact.messageLabel}</label>
-            <textarea
+            <label htmlFor="contact-message" className="block text-xs font-bold text-muted mb-1.5">{t.contact.messageLabel}</label>
+            <textarea id="contact-message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={4}

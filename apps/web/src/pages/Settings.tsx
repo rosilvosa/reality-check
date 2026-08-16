@@ -270,8 +270,8 @@ export default function Settings() {
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-4">{t.settings.incomeSection}</p>
 
-        <label className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelMonthly}</label>
-        <input
+        <label htmlFor="settings-monthly" className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelMonthly}</label>
+        <input id="settings-monthly"
           type="number"
           value={monthly}
           onChange={(e) => setMonthly(e.target.value)}
@@ -279,8 +279,8 @@ export default function Settings() {
           className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4"
         />
 
-        <label className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelHours}</label>
-        <input
+        <label htmlFor="settings-hours" className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelHours}</label>
+        <input id="settings-hours"
           type="number"
           value={hours}
           onChange={(e) => setHours(e.target.value)}
@@ -315,8 +315,10 @@ export default function Settings() {
                 className="w-28 bg-surface2 border border-border rounded-lg px-3 py-2 text-ink text-sm outline-none focus:border-accent"
               />
               <button
+                type="button"
                 onClick={() => removeAsset(i)}
-                className="text-muted hover:text-accent border border-border rounded-lg px-2.5 py-2 text-sm transition-colors"
+                aria-label="Remove asset"
+                className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-muted hover:text-accent border border-border rounded-lg px-2.5 py-2 text-sm transition-colors"
               >
                 ✕
               </button>
@@ -384,7 +386,7 @@ export default function Settings() {
 
       <button
         onClick={handleSave}
-        className="w-full bg-[#0891b2] text-white font-bold py-3 rounded-lg transition-opacity hover:opacity-90 mb-6"
+        className="w-full bg-accent text-white font-bold py-3 rounded-lg transition-opacity hover:opacity-90 mb-6"
       >
         {saved ? t.settings.savedBtn : t.settings.saveBtn}
       </button>
@@ -392,9 +394,6 @@ export default function Settings() {
       <div className="border border-border rounded-xl p-5 mb-4">
         <p className="text-xs font-bold uppercase tracking-wider text-muted mb-2">{t.settings.supportSection}</p>
         <p className="text-xs text-muted leading-relaxed mb-3">{t.settings.supportHint}</p>
-        <NavLink to="/mission" className="text-xs text-accent hover:text-ink mb-2 inline-block">
-          {t.settings.missionLink} →
-        </NavLink>
         <NavLink to="/updates" className="block text-xs text-accent hover:text-ink mb-4">
           {t.settings.updatesLink} →
         </NavLink>

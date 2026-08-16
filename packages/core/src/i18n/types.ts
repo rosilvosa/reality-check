@@ -193,8 +193,8 @@ export interface Translation {
     step3Add: string; step3Finish: string
     laterBtn: string
     toolsTitle: string; toolsSub: string
-    toolSweat: string; toolAssets: string; toolJournal: string
-    toolMiss: string; toolTrap: string; toolProgress: string
+    toolLost: string; toolJournal: string; toolTrap: string
+    toolBarriers: string; toolHelp: string; toolProgress: string
     finishCta: string
   }
 
@@ -307,6 +307,21 @@ export interface Translation {
       string, string, string, string, string, string, string, string, string,
       string, string, string, string, string, string, string, string
     ]
+  }
+
+  auth: {
+    title: string; subtitle: string
+    signIn: string; createAccount: string
+    google: string; or: string
+    emailPh: string; passwordPh: string; wait: string
+    errMissingFields: string; errAccountExists: string
+    errWrongCredentials: string; errWeakPassword: string; errGeneric: string
+  }
+
+  milestone: {
+    // params: {n}
+    titleOne: string; titleMany: string
+    protected: string; acknowledge: string
   }
 
   milestoneMessages: Record<string, string>

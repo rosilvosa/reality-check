@@ -29,13 +29,13 @@ export default function FindHelp() {
         <NavLink to="/settings" className="text-accent hover:text-ink">{regionLabel}</NavLink>
       </p>
 
-      <div className="flex gap-1 mb-5 bg-surface border border-border rounded-xl p-1">
+      <div className="flex gap-1 mb-5 overflow-x-auto bg-surface border border-border rounded-xl p-1">
         {TABS.map((id) => (
           <button
             key={id}
             type="button"
             onClick={() => setTab(id)}
-            className={`flex-1 py-2 rounded-lg text-xs font-bold ${
+            className={`flex-1 min-w-fit px-2 py-2 rounded-lg text-xs font-bold whitespace-nowrap ${
               tab === id ? 'bg-surface2 text-ink' : 'text-muted hover:text-ink'
             }`}
           >

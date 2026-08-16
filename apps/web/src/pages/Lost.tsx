@@ -47,10 +47,10 @@ export default function Lost() {
       )}
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
+        <label htmlFor="lost-amount" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
           {t.sweat.labelLoss}
         </label>
-        <input
+        <input id="lost-amount"
           type="number"
           value={loss}
           onChange={(e) => { setLoss(e.target.value); setResult(null) }}
@@ -139,10 +139,10 @@ export default function Lost() {
                 {t.nearmiss.factTag}
               </span>
               <p className="text-ink text-[15px] leading-relaxed mb-4">{t.nearmiss.factBody}</p>
-              <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
+              <label htmlFor="nearmiss-what" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
                 {t.nearmiss.labelWhat}
               </label>
-              <input
+              <input id="nearmiss-what"
                 type="text"
                 value={nearInput}
                 onChange={(e) => { setNearInput(e.target.value); setReframe('') }}

@@ -1,11 +1,7 @@
 import { useStreakStore } from '../stores/streakStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { useT } from '../i18n'
-import { formatMoney } from '@rc/core'
-
-const BADGE: Record<number, string> = {
-  1: '🌱', 3: '🌿', 7: '🔥', 14: '⚡', 30: '🏆', 60: '💎', 90: '🛡️', 180: '👑', 365: '🌟',
-}
+import { formatMoney, tpl, MILESTONE_EMOJI } from '@rc/core'
 
 export default function MilestoneModal() {
   const { showMilestoneModal, newMilestone, getTotalSaved, dismissMilestone } = useStreakStore()
@@ -15,8 +11,9 @@ export default function MilestoneModal() {
   if (!showMilestoneModal || newMilestone === null) return null
 
   const totalSaved = getTotalSaved()
-  const badge = BADGE[newMilestone] ?? '🏅'
-  const message = t.milestoneMessages[String(newMilestone)] ?? `${newMilestone} days clean.`
+  const badge = MILESTONE_EMOJI[newMilestone] ?? '🏅'
+  const title = tpl(newMilestone === 1 ? t.milestone.titleOne : t.milestone.titleMany, { n: String(newMilestone) })
+  const message = t.milestoneMessages[String(newMilestone)] ?? title
 
   const assetLines = (assets ?? [])
     .filter((a) => a.cost > 0)
@@ -28,11 +25,11 @@ export default function MilestoneModal() {
       <div className="w-full max-w-sm bg-surface border-2 border-accent rounded-2xl p-8 text-center">
         <div className="text-7xl mb-4">{badge}</div>
         <h2 className="text-3xl font-black text-ink mb-1">
-          {newMilestone} {newMilestone === 1 ? 'Day' : 'Days'} Clean.
+          {title}
         </h2>
         {totalSaved > 0 && (
           <p className="text-muted text-sm mb-3">
-            You've protected{' '}
+            {t.milestone.protected}{' '}
             <span className="text-ink font-bold">
               {formatMoney(totalSaved, currency)}
             </span>
@@ -48,7 +45,7 @@ export default function MilestoneModal() {
           onClick={dismissMilestone}
           className="w-full py-3 bg-accent text-white font-black rounded-lg text-sm tracking-wider hover:opacity-90 transition-opacity"
         >
-          ACKNOWLEDGE
+          {t.milestone.acknowledge}
         </button>
       </div>
     </div>

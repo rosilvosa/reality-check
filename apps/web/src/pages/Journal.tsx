@@ -115,20 +115,20 @@ export default function Journal() {
 
       {(!mustIntercept && !mustShowChasingWarning) && (
         <div className="bg-surface border border-border rounded-xl p-5 mb-6">
-          <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
+          <label htmlFor="journal-amount" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
             {t.journal.labelAmount}
           </label>
-          <input
+          <input id="journal-amount"
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder={t.journal.placeholderAmount}
             className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4"
           />
-          <label className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
+          <label htmlFor="journal-feeling" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
             {t.journal.labelFeeling}
           </label>
-          <textarea
+          <textarea id="journal-feeling"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder={t.journal.placeholderFeeling}

@@ -71,12 +71,15 @@ export default function Onboarding() {
     ? (parseFloat(monthly) / (parseFloat(hours) || 176)).toFixed(2)
     : null
 
+  // Order mirrors the real nav: Lost / Journal / Trap / Barriers / Help
+  // on the tab bars, then Progress. /sweat, /assets and /nearmiss are now
+  // redirects into /lost, so they are no longer separate tabs to teach.
   const tools = [
-    t.onboarding.toolSweat,
-    t.onboarding.toolAssets,
+    t.onboarding.toolLost,
     t.onboarding.toolJournal,
-    t.onboarding.toolMiss,
     t.onboarding.toolTrap,
+    t.onboarding.toolBarriers,
+    t.onboarding.toolHelp,
     t.onboarding.toolProgress,
   ]
 
@@ -120,10 +123,10 @@ export default function Onboarding() {
             <h2 className="text-3xl font-black text-ink mb-2">{t.onboarding.step2Title}</h2>
             <p className="text-muted text-sm leading-relaxed mb-8">{t.onboarding.step2Sub}</p>
 
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
+            <label htmlFor="onboarding-pay" className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
               {t.onboarding.step2LabelPay}
             </label>
-            <input
+            <input id="onboarding-pay"
               type="number"
               value={monthly}
               onChange={(e) => setMonthly(e.target.value)}
@@ -132,10 +135,10 @@ export default function Onboarding() {
               autoFocus
             />
 
-            <label className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
+            <label htmlFor="onboarding-hours" className="block text-[11px] font-bold uppercase tracking-wider text-muted mb-2">
               {t.onboarding.step2LabelHours}
             </label>
-            <input
+            <input id="onboarding-hours"
               type="number"
               value={hours}
               onChange={(e) => setHours(e.target.value)}
@@ -189,8 +192,10 @@ export default function Onboarding() {
                     className="w-24 bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent"
                   />
                   <button
+                    type="button"
                     onClick={() => setAssets((prev) => prev.filter((_, idx) => idx !== i))}
-                    className="text-muted hover:text-accent border border-border rounded-lg px-2.5 py-2.5 text-sm transition-colors"
+                    aria-label="Remove asset"
+                    className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-muted hover:text-accent border border-border rounded-lg px-2.5 py-2.5 text-sm transition-colors"
                   >
                     ✕
                   </button>
