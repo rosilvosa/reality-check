@@ -307,6 +307,18 @@ export const fil: Translation = {
     retry: 'Subukan ulit',
   },
 
+  backup: {
+    section: 'Backup',
+    hint: 'I-save ang progreso mo sa file, o ibalik mula sa file. Walang account na kailangan.',
+    exportBtn: 'I-save sa file',
+    importBtn: 'Ibalik mula sa file',
+    privacyNote: 'Plain text ang file at kasama ang talaarawan mo. Itago sa lugar na ikaw lang ang may abot.',
+    restoreNote: 'Ang pagbalik ay hindi nagbubura. Idinadagdag lang ang wala pa sa device na ito.',
+    done: 'Naibalik. {n} entry ang naidagdag.',
+    doneNone: 'Naibalik. Walang bagong idadagdag.',
+    exported: 'Na-save.',
+    failed: 'Hindi mabasa ang file. Siguraduhing Reality Check backup ito.',
+  },
   contact: {
     title: 'Makipag-ugnayan',
     subtitle: 'Papunta sa developer. Hindi ito crisis line — gamitin ang Find Help para diyan.',

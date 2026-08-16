@@ -307,6 +307,18 @@ export const hil: Translation = {
     retry: 'Tilawi liwat',
   },
 
+  backup: {
+    section: 'Backup',
+    hint: 'I-save ang imo progreso sa file, ukon ibalik halin sa file. Wala sang account nga kinahanglan.',
+    exportBtn: 'I-save sa file',
+    importBtn: 'Ibalik halin sa file',
+    privacyNote: 'Plain text ang file kag upod ang imo dyornal. Tipigi sa lugar nga ikaw lang ang makaabot.',
+    restoreNote: 'Ang pagbalik indi magpanas. Ginadugang lang ang wala pa sa sini nga device.',
+    done: 'Nabalik. {n} ka entry ang nadugang.',
+    doneNone: 'Nabalik. Wala sang bag-o nga idugang.',
+    exported: 'Na-save.',
+    failed: 'Indi mabasa ang file. Siguraduha nga Reality Check backup ini.',
+  },
   contact: {
     title: 'Kontaka',
     subtitle: 'Pakadto sa developer. Indi ini crisis line — gamita ang Find Help para sina.',

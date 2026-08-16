@@ -307,6 +307,18 @@ export const ilo: Translation = {
     retry: 'Padasem manen',
   },
 
+  backup: {
+    section: 'Backup',
+    hint: 'Isalbar ti progresom iti file, wenno isubli manipud iti file. Awan kasapulan nga account.',
+    exportBtn: 'Isalbar iti file',
+    importBtn: 'Isubli manipud iti file',
+    privacyNote: 'Plain text ti file ken karaman ti diariom. Idulinmo iti lugar a sika laeng ti makadanon.',
+    restoreNote: 'Ti panagisubli saan a mangikkat. Inayonna laeng ti awan pay iti daytoy a device.',
+    done: 'Naisubli. {n} nga entry ti nainayon.',
+    doneNone: 'Naisubli. Awan ti baro nga mainayon.',
+    exported: 'Naisalbar.',
+    failed: 'Saan a mabasa ti file. Siguraduem a Reality Check backup daytoy.',
+  },
   contact: {
     title: 'Kontaken',
     subtitle: 'Mapan iti developer. Saan daytoy a crisis line — usarem ti Find Help para iti dayta.',

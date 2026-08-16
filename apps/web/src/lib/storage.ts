@@ -155,7 +155,7 @@ export function clearLocalRc(): void {
   for (const key of LOCAL_KEYS) localStorage.removeItem(key)
 }
 
-function mergeStreak(a: StreakData, b: StreakData): StreakData {
+export function mergeStreak(a: StreakData, b: StreakData): StreakData {
   const aDate = a.lastCheckInDate ?? ''
   const bDate = b.lastCheckInDate ?? ''
   const later = bDate > aDate ? b : a

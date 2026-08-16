@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, type ChangeEvent } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useT, useLang } from '../i18n'
 import { tpl, CURRENCIES, HELP_REGIONS, formatMoney } from '@rc/core'
@@ -8,6 +8,7 @@ import { useJournalStore } from '../stores/journalStore'
 import { useStreakStore } from '../stores/streakStore'
 import { auth } from '../lib/firebase'
 import { signOut, deleteAccountAndData } from '../lib/auth'
+import { buildBackup, downloadBackup, parseBackup, restoreBackup } from '../lib/backup'
 import { migrateToFirestore, syncNowToCloud } from '../lib/storage'
 import AuthModal from '../components/AuthModal'
 
@@ -29,6 +30,9 @@ export default function Settings() {
   const [currencyCode, setCurrencyCode] = useState('PHP')
   const [regionCode, setRegionCode] = useState('PH')
   const [deleting, setDeleting] = useState(false)
+  const [backupMsg, setBackupMsg] = useState('')
+  const [backupErr, setBackupErr] = useState('')
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const [syncing, setSyncing] = useState(false)
   const [synced, setSynced] = useState(false)
 
@@ -70,6 +74,33 @@ export default function Settings() {
     setLocalAssets((prev) => [...prev, { name: '', cost: 0 }])
   }
 
+  async function handleExport() {
+    setBackupErr('')
+    setBackupMsg('')
+    try {
+      downloadBackup(await buildBackup(user))
+      setBackupMsg(t.backup.exported)
+    } catch {
+      setBackupErr(t.backup.failed)
+    }
+  }
+
+  async function handleImport(e: ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0]
+    // Reset immediately so picking the same file twice still fires onChange.
+    e.target.value = ''
+    if (!f) return
+    setBackupErr('')
+    setBackupMsg('')
+    try {
+      const parsed = parseBackup(await f.text())
+      const { added } = await restoreBackup(user, parsed)
+      setBackupMsg(added > 0 ? tpl(t.backup.done, { n: String(added) }) : t.backup.doneNone)
+      await Promise.all([loadSettings(), loadJournal(), loadStreak()])
+    } catch {
+      setBackupErr(t.backup.failed)
+    }
+  }
   async function handleSave() {
     const validAssets = localAssets.filter((a) => a.name.trim() && a.cost > 0)
     setFormError('')
@@ -200,6 +231,38 @@ export default function Settings() {
             </div>
           </div>
         )}
+      </div>
+
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.backup.section}</p>
+        <p className="text-sm text-muted mb-3 leading-relaxed">{t.backup.hint}</p>
+        <div className="flex flex-wrap gap-2 mb-3">
+          <button
+            type="button"
+            onClick={handleExport}
+            className="border border-border rounded-lg px-4 py-2.5 text-sm font-semibold text-muted hover:text-ink hover:border-ink/40"
+          >
+            {t.backup.exportBtn}
+          </button>
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="border border-border rounded-lg px-4 py-2.5 text-sm font-semibold text-muted hover:text-ink hover:border-ink/40"
+          >
+            {t.backup.importBtn}
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json,.json"
+            onChange={handleImport}
+            className="hidden"
+          />
+        </div>
+        <p className="text-xs text-muted leading-relaxed mb-1">{t.backup.restoreNote}</p>
+        <p className="text-xs text-muted leading-relaxed">{t.backup.privacyNote}</p>
+        {backupMsg && <p className="text-sm text-ink font-semibold mt-3">{backupMsg}</p>}
+        {backupErr && <p className="text-sm text-accent mt-3">{backupErr}</p>}
       </div>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">

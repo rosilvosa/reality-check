@@ -307,6 +307,18 @@ export const ceb: Translation = {
     retry: 'Sulayi pag-usab',
   },
 
+  backup: {
+    section: 'Backup',
+    hint: 'I-save ang imong progreso sa file, o ibalik gikan sa file. Walay account nga kinahanglan.',
+    exportBtn: 'I-save sa file',
+    importBtn: 'Ibalik gikan sa file',
+    privacyNote: 'Plain text ang file ug apil ang imong dyornal. Itago sa dapit nga ikaw ra ang makaabot.',
+    restoreNote: 'Ang pagbalik dili magpapas. Idugang ra ang wala pa niining device.',
+    done: 'Nabalik. {n} ka entry ang nadugang.',
+    doneNone: 'Nabalik. Walay bag-o nga idugang.',
+    exported: 'Na-save.',
+    failed: 'Wala mabasa ang file. Siguroha nga Reality Check backup kini.',
+  },
   contact: {
     title: 'Kontaka',
     subtitle: 'Padulong sa developer. Dili kini crisis line — gamita ang Find Help para niana.',

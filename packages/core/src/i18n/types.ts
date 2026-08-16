@@ -243,6 +243,15 @@ export interface Translation {
     retry: string
   }
 
+  backup: {
+    section: string; hint: string
+    exportBtn: string; importBtn: string
+    privacyNote: string; restoreNote: string
+    // params: {n}
+    done: string; doneNone: string
+    exported: string; failed: string
+  }
+
   contact: {
     title: string
     subtitle: string

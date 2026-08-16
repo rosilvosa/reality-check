@@ -307,6 +307,18 @@ export const en: Translation = {
     retry: 'Try again',
   },
 
+  backup: {
+    section: 'Backup',
+    hint: 'Save your progress to a file, or restore it from one. No account needed.',
+    exportBtn: 'Save to file',
+    importBtn: 'Restore from file',
+    privacyNote: 'The file is plain text and includes your journal. Keep it somewhere only you can reach.',
+    restoreNote: 'Restoring keeps what is already on this device and only adds what is missing.',
+    done: 'Restored. {n} journal entries added.',
+    doneNone: 'Restored. Nothing new to add.',
+    exported: 'Saved.',
+    failed: 'Could not read that file. Make sure it is a Reality Check backup.',
+  },
   contact: {
     title: 'Contact',
     subtitle: 'Goes to the developer. Not a crisis line — use Find Help for that.',
