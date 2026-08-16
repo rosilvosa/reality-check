@@ -12,6 +12,10 @@ export interface Settings {
   voidType?: VoidType | null
   currency?: string
   helpRegion?: string
+  // Stamped by the storage adapters on every save. Without it, signing in had
+  // no way to tell whether local or cloud settings were newer and simply
+  // overwrote one with the other.
+  updatedAt?: string
 }
 
 export interface JournalEntry {

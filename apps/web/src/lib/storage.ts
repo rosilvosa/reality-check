@@ -34,12 +34,12 @@ const localStorageAdapter: StorageAdapter = {
       const raw = localStorage.getItem(LS_SETTINGS)
       if (!raw) return null
       const d = JSON.parse(raw)
-      return { ...d, helpRegion: d.helpRegion ?? 'PH', currency: d.currency ?? 'PHP' }
+      return { ...d, helpRegion: d.helpRegion ?? 'PH', currency: d.currency ?? 'PHP', updatedAt: d.updatedAt }
     } catch { return null }
   },
 
   async saveSettings(s) {
-    localStorage.setItem(LS_SETTINGS, JSON.stringify(s))
+    localStorage.setItem(LS_SETTINGS, JSON.stringify({ ...s, updatedAt: new Date().toISOString() }))
   },
 
   async getJournalEntries() {
@@ -100,11 +100,12 @@ function firestoreAdapter(uid: string): StorageAdapter {
         voidType: d.voidType ?? null,
         currency: d.currency ?? 'PHP',
         helpRegion: d.helpRegion ?? 'PH',
+        updatedAt: d.updatedAt,
       }
     },
 
     async saveSettings(s) {
-      await setDoc(doc(db, 'users', uid, 'data', 'settings'), s)
+      await setDoc(doc(db, 'users', uid, 'data', 'settings'), { ...s, updatedAt: new Date().toISOString() })
     },
 
     async getJournalEntries() {
@@ -172,14 +173,30 @@ export function clearLocalRc(): void {
   for (const key of LOCAL_KEYS) localStorage.removeItem(key)
 }
 
+// Sign-in is the only moment both copies are genuinely live and we cannot tell
+// by context which the user meant. Explicit file restores and the sign-out
+// copy-down are different: there the source is authoritative by intent, so
+// those keep letting the source win rather than going through this.
+function newerSettings(a: Settings | null, b: Settings | null): Settings | null {
+  if (!a) return b
+  if (!b) return a
+  const at = a.updatedAt ?? ''
+  const bt = b.updatedAt ?? ''
+  return bt > at ? b : a
+}
+
 export function mergeStreak(a: StreakData, b: StreakData): StreakData {
   const aDate = a.lastCheckInDate ?? ''
   const bDate = b.lastCheckInDate ?? ''
-  const later = bDate > aDate ? b : a
+  // Whichever side checked in most recently is the live one, and its streak is
+  // taken whole. Taking max(currentStreak) while taking the later date could
+  // show a clean streak the user never earned -- the one lie this app must not
+  // tell. longestStreak is a genuine historical best, so max is right there.
+  const live = bDate > aDate ? b : a
   return {
-    currentStreak: Math.max(a.currentStreak, b.currentStreak),
+    currentStreak: live.currentStreak,
     longestStreak: Math.max(a.longestStreak, b.longestStreak),
-    lastCheckInDate: later.lastCheckInDate,
+    lastCheckInDate: live.lastCheckInDate,
     milestonesSeen: [...new Set([...(a.milestonesSeen ?? []), ...(b.milestonesSeen ?? [])])],
     startDate: a.startDate && b.startDate
       ? (a.startDate < b.startDate ? a.startDate : b.startDate)
@@ -224,7 +241,11 @@ export async function migrateToFirestore(uid: string): Promise<boolean> {
   if (!hasLocal) return false
 
   const remote = firestoreAdapter(uid)
-  if (settings) await remote.saveSettings(settings)
+  const cloudSettings = await remote.getSettings()
+  const winner = newerSettings(cloudSettings, settings)
+  // Only write when local actually won. Rewriting the cloud copy would re-stamp
+  // its updatedAt on every sign-in, after which local could never win again.
+  if (winner && winner !== cloudSettings) await remote.saveSettings(winner)
 
   if (streak) {
     const cloudStreak = await remote.getStreak()
