@@ -4,14 +4,11 @@ export const en: Translation = {
   meta: { languageName: 'English' },
 
   nav: {
-    home: 'Home',
-    sweat: '💧 Sweat', assets: '🔥 Assets', journal: '📓 Journal',
-    nearmiss: '⚠️ Miss', trap: '🧠 Trap', progress: '🏆 Progress', settings: '⚙ Settings',
+    home: 'Home', journal: 'Journal', trap: 'Trap', progress: 'Progress', settings: 'Settings',
     community: 'Community', help: 'Help',
     lost: 'Lost',
     barriers: 'Barriers',
     watch: 'Watch',
-    more: 'More',
   },
 
   common: {

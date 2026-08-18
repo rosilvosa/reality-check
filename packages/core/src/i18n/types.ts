@@ -4,14 +4,11 @@ export interface Translation {
   meta: { languageName: string }
 
   nav: {
-    home: string
-    sweat: string; assets: string; journal: string
-    nearmiss: string; trap: string; progress: string; settings: string
+    home: string; journal: string; trap: string; progress: string; settings: string
     community: string; help: string
     lost: string
     barriers: string
     watch: string
-    more: string
   }
 
   common: {

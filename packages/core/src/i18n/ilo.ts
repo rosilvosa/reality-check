@@ -4,14 +4,11 @@ export const ilo: Translation = {
   meta: { languageName: 'Ilocano' },
 
   nav: {
-    home: 'Rugian',
-    sweat: '💧 Balitok', assets: '🔥 Gasto', journal: '📓 Diario',
-    nearmiss: '⚠️ Asideg', trap: '🧠 Lit-ag', progress: '🏆 Nalibtaan', settings: '⚙ Settings',
+    home: 'Rugian', journal: 'Diario', trap: 'Lit-ag', progress: 'Nalibtaan', settings: 'Settings',
     community: 'Komunidad', help: 'Tulong',
     lost: 'Naabak',
     barriers: 'Sagam-at',
     watch: 'Buyaen',
-    more: 'Ad-adu',
   },
 
   common: {

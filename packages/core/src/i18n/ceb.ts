@@ -4,14 +4,11 @@ export const ceb: Translation = {
   meta: { languageName: 'Bisaya' },
 
   nav: {
-    home: 'Sinugdan',
-    sweat: '💧 Pawis', assets: '🔥 Gasto', journal: '📓 Dyornal',
-    nearmiss: '⚠️ Hapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
+    home: 'Sinugdan', journal: 'Dyornal', trap: 'Lit-ag', progress: 'Pag-uswag', settings: 'Mga Setting',
     community: 'Komunidad', help: 'Tabang',
     lost: 'Pildi',
     barriers: 'Babag',
     watch: 'Tan-awa',
-    more: 'Uban pa',
   },
 
   common: {

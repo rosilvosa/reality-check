@@ -1,23 +1,32 @@
 import { Suspense } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import {
+  Brain,
+  Droplet,
+  Handshake,
+  House,
+  MessageCircle,
+  Notebook,
+  Settings as SettingsIcon,
+  Shield,
+  Trophy,
+  Clapperboard,
+  type LucideIcon,
+} from 'lucide-react'
 import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
 import ContactModal from './ContactModal'
 import ThemeToggle from './ThemeToggle'
 
-function word(label: string) {
-  return label.replace(/^[^\p{L}\p{N}]+/u, '').trim()
-}
-
 function Tab({
   to,
   label,
-  icon,
+  icon: Icon,
   end,
 }: {
   to: string
   label: string
-  icon: string
+  icon: LucideIcon
   end?: boolean
 }) {
   return (
@@ -32,8 +41,17 @@ function Tab({
     >
       {({ isActive }) => (
         <>
-          <span className={`text-[1.375rem] leading-none ${isActive ? '' : 'opacity-70'}`}>{icon}</span>
-          <span className="w-full truncate text-[0.6875rem] font-bold tracking-wide leading-tight text-center">{word(label)}</span>
+          {/* A real vector icon, not an emoji glyph. Emoji are drawn by
+              whatever emoji font the OS ships -- Segoe UI Emoji on Windows,
+              Noto Color Emoji on Android -- so the exact same character used
+              to render as two visibly different pictures depending on the
+              device. An SVG icon is the same pixels everywhere. */}
+          <Icon
+            size={22}
+            strokeWidth={isActive ? 2.25 : 2}
+            className={isActive ? '' : 'opacity-70'}
+          />
+          <span className="w-full truncate text-[0.6875rem] font-bold tracking-wide leading-tight text-center">{label}</span>
           <span className={`h-0.5 w-5 rounded-full ${isActive ? 'bg-accent' : 'bg-transparent'}`} />
         </>
       )}
@@ -46,19 +64,19 @@ export default function Layout() {
   const showContact = useContactStore((s) => s.show)
 
   const top = [
-    { to: '/', label: t.nav.home, icon: '🏠', end: true },
-    { to: '/journal', label: t.nav.journal, icon: '📓' },
-    { to: '/progress', label: t.nav.progress, icon: '🏆' },
-    { to: '/settings', label: t.nav.settings, icon: '⚙' },
+    { to: '/', label: t.nav.home, icon: House, end: true },
+    { to: '/journal', label: t.nav.journal, icon: Notebook },
+    { to: '/progress', label: t.nav.progress, icon: Trophy },
+    { to: '/settings', label: t.nav.settings, icon: SettingsIcon },
   ]
 
   const bottom = [
-    { to: '/lost', label: t.nav.lost, icon: '💧' },
-    { to: '/trap', label: t.nav.trap, icon: '🧠' },
-    { to: '/barriers', label: t.nav.barriers, icon: '🛡' },
-    { to: '/watch', label: t.nav.watch, icon: '🎬' },
-    { to: '/help', label: t.nav.help, icon: '🤝' },
-    { to: '/community', label: t.nav.community, icon: '💬' },
+    { to: '/lost', label: t.nav.lost, icon: Droplet },
+    { to: '/trap', label: t.nav.trap, icon: Brain },
+    { to: '/barriers', label: t.nav.barriers, icon: Shield },
+    { to: '/watch', label: t.nav.watch, icon: Clapperboard },
+    { to: '/help', label: t.nav.help, icon: Handshake },
+    { to: '/community', label: t.nav.community, icon: MessageCircle },
   ]
 
   return (

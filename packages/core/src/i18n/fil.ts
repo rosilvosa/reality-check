@@ -4,14 +4,11 @@ export const fil: Translation = {
   meta: { languageName: 'Filipino' },
 
   nav: {
-    home: 'Umpisa',
-    sweat: '💧 Pawis', assets: '🔥 Gastos', journal: '📓 Talaarawan',
-    nearmiss: '⚠️ Halos', trap: '🧠 Bitag', progress: '🏆 Progreso', settings: '⚙ Mga Setting',
+    home: 'Umpisa', journal: 'Talaarawan', trap: 'Bitag', progress: 'Progreso', settings: 'Mga Setting',
     community: 'Komunidad', help: 'Tulong',
     lost: 'Talo',
     barriers: 'Hadlang',
     watch: 'Panoorin',
-    more: 'Iba pa',
   },
 
   common: {

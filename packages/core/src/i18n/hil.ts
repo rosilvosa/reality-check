@@ -4,14 +4,11 @@ export const hil: Translation = {
   meta: { languageName: 'Ilonggo' },
 
   nav: {
-    home: 'Umpisa',
-    sweat: '💧 Pawis', assets: '🔥 Gastus', journal: '📓 Dyornal',
-    nearmiss: '⚠️ Malapit', trap: '🧠 Lit-ag', progress: '🏆 Pag-uswag', settings: '⚙ Mga Setting',
+    home: 'Umpisa', journal: 'Dyornal', trap: 'Lit-ag', progress: 'Pag-uswag', settings: 'Mga Setting',
     community: 'Komunidad', help: 'Bulig',
     lost: 'Pildi',
     barriers: 'Babag',
     watch: 'Tan-awa',
-    more: 'Iban pa',
   },
 
   common: {
