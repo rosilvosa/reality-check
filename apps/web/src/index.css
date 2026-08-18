@@ -19,6 +19,12 @@
      reads as urgent-vs-informational without adding a hue to the palette. */
   --rc-amber: #b45309;
   --rc-amber-dim: #fef3c7;
+  /* Third tone, for Journal: cool where red and amber are both warm, so the
+     three colored cards read as three doors rather than a gradient of
+     urgency. Named "calm" rather than "blue" so the token describes what it
+     is for, matching how "danger" and "accent" already do. */
+  --rc-calm: #1d4ed8;
+  --rc-calm-dim: #dbeafe;
   --rc-theme: #f3f3f6;
   color-scheme: light;
 }
@@ -35,6 +41,8 @@ html.dark {
   --rc-danger: #0f0a0a;
   --rc-amber: #f59e0b;
   --rc-amber-dim: #78350f;
+  --rc-calm: #60a5fa;
+  --rc-calm-dim: #1e3a8a;
   --rc-theme: #08080f;
   color-scheme: dark;
 }

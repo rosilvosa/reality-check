@@ -40,7 +40,7 @@ export default function Home() {
       <p className="text-[0.6875rem] tracking-[0.18em] uppercase text-muted mb-1">{t.home.tag}</p>
 
       <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
-        <div className="flex items-end justify-between gap-4 mb-4">
+        <div className={`flex items-end justify-between gap-4 ${loading || !checkedIn ? 'mb-4' : ''}`}>
           <div>
             <div className="flex items-end gap-3">
               {badge && (
@@ -57,6 +57,16 @@ export default function Home() {
               <p className="text-ink text-sm mt-3">{t.home.startHint}</p>
             )}
           </div>
+          {/* Checked-in sits on the same line as the count once there is a
+              count worth sitting beside. Everything else that used to share
+              this space with it (loading, lost-today, the check-in button)
+              still needs the full width below, so only this state moves up. */}
+          {!loading && checkedIn && (
+            <Link to="/progress" className="text-right shrink-0 hover:opacity-80">
+              <span className="block text-sm font-black tracking-wide text-ink">{t.home.checkedIn}</span>
+              <span className="block text-xs font-bold text-muted mt-0.5">{t.home.seeProgress} →</span>
+            </Link>
+          )}
           {!loading && !checkedIn && (
             <Link to="/progress" className="text-xs font-bold text-muted hover:text-ink shrink-0">
               {t.home.seeProgress} →
@@ -64,32 +74,28 @@ export default function Home() {
           )}
         </div>
 
-        {loading ? (
+        {loading && (
           <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
             —
           </div>
-        ) : checkedIn ? (
-          <Link
-            to="/progress"
-            className="block w-full py-3.5 bg-surface2 rounded-xl text-center hover:opacity-90"
-          >
-            <span className="block text-sm font-black tracking-wide text-ink">{t.home.checkedIn}</span>
-            <span className="block text-xs font-bold text-muted mt-0.5">{t.home.seeProgress} →</span>
-          </Link>
-        ) : lostTodayFlag ? (
-          // No check-in offered on a day with a loss written down. A disabled
-          // button with no reason reads as a broken app, so say why instead.
-          <p className="w-full py-3.5 px-4 bg-surface2 rounded-xl text-center text-xs font-bold text-muted leading-relaxed">
-            {t.home.lostToday}
-          </p>
-        ) : (
-          <button
-            type="button"
-            onClick={checkIn}
-            className="w-full py-3.5 bg-accent text-white font-black rounded-xl text-sm tracking-wide hover:opacity-90"
-          >
-            {t.home.checkInNow}
-          </button>
+        )}
+        {!loading && !checkedIn && (
+          lostTodayFlag ? (
+            // No check-in offered on a day with a loss written down. A
+            // disabled button with no reason reads as a broken app, so say
+            // why instead.
+            <p className="w-full py-3.5 px-4 bg-surface2 rounded-xl text-center text-xs font-bold text-muted leading-relaxed">
+              {t.home.lostToday}
+            </p>
+          ) : (
+            <button
+              type="button"
+              onClick={checkIn}
+              className="w-full py-3.5 bg-accent text-white font-black rounded-xl text-sm tracking-wide hover:opacity-90"
+            >
+              {t.home.checkInNow}
+            </button>
+          )
         )}
       </div>
 
@@ -130,27 +136,31 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 gap-3 mb-4">
-        <Link
-          to="/journal"
-          className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
-        >
-          <p className="text-ink font-black text-lg">{t.home.writeBtn}</p>
-          <p className="text-muted text-sm mt-1">{t.home.writeHint}</p>
-        </Link>
+      <Link
+        to="/journal"
+        className="block bg-calm-dim border border-calm rounded-2xl p-5 mb-3 hover:opacity-90 transition-opacity"
+      >
+        <p className="text-ink font-black text-lg">{t.home.writeBtn}</p>
+        <p className="text-muted text-sm mt-1">{t.home.writeHint}</p>
+      </Link>
+
+      {/* Help and Community paired the same way Lost and Why were: two doors
+          side by side rather than two more rows in a stack. Left neutral --
+          nothing here asked for a fourth color, and not every row needs one. */}
+      <div className="grid grid-cols-2 gap-3 mb-4">
         <Link
           to="/help"
-          className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
+          className="block bg-surface border border-border rounded-2xl p-4 hover:border-accent transition-colors"
         >
-          <p className="text-ink font-black text-lg">{t.home.helpBtn}</p>
-          <p className="text-muted text-sm mt-1">{t.home.helpHint}</p>
+          <p className="text-ink font-black text-base leading-tight">{t.home.helpBtn}</p>
+          <p className="text-muted text-xs mt-1 leading-snug">{t.home.helpHint}</p>
         </Link>
         <Link
           to="/community"
-          className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
+          className="block bg-surface border border-border rounded-2xl p-4 hover:border-accent transition-colors"
         >
-          <p className="text-ink font-black text-lg">{t.home.communityBtn}</p>
-          <p className="text-muted text-sm mt-1">{t.home.communityHint}</p>
+          <p className="text-ink font-black text-base leading-tight">{t.home.communityBtn}</p>
+          <p className="text-muted text-xs mt-1 leading-snug">{t.home.communityHint}</p>
         </Link>
       </div>
 

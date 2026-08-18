@@ -15,6 +15,8 @@ export default {
         danger: 'var(--rc-danger)',
         amber: 'var(--rc-amber)',
         'amber-dim': 'var(--rc-amber-dim)',
+        calm: 'var(--rc-calm)',
+        'calm-dim': 'var(--rc-calm-dim)',
         muted: 'var(--rc-muted)',
       },
     },
