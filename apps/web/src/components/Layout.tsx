@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
@@ -72,7 +73,11 @@ export default function Layout() {
       </nav>
 
       <main className="flex-1 px-4 py-6 max-w-2xl w-full mx-auto pb-8">
-        <Outlet />
+        {/* One boundary for every lazy route. The nav and footer stay put while
+            a page loads, so switching tabs does not blank the shell. */}
+        <Suspense fallback={<div className="py-10 text-center text-muted text-sm">&mdash;</div>}>
+          <Outlet />
+        </Suspense>
       </main>
 
       <footer className="max-w-2xl w-full mx-auto px-4 pb-28 text-center text-[0.6875rem] text-muted">

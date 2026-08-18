@@ -37,8 +37,6 @@ export const ilo: Translation = {
     seeProgress: 'Amin a progreso',
     helpBtn: 'Biruken ti tulong',
     helpHint: 'Helpline, exclusion, ken meeting iti pagilianmo',
-    insteadBtn: 'Aramidem Daytoy Imbes',
-    insteadHint: 'Magna. Mensahe. Saan a taya.',
     communityBtn: 'Komunidad',
     communityHint: 'Dagiti tip, panagnanasa, saludsod. Kanayon nga anonymous.',
     installTitle: 'Inayon iti telepono',
@@ -92,9 +90,9 @@ export const ilo: Translation = {
   journal: {
     title: 'Diario ti Naibagsak',
     subtitle: 'Isurat no ania ti pudno a nariknam iti pannakaabak. Iti sumaruno, basaem nga umuna daytoy.',
-    interceptTitle: '⛔ Agsardeng. Basaen Daytoy Umuna.',
-    interceptSub: 'Isursurattam daytoy kalpasan ti naudi a naibagsak. Masapul a basaenmo daytoy ita sakbay a agtultuloy.',
-    acknowledge: 'Nabasa ken nakilalak ti napalabas a sakit.',
+    interceptTitle: 'Ti insuratmo idi napalabas',
+    interceptSub: 'Insuratmo daytoy kalpasan ti napalabas a pannakaabakmo, idi',
+    acknowledge: 'Nabasak metten',
     chasingTitle: '⚠️ Itugotmo Kadi ti Naibagsak?',
     chasingBody1: 'Nairehistroka pay laeng ti naibagsak ita. Ti panagsubli iti sugal kalpasan ti naibagsak ti makatawag og "chasing" — daytoy ti pinakamakapaadik a pattern ti gambling addiction.',
     chasingBody2: 'No mangitur-ay ka, ti prefrontal cortexmo — ti paset ti uloktay nga agpanunot ti nasirib a desisyon — haanen a manggubgob gapu iti stress. Saan ka a nalinis ti panimuudmo ita.',
@@ -266,8 +264,6 @@ export const ilo: Translation = {
     barriersDesc: 'Self-exclusion, panayalis ti app, checklist ti panagtangtangken ti site',
     findHelpTitle: 'Biruken ti Tulong',
     findHelpDesc: 'Helpline, self-exclusion, ken meeting iti pagilianmo',
-    insteadTitle: 'Aramidem Daytoy Imbes',
-    insteadDesc: 'Dagiti banag nga aramiden no dumteng ti panagnanasa',
     communityTitle: 'Komunidad',
     communityDesc: 'Anonymous a tip, panagnanasa, ken narigat nga aldaw',
     syncActive: 'Naka-sync iti cloud — daytoy nga account, uray ania a device.',
@@ -385,20 +381,6 @@ export const ilo: Translation = {
     fail: 'Saan a na-load ti lista.',
     openGithub: 'Amin nga issue iti GitHub',
     seeList: 'Kitaen dagiti biddut ken umadani',
-  },
-
-  instead: {
-    title: 'Aramidem Daytoy Imbes',
-    subtitle: 'No kayatmo nga agsugal, agpili iti maysa a banag. Naisurat daytoy ditoy iti gagara. Saan a feed. Saan a ay-ayam.',
-    nowTitle: 'Aramidem ti Maysa Kadagitoy Ita',
-    now: [
-      'Nalamiis a danum iti rupa. Dua a minuto.',
-      'Magna iti ruar. Adda iti bulsa ti telepono.',
-      'Mag-text iti maysa a tao. Saan maipanggep iti taya.',
-      'Aganges: sumruk 4, agpundo 4, pulsien 4. Ulitem agingga bumaba ti tignay.',
-    ],
-    forYou: 'Gapu iti pinilim',
-    allTitle: 'No sabali ti mariknam',
   },
 
   findHelp: {

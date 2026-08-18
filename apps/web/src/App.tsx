@@ -1,22 +1,8 @@
-import { useEffect } from 'react'
+import { lazy, useEffect } from 'react'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { LangProvider } from './i18n'
 import Layout from './components/Layout'
 import Home from './pages/Home'
-import Lost from './pages/Lost'
-import Journal from './pages/Journal'
-import Trap from './pages/Trap'
-import TrapWhy from './pages/TrapWhy'
-import Barriers from './pages/Barriers'
-import Settings from './pages/Settings'
-import Progress from './pages/Progress'
-import Privacy from './pages/Privacy'
-import Terms from './pages/Terms'
-import Community from './pages/Community'
-import Watch from './pages/Watch'
-import FindHelp from './pages/FindHelp'
-import Mission from './pages/Mission'
-import Updates from './pages/Updates'
 import MilestoneModal from './components/MilestoneModal'
 import Onboarding from './components/Onboarding'
 import OpenInBrowser from './components/OpenInBrowser'
@@ -25,6 +11,24 @@ import { useStreakStore } from './stores/streakStore'
 import { useSettingsStore } from './stores/settingsStore'
 import { useJournalStore } from './stores/journalStore'
 import { migrateToFirestore } from './lib/storage'
+
+// Home stays eager: it is the landing route and lazy-loading it would only add
+// a round trip to the first paint. Everything else is a tap away, and the
+// audience is often on prepaid mobile data. Layout wraps Outlet in Suspense.
+const Lost = lazy(() => import('./pages/Lost'))
+const Journal = lazy(() => import('./pages/Journal'))
+const Trap = lazy(() => import('./pages/Trap'))
+const TrapWhy = lazy(() => import('./pages/TrapWhy'))
+const Barriers = lazy(() => import('./pages/Barriers'))
+const Settings = lazy(() => import('./pages/Settings'))
+const Progress = lazy(() => import('./pages/Progress'))
+const Privacy = lazy(() => import('./pages/Privacy'))
+const Terms = lazy(() => import('./pages/Terms'))
+const Community = lazy(() => import('./pages/Community'))
+const FindHelp = lazy(() => import('./pages/FindHelp'))
+const Mission = lazy(() => import('./pages/Mission'))
+const Updates = lazy(() => import('./pages/Updates'))
+const Watch = lazy(() => import('./pages/Watch'))
 
 const router = createBrowserRouter([
   {
@@ -45,10 +49,10 @@ const router = createBrowserRouter([
       { path: 'privacy', element: <Privacy /> },
       { path: 'terms', element: <Terms /> },
       { path: 'community', element: <Community /> },
-      { path: 'watch', element: <Watch /> },
       { path: 'help', element: <FindHelp /> },
       { path: 'mission', element: <Mission /> },
       { path: 'updates', element: <Updates /> },
+      { path: 'watch', element: <Watch /> },
     ],
   },
 ])

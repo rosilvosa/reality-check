@@ -37,8 +37,6 @@ export const en: Translation = {
     seeProgress: 'Full progress',
     helpBtn: 'Find help',
     helpHint: 'Helplines, exclusion, meetings where you live',
-    insteadBtn: 'Do this instead',
-    insteadHint: 'A walk. A text. Not a bet.',
     communityBtn: 'Community',
     communityHint: 'Tips, urges, questions. Always anonymous.',
     installTitle: 'Add to your phone',
@@ -92,9 +90,9 @@ export const en: Translation = {
   journal: {
     title: 'Loss Journal',
     subtitle: 'Write what a loss actually felt like. Next time, you read it first.',
-    interceptTitle: '⛔ Stop. Read This First.',
-    interceptSub: 'You wrote this after your last loss. You must read it now before continuing.',
-    acknowledge: 'I have read and acknowledged my past pain.',
+    interceptTitle: 'What you wrote last time',
+    interceptSub: 'You wrote this after your last loss, on',
+    acknowledge: 'I read it',
     chasingTitle: '⚠️ Are You Chasing Losses?',
     chasingBody1: 'You already recorded a loss today. Returning to gamble after a loss is called chasing — it is the most dangerous pattern in gambling addiction.',
     chasingBody2: 'When you chase, your prefrontal cortex — the rational decision-making part of your brain — is partially shut down by stress. You are not thinking clearly right now.',
@@ -266,8 +264,6 @@ export const en: Translation = {
     barriersDesc: 'Self-exclusion, app deletion, site blocking checklist',
     findHelpTitle: 'Find Help',
     findHelpDesc: 'Helplines, self-exclusion, and meetings for your country',
-    insteadTitle: 'Do this instead',
-    insteadDesc: 'Hard-coded things to do when the urge hits',
     communityTitle: 'Community',
     communityDesc: 'Anonymous tips, urges, and hard days',
     syncActive: 'Cloud sync on — this account, every device.',
@@ -385,20 +381,6 @@ export const en: Translation = {
     fail: 'Could not load the list.',
     openGithub: 'All issues on GitHub',
     seeList: 'See bugs and what is coming',
-  },
-
-  instead: {
-    title: 'Do this instead',
-    subtitle: 'When you want to bet, pick one thing. These are written here on purpose. Not a feed. Not a game.',
-    nowTitle: 'Do one of these now',
-    now: [
-      'Cold water on your face. Two minutes.',
-      'Walk outside. Phone stays in your pocket.',
-      'Text one person. Not about betting.',
-      'Breathe: in 4, hold 4, out 4. Repeat until the spike drops.',
-    ],
-    forYou: 'Because of what you picked',
-    allTitle: 'If it is something else',
   },
 
   findHelp: {

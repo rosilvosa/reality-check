@@ -37,8 +37,6 @@ export const hil: Translation = {
     seeProgress: 'Tibuok pag-uswag',
     helpBtn: 'Pangita sang bulig',
     helpHint: 'Helpline, exclusion, kag meeting sa imo pungsod',
-    insteadBtn: 'Himua Ini sa Baylo',
-    insteadHint: 'Lakat. Text. Indi taya.',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, pamangkot. Pirme anonymous.',
     installTitle: 'Idugang sa telepono',
@@ -92,9 +90,9 @@ export const hil: Translation = {
   journal: {
     title: 'Dyornal sang Pagkalugi',
     subtitle: 'Isulat kon ano gid ang imo nabatyagan sa pagkapierde. Sa masunod, basahon mo anay ini.',
-    interceptTitle: '⛔ Tignaa. Basahon Ini Una.',
-    interceptSub: 'Ginakuha mo ini pagkatapos sang imo nauli nga pagkalugi. Kinahanglan mo ini basahon subong antes ka magpadayon.',
-    acknowledge: 'Nabasa ko na kag natandaan ko ang akon naagi nga kasakit.',
+    interceptTitle: 'Ang ginsulat mo sang nagligad',
+    interceptSub: 'Ginsulat mo ini pagkatapos sang imo nagligad nga pagkapierde, sang',
+    acknowledge: 'Nabasa ko na',
     chasingTitle: '⚠️ Ginasubsob Mo Bala ang Pagkalugi?',
     chasingBody1: 'Narehistro ka na sang pagkalugi subong. Ang pagbalik sa sugal pagkatapos sang pagkalugi ginatawag og "chasing" — ini ang pinakamatakod nga pattern sang gambling addiction.',
     chasingBody2: 'Kung magsubsob ka, ang imo prefrontal cortex — ang bahin sang imo utok nga nagahimo sang maalamon nga desisyon — halos wala na nagafunksyon tungod sa stress. Indi ka klaro ang paghunahuna subong.',
@@ -266,8 +264,6 @@ export const hil: Translation = {
     barriersDesc: 'Self-exclusion, pagtanggal sang app, checklist sa pag-block sang site',
     findHelpTitle: 'Pangita sang Bulig',
     findHelpDesc: 'Helpline, self-exclusion, kag meeting sa imo pungsod',
-    insteadTitle: 'Himua Ini sa Baylo',
-    insteadDesc: 'Mga butang nga himuon kung mag-abot ang pagnanasa',
     communityTitle: 'Komunidad',
     communityDesc: 'Anonymous nga tip, pagnanasa, kag mabudlay nga adlaw',
     syncActive: 'Naka-sync sa cloud — ini nga account, bisan ano nga device.',
@@ -385,20 +381,6 @@ export const hil: Translation = {
     fail: 'Indi ma-load ang lista.',
     openGithub: 'Tanan nga issue sa GitHub',
     seeList: 'Tan-awa ang mga sayop kag plano',
-  },
-
-  instead: {
-    title: 'Himua Ini sa Baylo',
-    subtitle: 'Kung gusto mo magtaya, pagpili sang isa ka butang. Ginsulat ini diri sa hungod. Indi feed. Indi hampang.',
-    nowTitle: 'Himua ang Isa Sini Subong',
-    now: [
-      'Bugnaw nga tubig sa nawong. Duha ka minuto.',
-      'Maglakaw sa gawas. Ang telepono mabilin sa bulsa.',
-      'Mag-text sa isa ka tawo. Indi bahin sa taya.',
-      'Ginhawa: 4 humot, 4 pundo, 4 luwa. Liwati tubtob mag-untat ang kagana.',
-    ],
-    forYou: 'Tungod sang imo ginpili',
-    allTitle: 'Kung lain ang imo ginabatyag',
   },
 
   findHelp: {

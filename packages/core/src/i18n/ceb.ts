@@ -37,8 +37,6 @@ export const ceb: Translation = {
     seeProgress: 'Tibuok pag-uswag',
     helpBtn: 'Pangita og tabang',
     helpHint: 'Helpline, exclusion, ug meeting sa imong nasud',
-    insteadBtn: 'Buhata Kini Imbes',
-    insteadHint: 'Lakaw. Text. Dili taya.',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, pangutana. Kanunay anonymous.',
     installTitle: 'Idugang sa telepono',
@@ -92,9 +90,9 @@ export const ceb: Translation = {
   journal: {
     title: 'Dyornal sa Pagkawala',
     subtitle: 'Isulat kung unsa gyud ang imong gibati sa pagkapildi. Sa sunod, basahon nimo kini una.',
-    interceptTitle: '⛔ Hunong. Basaha Kini Una.',
-    interceptSub: 'Gisulat nimo kini human sa imong katapusang pagkawala. Kinahanglan nimong basahon kini karon sa wala ka magpadayon.',
-    acknowledge: 'Nabasa nako ug giila ang akong nangaging kasakit.',
+    interceptTitle: 'Ang gisulat nimo sa niaging higayon',
+    interceptSub: 'Gisulat nimo kini human sa imong niaging pagkapildi, niadtong',
+    acknowledge: 'Nabasa na nako',
     chasingTitle: '⚠️ Gisubsub Ba Nimo ang Pagkawala?',
     chasingBody1: 'Nagrehistro ka na og pagkawala karon. Ang pagbalik sa sugal human sa pagkawala gitawag og "chasing" — kini mao ang pinaka-delikado nga pattern sa gambling addiction.',
     chasingBody2: 'Kung magsubsub ka, ang imong prefrontal cortex — ang bahin sa imong utok nga naghimo og maalamon nga desisyon — hapit na wala gumagana tungod sa stress. Dili ka klaro ang pag-iisip karon.',
@@ -266,8 +264,6 @@ export const ceb: Translation = {
     barriersDesc: 'Self-exclusion, pagtanggal sa app, checklist sa pag-block sa site',
     findHelpTitle: 'Pangita og Tabang',
     findHelpDesc: 'Helpline, self-exclusion, ug meeting sa imong nasud',
-    insteadTitle: 'Buhata Kini Imbes',
-    insteadDesc: 'Mga butang nga buhaton kung moabot ang pagnanasa',
     communityTitle: 'Komunidad',
     communityDesc: 'Anonymous nga tip, pagnanasa, ug lisod nga adlaw',
     syncActive: 'Naka-sync sa cloud — kining account, bisan unsang device.',
@@ -385,20 +381,6 @@ export const ceb: Translation = {
     fail: 'Wala ma-load ang lista.',
     openGithub: 'Tanan nga issue sa GitHub',
     seeList: 'Tan-awa ang mga sayop ug unsay umaabot',
-  },
-
-  instead: {
-    title: 'Buhata Kini Imbes',
-    subtitle: 'Kung gusto mo motaya, pagpili og usa ka butang. Gisulat kini dinhi tinuyo. Dili feed. Dili duwa.',
-    nowTitle: 'Buhata ang Usa Niini Karon',
-    now: [
-      'Bugnaw nga tubig sa nawong. Duha ka minuto.',
-      'Lakaw sa gawas. Naa sa bulsa ang telepono.',
-      'Mag-text sa usa ka tawo. Dili bahin sa taya.',
-      'Ginhawa: 4 humot, 4 pundo, 4 luwa. Balika hangtud mohunong ang kagana.',
-    ],
-    forYou: 'Tungod sa imong gipili',
-    allTitle: 'Kung lahi ang imong gibati',
   },
 
   findHelp: {

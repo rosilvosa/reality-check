@@ -37,8 +37,6 @@ export interface Translation {
     seeProgress: string
     helpBtn: string
     helpHint: string
-    insteadBtn: string
-    insteadHint: string
     communityBtn: string
     communityHint: string
     installTitle: string
@@ -189,7 +187,6 @@ export interface Translation {
     langSection: string
     recoveryTools: string; barriersTitle: string; barriersDesc: string
     findHelpTitle: string; findHelpDesc: string
-    insteadTitle: string; insteadDesc: string
     communityTitle: string; communityDesc: string
     syncActive: string
     syncNowBtn: string; syncNowHint: string; syncingBtn: string; syncDoneBtn: string; syncFail: string; saveFailed: string
@@ -308,15 +305,6 @@ export interface Translation {
     fail: string
     openGithub: string
     seeList: string
-  }
-
-  instead: {
-    title: string
-    subtitle: string
-    nowTitle: string
-    now: [string, string, string, string]
-    forYou: string
-    allTitle: string
   }
 
   findHelp: {

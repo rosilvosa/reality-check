@@ -19,3 +19,4 @@ GoogleService-Info.plist
 .agents/
 skills-lock.json
 docs/local/
+functions/lib

@@ -37,8 +37,6 @@ export const fil: Translation = {
     seeProgress: 'Buong progreso',
     helpBtn: 'Humanap ng tulong',
     helpHint: 'Helpline, exclusion, at meeting sa iyong bansa',
-    insteadBtn: 'Gawin ito sa halip',
-    insteadHint: 'Lakad. Text. Hindi taya.',
     communityBtn: 'Komunidad',
     communityHint: 'Mga tip, pagnanasa, tanong. Laging anonymous.',
     installTitle: 'Idagdag sa telepono',
@@ -92,9 +90,9 @@ export const fil: Translation = {
   journal: {
     title: 'Talaan ng Pagkalugi',
     subtitle: 'Isulat ang tunay mong naramdaman sa pagkatalo. Sa susunod, babasahin mo muna ito.',
-    interceptTitle: '⛔ Hinto. Basahin Ito Muna.',
-    interceptSub: 'Isinulat mo ito pagkatapos ng iyong huling pagkalugi. Kailangan mong basahin ito ngayon bago magpatuloy.',
-    acknowledge: 'Nabasa ko at tinanggap ko ang aking nakaraang sakit.',
+    interceptTitle: 'Ang isinulat mo noong huli',
+    interceptSub: 'Isinulat mo ito pagkatapos ng huling pagkalugi mo, noong',
+    acknowledge: 'Nabasa ko na',
     chasingTitle: '⚠️ Hinahabol Mo Ba ang Pagkalugi?',
     chasingBody1: 'Nagtala ka na ng pagkalugi ngayon. Ang pagbabalik para magsugal pagkatapos ng pagkalugi ay tinatawag na "chasing" — ito ang pinaka-mapanganib na pattern sa gambling addiction.',
     chasingBody2: 'Kapag hinahabol mo, ang prefrontal cortex mo — ang bahagi ng iyong utak na gumagawa ng matalinong desisyon — ay halos hindi gumagana dahil sa stress. Hindi ka malinaw na nag-iisip ngayon.',
@@ -266,8 +264,6 @@ export const fil: Translation = {
     barriersDesc: 'Self-exclusion, pagtanggal ng app, checklist ng pag-block ng site',
     findHelpTitle: 'Humanap ng Tulong',
     findHelpDesc: 'Helpline, self-exclusion, at meeting sa iyong bansa',
-    insteadTitle: 'Gawin ito sa halip',
-    insteadDesc: 'Mga bagay na gagawin kapag dumating ang pagnanasa',
     communityTitle: 'Komunidad',
     communityDesc: 'Anonymous na tip, pagnanasa, at mahirap na araw',
     syncActive: 'Naka-sync sa cloud — account na ito, kahit anong device.',
@@ -385,20 +381,6 @@ export const fil: Translation = {
     fail: 'Hindi ma-load ang lista.',
     openGithub: 'Lahat ng issue sa GitHub',
     seeList: 'Tingnan ang mga bug at plano',
-  },
-
-  instead: {
-    title: 'Gawin ito sa halip',
-    subtitle: 'Kapag gusto mong tumaya, pumili ng isa. Naka-sulat ito dito. Hindi feed. Hindi laro.',
-    nowTitle: 'Gawin ang isa ngayon',
-    now: [
-      'Malamig na tubig sa mukha. Dalawang minuto.',
-      'Maglakad sa labas. Nasa bulsa ang telepono.',
-      'I-text ang isang tao. Hindi tungkol sa taya.',
-      'Huminga: 4 pasok, 4 hold, 4 labas. Ulitin hanggang humupa.',
-    ],
-    forYou: 'Dahil dito ka pumili',
-    allTitle: 'Kung iba ang nararamdaman',
   },
 
   findHelp: {
