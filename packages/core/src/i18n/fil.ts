@@ -206,6 +206,8 @@ export const fil: Translation = {
     protectedLabel: 'ANG IYONG NAINGATAN',
     milestonesLabel: 'MGA MILESTONE',
     nextLabel: 'susunod',
+    nextGoal: '{n} araw pa bago ang {d}-araw',
+    nextGoalOne: '1 araw pa bago ang {d}-araw',
     resetMsg: 'Nag-reset ang iyong streak. Hindi iyon kabiguan — iyon ay datos. Magsimula ulit.',
     voidLabel: 'PAG-UNAWA SA IYONG PAGNANASA',
     voidChanging: 'PALITAN ANG RECOVERY PROFILE',

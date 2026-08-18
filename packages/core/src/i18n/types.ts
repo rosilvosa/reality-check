@@ -159,6 +159,10 @@ export interface Translation {
     lastCheckIn: string
     startStreak: string; dailyCheckIn: string; checkInBtn: string; checkedInBtn: string
     checkInHint: string; protectedLabel: string; milestonesLabel: string; nextLabel: string
+    // params: {n} {d}
+    nextGoal: string
+    // params: {d}
+    nextGoalOne: string
     resetMsg: string; voidLabel: string; voidChanging: string; voidHint: string
     voidSave: string; voidSaving: string; voidWhenUrge: string; voidChange: string; voidTryInstead: string
   }

@@ -206,6 +206,8 @@ export const en: Translation = {
     protectedLabel: 'WHAT YOU HAVE PROTECTED',
     milestonesLabel: 'MILESTONES',
     nextLabel: 'next',
+    nextGoal: '{n} days to your {d}-day mark',
+    nextGoalOne: '1 day to your {d}-day mark',
     resetMsg: 'Your streak reset. That is not failure — that is data. Start again.',
     voidLabel: 'UNDERSTANDING YOUR URGE',
     voidChanging: 'CHANGE RECOVERY PROFILE',

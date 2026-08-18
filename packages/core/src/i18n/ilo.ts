@@ -206,6 +206,8 @@ export const ilo: Translation = {
     protectedLabel: 'TI NATIGTIPONMO',
     milestonesLabel: 'MGA MILESTONE',
     nextLabel: 'sumaganad',
+    nextGoal: '{n} aldaw pay iti {d}-aldaw',
+    nextGoalOne: '1 aldaw pay iti {d}-aldaw',
     resetMsg: 'Nag-reset ti streakmo. Saan dayta a pakaamoan — datos dayta. Rugian manen.',
     voidLabel: 'AMMOEN TI PANAGNANASAM',
     voidChanging: 'BALBALEN TI RECOVERY PROFILE',

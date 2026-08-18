@@ -125,6 +125,31 @@ export default function Progress() {
       {/* Milestone timeline */}
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
         <div className="text-[0.6875rem] text-muted uppercase tracking-widest font-bold mb-4">{t.progress.milestonesLabel}</div>
+
+        {/* Distance to the next mark, so the grid has a near target and not just
+            a row of locks. Measured from zero rather than from the previous
+            milestone, which would understate how far along you already are. */}
+        {!loading && nextMilestone !== undefined && (
+          <div className="mb-5">
+            <div className="flex items-baseline justify-between gap-3 mb-2">
+              <span className="text-ink text-[0.8125rem] font-bold">
+                {nextMilestone - days === 1
+                  ? tpl(t.progress.nextGoalOne, { d: String(nextMilestone) })
+                  : tpl(t.progress.nextGoal, { n: String(nextMilestone - days), d: String(nextMilestone) })}
+              </span>
+              <span className="text-muted text-[0.75rem] font-bold tabular-nums shrink-0">
+                {days} / {nextMilestone}
+              </span>
+            </div>
+            <div className="w-full bg-surface2 rounded-full h-2">
+              <div
+                className="h-2 rounded-full bg-accent transition-all duration-500"
+                style={{ width: `${(days / nextMilestone) * 100}%` }}
+              />
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-3 gap-3">
           {MILESTONES.map((m) => {
             const unlocked = milestonesSeen.includes(m) || days >= m

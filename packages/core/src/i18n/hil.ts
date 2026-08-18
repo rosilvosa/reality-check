@@ -206,6 +206,8 @@ export const hil: Translation = {
     protectedLabel: 'ANG IMO NATIPON',
     milestonesLabel: 'MGA MILESTONE',
     nextLabel: 'sunod',
+    nextGoal: '{n} adlaw pa sa {d}-adlaw',
+    nextGoalOne: '1 adlaw pa sa {d}-adlaw',
     resetMsg: 'Nag-reset ang imo streak. Indi ato kapakyasan — datos ato. Sugdi liwat.',
     voidLabel: 'PAG-ALAM SANG IMO PAGNANASA',
     voidChanging: 'USBON ANG RECOVERY PROFILE',

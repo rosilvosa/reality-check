@@ -206,6 +206,8 @@ export const ceb: Translation = {
     protectedLabel: 'ANG IMONG NATIPON',
     milestonesLabel: 'MGA MILESTONE',
     nextLabel: 'sunod',
+    nextGoal: '{n} adlaw pa sa {d}-adlaw',
+    nextGoalOne: '1 adlaw pa sa {d}-adlaw',
     resetMsg: 'Nag-reset ang imong streak. Dili kana kabiguan — datos kana. Sugdi pag-usab.',
     voidLabel: 'PAG-ALAM SA IMONG PAGNANASA',
     voidChanging: 'USBON ANG RECOVERY PROFILE',
