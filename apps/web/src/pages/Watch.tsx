@@ -155,7 +155,14 @@ export default function Watch() {
         </button>
       </div>
 
-      <VideoModal video={playing} onClose={() => setPlaying(null)} />
+      <VideoModal
+        video={playing}
+        onClose={() => setPlaying(null)}
+        views={playing ? stats[playing.youtubeId]?.views : undefined}
+        hearted={playing ? hearted.has(playing.youtubeId) : false}
+        heartDisabled={!user}
+        onToggleHeart={() => playing && toggleHeartFor(playing)}
+      />
     </div>
   )
 }

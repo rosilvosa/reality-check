@@ -1,13 +1,21 @@
 import { useEffect } from 'react'
-import { youtubeEmbedUrl, youtubeWatchUrl, type RecoveryVideo } from '@rc/core'
+import { tpl, youtubeEmbedUrl, youtubeWatchUrl, type RecoveryVideo } from '@rc/core'
 import { useT } from '../i18n'
 
 interface Props {
   video: RecoveryVideo | null
   onClose: () => void
+  /** Undefined while stats are still loading, or if the video has no views yet. */
+  views?: number
+  hearted: boolean
+  /** Disabled while signed out entirely -- same rule as the card in Watch. */
+  heartDisabled: boolean
+  onToggleHeart: () => void
 }
 
-export default function VideoModal({ video, onClose }: Props) {
+export default function VideoModal({
+  video, onClose, views, hearted, heartDisabled, onToggleHeart,
+}: Props) {
   useEffect(() => {
     if (!video) return
     function onKey(e: KeyboardEvent) {
@@ -57,6 +65,23 @@ export default function VideoModal({ video, onClose }: Props) {
             {video.title}
           </h2>
           <p className="text-muted text-sm mt-1">{video.source}</p>
+
+          {/* Same row as the card on Watch, so leaving the modal open to
+              react to a video does not require closing it first. */}
+          <div className="flex items-center justify-between mt-3">
+            <span className="text-muted text-xs">
+              {views !== undefined && views > 0 ? tpl(t.watch.viewsLabel, { n: String(views) }) : t.watch.viewsNone}
+            </span>
+            <button
+              type="button"
+              onClick={onToggleHeart}
+              disabled={heartDisabled}
+              aria-label={hearted ? t.watch.heartedAria : t.watch.heartAria}
+              className={`text-xs font-bold shrink-0 ${hearted ? 'text-ink' : 'text-muted hover:text-ink'} disabled:opacity-50`}
+            >
+              {hearted ? '♥' : '♡'}
+            </button>
+          </div>
 
           <div className="flex items-center gap-2 mt-4">
             <button
