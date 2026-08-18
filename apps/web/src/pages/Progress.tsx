@@ -26,13 +26,13 @@ export default function Progress() {
   const checkedInToday = isCheckedInToday(lastCheckInDate)
   const days = visibleStreak(currentStreak, lastCheckInDate)
   const journalEntries = useJournalStore((s) => s.entries)
-  const totalSaved = journalEntries.reduce((sum, e) => sum + (Number(e.amount) || 0), 0)
+  const totalLost = journalEntries.reduce((sum, e) => sum + (Number(e.amount) || 0), 0)
 
   const nextMilestone = MILESTONES.find((m) => m > days)
 
   const assetLines = (assets ?? [])
-    .filter((a) => a.cost > 0 && totalSaved > 0)
-    .map((a) => ({ name: a.name, units: totalSaved / a.cost }))
+    .filter((a) => a.cost > 0 && totalLost > 0)
+    .map((a) => ({ name: a.name, units: totalLost / a.cost }))
 
   return (
     <div>
@@ -97,13 +97,16 @@ export default function Progress() {
         </div>
       )}
 
-      {/* What you've protected */}
-      {totalSaved > 0 && (
+      {/* What it cost. Not what was saved: these are the amounts from the loss
+          journal, and framing them as savings grew the number the more someone
+          lost. */}
+      {totalLost > 0 && (
         <div className="bg-surface border border-border rounded-xl p-5 mb-4">
           <div className="text-[0.6875rem] text-muted uppercase tracking-widest font-bold mb-3">{t.progress.protectedLabel}</div>
-          <div className="text-2xl font-black text-ink mb-3">
-            {formatMoney(totalSaved, currency)}
+          <div className="text-2xl font-black text-ink mb-1">
+            {formatMoney(totalLost, currency)}
           </div>
+          <p className="text-muted text-xs mb-3 leading-relaxed">{t.progress.costHint}</p>
           {assetLines.length > 0 ? (
             <div className="space-y-2">
               {assetLines.map((a) => (
@@ -114,7 +117,7 @@ export default function Progress() {
               ))}
             </div>
           ) : (
-            <p className="text-muted text-xs">Set asset costs in Settings to see equivalents.</p>
+            <p className="text-muted text-xs leading-relaxed">{t.progress.assetsEmpty}</p>
           )}
         </div>
       )}

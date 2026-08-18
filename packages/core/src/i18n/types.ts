@@ -162,6 +162,7 @@ export interface Translation {
     lastCheckIn: string
     startStreak: string; dailyCheckIn: string; checkInBtn: string; checkedInBtn: string
     checkInHint: string; protectedLabel: string; milestonesLabel: string; nextLabel: string
+    costHint: string; assetsEmpty: string
     // params: {n} {d}
     nextGoal: string
     // params: {d}
