@@ -25,6 +25,7 @@ export const fil: Translation = {
     subtitle: 'Kasangkapan sa recovery',
     checkInNow: 'Mag-check in ngayong araw',
     checkedIn: 'Nakapag-check in na ngayong araw',
+    lostToday: 'May naitala kang pagkalugi ngayon, kaya hindi maituturing na malinis na araw ang araw na ito. Mag-check in muli bukas.',
     daysLabel: 'araw na malinis',
     startHint: 'Mag-check in para simulan ang bilang ng malinis na araw.',
     lostBtn: 'Kaka-talo ko lang',
@@ -107,7 +108,9 @@ export const fil: Translation = {
     nudgeBody: 'Ang isinusulat mo dito ay nasa telepono lang na ito. Mawawala ito kapag nilinis mo ang browser.',
     nudgeAction: 'I-back up ito',
     nudgeDismiss: 'Huwag muna',
-    recorded: 'Naitala ang entry.',
+    recorded: 'Naitala na.',
+    recordedHint: 'Mababasa mo ito bago ang susunod na pusta. Iyon ang buong dahilan nito.',
+    streakReset: 'Bumalik sa zero ang streak mo, at hindi na naka-check in ang araw na ito. Iyan ang tapat na bilang.',
     pastEntries: 'MGA NAKARAANG ENTRY ({n})',
   },
 
@@ -490,7 +493,7 @@ export const fil: Translation = {
   milestone: {
     titleOne: '{n} Araw na Malinis.',
     titleMany: '{n} Araw na Malinis.',
-    protected: 'Naingatan mo ang',
+    costBefore: 'Kung magkano ang naibayad mo sa sugal bago ito:',
     acknowledge: 'TANGGAP',
   },
   milestoneMessages: {

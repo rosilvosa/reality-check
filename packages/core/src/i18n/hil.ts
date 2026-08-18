@@ -25,6 +25,7 @@ export const hil: Translation = {
     subtitle: 'Gamit sa recovery',
     checkInNow: 'Mag-check in subong',
     checkedIn: 'Naka-check in na subong',
+    lostToday: 'May narekord ka nga pagkapierde subong, gani indi ini maisip nga limpyo nga adlaw. Mag-check in liwat buwas.',
     daysLabel: 'adlaw nga limpyo',
     startHint: 'Mag-check in para umpisahan ang ihap sang limpyo nga adlaw.',
     lostBtn: 'Bag-o lang ako napildi',
@@ -107,7 +108,9 @@ export const hil: Translation = {
     nudgeBody: 'Ang imo ginasulat diri yara lang sa sini nga telepono. Madula ini kon limpyohan mo ang browser.',
     nudgeAction: 'I-back up ini',
     nudgeDismiss: 'Indi anay',
-    recorded: 'Na-rekord na ang entry.',
+    recorded: 'Narekord na.',
+    recordedHint: 'Mabasa mo ini antes sang masunod nga pusta. Amo ina ang bug-os nga rason sini.',
+    streakReset: 'Nagbalik sa zero ang imo streak, kag indi na naka-check in ang adlaw subong. Amo ina ang matuod nga numero.',
     pastEntries: 'MGA NAAGI NGA ENTRY ({n})',
   },
 
@@ -490,7 +493,7 @@ export const hil: Translation = {
   milestone: {
     titleOne: '{n} Adlaw nga Limpyo.',
     titleMany: '{n} Adlaw nga Limpyo.',
-    protected: 'Natipigan mo ang',
+    costBefore: 'Pila ang nadula sa imo sa sugal antes sini:',
     acknowledge: 'BATUNON',
   },
   milestoneMessages: {

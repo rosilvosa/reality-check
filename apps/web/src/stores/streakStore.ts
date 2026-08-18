@@ -33,8 +33,12 @@ interface StreakState extends StreakData {
   newMilestone: number | null
   loadStreak: () => Promise<void>
   checkIn: () => Promise<void>
+  /** Resolves true if there was a streak or a check-in to lose. */
+  recordRelapse: () => Promise<boolean>
   dismissMilestone: () => Promise<void>
-  getTotalSaved: () => number
+  getTotalLost: () => number
+  /** True if a loss was written down today. */
+  lostToday: () => boolean
 }
 
 export const useStreakStore = create<StreakState>((set, get) => ({
@@ -59,6 +63,9 @@ export const useStreakStore = create<StreakState>((set, get) => ({
     const state = get()
     const todayStr = today()
     if (state.lastCheckInDate === todayStr) return
+    // The mirror of the relapse case. Without this you could write down a loss
+    // and then check in for the same day, which is the same lie in reverse.
+    if (get().lostToday()) return
 
     let newStreak: number
     if (state.lastCheckInDate === yesterday()) {
@@ -101,6 +108,43 @@ export const useStreakStore = create<StreakState>((set, get) => ({
     })
   },
 
+  /**
+   * A journal entry means the person gambled. Nothing here used to break the
+   * streak, so checking in and then logging a loss on the same day left the app
+   * showing a clean day and a tick beside it. This app exists to stop exactly
+   * that, so a loss clears today's check-in and puts the counter back to zero.
+   *
+   * longestStreak is kept, because it was really earned. startDate is kept so
+   * Progress can still show its "streak reset" message.
+   */
+  recordRelapse: async () => {
+    const state = get()
+    const hadSomethingToLose = state.currentStreak > 0 || state.lastCheckInDate !== null
+    if (!hadSomethingToLose) return false
+
+    const updated: StreakData = {
+      currentStreak: 0,
+      longestStreak: state.longestStreak,
+      // Cleared, not left on today, so "checked in today" cannot stay true.
+      lastCheckInDate: null,
+      milestonesSeen: state.milestonesSeen,
+      startDate: state.startDate,
+    }
+
+    const { user } = useAuthStore.getState()
+    try {
+      await getAdapter(user).saveStreak(updated)
+    } catch (e) {
+      // The entry itself is already saved. Surface the failure rather than
+      // pretending the streak reset when it did not persist.
+      set({ error: e instanceof Error ? e.message : 'Could not update your streak' })
+      return false
+    }
+
+    set({ ...updated, error: null })
+    return true
+  },
+
   dismissMilestone: async () => {
     const state = get()
     const milestone = state.newMilestone
@@ -125,7 +169,14 @@ export const useStreakStore = create<StreakState>((set, get) => ({
     }
   },
 
-  getTotalSaved: () => {
+  lostToday: () => {
+    const todayStr = today()
+    return useJournalStore.getState().entries.some(
+      (e) => localISODate(new Date(e.createdAt)) === todayStr,
+    )
+  },
+
+  getTotalLost: () => {
     return useJournalStore.getState().entries.reduce(
       (sum, e) => sum + (Number(e.amount) || 0),
       0,

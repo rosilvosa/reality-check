@@ -19,12 +19,13 @@ function isCheckedInToday(lastCheckInDate: string | null): boolean {
 export default function Progress() {
   const {
     currentStreak, longestStreak, lastCheckInDate, milestonesSeen,
-    startDate, loading, checkIn,
+    startDate, loading, checkIn, lostToday,
   } = useStreakStore()
   const { assets, currency } = useSettingsStore()
   const t = useT()
 
   const checkedInToday = isCheckedInToday(lastCheckInDate)
+  const lostTodayFlag = lostToday()
   const days = visibleStreak(currentStreak, lastCheckInDate)
   const journalEntries = useJournalStore((s) => s.entries)
   const totalLost = journalEntries.reduce((sum, e) => sum + (Number(e.amount) || 0), 0)
@@ -80,6 +81,10 @@ export default function Progress() {
           >
             {t.progress.checkedInBtn}
           </button>
+        ) : lostTodayFlag ? (
+          <p className="w-full py-3 px-4 bg-surface2 rounded-lg text-center text-xs font-bold text-muted leading-relaxed">
+            {t.home.lostToday}
+          </p>
         ) : (
           <button
             onClick={checkIn}

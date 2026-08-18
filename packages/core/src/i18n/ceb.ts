@@ -25,6 +25,7 @@ export const ceb: Translation = {
     subtitle: 'Himan sa recovery',
     checkInNow: 'Pag-check in karon',
     checkedIn: 'Naka-check in na karon',
+    lostToday: 'Naay natala nimong pagkapildi karon, busa dili kini maisip nga hinlo nga adlaw. Mag-check in usab ugma.',
     daysLabel: 'adlaw nga limpyo',
     startHint: 'Pag-check in aron sugdan ang ihap sa limpyo nga adlaw.',
     lostBtn: 'Bag-o ko kapildi',
@@ -107,7 +108,9 @@ export const ceb: Translation = {
     nudgeBody: 'Ang imong gisulat dinhi anaa ra niining telepono. Mawala ni kung limpyohan nimo ang browser.',
     nudgeAction: 'I-back up ni',
     nudgeDismiss: 'Dili sa',
-    recorded: 'Na-rekord na ang entry.',
+    recorded: 'Natala na.',
+    recordedHint: 'Mabasa nimo kini sa dili pa ang sunod nga pusta. Kana ang tibuok katuyoan niini.',
+    streakReset: 'Mibalik sa zero ang imong streak, ug dili na naka-check in ang adlaw karon. Kana ang tinuod nga numero.',
     pastEntries: 'MGA NANGAGING ENTRY ({n})',
   },
 
@@ -490,7 +493,7 @@ export const ceb: Translation = {
   milestone: {
     titleOne: '{n} Adlaw nga Limpyo.',
     titleMany: '{n} Adlaw nga Limpyo.',
-    protected: 'Natipigan nimo ang',
+    costBefore: 'Pila ang nawala kanimo sa sugal sa wala pa kini:',
     acknowledge: 'DAWATON',
   },
   milestoneMessages: {

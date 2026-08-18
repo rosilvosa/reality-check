@@ -25,6 +25,7 @@ export const en: Translation = {
     subtitle: 'Recovery tool',
     checkInNow: 'Check in for today',
     checkedIn: 'Checked in today',
+    lostToday: 'You wrote down a loss today, so today cannot be a clean day. Check in again tomorrow.',
     daysLabel: 'days clean',
     startHint: 'Check in to start counting clean days.',
     lostBtn: 'I just lost',
@@ -107,7 +108,9 @@ export const en: Translation = {
     nudgeBody: 'What you write here lives on this phone. Clearing your browser would take it with you.',
     nudgeAction: 'Back it up',
     nudgeDismiss: 'Not now',
-    recorded: 'Entry recorded.',
+    recorded: 'Written down.',
+    recordedHint: 'You will read this before the next bet. That is the whole point of it.',
+    streakReset: 'Your streak is back to zero, and today is no longer checked in. That is the honest number.',
     pastEntries: 'PAST ENTRIES ({n})',
   },
 
@@ -490,7 +493,7 @@ export const en: Translation = {
   milestone: {
     titleOne: '{n} Day Clean.',
     titleMany: '{n} Days Clean.',
-    protected: 'You have protected',
+    costBefore: 'What gambling cost you before this:',
     acknowledge: 'ACKNOWLEDGE',
   },
   milestoneMessages: {

@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { useJournalStore } from '../stores/journalStore'
 import { useAuthStore } from '../stores/authStore'
+import { useStreakStore } from '../stores/streakStore'
 import { auth } from '../lib/firebase'
 import { useT } from '../i18n'
 import { tpl, formatMoney } from '@rc/core'
@@ -24,6 +25,7 @@ export default function Journal() {
   const [amount, setAmount] = useState(() => amountFromQuery(searchParams.get('amount')))
   const [text, setText] = useState('')
   const [saving, setSaving] = useState(false)
+  const [justSaved, setJustSaved] = useState<{ reset: boolean } | null>(null)
   const authUser = useAuthStore((s) => s.user)
   const isSignedIn = !!authUser && !authUser.isAnonymous
   // One nudge, dismissible for good. A recovery tool should not nag.
@@ -50,8 +52,11 @@ export default function Journal() {
     setSaving(true)
     try {
       await addEntry({ amount: parseFloat(amount) || 0, text: text.trim() })
+      // Writing down a loss is telling the app you gambled, so the streak goes.
+      const reset = await useStreakStore.getState().recordRelapse()
       setAmount('')
       setText('')
+      setJustSaved({ reset })
       if (searchParams.get('amount')) setSearchParams({}, { replace: true })
     } catch {
       /* error shown via store */
@@ -122,6 +127,18 @@ export default function Journal() {
         </div>
       )}
 
+      {/* There was no confirmation at all before: the form simply emptied
+          itself, which reads as "did that save?" at the worst possible moment. */}
+      {justSaved && (
+        <div className="border border-accent rounded-xl p-5 mb-6 bg-surface" role="status">
+          <p className="text-ink font-bold text-[0.9375rem]">{t.journal.recorded}</p>
+          <p className="text-muted text-sm mt-1 leading-relaxed">{t.journal.recordedHint}</p>
+          {justSaved.reset && (
+            <p className="text-accent text-sm font-bold mt-3 leading-relaxed">{t.journal.streakReset}</p>
+          )}
+        </div>
+      )}
+
       {(!mustIntercept && !mustShowChasingWarning) && (
         <div className="bg-surface border border-border rounded-xl p-5 mb-6">
           <label htmlFor="journal-amount" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">
@@ -139,7 +156,7 @@ export default function Journal() {
           </label>
           <textarea id="journal-feeling"
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e) => { setText(e.target.value); if (justSaved) setJustSaved(null) }}
             placeholder={t.journal.placeholderFeeling}
             rows={5}
             className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-base outline-none focus:border-accent mb-4 resize-y"

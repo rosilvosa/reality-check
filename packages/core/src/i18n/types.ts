@@ -25,6 +25,7 @@ export interface Translation {
     subtitle: string
     checkInNow: string
     checkedIn: string
+    lostToday: string
     daysLabel: string
     startHint: string
     lostBtn: string
@@ -88,6 +89,7 @@ export interface Translation {
     chasingTitle: string; chasingBody1: string; chasingBody2: string; chasingBody3: string; chasingBtn: string
     labelAmount: string; labelFeeling: string; placeholderAmount: string; placeholderFeeling: string
     recordBtn: string; recorded: string; saveFailed: string
+    recordedHint: string; streakReset: string
     nudgeBody: string; nudgeAction: string; nudgeDismiss: string
     // params: {n}
     pastEntries: string
@@ -350,7 +352,7 @@ export interface Translation {
   milestone: {
     // params: {n}
     titleOne: string; titleMany: string
-    protected: string; acknowledge: string
+    costBefore: string; acknowledge: string
   }
 
   milestoneMessages: Record<string, string>

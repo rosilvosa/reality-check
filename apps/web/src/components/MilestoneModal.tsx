@@ -4,20 +4,20 @@ import { useT } from '../i18n'
 import { formatMoney, tpl, MILESTONE_EMOJI } from '@rc/core'
 
 export default function MilestoneModal() {
-  const { showMilestoneModal, newMilestone, getTotalSaved, dismissMilestone } = useStreakStore()
+  const { showMilestoneModal, newMilestone, getTotalLost, dismissMilestone } = useStreakStore()
   const { assets, currency } = useSettingsStore()
   const t = useT()
 
   if (!showMilestoneModal || newMilestone === null) return null
 
-  const totalSaved = getTotalSaved()
+  const totalLost = getTotalLost()
   const badge = MILESTONE_EMOJI[newMilestone] ?? '🏅'
   const title = tpl(newMilestone === 1 ? t.milestone.titleOne : t.milestone.titleMany, { n: String(newMilestone) })
   const message = t.milestoneMessages[String(newMilestone)] ?? title
 
   const assetLines = (assets ?? [])
     .filter((a) => a.cost > 0)
-    .map((a) => `${(totalSaved / a.cost).toFixed(1)}× ${a.name}`)
+    .map((a) => `${(totalLost / a.cost).toFixed(1)}× ${a.name}`)
     .slice(0, 3)
 
   return (
@@ -27,11 +27,11 @@ export default function MilestoneModal() {
         <h2 className="text-3xl font-black text-ink mb-1">
           {title}
         </h2>
-        {totalSaved > 0 && (
+        {totalLost > 0 && (
           <p className="text-muted text-sm mb-3">
-            {t.milestone.protected}{' '}
+            {t.milestone.costBefore}{' '}
             <span className="text-ink font-bold">
-              {formatMoney(totalSaved, currency)}
+              {formatMoney(totalLost, currency)}
             </span>
             {assetLines.length > 0 && (
               <> — {assetLines.join(', ')}</>

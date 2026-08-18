@@ -25,6 +25,7 @@ export const ilo: Translation = {
     subtitle: 'Kasangkapan iti recovery',
     checkInNow: 'Ag-check in ita',
     checkedIn: 'Naka-check inen ita',
+    lostToday: 'Adda nailistam a pannakaabak ita, isu a saan a mabalin a nadalus nga aldaw ti ita. Ag-check in ka manen no bigat.',
     daysLabel: 'aldaw a natalna',
     startHint: 'Ag-check in tapno marugian ti bilang dagiti natalna nga aldaw.',
     lostBtn: 'Kakaabakak laeng',
@@ -107,7 +108,9 @@ export const ilo: Translation = {
     nudgeBody: 'Ti isuratmo ditoy ket adda laeng iti daytoy a telepono. Mapukaw no dalusam ti browser.',
     nudgeAction: 'I-back up daytoy',
     nudgeDismiss: 'Saan pay',
-    recorded: 'Narehistro ti entry.',
+    recorded: 'Nailista.',
+    recordedHint: 'Maibasam daytoy sakbay ti sumaruno a pusta. Dayta ti intero a gagara na.',
+    streakReset: 'Nagsubli iti zero ti streak mo, ket saan nga naka-check in ti aldaw ita. Dayta ti pudno a numero.',
     pastEntries: 'NAPALABAS A MGA ENTRY ({n})',
   },
 
@@ -490,7 +493,7 @@ export const ilo: Translation = {
   milestone: {
     titleOne: '{n} nga Aldaw a Nadalus.',
     titleMany: '{n} nga Aldaw a Nadalus.',
-    protected: 'Naprotektaram ti',
+    costBefore: 'Mano ti napukawmo iti sugal sakbay daytoy:',
     acknowledge: 'AWATEN',
   },
   milestoneMessages: {

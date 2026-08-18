@@ -15,10 +15,11 @@ function isCheckedInToday(lastCheckInDate: string | null): boolean {
 
 export default function Home() {
   const t = useT()
-  const { currentStreak, lastCheckInDate, loading, checkIn } = useStreakStore()
+  const { currentStreak, lastCheckInDate, loading, checkIn, lostToday } = useStreakStore()
   const entries = useJournalStore((s) => s.entries)
   const currency = useSettingsStore((s) => s.currency) ?? 'PHP'
   const checkedIn = isCheckedInToday(lastCheckInDate)
+  const lostTodayFlag = lostToday()
   const latest = entries[0]
   const days = visibleStreak(currentStreak, lastCheckInDate)
   const earned = [...MILESTONES].reverse().find((m) => days >= m)
@@ -75,6 +76,12 @@ export default function Home() {
             <span className="block text-sm font-black tracking-wide text-ink">{t.home.checkedIn}</span>
             <span className="block text-xs font-bold text-muted mt-0.5">{t.home.seeProgress} →</span>
           </Link>
+        ) : lostTodayFlag ? (
+          // No check-in offered on a day with a loss written down. A disabled
+          // button with no reason reads as a broken app, so say why instead.
+          <p className="w-full py-3.5 px-4 bg-surface2 rounded-xl text-center text-xs font-bold text-muted leading-relaxed">
+            {t.home.lostToday}
+          </p>
         ) : (
           <button
             type="button"
