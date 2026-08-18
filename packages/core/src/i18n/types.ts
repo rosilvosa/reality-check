@@ -190,6 +190,7 @@ export interface Translation {
     currencySection: string; currencyHint: string
     helpRegionSection: string; helpRegionHint: string
     langSection: string
+    langUnreviewed: string
     recoveryTools: string; barriersTitle: string; barriersDesc: string
     findHelpTitle: string; findHelpDesc: string
     communityTitle: string; communityDesc: string
@@ -365,12 +366,19 @@ export interface Translation {
   }
 }
 
-export const LANGUAGES: { code: Lang; label: string; native: string }[] = [
+/**
+ * `needsNativeReview` marks a pack written without a native speaker. The
+ * Cebuano file is Tagalog-leaning with Cebuano words mixed in, and Hiligaynon
+ * and Ilocano were produced the same way, so presenting them as finished
+ * translations overstates what they are. Clear the flag per language once a
+ * native speaker has actually read the file.
+ */
+export const LANGUAGES: { code: Lang; label: string; native: string; needsNativeReview?: boolean }[] = [
   { code: 'en',  label: 'English',     native: 'English'   },
   { code: 'fil', label: 'Filipino',    native: 'Filipino'  },
-  { code: 'ceb', label: 'Cebuano',     native: 'Bisaya'    },
-  { code: 'hil', label: 'Hiligaynon', native: 'Ilonggo'   },
-  { code: 'ilo', label: 'Ilocano',     native: 'Ilocano'   },
+  { code: 'ceb', label: 'Cebuano',     native: 'Bisaya'   , needsNativeReview: true },
+  { code: 'hil', label: 'Hiligaynon', native: 'Ilonggo'  , needsNativeReview: true },
+  { code: 'ilo', label: 'Ilocano',     native: 'Ilocano'  , needsNativeReview: true },
 ]
 
 /** Replace {key} placeholders. tpl('Hello {name}', {name:'Ana'}) → 'Hello Ana' */

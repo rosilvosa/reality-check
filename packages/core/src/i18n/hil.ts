@@ -267,6 +267,7 @@ export const hil: Translation = {
     saveBtn: 'I-SAVE ANG MGA SETTING',
     savedBtn: '✓ NA-SAVE',
     langSection: 'PAMULONG',
+    langUnreviewed: 'Ang Bisaya, Ilonggo, kag Ilocano kinahanglan pa sang native speaker nga mag-check. May mga tinaga nga sala ang dating.',
     recoveryTools: 'MGA GAMIT SA RECOVERY',
     barriersTitle: 'Tukora ang Imo mga Babag',
     barriersDesc: 'Self-exclusion, pagtanggal sang app, checklist sa pag-block sang site',

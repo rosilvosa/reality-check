@@ -267,6 +267,7 @@ export const fil: Translation = {
     saveBtn: 'I-SAVE ANG MGA SETTING',
     savedBtn: '✓ NA-SAVE',
     langSection: 'WIKA',
+    langUnreviewed: 'Kailangan pa ng native speaker na magsuri sa Bisaya, Ilonggo, at Ilocano. May mga salitang mali ang pakiramdam.',
     recoveryTools: 'MGA KAGAMITAN SA RECOVERY',
     barriersTitle: 'Itayo ang Iyong mga Hadlang',
     barriersDesc: 'Self-exclusion, pagtanggal ng app, checklist ng pag-block ng site',

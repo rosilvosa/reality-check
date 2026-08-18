@@ -267,6 +267,7 @@ export const en: Translation = {
     saveBtn: 'SAVE SETTINGS',
     savedBtn: '✓ SAVED',
     langSection: 'LANGUAGE',
+    langUnreviewed: 'Bisaya, Ilonggo, and Ilocano still need a native speaker to check them. Some wording will read wrong.',
     recoveryTools: 'RECOVERY TOOLS',
     barriersTitle: 'Build Your Barriers',
     barriersDesc: 'Self-exclusion, app deletion, site blocking checklist',

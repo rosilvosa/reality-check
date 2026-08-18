@@ -267,6 +267,7 @@ export const ceb: Translation = {
     saveBtn: 'I-SAVE ANG MGA SETTING',
     savedBtn: '✓ NA-SAVE',
     langSection: 'PINULONGAN',
+    langUnreviewed: 'Ang Bisaya, Ilonggo, ug Ilocano nagkinahanglan pa og native speaker nga mo-check. Adunay mga pulong nga sayop og dating.',
     recoveryTools: 'MGA HIMAN SA RECOVERY',
     barriersTitle: 'Tukuron ang Imong mga Babag',
     barriersDesc: 'Self-exclusion, pagtanggal sa app, checklist sa pag-block sa site',

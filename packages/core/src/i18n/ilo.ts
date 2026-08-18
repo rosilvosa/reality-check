@@ -267,6 +267,7 @@ export const ilo: Translation = {
     saveBtn: 'I-SAVE DAGITI SETTINGS',
     savedBtn: '✓ NA-SAVE',
     langSection: 'PAGSASAO',
+    langUnreviewed: 'Ti Bisaya, Ilonggo, ken Ilocano masapul pay ti native speaker a mangkita. Adda dagiti sasao a saan a husto ti timek.',
     recoveryTools: 'KASANGKAPAN ITI RECOVERY',
     barriersTitle: 'Tukoren ti Sagam-atmo',
     barriersDesc: 'Self-exclusion, panayalis ti app, checklist ti panagtangtangken ti site',

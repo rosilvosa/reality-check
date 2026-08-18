@@ -426,9 +426,13 @@ export default function Settings() {
               }`}
             >
               {l.native}
+              {/* A dot rather than a warning: the pack is usable, it just has
+                  not been read by someone who speaks the language. */}
+              {l.needsNativeReview && <span className="ml-1.5 text-[0.625rem] align-super" aria-hidden>&bull;</span>}
             </button>
           ))}
         </div>
+        <p className="text-muted text-xs mt-3 leading-relaxed">{t.settings.langUnreviewed}</p>
       </div>
 
       <button
