@@ -64,18 +64,22 @@ export default function Layout() {
   const t = useT()
   const showContact = useContactStore((s) => s.show)
 
+  // Watch moved up from bottom so the two rows land at 5 and 5. It was the
+  // newest addition and the most passive-use one -- an occasional resource
+  // library, not a reactive-in-the-moment tool like the four it was
+  // competing with for bottom-row thumb space (Lost, Trap, Barriers, Help).
   const top = [
     { to: '/', label: t.nav.home, icon: House, end: true },
     { to: '/journal', label: t.nav.journal, icon: Notebook },
     { to: '/progress', label: t.nav.progress, icon: Trophy },
     { to: '/settings', label: t.nav.settings, icon: SettingsIcon },
+    { to: '/watch', label: t.nav.watch, icon: Clapperboard },
   ]
 
   const bottom = [
     { to: '/lost', label: t.nav.lost, icon: Droplet },
     { to: '/trap', label: t.nav.trap, icon: Brain },
     { to: '/barriers', label: t.nav.barriers, icon: Shield },
-    { to: '/watch', label: t.nav.watch, icon: Clapperboard },
     { to: '/help', label: t.nav.help, icon: Handshake },
     { to: '/community', label: t.nav.community, icon: MessageCircle },
   ]
