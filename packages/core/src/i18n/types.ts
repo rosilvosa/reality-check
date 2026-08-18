@@ -140,6 +140,9 @@ export interface Translation {
     openOnYouTube: string; playNote: string
     suggestBtn: string; suggestHint: string
     // params: {n}
+    viewsLabel: string; viewsNone: string
+    heartAria: string; heartedAria: string
+    // params: {n}
     minutes: string
   }
 

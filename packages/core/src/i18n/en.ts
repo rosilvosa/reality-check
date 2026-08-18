@@ -180,6 +180,10 @@ export const en: Translation = {
     playNote: 'Plays here so you do not have to leave the app. Pressing play loads the video from YouTube, which means Google sees the request.',
     suggestBtn: 'Suggest a video',
     suggestHint: 'Seen something that helped? Send the link and we will watch it before adding it.',
+    viewsLabel: '{n} watched this',
+    viewsNone: 'Be the first to watch this',
+    heartAria: 'Mark as helpful',
+    heartedAria: 'Marked as helpful',
     minutes: '{n} min',
   },
 

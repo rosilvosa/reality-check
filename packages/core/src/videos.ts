@@ -1,6 +1,15 @@
+import type { Lang } from './i18n'
+
 export type VideoTopic = 'psychology' | 'recovery'
 
 export interface RecoveryVideo {
+  /**
+   * The language actually spoken in the video. Used to sort a matching
+   * language to the top of its topic group, never to hide the rest -- the
+   * library is six videos, and psychology in particular applies regardless of
+   * what language explains it.
+   */
+  lang: Lang
   /**
    * The video's own title, minus any channel or speaker suffix that would just
    * repeat `source`. Not translated: it is what the video is actually called.
@@ -47,12 +56,14 @@ export const RECOVERY_VIDEOS: RecoveryVideo[] = [
   {
     title: 'Slot Machines: Addiction by Design',
     source: 'TVO Today',
+    lang: 'en',
     topic: 'psychology',
     youtubeId: 'ETB0x2UU6JE',
   },
   {
     title: 'How Anticipation Primes the Brain for Problem Gambling',
     source: 'Carolyn Hawley, TEDx',
+    lang: 'en',
     topic: 'psychology',
     youtubeId: 't6ZLd0IfXPE',
   },
@@ -60,6 +71,7 @@ export const RECOVERY_VIDEOS: RecoveryVideo[] = [
     // The long one. Kept last in this group for that reason.
     title: 'Addiction by Design: From Slot Machines to Internet Gambling',
     source: 'Natasha Dow Schull, MIT (full lecture)',
+    lang: 'en',
     topic: 'psychology',
     youtubeId: 'GUeTnQeIFCE',
   },
@@ -68,18 +80,21 @@ export const RECOVERY_VIDEOS: RecoveryVideo[] = [
     // longer claims everything is in English.
     title: 'Pano makakawala sa sugal? Kwento ng isang recovering gambling addict',
     source: 'Off the Record (Tagalog)',
+    lang: 'fil',
     topic: 'recovery',
     youtubeId: 'qqte-sPeeRU',
   },
   {
     title: 'The fall and rise of a gambling addict',
     source: 'Justyn Rees Larcombe, TEDx',
+    lang: 'en',
     topic: 'recovery',
     youtubeId: '7AN3VLLlkdI',
   },
   {
     title: 'The Silent Addiction',
     source: 'Patrick Chester, TEDx',
+    lang: 'en',
     topic: 'recovery',
     youtubeId: 'QSi1zbLbXAs',
   },

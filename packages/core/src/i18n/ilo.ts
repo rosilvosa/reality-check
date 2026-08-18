@@ -180,6 +180,10 @@ export const ilo: Translation = {
     playNote: 'Adda ditoy tapno saanka a rumuar iti app. No agplay, maala ti video manipud iti YouTube, isu a makita ti Google ti request.',
     suggestBtn: 'Mangisingasing iti video',
     suggestHint: 'Adda nabuyam a nakatulong? Ipatulodmo ti link ket buyaenmi sakbay nga inayonmi.',
+    viewsLabel: '{n} ti nangbuya iti daytoy',
+    viewsNone: 'Sika ti umuna a mangbuya iti daytoy',
+    heartAria: 'Markaan nga nakatulong',
+    heartedAria: 'Namarkaan nga nakatulong',
     minutes: '{n} min',
   },
 

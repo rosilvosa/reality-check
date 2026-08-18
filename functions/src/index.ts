@@ -220,3 +220,37 @@ export const onPostDeleted = region.firestore
     if (!postId) return
     await db.doc(`community_moderation/${postId}`).delete().catch(() => undefined)
   })
+
+/**
+ * Same shape as bumpHearts above, generalized to a target document path so
+ * both community posts and videos can share it.
+ */
+async function bumpCounter(refPath: string, field: string, delta: number): Promise<void> {
+  const ref = db.doc(refPath)
+  await db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref)
+    const cur = Number(snap.get(field)) || 0
+    tx.set(ref, { [field]: Math.max(0, cur + delta) }, { merge: true })
+  })
+}
+
+/**
+ * A view only ever increments -- there is no un-view -- so unlike hearts this
+ * only needs the one trigger. The counter document is created on first view
+ * rather than existing up front, so a video nobody has opened yet has no
+ * document instead of a zero one.
+ */
+export const onVideoViewed = region.firestore
+  .document('video_stats/{videoId}/viewers/{uid}')
+  .onCreate((_snap, context) =>
+    bumpCounter(`video_stats/${context.params.videoId}`, 'views', 1))
+
+export const onVideoHearted = region.firestore
+  .document('video_stats/{videoId}/hearts/{uid}')
+  .onCreate((_snap, context) =>
+    bumpCounter(`video_stats/${context.params.videoId}`, 'hearts', 1))
+
+export const onVideoUnhearted = region.firestore
+  .document('video_stats/{videoId}/hearts/{uid}')
+  .onDelete((_snap, context) =>
+    bumpCounter(`video_stats/${context.params.videoId}`, 'hearts', -1))

@@ -180,6 +180,10 @@ export const fil: Translation = {
     playNote: 'Nandito ito para hindi mo kailangang lumabas ng app. Kapag nag-play, kinukuha ang video mula sa YouTube, kaya nakikita ng Google ang request.',
     suggestBtn: 'Magmungkahi ng video',
     suggestHint: 'May napanood na nakatulong? Ipadala ang link at papanoorin namin bago idagdag.',
+    viewsLabel: '{n} ang nanood nito',
+    viewsNone: 'Ikaw na ang unang manood nito',
+    heartAria: 'Markahan bilang nakatulong',
+    heartedAria: 'Namarkahan bilang nakatulong',
     minutes: '{n} min',
   },
 

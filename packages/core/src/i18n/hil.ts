@@ -180,6 +180,10 @@ export const hil: Translation = {
     playNote: 'Yari ini diri agod indi ka na maggwa sa app. Kon mag-play, ginakuha ang video halin sa YouTube, gani makita sang Google ang request.',
     suggestBtn: 'Magsuhestiyon sang video',
     suggestHint: 'May natan-aw nga nakabulig? Ipadala ang link kag tan-awon namon antes idugang.',
+    viewsLabel: '{n} ang nagtan-aw sini',
+    viewsNone: 'Ikaw ang una nga magtan-aw sini',
+    heartAria: 'Markahi nga nakabulig',
+    heartedAria: 'Namarkahan nga nakabulig',
     minutes: '{n} min',
   },
 

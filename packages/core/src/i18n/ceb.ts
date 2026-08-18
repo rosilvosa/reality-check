@@ -180,6 +180,10 @@ export const ceb: Translation = {
     playNote: 'Naa ni dinhi para dili ka na mogawas sa app. Inig play, gikuha ang video gikan sa YouTube, busa makita sa Google ang request.',
     suggestBtn: 'Magsugyot og video',
     suggestHint: 'Naay natan-aw nga nakatabang? Ipadala ang link ug among tan-awon sa dili pa idugang.',
+    viewsLabel: '{n} ang nitan-aw niini',
+    viewsNone: 'Ikaw ang una nga motan-aw niini',
+    heartAria: 'Markahi nga nakatabang',
+    heartedAria: 'Namarkahan nga nakatabang',
     minutes: '{n} min',
   },
 
