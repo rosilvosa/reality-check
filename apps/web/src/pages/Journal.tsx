@@ -139,6 +139,21 @@ export default function Journal() {
         </div>
       )}
 
+      {/* The intercept card shows this same entry, but only until it is
+          acknowledged, and acknowledged resets on every visit -- so this is
+          the only trace of it left once you are looking at the write form.
+          Reuses t.home.lastEntry rather than a new key, since it is the same
+          idea Home already shows. */}
+      {!mustIntercept && !mustShowChasingWarning && !justSaved && mostRecent && (
+        <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+          <p className="text-[0.6875rem] font-bold uppercase tracking-widest text-muted mb-2">{t.home.lastEntry}</p>
+          {mostRecent.amount > 0 && (
+            <p className="text-xs text-muted mb-1">{formatMoney(mostRecent.amount, currency)}</p>
+          )}
+          <p className="text-ink text-sm leading-relaxed line-clamp-3 whitespace-pre-wrap">{mostRecent.text}</p>
+        </div>
+      )}
+
       {(!mustIntercept && !mustShowChasingWarning) && (
         <div className="bg-surface border border-border rounded-xl p-5 mb-6">
           <label htmlFor="journal-amount" className="block text-xs font-bold uppercase tracking-wider text-muted mb-2">

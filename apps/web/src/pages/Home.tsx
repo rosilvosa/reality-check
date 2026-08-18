@@ -39,8 +39,12 @@ export default function Home() {
 
       <p className="text-[0.6875rem] tracking-[0.18em] uppercase text-muted mb-1">{t.home.tag}</p>
 
-      <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
-        <div className={`flex items-end justify-between gap-4 ${loading || !checkedIn ? 'mb-4' : ''}`}>
+      {/* The count itself: badge, number, "DAYS CLEAN" label, and the
+          zero-day start hint. Shared between the checked-in and
+          not-checked-in renders below so there is one copy of this markup,
+          not two drifting in step. */}
+      {(() => {
+        const countBlock = (
           <div>
             <div className="flex items-end gap-3">
               {badge && (
@@ -57,47 +61,68 @@ export default function Home() {
               <p className="text-ink text-sm mt-3">{t.home.startHint}</p>
             )}
           </div>
-          {/* Checked-in sits on the same line as the count once there is a
-              count worth sitting beside. Everything else that used to share
-              this space with it (loading, lost-today, the check-in button)
-              still needs the full width below, so only this state moves up. */}
-          {!loading && checkedIn && (
-            <Link to="/progress" className="text-right shrink-0 hover:opacity-80">
-              <span className="block text-sm font-black tracking-wide text-ink">{t.home.checkedIn}</span>
-              <span className="block text-xs font-bold text-muted mt-0.5">{t.home.seeProgress} →</span>
-            </Link>
-          )}
-          {!loading && !checkedIn && (
-            <Link to="/progress" className="text-xs font-bold text-muted hover:text-ink shrink-0">
-              {t.home.seeProgress} →
-            </Link>
-          )}
-        </div>
+        )
 
-        {loading && (
-          <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
-            —
-          </div>
-        )}
-        {!loading && !checkedIn && (
-          lostTodayFlag ? (
-            // No check-in offered on a day with a loss written down. A
-            // disabled button with no reason reads as a broken app, so say
-            // why instead.
-            <p className="w-full py-3.5 px-4 bg-surface2 rounded-xl text-center text-xs font-bold text-muted leading-relaxed">
-              {t.home.lostToday}
-            </p>
-          ) : (
-            <button
-              type="button"
-              onClick={checkIn}
-              className="w-full py-3.5 bg-accent text-white font-black rounded-xl text-sm tracking-wide hover:opacity-90"
+        // Checked in: the whole banner goes to Progress, not just a corner of
+        // it. No button lives in this state, so there is nothing an outer
+        // link would swallow clicks from.
+        if (!loading && checkedIn) {
+          return (
+            <Link
+              to="/progress"
+              className="block bg-surface border border-border rounded-2xl p-5 mb-4 hover:border-accent transition-colors"
             >
-              {t.home.checkInNow}
-            </button>
+              <div className="flex items-end justify-between gap-4">
+                {countBlock}
+                <div className="text-right shrink-0">
+                  <span className="block text-sm font-black tracking-wide text-ink">{t.home.checkedIn}</span>
+                  <span className="block text-xs font-bold text-muted mt-0.5">{t.home.seeProgress} →</span>
+                </div>
+              </div>
+            </Link>
           )
-        )}
-      </div>
+        }
+
+        // Loading, lost-today, or not yet checked in: a button or a status
+        // message shares the card, so it stays a plain div and only the
+        // small corner link goes to Progress.
+        return (
+          <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
+            <div className="flex items-end justify-between gap-4 mb-4">
+              {countBlock}
+              {!loading && (
+                <Link to="/progress" className="text-xs font-bold text-muted hover:text-ink shrink-0">
+                  {t.home.seeProgress} →
+                </Link>
+              )}
+            </div>
+
+            {loading && (
+              <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
+                —
+              </div>
+            )}
+            {!loading && (
+              lostTodayFlag ? (
+                // No check-in offered on a day with a loss written down. A
+                // disabled button with no reason reads as a broken app, so
+                // say why instead.
+                <p className="w-full py-3.5 px-4 bg-surface2 rounded-xl text-center text-xs font-bold text-muted leading-relaxed">
+                  {t.home.lostToday}
+                </p>
+              ) : (
+                <button
+                  type="button"
+                  onClick={checkIn}
+                  className="w-full py-3.5 bg-accent text-white font-black rounded-xl text-sm tracking-wide hover:opacity-90"
+                >
+                  {t.home.checkInNow}
+                </button>
+              )
+            )}
+          </div>
+        )
+      })()}
 
       {(roomToday > 0 || roomPesos > 0) && (
         <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
