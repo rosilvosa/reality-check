@@ -109,21 +109,28 @@ export default function Home() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-3 mb-4">
+      {/* Lost and Why paired into one row: they are the two most-reached-for
+          links, and each gets its own color so the row reads as two distinct
+          doors rather than a continuation of the neutral list below. Red for
+          the thing that just happened, amber for the explanation of why. */}
+      <div className="grid grid-cols-2 gap-3 mb-3">
         <Link
           to="/lost"
-          className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
+          className="block bg-accent-dim border border-accent rounded-2xl p-4 hover:opacity-90 transition-opacity"
         >
-          <p className="text-ink font-black text-lg">{t.home.lostBtn}</p>
-          <p className="text-muted text-sm mt-1">{t.home.lostHint}</p>
+          <p className="text-ink font-black text-base leading-tight">{t.home.lostBtn}</p>
+          <p className="text-muted text-xs mt-1 leading-snug">{t.home.lostHint}</p>
         </Link>
         <Link
           to="/trap/why"
-          className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
+          className="block bg-amber-dim border border-amber rounded-2xl p-4 hover:opacity-90 transition-opacity"
         >
-          <p className="text-ink font-black text-lg">{t.home.whyBtn}</p>
-          <p className="text-muted text-sm mt-1">{t.home.whyHint}</p>
+          <p className="text-ink font-black text-base leading-tight">{t.home.whyBtn}</p>
+          <p className="text-muted text-xs mt-1 leading-snug">{t.home.whyHint}</p>
         </Link>
+      </div>
+
+      <div className="grid grid-cols-1 gap-3 mb-4">
         <Link
           to="/journal"
           className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
