@@ -25,6 +25,16 @@
      is for, matching how "danger" and "accent" already do. */
   --rc-calm: #1d4ed8;
   --rc-calm-dim: #dbeafe;
+  /* Fourth tone, for Help and Community: support/connection. Named "support"
+     rather than "green" because Tailwind's built-in green-400/500/600/800
+     shades are already load-bearing on Barriers.tsx (milestone and checked
+     states) -- declaring a top-level "green" key here would replace that
+     whole palette object with a single string and silently break every one
+     of those classes. Values stay close to Tailwind's own green-700/green-100
+     so this reads as the same green already visible elsewhere on the app,
+     not a fifth shade nobody asked for. */
+  --rc-support: #15803d;
+  --rc-support-dim: #dcfce7;
   --rc-theme: #f3f3f6;
   color-scheme: light;
 }
@@ -43,6 +53,8 @@ html.dark {
   --rc-amber-dim: #78350f;
   --rc-calm: #60a5fa;
   --rc-calm-dim: #1e3a8a;
+  --rc-support: #4ade80;
+  --rc-support-dim: #14532d;
   --rc-theme: #08080f;
   color-scheme: dark;
 }

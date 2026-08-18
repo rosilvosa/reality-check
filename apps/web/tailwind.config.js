@@ -17,6 +17,9 @@ export default {
         'amber-dim': 'var(--rc-amber-dim)',
         calm: 'var(--rc-calm)',
         'calm-dim': 'var(--rc-calm-dim)',
+        // Deliberately not named "green" -- see the comment in index.css.
+        support: 'var(--rc-support)',
+        'support-dim': 'var(--rc-support-dim)',
         muted: 'var(--rc-muted)',
       },
     },

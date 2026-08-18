@@ -170,19 +170,21 @@ export default function Home() {
       </Link>
 
       {/* Help and Community paired the same way Lost and Why were: two doors
-          side by side rather than two more rows in a stack. Left neutral --
-          nothing here asked for a fourth color, and not every row needs one. */}
+          side by side rather than two more rows in a stack. Same color for
+          both, since they are the same kind of door (people and support),
+          unlike Lost/Why which are deliberately two different colors for two
+          different things. */}
       <div className="grid grid-cols-2 gap-3 mb-4">
         <Link
           to="/help"
-          className="block bg-surface border border-border rounded-2xl p-4 hover:border-accent transition-colors"
+          className="block bg-support-dim border border-support rounded-2xl p-4 hover:opacity-90 transition-opacity"
         >
           <p className="text-ink font-black text-base leading-tight">{t.home.helpBtn}</p>
           <p className="text-muted text-xs mt-1 leading-snug">{t.home.helpHint}</p>
         </Link>
         <Link
           to="/community"
-          className="block bg-surface border border-border rounded-2xl p-4 hover:border-accent transition-colors"
+          className="block bg-support-dim border border-support rounded-2xl p-4 hover:opacity-90 transition-opacity"
         >
           <p className="text-ink font-black text-base leading-tight">{t.home.communityBtn}</p>
           <p className="text-muted text-xs mt-1 leading-snug">{t.home.communityHint}</p>
