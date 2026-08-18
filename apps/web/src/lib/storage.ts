@@ -144,6 +144,31 @@ export function readLocalBarriersSync(): string[] {
   }
 }
 
+/**
+ * Streak, read synchronously, same reasoning as readLocalBarriersSync above:
+ * the async adapter resolves a beat later than first paint, which was long
+ * enough for the days-clean banner to render a loading skeleton, then swap to
+ * the real checked-in-or-not layout a moment later -- a structural change
+ * (Link vs plain div, a button row present or not), not just a content
+ * update, so it read as a twitch rather than a load. Seeding from this local
+ * snapshot means the correct final shape is what paints first, for anyone
+ * who has ever opened the app on this device before.
+ *
+ * For a signed-in user this snapshot can be briefly stale (another device
+ * moved the streak further since this one last synced); loadStreak still
+ * runs afterward and corrects it via mergeStreak. A content correction is
+ * far less jarring than a shape correction, and the barriers precedent above
+ * already accepts that same trade for signed-in users on a fresh device.
+ */
+export function readLocalStreakSync(): StreakData | null {
+  try {
+    const raw = localStorage.getItem(LS_STREAK)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
 export function clearLocalRc(): void {
   for (const key of LOCAL_KEYS) localStorage.removeItem(key)
 }

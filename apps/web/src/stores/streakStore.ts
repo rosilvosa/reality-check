@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { localISODate, localYesterdayISODate } from '@rc/core'
-import { getAdapter } from '../lib/storage'
+import { getAdapter, readLocalStreakSync } from '../lib/storage'
 import { recordRoomCheckIn } from '../lib/room'
 import { useAuthStore } from './authStore'
 import { useJournalStore } from './journalStore'
@@ -41,9 +41,17 @@ interface StreakState extends StreakData {
   lostToday: () => boolean
 }
 
+// Read once, synchronously, at module init -- before the store even exists,
+// so the very first render already has whatever this device last knew,
+// instead of a guaranteed-wrong default that gets replaced a beat later.
+const seededStreak = readLocalStreakSync()
+
 export const useStreakStore = create<StreakState>((set, get) => ({
-  ...defaultStreak(),
-  loading: true,
+  ...(seededStreak ?? defaultStreak()),
+  // Nothing to seed from means this device has never recorded a streak, so
+  // there is genuinely nothing to show yet -- that is the one case still
+  // worth a brief loading state rather than asserting zero days too early.
+  loading: !seededStreak,
   error: null,
   showMilestoneModal: false,
   newMilestone: null,
@@ -52,7 +60,18 @@ export const useStreakStore = create<StreakState>((set, get) => ({
     const { user } = useAuthStore.getState()
     try {
       const data = await getAdapter(user).getStreak()
-      set({ ...(data ?? defaultStreak()), loading: false, error: null })
+      if (data) {
+        set({ ...data, loading: false, error: null })
+      } else {
+        // No doc found -- for a signed-in user this can mean the cloud copy
+        // just has not been created yet (migrateToFirestore racing this same
+        // load), not that the streak is actually zero. Overwriting the
+        // synchronous local seed with defaultStreak() here would fabricate a
+        // regression: a real streak flashing down to zero before the cloud
+        // doc catches up. Leaving the existing state alone is always at
+        // least as correct -- it is either that same seed, or already zero.
+        set({ loading: false, error: null })
+      }
     } catch {
       // Never leave loading stuck true -- the counter would show a dash forever.
       set({ loading: false })
