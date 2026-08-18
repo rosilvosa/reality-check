@@ -12,12 +12,12 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // Split the two big vendors out of the entry chunk. Both are cached
-        // across releases, which matters more than total bytes on metered data.
-        // The trailing separator keeps react-router-dom out of the react chunk.
+        // Only React is pinned. Grouping all of firebase/* into one chunk was
+        // forcing the Firestore SDK to load with Auth, which cancelled out the
+        // dynamic imports in lib/cloud and lib/roomLive; Rollup splits it
+        // correctly on its own from the import graph.
         manualChunks(id) {
-          if (/node_modules[\\/](firebase|@firebase)[\\/]/.test(id)) return 'firebase'
-          if (/node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) return 'react'
+          if (/node_modules[\/](react|react-dom|scheduler)[\/]/.test(id)) return 'react'
           return undefined
         },
       },

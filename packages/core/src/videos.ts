@@ -64,6 +64,14 @@ export const RECOVERY_VIDEOS: RecoveryVideo[] = [
     youtubeId: 'GUeTnQeIFCE',
   },
   {
+    // The only Philippine-language entry so far, and the reason the page no
+    // longer claims everything is in English.
+    title: 'Pano makakawala sa sugal? Kwento ng isang recovering gambling addict',
+    source: 'Off the Record (Tagalog)',
+    topic: 'recovery',
+    youtubeId: 'qqte-sPeeRU',
+  },
+  {
     title: 'The fall and rise of a gambling addict',
     source: 'Justyn Rees Larcombe, TEDx',
     topic: 'recovery',

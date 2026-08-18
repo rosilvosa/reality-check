@@ -12,7 +12,7 @@ import {
   where,
   type Timestamp,
 } from 'firebase/firestore'
-import { db } from './firebase'
+import { db } from './db'
 import { resolveHelpRegion, type HelpRegion } from '@rc/core'
 
 export const POST_TYPES = ['tip', 'urge', 'question', 'vent'] as const

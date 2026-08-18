@@ -1,10 +1,4 @@
-import {
-  doc, getDoc, setDoc, deleteDoc,
-  collection, addDoc, getDocs, query, orderBy, Timestamp,
-} from 'firebase/firestore'
-import { db } from './firebase'
 import type { Settings, JournalEntry, StreakData } from '../types'
-import { deletePostsByUser } from './community'
 
 const LS_SETTINGS = 'rc_settings'
 const LS_JOURNAL  = 'rc_journal'
@@ -28,7 +22,7 @@ export interface StorageAdapter {
 
 type CloudUser = { uid: string; isAnonymous: boolean } | null
 
-const localStorageAdapter: StorageAdapter = {
+export const localStorageAdapter: StorageAdapter = {
   async getSettings() {
     try {
       const raw = localStorage.getItem(LS_SETTINGS)
@@ -87,72 +81,53 @@ const localStorageAdapter: StorageAdapter = {
   },
 }
 
-function firestoreAdapter(uid: string): StorageAdapter {
+/**
+ * Everything that talks to Firestore lives in ./cloud and is imported on
+ * demand, so a signed-out user never downloads the Firestore SDK. That was
+ * roughly 107 kB gzipped sitting in front of the first paint for people who
+ * were never going to use it.
+ */
+const loadCloud = () => import('./cloud')
+
+/**
+ * A cloud adapter that pulls its implementation in on first use. Every method
+ * on StorageAdapter already returns a promise, so this is a straight pass
+ * through and no caller had to change. The dynamic import is cached by the
+ * module system, so only the first call pays for it.
+ */
+function lazyCloudAdapter(uid: string): StorageAdapter {
+  const impl = () => loadCloud().then((m) => m.firestoreAdapter(uid))
   return {
-    async getSettings() {
-      const snap = await getDoc(doc(db, 'users', uid, 'data', 'settings'))
-      if (!snap.exists()) return null
-      const d = snap.data()
-      return {
-        monthlyPay: d.monthlyPay ?? 0,
-        hoursPerMonth: d.hoursPerMonth ?? 176,
-        assets: d.assets ?? [],
-        voidType: d.voidType ?? null,
-        currency: d.currency ?? 'PHP',
-        helpRegion: d.helpRegion ?? 'PH',
-        updatedAt: d.updatedAt,
-      }
-    },
-
-    async saveSettings(s) {
-      await setDoc(doc(db, 'users', uid, 'data', 'settings'), { ...s, updatedAt: new Date().toISOString() })
-    },
-
-    async getJournalEntries() {
-      const q = query(collection(db, 'users', uid, 'journal'), orderBy('createdAt', 'desc'))
-      const snap = await getDocs(q)
-      return snap.docs.map((d) => ({
-        id: d.id,
-        amount: d.data().amount ?? 0,
-        text: d.data().text ?? '',
-        createdAt: (d.data().createdAt as Timestamp).toDate(),
-      }))
-    },
-
-    async addJournalEntry(e) {
-      const ref = await addDoc(collection(db, 'users', uid, 'journal'), {
-        amount: e.amount,
-        text: e.text,
-        createdAt: Timestamp.now(),
-      })
-      return { ...e, id: ref.id, createdAt: e.createdAt ?? new Date() }
-    },
-
-    async getStreak() {
-      const snap = await getDoc(doc(db, 'users', uid, 'data', 'streak'))
-      return snap.exists() ? (snap.data() as StreakData) : null
-    },
-
-    async saveStreak(s: StreakData) {
-      await setDoc(doc(db, 'users', uid, 'data', 'streak'), s)
-    },
-
-    async getBarriers() {
-      const snap = await getDoc(doc(db, 'users', uid, 'data', 'barriers'))
-      if (!snap.exists()) return []
-      const ids = snap.data().ids
-      return Array.isArray(ids) ? ids : []
-    },
-
-    async saveBarriers(ids) {
-      await setDoc(doc(db, 'users', uid, 'data', 'barriers'), { ids })
-    },
+    getSettings: () => impl().then((x) => x.getSettings()),
+    saveSettings: (s) => impl().then((x) => x.saveSettings(s)),
+    getJournalEntries: () => impl().then((x) => x.getJournalEntries()),
+    addJournalEntry: (entry) => impl().then((x) => x.addJournalEntry(entry)),
+    getStreak: () => impl().then((x) => x.getStreak()),
+    saveStreak: (s) => impl().then((x) => x.saveStreak(s)),
+    getBarriers: () => impl().then((x) => x.getBarriers()),
+    saveBarriers: (ids) => impl().then((x) => x.saveBarriers(ids)),
   }
 }
 
 export function getAdapter(user: CloudUser): StorageAdapter {
-  if (user && !user.isAnonymous) return firestoreAdapter(user.uid)
+  if (user && !user.isAnonymous) return lazyCloudAdapter(user.uid)
   return localStorageAdapter
+}
+
+// Same names and signatures as before the split, so call sites are untouched.
+export function migrateToFirestore(uid: string): Promise<boolean> {
+  return loadCloud().then((m) => m.migrateToFirestore(uid))
+}
+
+export function syncNowToCloud(
+  uid: string,
+  data: { settings: Settings; streak: StreakData },
+): Promise<void> {
+  return loadCloud().then((m) => m.syncNowToCloud(uid, data))
+}
+
+export function deleteUserCloudData(uid: string): Promise<void> {
+  return loadCloud().then((m) => m.deleteUserCloudData(uid))
 }
 
 /**
@@ -171,18 +146,6 @@ export function readLocalBarriersSync(): string[] {
 
 export function clearLocalRc(): void {
   for (const key of LOCAL_KEYS) localStorage.removeItem(key)
-}
-
-// Sign-in is the only moment both copies are genuinely live and we cannot tell
-// by context which the user meant. Explicit file restores and the sign-out
-// copy-down are different: there the source is authoritative by intent, so
-// those keep letting the source win rather than going through this.
-function newerSettings(a: Settings | null, b: Settings | null): Settings | null {
-  if (!a) return b
-  if (!b) return a
-  const at = a.updatedAt ?? ''
-  const bt = b.updatedAt ?? ''
-  return bt > at ? b : a
 }
 
 export function mergeStreak(a: StreakData, b: StreakData): StreakData {
@@ -204,84 +167,3 @@ export function mergeStreak(a: StreakData, b: StreakData): StreakData {
   }
 }
 
-/** Push current progress to Firestore, and pick up any leftover local data. */
-export async function syncNowToCloud(
-  uid: string,
-  data: { settings: Settings; streak: StreakData },
-): Promise<void> {
-  const remote = firestoreAdapter(uid)
-  await remote.saveSettings(data.settings)
-
-  const leftoverStreak = await localStorageAdapter.getStreak()
-  await remote.saveStreak(leftoverStreak ? mergeStreak(data.streak, leftoverStreak) : data.streak)
-
-  const leftoverBarriers = await localStorageAdapter.getBarriers()
-  const cloudBarriers = await remote.getBarriers()
-  await remote.saveBarriers([...new Set([...cloudBarriers, ...leftoverBarriers])])
-
-  const leftoverJournal = await localStorageAdapter.getJournalEntries()
-  if (leftoverJournal.length) {
-    const cloud = await remote.getJournalEntries()
-    for (const e of [...leftoverJournal].reverse()) {
-      const dup = cloud.some(
-        (c) => c.text === e.text && Math.abs((c.amount ?? 0) - (e.amount ?? 0)) < 0.01,
-      )
-      if (!dup) await remote.addJournalEntry(e)
-    }
-  }
-
-}
-
-export async function migrateToFirestore(uid: string): Promise<boolean> {
-  const settings = await localStorageAdapter.getSettings()
-  const entries = await localStorageAdapter.getJournalEntries()
-  const streak = await localStorageAdapter.getStreak()
-  const barriers = await localStorageAdapter.getBarriers()
-  const hasLocal = !!(settings || entries.length || streak || barriers.length)
-  if (!hasLocal) return false
-
-  const remote = firestoreAdapter(uid)
-  const cloudSettings = await remote.getSettings()
-  const winner = newerSettings(cloudSettings, settings)
-  // Only write when local actually won. Rewriting the cloud copy would re-stamp
-  // its updatedAt on every sign-in, after which local could never win again.
-  if (winner && winner !== cloudSettings) await remote.saveSettings(winner)
-
-  if (streak) {
-    const cloudStreak = await remote.getStreak()
-    await remote.saveStreak(cloudStreak ? mergeStreak(cloudStreak, streak) : streak)
-  }
-
-  if (barriers.length) {
-    const cloudBarriers = await remote.getBarriers()
-    await remote.saveBarriers([...new Set([...cloudBarriers, ...barriers])])
-  }
-
-  if (entries.length) {
-    const cloud = await remote.getJournalEntries()
-    for (const e of [...entries].reverse()) {
-      const dup = cloud.some(
-        (c) => c.text === e.text && Math.abs((c.amount ?? 0) - (e.amount ?? 0)) < 0.01,
-      )
-      if (!dup) await remote.addJournalEntry(e)
-    }
-  }
-
-  // The device keeps its own copy until the user clears their browser. Erasing
-  // it here is what made signing out look like the journal had been deleted:
-  // a signed-out session reads local, and local had been emptied on sign-in.
-  // Because local now survives, this runs again on the next sign-in, so every
-  // write above has to be idempotent -- hence the dedupe and merges.
-  return true
-}
-
-export async function deleteUserCloudData(uid: string): Promise<void> {
-  const journal = await getDocs(collection(db, 'users', uid, 'journal'))
-  await Promise.all(journal.docs.map((d) => deleteDoc(d.ref)))
-  await Promise.all([
-    deleteDoc(doc(db, 'users', uid, 'data', 'settings')).catch(() => undefined),
-    deleteDoc(doc(db, 'users', uid, 'data', 'streak')).catch(() => undefined),
-    deleteDoc(doc(db, 'users', uid, 'data', 'barriers')).catch(() => undefined),
-    deletePostsByUser(uid).catch(() => undefined),
-  ])
-}

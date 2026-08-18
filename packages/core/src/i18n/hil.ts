@@ -173,7 +173,7 @@ export const hil: Translation = {
   watch: {
     title: 'Tan-awa',
     subtitle: 'Paano ginhimo ang sugal, kag ano ang dagway sang paglikaw para sa mga nakalikaw.',
-    langNote: 'Ang kada isa mabuksan sa site nga nagahost sini. Sa English ini.',
+    langNote: 'Ang kada isa mabuksan sa site nga nagahost sini. Kalabanan sini sa English.',
     psychology: 'Paano ginhimo ang sugal',
     recovery: 'Pag-ayo',
     openOnYouTube: 'Buksan sa YouTube',

@@ -175,6 +175,11 @@ export default function Lost() {
           >
             {t.lost.writeNext} →
           </Link>
+          {/* Not merged with Trap: this page is for the minutes after a loss and
+              needs to stay short. The explanation is one tap away instead. */}
+          <Link to="/trap/why" className="block mt-3 text-center text-xs font-bold text-muted hover:text-ink">
+            {t.trap.whyLink} →
+          </Link>
         </>
       )}
 

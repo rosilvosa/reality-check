@@ -11,9 +11,14 @@ const HOUSE_EDGES = [
   { edge: 0.10 },
 ]
 
+// Online casino / e-sabong, because that is what most people opening this are
+// actually playing. Index rather than a reorder: houseEdgeLabels is a
+// positional tuple in five locales and the edges have to stay aligned with it.
+const DEFAULT_EDGE_INDEX = 2
+
 export default function Trap() {
   const [weeklyBet, setWeeklyBet] = useState('')
-  const [edgeIndex, setEdgeIndex] = useState(0)
+  const [edgeIndex, setEdgeIndex] = useState(DEFAULT_EDGE_INDEX)
   const [result, setResult] = useState<number | null>(null)
   const t = useT()
   const currency = useSettingsStore((s) => s.currency) ?? 'PHP'

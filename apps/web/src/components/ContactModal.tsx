@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
-import { sendContactMessage } from '../lib/contact'
 
 const TYPES = ['typeBug', 'typeQuestion', 'typePrivacy', 'typeVideo', 'typeOther'] as const
 
@@ -38,6 +37,7 @@ export default function ContactModal() {
     setSending(true)
     setError('')
     try {
+      const { sendContactMessage } = await import('../lib/contact')
       await sendContactMessage({
         kind: t.contact[kind],
         name,

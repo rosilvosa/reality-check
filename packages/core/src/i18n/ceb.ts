@@ -173,7 +173,7 @@ export const ceb: Translation = {
   watch: {
     title: 'Tan-awa',
     subtitle: 'Giunsa paghimo ang sugal, ug unsa ang hitsura sa paggawas para sa mga nakagawas.',
-    langNote: 'Ang matag usa moabli sa site nga naghost niini. Naa ni sa English.',
+    langNote: 'Ang matag usa moabli sa site nga naghost niini. Kadaghanan niini sa English.',
     psychology: 'Giunsa paghimo ang sugal',
     recovery: 'Pag-ayo',
     openOnYouTube: 'Ablihi sa YouTube',

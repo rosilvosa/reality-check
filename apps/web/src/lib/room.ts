@@ -1,5 +1,3 @@
-import { addDoc, collection, doc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore'
-import { auth, db } from './firebase'
 import { manilaISODate, manilaMondayISODate } from '@rc/core'
 
 export interface RoomStats {
@@ -9,42 +7,35 @@ export interface RoomStats {
   pesos: number
 }
 
-const LIVE = doc(db, 'public_stats', 'live')
+// A facade over ./roomLive so that importing this does not pull in Firestore.
+// The room card is decorative: it can arrive a moment after the page paints.
+const loadLive = () => import('./roomLive')
 
 export function watchRoomStats(onChange: (s: RoomStats | null) => void): () => void {
-  return onSnapshot(
-    LIVE,
-    (snap) => {
-      if (!snap.exists()) {
-        onChange({ date: manilaISODate(), checkIns: 0, weekStart: '', pesos: 0 })
-        return
-      }
-      const d = snap.data()
-      onChange({
-        date: String(d.date ?? ''),
-        checkIns: Number(d.checkIns) || 0,
-        weekStart: String(d.weekStart ?? ''),
-        pesos: Number(d.pesos) || 0,
-      })
-    },
-    () => onChange(null),
-  )
+  let stop: (() => void) | null = null
+  let cancelled = false
+  loadLive()
+    .then((m) => {
+      // Unsubscribed before the module arrived, so never subscribe at all.
+      if (cancelled) return
+      stop = m.watchRoomStatsLive(onChange)
+    })
+    .catch(() => undefined)
+  return () => {
+    cancelled = true
+    stop?.()
+    stop = null
+  }
 }
 
 export async function recordRoomCheckIn(): Promise<void> {
-  const uid = auth.currentUser?.uid
-  if (!uid) return
-  const date = manilaISODate()
-  await setDoc(doc(db, 'checkins', date, 'users', uid), { at: serverTimestamp() })
+  const m = await loadLive()
+  return m.recordRoomCheckIn()
 }
 
 export async function recordRoomAmount(amount: number, currency: string): Promise<void> {
-  const uid = auth.currentUser?.uid
-  if (!uid) return
-  if ((currency || 'PHP') !== 'PHP') return
-  const pesos = Math.round(amount)
-  if (!Number.isFinite(pesos) || pesos <= 0 || pesos > 5_000_000) return
-  await addDoc(collection(db, 'room_amounts'), { amount: pesos, uid, at: serverTimestamp() })
+  const m = await loadLive()
+  return m.recordRoomAmount(amount, currency)
 }
 
 export function todayCheckIns(stats: RoomStats | null): number {

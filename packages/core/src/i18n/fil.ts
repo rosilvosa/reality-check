@@ -173,7 +173,7 @@ export const fil: Translation = {
   watch: {
     title: 'Panoorin',
     subtitle: 'Kung paano ginawa ang sugal, at kung ano ang hitsura ng paglabas para sa mga nakaalis.',
-    langNote: 'Bubukas ang bawat isa sa site na nagho-host nito. Sa English ang mga ito.',
+    langNote: 'Bubukas ang bawat isa sa site na nagho-host nito. Karamihan ay sa English.',
     psychology: 'Kung paano ginawa ang sugal',
     recovery: 'Paggaling',
     openOnYouTube: 'Buksan sa YouTube',

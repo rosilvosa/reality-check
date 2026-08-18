@@ -1,7 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously } from 'firebase/auth'
-import { getFunctions } from 'firebase/functions'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -12,10 +10,10 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
-const app = initializeApp(firebaseConfig)
-export const db = getFirestore(app)
+// Auth only. Firestore comes from ./db, on demand, and the Functions SDK was
+// exported here but never used by anything.
+export const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
-export const functions = getFunctions(app, 'asia-southeast1')
 export const googleProvider = new GoogleAuthProvider()
 
 // Everyone needs an identity so page auth listeners fire, but this must wait

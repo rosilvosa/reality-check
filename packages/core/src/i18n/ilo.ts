@@ -173,7 +173,7 @@ export const ilo: Translation = {
   watch: {
     title: 'Buyaen',
     subtitle: 'No kasano a naaramid ti sugal, ken no ania ti langa ti panagruar kadagiti nakaruar.',
-    langNote: 'Ti tunggal maysa aglukat iti sitio a mangidulin iti daytoy. Naka-English dagitoy.',
+    langNote: 'Ti tunggal maysa aglukat iti sitio a mangidulin iti daytoy. Kaaduan kadagitoy ket Ingles.',
     psychology: 'No kasano a naaramid ti sugal',
     recovery: 'Panagimbag',
     openOnYouTube: 'Lukatan iti YouTube',
