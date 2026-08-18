@@ -10,6 +10,7 @@ export interface Translation {
     community: string; help: string
     lost: string
     barriers: string
+    watch: string
     more: string
   }
 
@@ -125,16 +126,19 @@ export interface Translation {
       { label: string; detail: string }
     ]
     truthTag: string; truthP1: string; truthP2: string; truthP3: string
-    watchTag: string; watchHint: string
-    watchPsychology: string; watchRecovery: string
-    // params: {n}
-    watchMinutes: string
     ctaBarriers: string
     calcTab: string
     whyLink: string
     whyTitle: string
     // labels for the 3 house edge options (just the name, edge pct appended in code)
     houseEdgeLabels: [string, string, string]
+  }
+
+  watch: {
+    title: string; subtitle: string; langNote: string
+    psychology: string; recovery: string
+    // params: {n}
+    minutes: string
   }
 
   barriers: {

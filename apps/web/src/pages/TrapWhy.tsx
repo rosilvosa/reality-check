@@ -1,9 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useT } from '../i18n'
-import { RECOVERY_VIDEOS, tpl, type VideoTopic } from '@rc/core'
 import TrapTabs from '../components/TrapTabs'
-
-const TOPIC_ORDER: VideoTopic[] = ['psychology', 'recovery']
 
 export default function TrapWhy() {
   const t = useT()
@@ -59,43 +56,6 @@ export default function TrapWhy() {
         <p className="text-ink text-[0.9375rem] leading-relaxed mb-3">{t.trap.truthP2}</p>
         <p className="text-accent font-bold text-[0.9375rem] leading-relaxed">{t.trap.truthP3}</p>
       </div>
-
-      {RECOVERY_VIDEOS.length > 0 && (
-        <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-          <p className="text-xs font-bold uppercase tracking-wider text-muted mb-1">{t.trap.watchTag}</p>
-          <p className="text-muted text-xs mb-4">{t.trap.watchHint}</p>
-          {TOPIC_ORDER.map((topic) => {
-            const inTopic = RECOVERY_VIDEOS.filter((v) => v.topic === topic)
-            if (inTopic.length === 0) return null
-            return (
-              <div key={topic} className="mb-4 last:mb-0">
-                <p className="text-ink text-[0.8125rem] font-bold mb-2">
-                  {topic === 'psychology' ? t.trap.watchPsychology : t.trap.watchRecovery}
-                </p>
-                <div className="space-y-2">
-                  {inTopic.map((v) => (
-                    <a
-                      key={v.url}
-                      href={v.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block bg-bg rounded-lg p-3 border-l-4 border-accent-dim hover:border-accent transition-colors"
-                    >
-                      <p className="text-ink text-[0.8125rem] font-bold">{v.title}</p>
-                      <p className="text-muted text-[0.75rem] mt-0.5">
-                        {v.source}
-                        {v.minutes !== undefined && (
-                          <> &middot; {tpl(t.trap.watchMinutes, { n: String(v.minutes) })}</>
-                        )}
-                      </p>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      )}
 
       <NavLink
         to="/barriers"

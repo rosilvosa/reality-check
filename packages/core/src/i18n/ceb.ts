@@ -10,6 +10,7 @@ export const ceb: Translation = {
     community: 'Komunidad', help: 'Tabang',
     lost: 'Pildi',
     barriers: 'Babag',
+    watch: 'Tan-awa',
     more: 'Uban pa',
   },
 
@@ -161,16 +162,20 @@ export const ceb: Translation = {
     truthP1: 'Kung dili nimo mapugngan ang pagtaya, dili kana depekto sa karakter. Kung gisubsub nimo ang pagkawala bisan nahibalo kang dili dapat, dili kana kahuyang.',
     truthP2: 'Kana normal nga utok nga normal nga nagtubag sa usa ka sistema nga dinisenyo para dili makalingkawas. Gihimo ang lit-ag sa mga eksperto. Nahuli na niini ang milyon-milyon.',
     truthP3: 'Dili ka sira. Ikaw target. Ug karon nasayran na nimo kung unsaon kini pagguwa.',
-    watchTag: 'Tan-awa',
-    watchHint: 'Ang matag usa moabli sa site nga naghost niini. Naa ni sa English.',
-    watchPsychology: 'Giunsa paghimo ang sugal',
-    watchRecovery: 'Pag-ayo',
-    watchMinutes: '{n} min',
     ctaBarriers: 'TUKURON ANG IMONG MGA BABAG →',
     calcTab: 'Ang math',
     whyLink: 'Ngano kini mahitabo',
     whyTitle: 'Ngano dili nimo mapugngan',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
+  },
+
+  watch: {
+    title: 'Tan-awa',
+    subtitle: 'Giunsa paghimo ang sugal, ug unsa ang hitsura sa paggawas para sa mga nakagawas.',
+    langNote: 'Ang matag usa moabli sa site nga naghost niini. Naa ni sa English.',
+    psychology: 'Giunsa paghimo ang sugal',
+    recovery: 'Pag-ayo',
+    minutes: '{n} min',
   },
 
   barriers: {

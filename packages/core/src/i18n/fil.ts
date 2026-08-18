@@ -10,6 +10,7 @@ export const fil: Translation = {
     community: 'Komunidad', help: 'Tulong',
     lost: 'Talo',
     barriers: 'Hadlang',
+    watch: 'Panoorin',
     more: 'Iba pa',
   },
 
@@ -161,16 +162,20 @@ export const fil: Translation = {
     truthP1: 'Kapag hindi mo maintindihang tigilan ang pagtaya, hindi iyon depekto ng karakter. Kapag hinahalo mo ang mga pagkalugi kahit alam mong hindi dapat, hindi iyon kahinaan.',
     truthP2: 'Iyon ay isang normal na utak na normal na tumutugon sa isang sistema na dinisenyo para maging hindi makakaalis. Ang bitag ay ginawa ng mga eksperto. Nahuli na nito ang milyun-milyon.',
     truthP3: 'Hindi ka sira. Ikaw ay target. At ngayon alam mo na kung paano ito gumagana.',
-    watchTag: 'Panoorin',
-    watchHint: 'Bubukas ang bawat isa sa site na nagho-host nito. Sa English ang mga ito.',
-    watchPsychology: 'Kung paano ginawa ang sugal',
-    watchRecovery: 'Paggaling',
-    watchMinutes: '{n} min',
     ctaBarriers: 'ITAYO ANG IYONG MGA HADLANG →',
     calcTab: 'Ang math',
     whyLink: 'Bakit ito nangyayari',
     whyTitle: 'Bakit hindi mo maitigil',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
+  },
+
+  watch: {
+    title: 'Panoorin',
+    subtitle: 'Kung paano ginawa ang sugal, at kung ano ang hitsura ng paglabas para sa mga nakaalis.',
+    langNote: 'Bubukas ang bawat isa sa site na nagho-host nito. Sa English ang mga ito.',
+    psychology: 'Kung paano ginawa ang sugal',
+    recovery: 'Paggaling',
+    minutes: '{n} min',
   },
 
   barriers: {

@@ -10,6 +10,7 @@ export const hil: Translation = {
     community: 'Komunidad', help: 'Bulig',
     lost: 'Pildi',
     barriers: 'Babag',
+    watch: 'Tan-awa',
     more: 'Iban pa',
   },
 
@@ -161,16 +162,20 @@ export const hil: Translation = {
     truthP1: 'Kung indi mo mapugngan ang pagtaya, indi ato depekto sang karakter. Kung nagsubsob ka sang pagkalugi bisan nahibaluan mo nga indi dapat, indi ato kahuyang.',
     truthP2: 'Amo ato ang normal nga utok nga normal nga nagatubag sa isa ka sistema nga dinisenyo para indi makalusad. Ginhimo ang lit-ag sang mga eksperto. Nahuli na diri ang milyon-milyon.',
     truthP3: 'Indi ka sirado. Isa ka target. Kag subong nahibaluan mo na kun paano makagua diri.',
-    watchTag: 'Tan-awa',
-    watchHint: 'Ang kada isa mabuksan sa site nga nagahost sini. Sa English ini.',
-    watchPsychology: 'Paano ginhimo ang sugal',
-    watchRecovery: 'Pag-ayo',
-    watchMinutes: '{n} min',
     ctaBarriers: 'TUKORA ANG IMO MGA BABAG →',
     calcTab: 'Ang math',
     whyLink: 'Ngaa ini nagakatabo',
     whyTitle: 'Ngaa indi mo mapugngan',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
+  },
+
+  watch: {
+    title: 'Tan-awa',
+    subtitle: 'Paano ginhimo ang sugal, kag ano ang dagway sang paglikaw para sa mga nakalikaw.',
+    langNote: 'Ang kada isa mabuksan sa site nga nagahost sini. Sa English ini.',
+    psychology: 'Paano ginhimo ang sugal',
+    recovery: 'Pag-ayo',
+    minutes: '{n} min',
   },
 
   barriers: {

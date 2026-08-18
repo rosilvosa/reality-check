@@ -55,6 +55,7 @@ export default function Layout() {
     { to: '/lost', label: t.nav.lost, icon: '💧' },
     { to: '/trap', label: t.nav.trap, icon: '🧠' },
     { to: '/barriers', label: t.nav.barriers, icon: '🛡' },
+    { to: '/watch', label: t.nav.watch, icon: '🎬' },
     { to: '/help', label: t.nav.help, icon: '🤝' },
     { to: '/community', label: t.nav.community, icon: '💬' },
   ]

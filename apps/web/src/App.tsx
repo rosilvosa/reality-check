@@ -13,6 +13,7 @@ import Progress from './pages/Progress'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Community from './pages/Community'
+import Watch from './pages/Watch'
 import FindHelp from './pages/FindHelp'
 import Mission from './pages/Mission'
 import Updates from './pages/Updates'
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       { path: 'privacy', element: <Privacy /> },
       { path: 'terms', element: <Terms /> },
       { path: 'community', element: <Community /> },
+      { path: 'watch', element: <Watch /> },
       { path: 'help', element: <FindHelp /> },
       { path: 'mission', element: <Mission /> },
       { path: 'updates', element: <Updates /> },

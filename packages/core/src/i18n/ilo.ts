@@ -10,6 +10,7 @@ export const ilo: Translation = {
     community: 'Komunidad', help: 'Tulong',
     lost: 'Naabak',
     barriers: 'Sagam-at',
+    watch: 'Buyaen',
     more: 'Ad-adu',
   },
 
@@ -161,16 +162,20 @@ export const ilo: Translation = {
     truthP1: 'No saanmo mapugngan ti pannakataya, saan dayta a depekto ti ugali. No itugotmo ti naibagsak bisan ammoem a dika masapul, saan dayta a kaluluiban.',
     truthP2: 'Naornal dayta a ulo nga naornal a tumtumbok iti maysa a sistema nga inpabaro tapno saanto malusad. Nagama ti lit-ag dagiti eksperto. Nadakep dita ti milyun-milyon.',
     truthP3: 'Sika saan a sirado. Sika target. Ken itan ammoem a ti kasano nga rumuar.',
-    watchTag: 'Buyaen',
-    watchHint: 'Ti tunggal maysa aglukat iti sitio a mangidulin iti daytoy. Naka-English dagitoy.',
-    watchPsychology: 'No kasano a naaramid ti sugal',
-    watchRecovery: 'Panagimbag',
-    watchMinutes: '{n} min',
     ctaBarriers: 'TUKOREN TI SAGAM-AT →',
     calcTab: 'Ti math',
     whyLink: 'No apay a mapasamak daytoy',
     whyTitle: 'No apay a saanmo a mapugngan',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
+  },
+
+  watch: {
+    title: 'Buyaen',
+    subtitle: 'No kasano a naaramid ti sugal, ken no ania ti langa ti panagruar kadagiti nakaruar.',
+    langNote: 'Ti tunggal maysa aglukat iti sitio a mangidulin iti daytoy. Naka-English dagitoy.',
+    psychology: 'No kasano a naaramid ti sugal',
+    recovery: 'Panagimbag',
+    minutes: '{n} min',
   },
 
   barriers: {

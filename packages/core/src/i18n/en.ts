@@ -10,6 +10,7 @@ export const en: Translation = {
     community: 'Community', help: 'Help',
     lost: 'Lost',
     barriers: 'Barriers',
+    watch: 'Watch',
     more: 'More',
   },
 
@@ -161,16 +162,20 @@ export const en: Translation = {
     truthP1: "When you can't stop betting, that is not a character flaw. When you chase losses even though you know you shouldn't, that is not weakness.",
     truthP2: 'That is a normal brain responding normally to a system designed to be inescapable. The trap was built by experts. It has captured millions.',
     truthP3: 'You are not broken. You are targeted. And now you know exactly how it works.',
-    watchTag: 'Watch',
-    watchHint: 'Each one opens on the site that hosts it.',
-    watchPsychology: 'How gambling is built',
-    watchRecovery: 'Recovery',
-    watchMinutes: '{n} min',
     ctaBarriers: 'BUILD YOUR BARRIERS →',
     calcTab: 'The math',
     whyLink: 'Why this happens',
     whyTitle: 'Why you cannot stop',
     houseEdgeLabels: ['Sports Betting', 'Slot Machines', 'Online Casino / E-Sabong'],
+  },
+
+  watch: {
+    title: 'Watch',
+    subtitle: 'How gambling is engineered, and what getting out looked like for people who did it.',
+    langNote: 'Each one opens on the site that hosts it.',
+    psychology: 'How gambling is built',
+    recovery: 'Recovery',
+    minutes: '{n} min',
   },
 
   barriers: {
