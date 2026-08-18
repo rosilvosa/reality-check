@@ -1,8 +1,10 @@
 # Spec: replace the weekly peso figure with an honesty-disclosure count
 
-Status: not started. Layout for the two-stat card landed first (see the
-"Two columns when both numbers exist" commit on this date); this spec covers
-the second stat itself, which still shows `weekPesos` today.
+Status: done, commit e0ecc42. Also fixed while implementing this: room
+stats used to live in Home's own component state, which meant the loading
+skeleton reappeared every time you navigated back to Home, not just once
+per session. Moved to a persistent store (roomStore.ts, same pattern
+streakStore already used) so the subscription survives Home unmounting.
 
 ## Why
 
