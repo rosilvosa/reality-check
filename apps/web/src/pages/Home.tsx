@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useT } from '../i18n'
-import { formatMoney, MILESTONES, MILESTONE_EMOJI, localISODate, visibleStreak } from '@rc/core'
+import { formatMoney, MILESTONES, MILESTONE_EMOJI, localISODate, tpl, visibleStreak } from '@rc/core'
 import { useStreakStore } from '../stores/streakStore'
 import { useJournalStore } from '../stores/journalStore'
 import { useSettingsStore } from '../stores/settingsStore'
@@ -24,6 +24,7 @@ export default function Home() {
   const days = visibleStreak(currentStreak, lastCheckInDate)
   const earned = [...MILESTONES].reverse().find((m) => days >= m)
   const badge = earned ? MILESTONE_EMOJI[earned] : null
+  const nextMilestone = MILESTONES.find((m) => m > days)
   // Lives in a store (see roomStore.ts), not local state -- the subscription
   // is set up once for the whole session, so returning to Home after
   // visiting another tab shows the already-known numbers immediately instead
@@ -81,6 +82,31 @@ export default function Home() {
                   <span className="block text-xs font-bold text-muted mt-0.5">{t.home.seeProgress} →</span>
                 </div>
               </div>
+              {/* Same goal bar as Progress -- reusing its copy and math
+                  rather than inventing Home-specific wording, so "6 days to
+                  your 14-day mark" means the same thing and uses the same
+                  translated strings in both places. Home's version is
+                  slimmer to fit the tighter card. */}
+              {!loading && nextMilestone !== undefined && (
+                <div className="mt-3">
+                  <div className="flex items-baseline justify-between gap-2 mb-1">
+                    <span className="text-muted text-[0.6875rem] font-bold">
+                      {nextMilestone - days === 1
+                        ? tpl(t.progress.nextGoalOne, { d: String(nextMilestone) })
+                        : tpl(t.progress.nextGoal, { n: String(nextMilestone - days), d: String(nextMilestone) })}
+                    </span>
+                    <span className="text-muted text-[0.6875rem] font-bold tabular-nums shrink-0">
+                      {days} / {nextMilestone}
+                    </span>
+                  </div>
+                  <div className="w-full bg-surface2 rounded-full h-1.5">
+                    <div
+                      className="h-1.5 rounded-full bg-accent transition-all duration-500"
+                      style={{ width: `${(days / nextMilestone) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              )}
             </Link>
           )
         }
@@ -109,6 +135,31 @@ export default function Home() {
                 </Link>
               )}
             </div>
+              {/* Same goal bar as Progress -- reusing its copy and math
+                  rather than inventing Home-specific wording, so "6 days to
+                  your 14-day mark" means the same thing and uses the same
+                  translated strings in both places. Home's version is
+                  slimmer to fit the tighter card. */}
+              {!loading && nextMilestone !== undefined && (
+                <div className="mt-3">
+                  <div className="flex items-baseline justify-between gap-2 mb-1">
+                    <span className="text-muted text-[0.6875rem] font-bold">
+                      {nextMilestone - days === 1
+                        ? tpl(t.progress.nextGoalOne, { d: String(nextMilestone) })
+                        : tpl(t.progress.nextGoal, { n: String(nextMilestone - days), d: String(nextMilestone) })}
+                    </span>
+                    <span className="text-muted text-[0.6875rem] font-bold tabular-nums shrink-0">
+                      {days} / {nextMilestone}
+                    </span>
+                  </div>
+                  <div className="w-full bg-surface2 rounded-full h-1.5">
+                    <div
+                      className="h-1.5 rounded-full bg-accent transition-all duration-500"
+                      style={{ width: `${(days / nextMilestone) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              )}
 
             {loading && (
               <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
@@ -146,25 +197,16 @@ export default function Home() {
           Both tiles are now the same shape, "N people did a real thing
           today," rather than one count and one currency amount.
 
-          The skeleton while !roomLoaded only ever shows once per tab now
-          that room lives in a store instead of local component state --
-          returning to Home from another tab reuses the already-loaded
-          numbers instead of re-subscribing and flashing the skeleton again
-          every time. */}
-      {!roomLoaded && (
-        <div className="bg-surface border border-border rounded-2xl p-5 mb-4 animate-pulse" aria-hidden="true">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <div className="h-7 w-10 bg-surface2 rounded mb-2" />
-              <div className="h-3 w-20 bg-surface2 rounded" />
-            </div>
-            <div>
-              <div className="h-7 w-16 bg-surface2 rounded mb-2" />
-              <div className="h-3 w-24 bg-surface2 rounded" />
-            </div>
-          </div>
-        </div>
-      )}
+          No loading skeleton here on purpose. There are three possible
+          shapes once this resolves -- two columns, one column, or nothing at
+          all -- and a skeleton has to commit to one of them before knowing
+          the answer; a fixed two-column guess mismatched the common
+          one-column and zero cases, which read as the card visibly changing
+          shape rather than loading. Now that room lives in a store instead
+          of component state, this gap is real for at most one moment per
+          tab session (see roomStore.ts), not on every visit to Home, so
+          letting the card simply appear once resolved -- content arriving,
+          not a shape being corrected -- is the smaller cost of the two. */}
       {roomLoaded && (roomToday > 0 || roomHonesty > 0) && (
         <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
           <div className={`grid gap-4 ${roomToday > 0 && roomHonesty > 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>

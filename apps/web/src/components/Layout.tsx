@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, ScrollRestoration } from 'react-router-dom'
 import {
   Brain,
   Droplet,
@@ -50,7 +50,8 @@ function Tab({
           <Icon
             size={22}
             strokeWidth={isActive ? 2.25 : 2}
-            className={isActive ? '' : 'opacity-70'}
+            fill={isActive ? 'currentColor' : 'none'}
+            className={isActive ? 'text-accent' : 'text-muted opacity-70'}
           />
           <span className="w-full truncate text-[0.6875rem] font-bold tracking-wide leading-tight text-center">{label}</span>
           <span className={`h-0.5 w-5 rounded-full ${isActive ? 'bg-accent' : 'bg-transparent'}`} />
@@ -64,13 +65,14 @@ export default function Layout() {
   const t = useT()
   const showContact = useContactStore((s) => s.show)
 
-  // Watch moved up from bottom so the two rows land at 5 and 5. It was the
-  // newest addition and the most passive-use one -- an occasional resource
-  // library, not a reactive-in-the-moment tool like the four it was
-  // competing with for bottom-row thumb space (Lost, Trap, Barriers, Help).
+  // Lost and Journal share the primary (bottom, thumb-zone) row: the two-step
+  // "something just happened, write about it" flow is now one tap away on
+  // either end instead of a hop through Lost's own "write it down" button.
+  // Trap and Watch share the secondary (top) row: both are educational,
+  // browse-when-you-have-a-moment content, not reactive-in-the-moment tools.
   const top = [
     { to: '/', label: t.nav.home, icon: House, end: true },
-    { to: '/journal', label: t.nav.journal, icon: Notebook },
+    { to: '/trap', label: t.nav.trap, icon: Brain },
     { to: '/progress', label: t.nav.progress, icon: Trophy },
     { to: '/settings', label: t.nav.settings, icon: SettingsIcon },
     { to: '/watch', label: t.nav.watch, icon: Clapperboard },
@@ -78,7 +80,7 @@ export default function Layout() {
 
   const bottom = [
     { to: '/lost', label: t.nav.lost, icon: Droplet },
-    { to: '/trap', label: t.nav.trap, icon: Brain },
+    { to: '/journal', label: t.nav.journal, icon: Notebook },
     { to: '/barriers', label: t.nav.barriers, icon: Shield },
     { to: '/help', label: t.nav.help, icon: Handshake },
     { to: '/community', label: t.nav.community, icon: MessageCircle },
@@ -120,6 +122,15 @@ export default function Layout() {
           {t.settings.contactLink}
         </button>
       </footer>
+
+      {/* Client-side navigation does not reset scroll the way a real page
+          load does, so leaving a page scrolled down and switching tabs could
+          drop you mid-scroll on the new page -- sometimes on blank space if
+          the new page is shorter -- instead of at its top. This is the
+          official fix, not a hand-rolled scrollTo(0,0): it also remembers and
+          restores scroll position on back/forward navigation, which a naive
+          effect would not. */}
+      <ScrollRestoration />
 
       <ContactModal />
 
