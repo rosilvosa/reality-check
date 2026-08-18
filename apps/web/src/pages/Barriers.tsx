@@ -6,9 +6,14 @@ import { getAdapter, readLocalBarriersSync } from '../lib/storage'
 import { useAuthStore } from '../stores/authStore'
 import { useSettingsStore } from '../stores/settingsStore'
 
-const BARRIER_IDS = [
+const BASE_BARRIER_IDS = [
   'self_exclusion', 'delete_apps', 'block_sites', 'payment_methods', 'tell_someone', 'helpline',
 ] as const
+// PAGCOR is the only programme we verified that accepts an exclusion filed by
+// family, so this barrier is shown for PH only rather than guessed elsewhere.
+const PH_BARRIER_IDS = [...BASE_BARRIER_IDS, 'family_exclusion'] as const
+// Free, run by a registered charity, and gambling specific.
+const BETBLOCKER_URL = 'https://betblocker.org/'
 
 export default function Barriers() {
   const user = useAuthStore((s) => s.user)
@@ -47,16 +52,22 @@ export default function Barriers() {
       ? { title: t.barriers.items[0].title, description: t.barriers.items[0].description, actionLabel: t.barriers.items[0].actionLabel, url: help.exclusionUrl }
       : { title: help.exclusionTitle, description: help.exclusionBody, actionLabel: help.exclusionAction, url: help.exclusionUrl },
     { title: t.barriers.items[1].title, description: t.barriers.items[1].description, actionLabel: undefined, url: null },
-    { title: t.barriers.items[2].title, description: t.barriers.items[2].description, actionLabel: undefined, url: null },
+    { title: t.barriers.items[2].title, description: t.barriers.items[2].description, actionLabel: t.barriers.items[2].actionLabel, url: BETBLOCKER_URL },
     { title: t.barriers.items[3].title, description: ph ? t.barriers.items[3].description : help.paymentsBody, actionLabel: undefined, url: null },
     { title: t.barriers.items[4].title, description: t.barriers.items[4].description, actionLabel: undefined, url: null },
     ph
       ? { title: t.barriers.items[5].title, description: t.barriers.items[5].description, actionLabel: t.barriers.items[5].actionLabel, url: help.helplineUrl }
       : { title: help.helplineTitle, description: help.helplineBody, actionLabel: help.helplineAction, url: help.helplineUrl },
+    ...(ph
+      ? [{ title: t.barriers.items[6].title, description: t.barriers.items[6].description, actionLabel: t.barriers.items[6].actionLabel, url: help.exclusionUrl }]
+      : []),
   ]
 
-  const count = done.size
-  const total = BARRIER_IDS.length
+  const ids = ph ? PH_BARRIER_IDS : BASE_BARRIER_IDS
+  // Count only the ids for the current region, so switching region cannot push
+  // the progress bar past 100%.
+  const count = ids.filter((id) => done.has(id)).length
+  const total = ids.length
   const allDone = loaded && count === total
 
   return (
@@ -93,7 +104,7 @@ export default function Barriers() {
       </div>
 
       <div className="space-y-3 mb-6">
-        {BARRIER_IDS.map((id, i) => {
+        {ids.map((id, i) => {
           const checked = loaded && done.has(id)
           const item = items[i]
           return (

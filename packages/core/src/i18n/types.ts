@@ -125,6 +125,10 @@ export interface Translation {
       { label: string; detail: string }
     ]
     truthTag: string; truthP1: string; truthP2: string; truthP3: string
+    watchTag: string; watchHint: string
+    watchPsychology: string; watchRecovery: string
+    // params: {n}
+    watchMinutes: string
     ctaBarriers: string
     calcTab: string
     whyLink: string
@@ -141,9 +145,10 @@ export interface Translation {
     items: [
       { title: string; description: string; actionLabel: string },
       { title: string; description: string },
+      { title: string; description: string; actionLabel: string },
       { title: string; description: string },
       { title: string; description: string },
-      { title: string; description: string },
+      { title: string; description: string; actionLabel: string },
       { title: string; description: string; actionLabel: string }
     ]
   }
