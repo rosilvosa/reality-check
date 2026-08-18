@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { useT } from '../i18n'
 import { RECOVERY_VIDEOS, tpl, type RecoveryVideo, type VideoTopic } from '@rc/core'
 import VideoModal from '../components/VideoModal'
+import { useContactStore } from '../stores/contactStore'
 
 const TOPIC_ORDER: VideoTopic[] = ['psychology', 'recovery']
 
 export default function Watch() {
   const t = useT()
   const [playing, setPlaying] = useState<RecoveryVideo | null>(null)
+  const suggest = useContactStore((s) => s.show)
 
   return (
     <div>
@@ -51,6 +53,21 @@ export default function Watch() {
           </div>
         )
       })}
+
+      {/* Suggestions go to the maintainer's inbox rather than straight onto the
+          page. The list stays in the repo where it can be reviewed in public,
+          and a stranger cannot put an affiliate link in front of someone who is
+          mid-urge. */}
+      <div className="mt-6 bg-surface border border-border rounded-2xl p-5">
+        <p className="text-muted text-sm leading-relaxed mb-3">{t.watch.suggestHint}</p>
+        <button
+          type="button"
+          onClick={() => suggest('typeVideo')}
+          className="text-xs font-bold text-accent border border-accent-dim px-3 py-1.5 rounded-lg hover:bg-accent-dim transition-colors"
+        >
+          {t.watch.suggestBtn} &rarr;
+        </button>
+      </div>
 
       <VideoModal video={playing} onClose={() => setPlaying(null)} />
     </div>

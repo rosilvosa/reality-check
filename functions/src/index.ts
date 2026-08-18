@@ -189,3 +189,34 @@ export const onHeartAdded = region.firestore
 export const onHeartRemoved = region.firestore
   .document('community_posts/{postId}/hearts/{uid}')
   .onDelete((_snap, context) => bumpHearts(String(context.params.postId ?? ''), -1))
+
+/**
+ * Report counts are kept in their own collection, readable only by moderators,
+ * and written only here. Keeping them off the post document means an ordinary
+ * reader cannot tell which posts have been reported, which would turn the
+ * report button into a way to publicly mark someone.
+ */
+export const onPostReported = region.firestore
+  .document('community_posts/{postId}/reports/{uid}')
+  .onCreate(async (_snap, context) => {
+    const postId = String(context.params.postId ?? '')
+    if (!postId) return
+    const ref = db.doc(`community_moderation/${postId}`)
+    await db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref)
+      const cur = Number(snap.get('reportCount')) || 0
+      tx.set(ref, {
+        reportCount: cur + 1,
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      }, { merge: true })
+    })
+  })
+
+/** A removed post leaves no queue entry behind. */
+export const onPostDeleted = region.firestore
+  .document('community_posts/{postId}')
+  .onDelete(async (_snap, context) => {
+    const postId = String(context.params.postId ?? '')
+    if (!postId) return
+    await db.doc(`community_moderation/${postId}`).delete().catch(() => undefined)
+  })

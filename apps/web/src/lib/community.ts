@@ -97,6 +97,41 @@ export async function toggleHeart(postId: string, uid: string, on: boolean): Pro
   else await deleteDoc(heartRef)
 }
 
+export async function reportPost(postId: string, uid: string): Promise<void> {
+  await setDoc(doc(db, COL, postId, 'reports', uid), { createdAt: serverTimestamp() })
+}
+
+/**
+ * Report counts, keyed by post id. Readable only with the moderator claim, so
+ * this throws for everyone else and callers should only reach for it when
+ * isModerator is true.
+ */
+export async function fetchReportCounts(): Promise<Record<string, number>> {
+  const snap = await getDocs(collection(db, 'community_moderation'))
+  const out: Record<string, number> = {}
+  for (const d of snap.docs) out[d.id] = Number(d.get('reportCount')) || 0
+  return out
+}
+
+export function reportKey(uid: string): string {
+  return `rc_reported_${uid}`
+}
+
+export function loadLocalReports(uid: string): Set<string> {
+  try {
+    const raw = localStorage.getItem(reportKey(uid))
+    return new Set(raw ? JSON.parse(raw) : [])
+  } catch {
+    return new Set()
+  }
+}
+
+export function saveLocalReports(uid: string, ids: Set<string>): void {
+  try {
+    localStorage.setItem(reportKey(uid), JSON.stringify([...ids]))
+  } catch { /* ignore */ }
+}
+
 export async function deletePostsByUser(uid: string): Promise<void> {
   const q = query(collection(db, COL), where('uid', '==', uid), limit(100))
   const snap = await getDocs(q)

@@ -46,7 +46,7 @@ export default function Terms() {
         did not back up, or for Firebase outages. Use at your own risk.
       </p>
       <p>
-        Questions: <button type="button" onClick={showContact} className="text-accent hover:text-ink">Contact</button>
+        Questions: <button type="button" onClick={() => showContact()} className="text-accent hover:text-ink">Contact</button>
       </p>
     </div>
   )

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import { useStreakStore } from '../stores/streakStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import { useJournalStore } from '../stores/journalStore'
@@ -121,6 +122,16 @@ export default function Progress() {
           )}
         </div>
       )}
+
+      {/* A pointer, not a second copy of the controls. The export lives in
+          Settings with the other account operations; this is only here because
+          a streak someone cares about is what makes losing it matter. */}
+      <NavLink
+        to="/settings"
+        className="block bg-surface border border-border rounded-xl px-5 py-3.5 mb-4 text-xs font-bold text-muted hover:text-ink hover:border-accent transition-colors"
+      >
+        {t.progress.backupLink} &rarr;
+      </NavLink>
 
       {/* Fill the Void */}
       <VoidSection />

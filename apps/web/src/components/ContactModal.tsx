@@ -4,12 +4,13 @@ import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
 import { sendContactMessage } from '../lib/contact'
 
-const TYPES = ['typeBug', 'typeQuestion', 'typePrivacy', 'typeOther'] as const
+const TYPES = ['typeBug', 'typeQuestion', 'typePrivacy', 'typeVideo', 'typeOther'] as const
 
 export default function ContactModal() {
   const t = useT()
   const open = useContactStore((s) => s.open)
   const hide = useContactStore((s) => s.hide)
+  const presetKind = useContactStore((s) => s.presetKind)
   const [kind, setKind] = useState<(typeof TYPES)[number]>('typeQuestion')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -20,14 +21,16 @@ export default function ContactModal() {
 
   useEffect(() => {
     if (!open) return
-    setKind('typeQuestion')
+    // Something may have opened this for a specific purpose, e.g. the Suggest a
+    // video button on Watch.
+    setKind(presetKind ?? 'typeQuestion')
     setName('')
     setEmail('')
     setMessage('')
     setSending(false)
     setSent(false)
     setError('')
-  }, [open])
+  }, [open, presetKind])
 
   async function submit() {
     const text = message.trim()

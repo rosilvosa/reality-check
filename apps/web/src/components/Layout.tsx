@@ -91,7 +91,7 @@ export default function Layout() {
         {' · '}
         <NavLink to="/updates" className="hover:text-ink">{t.settings.updatesLink}</NavLink>
         {' · '}
-        <button type="button" onClick={showContact} className="hover:text-ink">
+        <button type="button" onClick={() => showContact()} className="hover:text-ink">
           {t.settings.contactLink}
         </button>
       </footer>

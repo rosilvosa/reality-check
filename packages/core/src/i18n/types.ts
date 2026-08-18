@@ -136,6 +136,7 @@ export interface Translation {
     title: string; subtitle: string; langNote: string
     psychology: string; recovery: string
     openOnYouTube: string; playNote: string
+    suggestBtn: string; suggestHint: string
     // params: {n}
     minutes: string
   }
@@ -163,6 +164,7 @@ export interface Translation {
     startStreak: string; dailyCheckIn: string; checkInBtn: string; checkedInBtn: string
     checkInHint: string; protectedLabel: string; milestonesLabel: string; nextLabel: string
     costHint: string; assetsEmpty: string
+    backupLink: string
     // params: {n} {d}
     nextGoal: string
     // params: {d}
@@ -253,6 +255,10 @@ export interface Translation {
     empty: string
     rules: string
     deletePost: string
+    reportBtn: string; reported: string
+    removeBtn: string; removeConfirm: string
+    // params: {n}
+    reportsLabel: string
     posting: string
     failed: string
     loadFailed: string
@@ -280,6 +286,7 @@ export interface Translation {
     typeBug: string
     typeQuestion: string
     typePrivacy: string
+    typeVideo: string
     typeOther: string
     nameLabel: string
     nameOptional: string

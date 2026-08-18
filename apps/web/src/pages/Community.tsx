@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useT } from '../i18n'
-import { HELP_REGIONS, resolveHelpRegion, type HelpRegion } from '@rc/core'
+import { HELP_REGIONS, resolveHelpRegion, tpl, type HelpRegion } from '@rc/core'
 import { useAuthStore } from '../stores/authStore'
 import { useSettingsStore } from '../stores/settingsStore'
 import {
   createPost,
   deletePost,
   fetchPosts,
+  fetchReportCounts,
   loadLocalHearts,
+  loadLocalReports,
+  reportPost,
   saveLocalHearts,
+  saveLocalReports,
   timeAgo,
   toggleHeart,
   type CommunityPost,
@@ -48,10 +52,44 @@ export default function Community() {
   const [posting, setPosting] = useState(false)
   const [error, setError] = useState('')
   const [hearts, setHearts] = useState<Set<string>>(new Set())
+  const [reported, setReported] = useState<Set<string>>(new Set())
+  const isModerator = useAuthStore((s) => s.isModerator)
+  const [reportCounts, setReportCounts] = useState<Record<string, number>>({})
 
   useEffect(() => {
-    if (user) setHearts(loadLocalHearts(user.uid))
+    if (!user) return
+    setHearts(loadLocalHearts(user.uid))
+    setReported(loadLocalReports(user.uid))
   }, [user?.uid])
+
+  // Only a moderator can read these, so do not even ask otherwise.
+  useEffect(() => {
+    if (!isModerator) { setReportCounts({}); return }
+    fetchReportCounts().then(setReportCounts).catch(() => setReportCounts({}))
+  }, [isModerator])
+
+  async function onReport(postId: string) {
+    if (!user || reported.has(postId)) return
+    const next = new Set(reported).add(postId)
+    setReported(next)
+    saveLocalReports(user.uid, next)
+    try {
+      await reportPost(postId, user.uid)
+    } catch {
+      // The marker stays put. Re-reporting the same post would be rejected by
+      // the rules anyway, and nagging about a failed report is not useful.
+    }
+  }
+
+  async function onRemove(postId: string) {
+    if (!window.confirm(t.community.removeConfirm)) return
+    try {
+      await deletePost(postId)
+      setPosts((prev) => prev.filter((p) => p.id !== postId))
+    } catch {
+      setError(t.community.failed)
+    }
+  }
 
   async function reload() {
     try {
@@ -277,6 +315,30 @@ export default function Community() {
                   >
                     {t.community.deletePost}
                   </button>
+                )}
+                {!mine && (
+                  <button
+                    type="button"
+                    onClick={() => onReport(post.id)}
+                    disabled={reported.has(post.id)}
+                    className="text-xs text-muted hover:text-ink disabled:hover:text-muted disabled:opacity-60"
+                  >
+                    {reported.has(post.id) ? t.community.reported : t.community.reportBtn}
+                  </button>
+                )}
+                {isModerator && !mine && (
+                  <button
+                    type="button"
+                    onClick={() => onRemove(post.id)}
+                    className="text-xs font-bold text-red-400 hover:text-red-300 ml-auto"
+                  >
+                    {t.community.removeBtn}
+                  </button>
+                )}
+                {isModerator && (reportCounts[post.id] ?? 0) > 0 && (
+                  <span className="text-xs font-bold text-red-400">
+                    {tpl(t.community.reportsLabel, { n: String(reportCounts[post.id]) })}
+                  </span>
                 )}
               </div>
             </article>

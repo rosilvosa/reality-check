@@ -38,7 +38,7 @@ export default function Privacy() {
       <p>
         You can delete your account and cloud data from Settings. That wipes your Firestore tree and local
         Reality Check keys. Under the Philippine Data Privacy Act you may
-        {' '}<button type="button" onClick={showContact} className="text-accent hover:text-ink">use Contact</button>
+        {' '}<button type="button" onClick={() => showContact()} className="text-accent hover:text-ink">use Contact</button>
         {' '}to request access or deletion.
       </p>
       <p>This app is run by an independent maintainer. Use Contact for any data or privacy request.</p>
