@@ -175,6 +175,8 @@ export const ceb: Translation = {
     langNote: 'Ang matag usa moabli sa site nga naghost niini. Naa ni sa English.',
     psychology: 'Giunsa paghimo ang sugal',
     recovery: 'Pag-ayo',
+    openOnYouTube: 'Ablihi sa YouTube',
+    playNote: 'Naa ni dinhi para dili ka na mogawas sa app. Inig play, gikuha ang video gikan sa YouTube, busa makita sa Google ang request.',
     minutes: '{n} min',
   },
 

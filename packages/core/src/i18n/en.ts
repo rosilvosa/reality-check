@@ -175,6 +175,8 @@ export const en: Translation = {
     langNote: 'Each one opens on the site that hosts it.',
     psychology: 'How gambling is built',
     recovery: 'Recovery',
+    openOnYouTube: 'Open on YouTube',
+    playNote: 'Plays here so you do not have to leave the app. Pressing play loads the video from YouTube, which means Google sees the request.',
     minutes: '{n} min',
   },
 

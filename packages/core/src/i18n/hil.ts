@@ -175,6 +175,8 @@ export const hil: Translation = {
     langNote: 'Ang kada isa mabuksan sa site nga nagahost sini. Sa English ini.',
     psychology: 'Paano ginhimo ang sugal',
     recovery: 'Pag-ayo',
+    openOnYouTube: 'Buksan sa YouTube',
+    playNote: 'Yari ini diri agod indi ka na maggwa sa app. Kon mag-play, ginakuha ang video halin sa YouTube, gani makita sang Google ang request.',
     minutes: '{n} min',
   },
 

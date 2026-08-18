@@ -175,6 +175,8 @@ export const fil: Translation = {
     langNote: 'Bubukas ang bawat isa sa site na nagho-host nito. Sa English ang mga ito.',
     psychology: 'Kung paano ginawa ang sugal',
     recovery: 'Paggaling',
+    openOnYouTube: 'Buksan sa YouTube',
+    playNote: 'Nandito ito para hindi mo kailangang lumabas ng app. Kapag nag-play, kinukuha ang video mula sa YouTube, kaya nakikita ng Google ang request.',
     minutes: '{n} min',
   },
 

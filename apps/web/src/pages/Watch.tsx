@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import { useT } from '../i18n'
-import { RECOVERY_VIDEOS, tpl, type VideoTopic } from '@rc/core'
+import { RECOVERY_VIDEOS, tpl, type RecoveryVideo, type VideoTopic } from '@rc/core'
+import VideoModal from '../components/VideoModal'
 
 const TOPIC_ORDER: VideoTopic[] = ['psychology', 'recovery']
 
 export default function Watch() {
   const t = useT()
+  const [playing, setPlaying] = useState<RecoveryVideo | null>(null)
 
   return (
     <div>
@@ -22,26 +25,34 @@ export default function Watch() {
             </p>
             <div className="space-y-3">
               {inTopic.map((v) => (
-                <a
-                  key={v.url}
-                  href={v.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
+                <button
+                  key={v.youtubeId}
+                  type="button"
+                  onClick={() => setPlaying(v)}
+                  className="w-full text-left bg-surface border border-border rounded-2xl p-5 hover:border-accent transition-colors"
                 >
-                  <p className="text-ink font-bold text-[0.9375rem] leading-snug">{v.title}</p>
-                  <p className="text-muted text-sm mt-1">
-                    {v.source}
-                    {v.minutes !== undefined && (
-                      <> &middot; {tpl(t.watch.minutes, { n: String(v.minutes) })}</>
-                    )}
-                  </p>
-                </a>
+                  <div className="flex items-start gap-4">
+                    <span className="shrink-0 w-10 h-10 rounded-full bg-accent-dim text-accent flex items-center justify-center text-sm" aria-hidden>
+                      &#9654;
+                    </span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block text-ink font-bold text-[0.9375rem] leading-snug">{v.title}</span>
+                      <span className="block text-muted text-sm mt-1">
+                        {v.source}
+                        {v.minutes !== undefined && (
+                          <> &middot; {tpl(t.watch.minutes, { n: String(v.minutes) })}</>
+                        )}
+                      </span>
+                    </span>
+                  </div>
+                </button>
               ))}
             </div>
           </div>
         )
       })}
+
+      <VideoModal video={playing} onClose={() => setPlaying(null)} />
     </div>
   )
 }

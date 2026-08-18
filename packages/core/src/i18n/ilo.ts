@@ -175,6 +175,8 @@ export const ilo: Translation = {
     langNote: 'Ti tunggal maysa aglukat iti sitio a mangidulin iti daytoy. Naka-English dagitoy.',
     psychology: 'No kasano a naaramid ti sugal',
     recovery: 'Panagimbag',
+    openOnYouTube: 'Lukatan iti YouTube',
+    playNote: 'Adda ditoy tapno saanka a rumuar iti app. No agplay, maala ti video manipud iti YouTube, isu a makita ti Google ti request.',
     minutes: '{n} min',
   },
 

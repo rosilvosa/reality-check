@@ -137,6 +137,7 @@ export interface Translation {
   watch: {
     title: string; subtitle: string; langNote: string
     psychology: string; recovery: string
+    openOnYouTube: string; playNote: string
     // params: {n}
     minutes: string
   }
