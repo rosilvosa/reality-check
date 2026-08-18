@@ -48,7 +48,6 @@ export const ceb: Translation = {
     openBrowserHow: 'Kung walay mahitabo: i-tap ang ··· unya Open in Chrome o Safari.',
     checkedInLabel: 'Nag-check in karon',
     honestyLabel: 'Matinud-anon karon',
-    togetherHint: 'Walay ngalan. Ang lawak ra.',
   },
 
   lost: {

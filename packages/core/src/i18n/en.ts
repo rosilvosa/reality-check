@@ -48,7 +48,6 @@ export const en: Translation = {
     openBrowserHow: 'If the button does nothing: tap ··· then Open in Chrome or Safari.',
     checkedInLabel: 'Checked in today',
     honestyLabel: 'Honest today',
-    togetherHint: 'No names. Just the room.',
   },
 
   lost: {

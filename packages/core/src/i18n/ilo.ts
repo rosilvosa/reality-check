@@ -48,7 +48,6 @@ export const ilo: Translation = {
     openBrowserHow: 'No awan ti mapasamak: i-tap ti ··· sa Open in Chrome wenno Safari.',
     checkedInLabel: 'Nag-check in ita',
     honestyLabel: 'Napudno ita',
-    togetherHint: 'Awan nagan. Ti kuarto laeng.',
   },
 
   lost: {

@@ -35,8 +35,36 @@ export default function Home() {
 
   return (
     <div>
-      <h1 className="text-lg font-extrabold text-ink mb-1">Reality Check</h1>
-      <p className="text-sm text-muted mb-5 leading-relaxed">{t.home.subtitle}</p>
+      <div className="flex items-start justify-between gap-3 mb-5">
+        <div>
+          <h1 className="text-lg font-extrabold text-ink mb-1">Reality Check</h1>
+          <p className="text-sm text-muted leading-relaxed">{t.home.subtitle}</p>
+        </div>
+        {/* Moved up from its own card below -- see docs/specs for why the
+            second line counts disclosures, not pesos. No skeleton here either,
+            same reasoning as before: it only has a load gap once per tab
+            session now, so it just appears once resolved. */}
+        {roomLoaded && (roomToday > 0 || roomHonesty > 0) && (
+          <div className="text-right shrink-0 pt-0.5">
+            {roomToday > 0 && (
+              <div className="leading-tight">
+                <span className="text-ink font-black text-sm tabular-nums">{roomToday}</span>
+                <span className="text-muted text-[0.625rem] font-semibold uppercase tracking-wide ml-1">
+                  {t.home.checkedInLabel}
+                </span>
+              </div>
+            )}
+            {roomHonesty > 0 && (
+              <div className="leading-tight mt-0.5">
+                <span className="text-ink font-black text-sm tabular-nums">{roomHonesty}</span>
+                <span className="text-muted text-[0.625rem] font-semibold uppercase tracking-wide ml-1">
+                  {t.home.honestyLabel}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
 
       <InstallHint />
 
@@ -187,49 +215,6 @@ export default function Home() {
           </div>
         )
       })()}
-
-      {/* Two columns when both numbers exist, one full-width tile when only
-          one does -- a forced 2-col grid with an empty/zero second slot would
-          look broken rather than just quiet.
-
-          Second tile counts people who disclosed a loss today, not how much
-          they lost -- see docs/specs/2026-08-18-honesty-disclosure-count.md.
-          Both tiles are now the same shape, "N people did a real thing
-          today," rather than one count and one currency amount.
-
-          No loading skeleton here on purpose. There are three possible
-          shapes once this resolves -- two columns, one column, or nothing at
-          all -- and a skeleton has to commit to one of them before knowing
-          the answer; a fixed two-column guess mismatched the common
-          one-column and zero cases, which read as the card visibly changing
-          shape rather than loading. Now that room lives in a store instead
-          of component state, this gap is real for at most one moment per
-          tab session (see roomStore.ts), not on every visit to Home, so
-          letting the card simply appear once resolved -- content arriving,
-          not a shape being corrected -- is the smaller cost of the two. */}
-      {roomLoaded && (roomToday > 0 || roomHonesty > 0) && (
-        <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
-          <div className={`grid gap-4 ${roomToday > 0 && roomHonesty > 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-            {roomToday > 0 && (
-              <div>
-                <div className="text-2xl font-black text-ink leading-none">{roomToday}</div>
-                <div className="text-muted text-[0.6875rem] font-semibold uppercase tracking-wider mt-1.5">
-                  {t.home.checkedInLabel}
-                </div>
-              </div>
-            )}
-            {roomHonesty > 0 && (
-              <div>
-                <div className="text-2xl font-black text-ink leading-none">{roomHonesty}</div>
-                <div className="text-muted text-[0.6875rem] font-semibold uppercase tracking-wider mt-1.5">
-                  {t.home.honestyLabel}
-                </div>
-              </div>
-            )}
-          </div>
-          <p className="text-muted text-xs mt-3">{t.home.togetherHint}</p>
-        </div>
-      )}
 
       {/* Lost and Why paired into one row: they are the two most-reached-for
           links, and each gets its own color so the row reads as two distinct

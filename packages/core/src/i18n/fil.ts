@@ -48,7 +48,6 @@ export const fil: Translation = {
     openBrowserHow: 'Kung walang nangyari: i-tap ang ··· tapos Open in Chrome o Safari.',
     checkedInLabel: 'Nag-check in ngayon',
     honestyLabel: 'Tapat ngayon',
-    togetherHint: 'Walang pangalan. Ang silid lang.',
   },
 
   lost: {

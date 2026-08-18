@@ -48,7 +48,6 @@ export interface Translation {
     openBrowserHow: string
     checkedInLabel: string
     honestyLabel: string
-    togetherHint: string
   }
 
   lost: {

@@ -24,11 +24,24 @@ function Tab({
   label,
   icon: Icon,
   end,
+  activeColor = 'text-ink',
+  activeBg = 'bg-ink',
 }: {
   to: string
   label: string
   icon: LucideIcon
   end?: boolean
+  /** Reuses whatever color that destination already means on Home (Lost is
+   * red, Trap/Why is amber, Journal is calm, Help/Community is support) so a
+   * tab being active means the same thing in both places. Home, Progress,
+   * Settings, and Watch have no such meaning anywhere else in the app, so
+   * they default to a neutral ink fill rather than an invented color.
+   * Two separate literal props, not one derived from the other with
+   * .replace() -- Tailwind's JIT only generates CSS for class names it can
+   * find as literal text in source, so a runtime-built "bg-" + color string
+   * would silently generate no rule at all. */
+  activeColor?: string
+  activeBg?: string
 }) {
   return (
     <NavLink
@@ -51,10 +64,12 @@ function Tab({
             size={22}
             strokeWidth={isActive ? 2.25 : 2}
             fill={isActive ? 'currentColor' : 'none'}
-            className={isActive ? 'text-accent' : 'text-muted opacity-70'}
+            className={isActive ? activeColor : 'text-muted opacity-70'}
           />
           <span className="w-full truncate text-[0.6875rem] font-bold tracking-wide leading-tight text-center">{label}</span>
-          <span className={`h-0.5 w-5 rounded-full ${isActive ? 'bg-accent' : 'bg-transparent'}`} />
+          {/* Same color as the icon above it, not a fixed accent red, so the
+              two active-state signals agree with each other. */}
+          <span className={`h-0.5 w-5 rounded-full ${isActive ? activeBg : 'bg-transparent'}`} />
         </>
       )}
     </NavLink>
@@ -72,18 +87,18 @@ export default function Layout() {
   // browse-when-you-have-a-moment content, not reactive-in-the-moment tools.
   const top = [
     { to: '/', label: t.nav.home, icon: House, end: true },
-    { to: '/trap', label: t.nav.trap, icon: Brain },
+    { to: '/trap', label: t.nav.trap, icon: Brain, activeColor: 'text-amber', activeBg: 'bg-amber' },
     { to: '/progress', label: t.nav.progress, icon: Trophy },
     { to: '/settings', label: t.nav.settings, icon: SettingsIcon },
     { to: '/watch', label: t.nav.watch, icon: Clapperboard },
   ]
 
   const bottom = [
-    { to: '/lost', label: t.nav.lost, icon: Droplet },
-    { to: '/journal', label: t.nav.journal, icon: Notebook },
+    { to: '/lost', label: t.nav.lost, icon: Droplet, activeColor: 'text-accent', activeBg: 'bg-accent' },
+    { to: '/journal', label: t.nav.journal, icon: Notebook, activeColor: 'text-calm', activeBg: 'bg-calm' },
     { to: '/barriers', label: t.nav.barriers, icon: Shield },
-    { to: '/help', label: t.nav.help, icon: Handshake },
-    { to: '/community', label: t.nav.community, icon: MessageCircle },
+    { to: '/help', label: t.nav.help, icon: Handshake, activeColor: 'text-support', activeBg: 'bg-support' },
+    { to: '/community', label: t.nav.community, icon: MessageCircle, activeColor: 'text-support', activeBg: 'bg-support' },
   ]
 
   return (
