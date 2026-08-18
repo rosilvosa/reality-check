@@ -46,8 +46,8 @@ export const ilo: Translation = {
     openBrowserBody: 'Daytoy Messenger wenno sabali nga in-app browser. Saan nga agtrabaho ditoy ti sign-in ken install.',
     openBrowserBtn: 'Lukatan iti browser',
     openBrowserHow: 'No awan ti mapasamak: i-tap ti ··· sa Open in Chrome wenno Safari.',
-    togetherToday: '{n} a tattao ti nag-check in ita',
-    togetherWeek: 'Dagiti nailista a pannakaabak ditoy ita a lawas: {amount}',
+    checkedInLabel: 'Nag-check in ita',
+    lostWeekLabel: 'Napukaw daytoy a lawas',
     togetherHint: 'Awan nagan. Ti kuarto laeng.',
   },
 

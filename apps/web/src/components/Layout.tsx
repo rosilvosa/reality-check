@@ -16,6 +16,7 @@ import {
 import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
 import ContactModal from './ContactModal'
+import PageSkeleton from './PageSkeleton'
 import ThemeToggle from './ThemeToggle'
 
 function Tab({
@@ -92,8 +93,10 @@ export default function Layout() {
 
       <main className="flex-1 px-4 py-6 max-w-2xl w-full mx-auto pb-8">
         {/* One boundary for every lazy route. The nav and footer stay put while
-            a page loads, so switching tabs does not blank the shell. */}
-        <Suspense fallback={<div className="py-10 text-center text-muted text-sm">&mdash;</div>}>
+            a page loads, so switching tabs does not blank the shell -- and the
+            content area shows a skeleton instead of a bare dash, so a slow
+            chunk load does not look like the page came back empty. */}
+        <Suspense fallback={<PageSkeleton />}>
           <Outlet />
         </Suspense>
       </main>

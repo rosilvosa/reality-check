@@ -46,8 +46,8 @@ export const ceb: Translation = {
     openBrowserBody: 'Kini Messenger o laing in-app browser. Dili molihok dinhi ang sign-in ug install.',
     openBrowserBtn: 'Ablihi sa browser',
     openBrowserHow: 'Kung walay mahitabo: i-tap ang ··· unya Open in Chrome o Safari.',
-    togetherToday: '{n} ka tawo nag-check in karon',
-    togetherWeek: 'Mga natala nga pagkapildi dinhi karong semana: {amount}',
+    checkedInLabel: 'Nag-check in karon',
+    lostWeekLabel: 'Natala nga pildi karong semana',
     togetherHint: 'Walay ngalan. Ang lawak ra.',
   },
 

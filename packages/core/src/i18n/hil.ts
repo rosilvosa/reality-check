@@ -46,8 +46,8 @@ export const hil: Translation = {
     openBrowserBody: 'Ini Messenger ukon iban nga in-app browser. Indi maggana diri ang sign-in kag install.',
     openBrowserBtn: 'Buksan sa browser',
     openBrowserHow: 'Kung wala sang natabo: i-tap ang ··· dayon Open in Chrome ukon Safari.',
-    togetherToday: '{n} ka tawo nag-check in subong',
-    togetherWeek: 'Mga narekord nga pagkapierde diri sini nga semana: {amount}',
+    checkedInLabel: 'Nag-check in subong',
+    lostWeekLabel: 'Nadula sini nga semana',
     togetherHint: 'Wala sang ngalan. Ang kuwarto lang.',
   },
 

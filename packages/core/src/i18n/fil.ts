@@ -46,8 +46,8 @@ export const fil: Translation = {
     openBrowserBody: 'Ito ay Messenger o ibang in-app browser. Hindi gagana dito ang sign-in at install.',
     openBrowserBtn: 'Buksan sa browser',
     openBrowserHow: 'Kung walang nangyari: i-tap ang ··· tapos Open in Chrome o Safari.',
-    togetherToday: '{n} tao ang nag-check in ngayong araw',
-    togetherWeek: 'Mga naitalang pagkalugi dito ngayong linggo: {amount}',
+    checkedInLabel: 'Nag-check in ngayon',
+    lostWeekLabel: 'Nawala ngayong linggo',
     togetherHint: 'Walang pangalan. Ang silid lang.',
   },
 

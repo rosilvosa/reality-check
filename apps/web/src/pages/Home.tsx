@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useT } from '../i18n'
-import { formatMoney, MILESTONES, MILESTONE_EMOJI, localISODate, tpl, visibleStreak } from '@rc/core'
+import { formatMoney, MILESTONES, MILESTONE_EMOJI, localISODate, visibleStreak } from '@rc/core'
 import { useStreakStore } from '../stores/streakStore'
 import { useJournalStore } from '../stores/journalStore'
 import { useSettingsStore } from '../stores/settingsStore'
@@ -25,8 +25,12 @@ export default function Home() {
   const earned = [...MILESTONES].reverse().find((m) => days >= m)
   const badge = earned ? MILESTONE_EMOJI[earned] : null
   const [room, setRoom] = useState<RoomStats | null>(null)
+  // Distinct from room itself: room stays null both before the first
+  // snapshot arrives and when there is genuinely nothing to show, and those
+  // two cases need different treatment below.
+  const [roomLoaded, setRoomLoaded] = useState(false)
 
-  useEffect(() => watchRoomStats(setRoom), [])
+  useEffect(() => watchRoomStats((r) => { setRoom(r); setRoomLoaded(true) }), [])
   const roomToday = todayCheckIns(room)
   const roomPesos = weekPesos(room)
 
@@ -90,6 +94,17 @@ export default function Home() {
           <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
             <div className="flex items-end justify-between gap-4 mb-4">
               {countBlock}
+              {/* A same-position skeleton here, not nothing, is what stops the
+                  checked-in corner text from popping in from blank space the
+                  instant loading resolves -- it was appearing at the same
+                  moment the button row below vanished, and the two at once is
+                  what read as a twitch rather than a load. */}
+              {loading && (
+                <div className="text-right shrink-0 animate-pulse" aria-hidden="true">
+                  <div className="h-3.5 w-24 bg-surface2 rounded mb-1.5 ml-auto" />
+                  <div className="h-3 w-16 bg-surface2 rounded ml-auto" />
+                </div>
+              )}
               {!loading && (
                 <Link to="/progress" className="text-xs font-bold text-muted hover:text-ink shrink-0">
                   {t.home.seeProgress} →
@@ -124,19 +139,53 @@ export default function Home() {
         )
       })()}
 
-      {(roomToday > 0 || roomPesos > 0) && (
+      {/* Two columns when both numbers exist, one full-width tile when only
+          one does -- a forced 2-col grid with an empty/zero second slot would
+          look broken rather than just quiet. Layout-only change: the pesos
+          figure is a placeholder for an honest-disclosure count, spec'd
+          separately rather than built here (see docs/specs).
+
+          Room data now loads from a lazy chunk plus a Firestore round-trip
+          (see #4), so it used to arrive late enough that Lost/Why appeared
+          first and this card popped in above them a beat later, shoving both
+          down. Reserving the same footprint with a skeleton while
+          !roomLoaded keeps that from happening; the skeleton collapses away
+          instead if the answer turns out to be nothing to show. */}
+      {!roomLoaded && (
+        <div className="bg-surface border border-border rounded-2xl p-5 mb-4 animate-pulse" aria-hidden="true">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <div className="h-7 w-10 bg-surface2 rounded mb-2" />
+              <div className="h-3 w-20 bg-surface2 rounded" />
+            </div>
+            <div>
+              <div className="h-7 w-16 bg-surface2 rounded mb-2" />
+              <div className="h-3 w-24 bg-surface2 rounded" />
+            </div>
+          </div>
+        </div>
+      )}
+      {roomLoaded && (roomToday > 0 || roomPesos > 0) && (
         <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
-          {roomToday > 0 && (
-            <p className="text-ink font-bold text-[0.9375rem] leading-snug">
-              {tpl(t.home.togetherToday, { n: String(roomToday) })}
-            </p>
-          )}
-          {roomPesos > 0 && (
-            <p className={`text-ink font-bold text-[0.9375rem] leading-snug ${roomToday > 0 ? 'mt-2' : ''}`}>
-              {tpl(t.home.togetherWeek, { amount: formatMoney(roomPesos, 'PHP') })}
-            </p>
-          )}
-          <p className="text-muted text-xs mt-2">{t.home.togetherHint}</p>
+          <div className={`grid gap-4 ${roomToday > 0 && roomPesos > 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+            {roomToday > 0 && (
+              <div>
+                <div className="text-2xl font-black text-ink leading-none">{roomToday}</div>
+                <div className="text-muted text-[0.6875rem] font-semibold uppercase tracking-wider mt-1.5">
+                  {t.home.checkedInLabel}
+                </div>
+              </div>
+            )}
+            {roomPesos > 0 && (
+              <div>
+                <div className="text-2xl font-black text-ink leading-none">{formatMoney(roomPesos, 'PHP')}</div>
+                <div className="text-muted text-[0.6875rem] font-semibold uppercase tracking-wider mt-1.5">
+                  {t.home.lostWeekLabel}
+                </div>
+              </div>
+            )}
+          </div>
+          <p className="text-muted text-xs mt-3">{t.home.togetherHint}</p>
         </div>
       )}
 

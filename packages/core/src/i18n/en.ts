@@ -46,8 +46,8 @@ export const en: Translation = {
     openBrowserBody: 'This is Messenger or another in-app browser. Sign-in and install will not work here.',
     openBrowserBtn: 'Open in browser',
     openBrowserHow: 'If the button does nothing: tap ··· then Open in Chrome or Safari.',
-    togetherToday: '{n} people checked in today',
-    togetherWeek: 'Losses written down here this week: {amount}',
+    checkedInLabel: 'Checked in today',
+    lostWeekLabel: 'Lost this week',
     togetherHint: 'No names. Just the room.',
   },
 

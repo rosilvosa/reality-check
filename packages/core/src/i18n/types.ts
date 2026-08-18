@@ -46,8 +46,8 @@ export interface Translation {
     openBrowserBody: string
     openBrowserBtn: string
     openBrowserHow: string
-    togetherToday: string
-    togetherWeek: string
+    checkedInLabel: string
+    lostWeekLabel: string
     togetherHint: string
   }
 
