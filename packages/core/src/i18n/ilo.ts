@@ -334,6 +334,7 @@ export const ilo: Translation = {
     removeBtn: 'Ikkaten',
     removeConfirm: 'Ikkaten daytoy a post para iti amin?',
     reportsLabel: '{n} a report',
+    filterReported: 'Nai-report ({n})',
     posting: 'AGIPOST…',
     failed: 'Saan a naipost. Padasem manen.',
     loadFailed: 'Saan a na-load dagiti post.',

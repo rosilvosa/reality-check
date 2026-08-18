@@ -334,6 +334,7 @@ export const fil: Translation = {
     removeBtn: 'Alisin',
     removeConfirm: 'Alisin ang post na ito para sa lahat?',
     reportsLabel: '{n} report',
+    filterReported: 'Naireport ({n})',
     posting: 'PINO-POST…',
     failed: 'Hindi na-post. Subukan ulit.',
     loadFailed: 'Hindi ma-load ang mga post.',

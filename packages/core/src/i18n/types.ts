@@ -259,6 +259,8 @@ export interface Translation {
     removeBtn: string; removeConfirm: string
     // params: {n}
     reportsLabel: string
+    // params: {n}
+    filterReported: string
     posting: string
     failed: string
     loadFailed: string

@@ -334,6 +334,7 @@ export const ceb: Translation = {
     removeBtn: 'Tangtangon',
     removeConfirm: 'Tangtangon kini nga post para sa tanan?',
     reportsLabel: '{n} report',
+    filterReported: 'Nareport ({n})',
     posting: 'GINA-POST…',
     failed: 'Wala na-post. Sulayi pag-usab.',
     loadFailed: 'Wala ma-load ang mga post.',

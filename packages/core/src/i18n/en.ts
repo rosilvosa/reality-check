@@ -334,6 +334,7 @@ export const en: Translation = {
     removeBtn: 'Remove',
     removeConfirm: 'Remove this post for everyone?',
     reportsLabel: '{n} reports',
+    filterReported: 'Reported ({n})',
     posting: 'POSTING…',
     failed: 'Could not post. Try again.',
     loadFailed: 'Could not load posts.',

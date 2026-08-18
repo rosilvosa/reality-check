@@ -334,6 +334,7 @@ export const hil: Translation = {
     removeBtn: 'Kuhaon',
     removeConfirm: 'Kuhaon ini nga post para sa tanan?',
     reportsLabel: '{n} report',
+    filterReported: 'Nareport ({n})',
     posting: 'GINA-POST…',
     failed: 'Wala na-post. Tilawi liwat.',
     loadFailed: 'Indi ma-load ang mga post.',

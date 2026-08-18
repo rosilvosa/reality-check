@@ -44,6 +44,7 @@ export default function Community() {
   const [loading, setLoading] = useState(true)
   const [loadFailed, setLoadFailed] = useState(false)
   const [filter, setFilter] = useState<'all' | PostType>('all')
+  const [onlyReported, setOnlyReported] = useState(false)
   const [countryFilter, setCountryFilter] = useState<'all' | HelpRegion>('all')
   const myRegion = useSettingsStore((s) => resolveHelpRegion(s.helpRegion))
   const [type, setType] = useState<PostType>('tip')
@@ -86,6 +87,11 @@ export default function Community() {
     try {
       await deletePost(postId)
       setPosts((prev) => prev.filter((p) => p.id !== postId))
+      setReportCounts((prev) => {
+        const next = { ...prev }
+        delete next[postId]
+        return next
+      })
     } catch {
       setError(t.community.failed)
     }
@@ -110,8 +116,13 @@ export default function Community() {
     reload()
   }, [loadingAuth])
 
+  const reportedCount = Object.values(reportCounts).filter((n) => n > 0).length
   const visible = posts.filter(
-    (p) => (filter === 'all' || p.type === filter) && (countryFilter === 'all' || p.country === countryFilter),
+    (p) => (filter === 'all' || p.type === filter)
+      && (countryFilter === 'all' || p.country === countryFilter)
+      // Without this a moderator has to scroll the whole feed to find the one
+      // post someone flagged.
+      && (!onlyReported || (reportCounts[p.id] ?? 0) > 0),
   )
 
   async function submit() {
@@ -189,6 +200,17 @@ export default function Community() {
             {t.community[f.key]}
           </button>
         ))}
+        {isModerator && reportedCount > 0 && (
+          <button
+            type="button"
+            onClick={() => setOnlyReported((v) => !v)}
+            className={`flex-1 min-w-fit px-2 py-2 rounded-lg text-xs font-bold whitespace-nowrap ${
+              onlyReported ? 'bg-red-500/20 text-red-300' : 'text-red-400 hover:text-red-300'
+            }`}
+          >
+            {tpl(t.community.filterReported, { n: String(reportedCount) })}
+          </button>
+        )}
       </div>
 
       <div className="flex items-center gap-2 mb-4">
@@ -326,19 +348,21 @@ export default function Community() {
                     {reported.has(post.id) ? t.community.reported : t.community.reportBtn}
                   </button>
                 )}
-                {isModerator && !mine && (
-                  <button
-                    type="button"
-                    onClick={() => onRemove(post.id)}
-                    className="text-xs font-bold text-red-400 hover:text-red-300 ml-auto"
-                  >
-                    {t.community.removeBtn}
-                  </button>
-                )}
-                {isModerator && (reportCounts[post.id] ?? 0) > 0 && (
-                  <span className="text-xs font-bold text-red-400">
-                    {tpl(t.community.reportsLabel, { n: String(reportCounts[post.id]) })}
-                  </span>
+                {isModerator && (
+                  <div className="flex items-center gap-3 ml-auto">
+                    {(reportCounts[post.id] ?? 0) > 0 && (
+                      <span className="text-xs font-bold text-red-400">
+                        {tpl(t.community.reportsLabel, { n: String(reportCounts[post.id]) })}
+                      </span>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => onRemove(post.id)}
+                      className="text-xs font-bold text-red-400 hover:text-red-300"
+                    >
+                      {t.community.removeBtn}
+                    </button>
+                  </div>
                 )}
               </div>
             </article>
