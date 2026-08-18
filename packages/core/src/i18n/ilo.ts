@@ -162,7 +162,7 @@ export const ilo: Translation = {
     truthP2: 'Naornal dayta a ulo nga naornal a tumtumbok iti maysa a sistema nga inpabaro tapno saanto malusad. Nagama ti lit-ag dagiti eksperto. Nadakep dita ti milyun-milyon.',
     truthP3: 'Sika saan a sirado. Sika target. Ken itan ammoem a ti kasano nga rumuar.',
     watchTag: 'Buyaen',
-    watchHint: 'Ti tunggal maysa aglukat iti sitio a mangidulin iti daytoy.',
+    watchHint: 'Ti tunggal maysa aglukat iti sitio a mangidulin iti daytoy. Naka-English dagitoy.',
     watchPsychology: 'No kasano a naaramid ti sugal',
     watchRecovery: 'Panagimbag',
     watchMinutes: '{n} min',

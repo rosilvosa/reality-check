@@ -83,7 +83,10 @@ export default function TrapWhy() {
                     >
                       <p className="text-ink text-[0.8125rem] font-bold">{v.title}</p>
                       <p className="text-muted text-[0.75rem] mt-0.5">
-                        {v.source} &middot; {tpl(t.trap.watchMinutes, { n: String(v.minutes) })}
+                        {v.source}
+                        {v.minutes !== undefined && (
+                          <> &middot; {tpl(t.trap.watchMinutes, { n: String(v.minutes) })}</>
+                        )}
                       </p>
                     </a>
                   ))}

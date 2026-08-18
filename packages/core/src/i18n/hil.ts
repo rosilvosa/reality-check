@@ -162,7 +162,7 @@ export const hil: Translation = {
     truthP2: 'Amo ato ang normal nga utok nga normal nga nagatubag sa isa ka sistema nga dinisenyo para indi makalusad. Ginhimo ang lit-ag sang mga eksperto. Nahuli na diri ang milyon-milyon.',
     truthP3: 'Indi ka sirado. Isa ka target. Kag subong nahibaluan mo na kun paano makagua diri.',
     watchTag: 'Tan-awa',
-    watchHint: 'Ang kada isa mabuksan sa site nga nagahost sini.',
+    watchHint: 'Ang kada isa mabuksan sa site nga nagahost sini. Sa English ini.',
     watchPsychology: 'Paano ginhimo ang sugal',
     watchRecovery: 'Pag-ayo',
     watchMinutes: '{n} min',

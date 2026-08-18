@@ -162,7 +162,7 @@ export const fil: Translation = {
     truthP2: 'Iyon ay isang normal na utak na normal na tumutugon sa isang sistema na dinisenyo para maging hindi makakaalis. Ang bitag ay ginawa ng mga eksperto. Nahuli na nito ang milyun-milyon.',
     truthP3: 'Hindi ka sira. Ikaw ay target. At ngayon alam mo na kung paano ito gumagana.',
     watchTag: 'Panoorin',
-    watchHint: 'Bubukas ang bawat isa sa site na nagho-host nito.',
+    watchHint: 'Bubukas ang bawat isa sa site na nagho-host nito. Sa English ang mga ito.',
     watchPsychology: 'Kung paano ginawa ang sugal',
     watchRecovery: 'Paggaling',
     watchMinutes: '{n} min',

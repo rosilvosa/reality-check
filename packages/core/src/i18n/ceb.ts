@@ -162,7 +162,7 @@ export const ceb: Translation = {
     truthP2: 'Kana normal nga utok nga normal nga nagtubag sa usa ka sistema nga dinisenyo para dili makalingkawas. Gihimo ang lit-ag sa mga eksperto. Nahuli na niini ang milyon-milyon.',
     truthP3: 'Dili ka sira. Ikaw target. Ug karon nasayran na nimo kung unsaon kini pagguwa.',
     watchTag: 'Tan-awa',
-    watchHint: 'Ang matag usa moabli sa site nga naghost niini.',
+    watchHint: 'Ang matag usa moabli sa site nga naghost niini. Naa ni sa English.',
     watchPsychology: 'Giunsa paghimo ang sugal',
     watchRecovery: 'Pag-ayo',
     watchMinutes: '{n} min',
