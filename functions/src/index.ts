@@ -112,6 +112,32 @@ export const onRoomCheckIn = region.firestore
   })
 
 /**
+ * Same shape as onRoomCheckIn above -- a distinct-user-per-day counter that
+ * resets when the date changes rather than accumulating forever -- for a
+ * different event. See docs/specs/2026-08-18-honesty-disclosure-count.md for
+ * why this replaces the weekly peso figure on Home rather than sitting
+ * alongside it: showing how much money the room lost risked normalizing
+ * losses ("everyone's still losing, so it's not just me") and reads as shame
+ * with no witness to respond to it. Counting who disclosed a loss today, not
+ * how much, keeps the same tile shape as the checked-in count next to it --
+ * both become "N people did a real thing today" -- without inventing a
+ * number the way a "money saved" stat would have.
+ */
+export const onHonestyCheckIn = region.firestore
+  .document('honesty_checkins/{date}/users/{uid}')
+  .onCreate(async (_snap, context) => {
+    const date = String(context.params.date ?? '')
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !dateAllowed(date)) return
+
+    await db.runTransaction(async (tx) => {
+      const snap = await tx.get(liveRef)
+      const cur = snap.data() ?? {}
+      const honestyCount = cur.honestyDate === date ? Number(cur.honestyCount) || 0 : 0
+      tx.set(liveRef, { honestyDate: date, honestyCount: honestyCount + 1 }, { merge: true })
+    })
+  })
+
+/**
  * One person cannot move the room total by more than this in a week. A real
  * week of losses can be large, but not so large that a single account should
  * be able to define the number everyone else sees.

@@ -47,7 +47,7 @@ export const fil: Translation = {
     openBrowserBtn: 'Buksan sa browser',
     openBrowserHow: 'Kung walang nangyari: i-tap ang ··· tapos Open in Chrome o Safari.',
     checkedInLabel: 'Nag-check in ngayon',
-    lostWeekLabel: 'Nawala ngayong linggo',
+    honestyLabel: 'Tapat ngayon',
     togetherHint: 'Walang pangalan. Ang silid lang.',
   },
 

@@ -47,7 +47,7 @@ export const hil: Translation = {
     openBrowserBtn: 'Buksan sa browser',
     openBrowserHow: 'Kung wala sang natabo: i-tap ang ··· dayon Open in Chrome ukon Safari.',
     checkedInLabel: 'Nag-check in subong',
-    lostWeekLabel: 'Nadula sini nga semana',
+    honestyLabel: 'Bunayag subong',
     togetherHint: 'Wala sang ngalan. Ang kuwarto lang.',
   },
 

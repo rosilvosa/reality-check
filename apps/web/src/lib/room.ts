@@ -5,6 +5,11 @@ export interface RoomStats {
   checkIns: number
   weekStart: string
   pesos: number
+  /** Same date as `date` in practice -- both reset at Manila midnight. Kept as
+   * its own field so the two counters stay independently correct even if that
+   * ever changes. */
+  honestyDate: string
+  honestyCount: number
 }
 
 // A facade over ./roomLive so that importing this does not pull in Firestore.
@@ -38,6 +43,11 @@ export async function recordRoomAmount(amount: number, currency: string): Promis
   return m.recordRoomAmount(amount, currency)
 }
 
+export async function recordHonestyCheckIn(): Promise<void> {
+  const m = await loadLive()
+  return m.recordHonestyCheckIn()
+}
+
 export function todayCheckIns(stats: RoomStats | null): number {
   if (!stats) return 0
   return stats.date === manilaISODate() ? stats.checkIns : 0
@@ -46,4 +56,9 @@ export function todayCheckIns(stats: RoomStats | null): number {
 export function weekPesos(stats: RoomStats | null): number {
   if (!stats) return 0
   return stats.weekStart === manilaMondayISODate() ? stats.pesos : 0
+}
+
+export function todayHonestyCount(stats: RoomStats | null): number {
+  if (!stats) return 0
+  return stats.honestyDate === manilaISODate() ? stats.honestyCount : 0
 }

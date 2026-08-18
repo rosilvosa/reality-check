@@ -47,7 +47,7 @@ export const ceb: Translation = {
     openBrowserBtn: 'Ablihi sa browser',
     openBrowserHow: 'Kung walay mahitabo: i-tap ang ··· unya Open in Chrome o Safari.',
     checkedInLabel: 'Nag-check in karon',
-    lostWeekLabel: 'Natala nga pildi karong semana',
+    honestyLabel: 'Matinud-anon karon',
     togetherHint: 'Walay ngalan. Ang lawak ra.',
   },
 

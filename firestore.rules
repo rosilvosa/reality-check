@@ -25,6 +25,16 @@ service cloud.firestore {
       allow read, update, delete: if false;
     }
 
+    // Mirrors checkins/{date}/users/{uid} exactly, for a different daily
+    // event: not "did you stay clean today" but "did you disclose a loss
+    // today". See docs/specs/2026-08-18-honesty-disclosure-count.md.
+    match /honesty_checkins/{date}/users/{uid} {
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+      allow read, update, delete: if false;
+    }
+
     match /room_amounts/{id} {
       allow create: if request.auth != null
         && request.resource.data.uid == request.auth.uid

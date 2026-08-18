@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { getAdapter } from '../lib/storage'
-import { recordRoomAmount } from '../lib/room'
+import { recordHonestyCheckIn, recordRoomAmount } from '../lib/room'
+import { localISODate } from '@rc/core'
 import { useAuthStore } from './authStore'
 import { useSettingsStore } from './settingsStore'
 import type { JournalEntry } from '../types'
@@ -49,9 +50,21 @@ export const useJournalStore = create<JournalState>((set, get) => ({
         text,
         createdAt: new Date(),
       })
+      // Whether today already had a disclosure, checked against the entries
+      // from *before* this one is added -- so the very entry just written
+      // still counts as the day's first, not its second.
+      const alreadyHonestToday = get().entries.some(
+        (e) => localISODate(new Date(e.createdAt)) === localISODate(),
+      )
       set({ entries: [entry, ...get().entries], error: null })
       const currency = useSettingsStore.getState().currency ?? 'PHP'
       await recordRoomAmount(amount, currency).catch(() => undefined)
+      if (!alreadyHonestToday) {
+        // The write is idempotent by document id regardless (a second create
+        // on the same day's marker doc simply fails), so this guard only
+        // saves a wasted attempt, it is not what prevents double counting.
+        await recordHonestyCheckIn().catch(() => undefined)
+      }
     } catch (e) {
       set({ error: e instanceof Error ? e.message : 'Could not save journal entry' })
       throw e

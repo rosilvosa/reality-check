@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useT } from '../i18n'
 import { formatMoney, MILESTONES, MILESTONE_EMOJI, localISODate, visibleStreak } from '@rc/core'
 import { useStreakStore } from '../stores/streakStore'
 import { useJournalStore } from '../stores/journalStore'
 import { useSettingsStore } from '../stores/settingsStore'
+import { useRoomStore } from '../stores/roomStore'
 import InstallHint from '../components/InstallHint'
-import { todayCheckIns, watchRoomStats, weekPesos, type RoomStats } from '../lib/room'
+import { todayCheckIns, todayHonestyCount } from '../lib/room'
 
 function isCheckedInToday(lastCheckInDate: string | null): boolean {
   if (!lastCheckInDate) return false
@@ -24,15 +24,13 @@ export default function Home() {
   const days = visibleStreak(currentStreak, lastCheckInDate)
   const earned = [...MILESTONES].reverse().find((m) => days >= m)
   const badge = earned ? MILESTONE_EMOJI[earned] : null
-  const [room, setRoom] = useState<RoomStats | null>(null)
-  // Distinct from room itself: room stays null both before the first
-  // snapshot arrives and when there is genuinely nothing to show, and those
-  // two cases need different treatment below.
-  const [roomLoaded, setRoomLoaded] = useState(false)
-
-  useEffect(() => watchRoomStats((r) => { setRoom(r); setRoomLoaded(true) }), [])
+  // Lives in a store (see roomStore.ts), not local state -- the subscription
+  // is set up once for the whole session, so returning to Home after
+  // visiting another tab shows the already-known numbers immediately instead
+  // of resetting to a loading skeleton every time.
+  const { room, roomLoaded } = useRoomStore()
   const roomToday = todayCheckIns(room)
-  const roomPesos = weekPesos(room)
+  const roomHonesty = todayHonestyCount(room)
 
   return (
     <div>
@@ -141,16 +139,18 @@ export default function Home() {
 
       {/* Two columns when both numbers exist, one full-width tile when only
           one does -- a forced 2-col grid with an empty/zero second slot would
-          look broken rather than just quiet. Layout-only change: the pesos
-          figure is a placeholder for an honest-disclosure count, spec'd
-          separately rather than built here (see docs/specs).
+          look broken rather than just quiet.
 
-          Room data now loads from a lazy chunk plus a Firestore round-trip
-          (see #4), so it used to arrive late enough that Lost/Why appeared
-          first and this card popped in above them a beat later, shoving both
-          down. Reserving the same footprint with a skeleton while
-          !roomLoaded keeps that from happening; the skeleton collapses away
-          instead if the answer turns out to be nothing to show. */}
+          Second tile counts people who disclosed a loss today, not how much
+          they lost -- see docs/specs/2026-08-18-honesty-disclosure-count.md.
+          Both tiles are now the same shape, "N people did a real thing
+          today," rather than one count and one currency amount.
+
+          The skeleton while !roomLoaded only ever shows once per tab now
+          that room lives in a store instead of local component state --
+          returning to Home from another tab reuses the already-loaded
+          numbers instead of re-subscribing and flashing the skeleton again
+          every time. */}
       {!roomLoaded && (
         <div className="bg-surface border border-border rounded-2xl p-5 mb-4 animate-pulse" aria-hidden="true">
           <div className="grid grid-cols-2 gap-4">
@@ -165,9 +165,9 @@ export default function Home() {
           </div>
         </div>
       )}
-      {roomLoaded && (roomToday > 0 || roomPesos > 0) && (
+      {roomLoaded && (roomToday > 0 || roomHonesty > 0) && (
         <div className="bg-surface border border-border rounded-2xl p-5 mb-4">
-          <div className={`grid gap-4 ${roomToday > 0 && roomPesos > 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+          <div className={`grid gap-4 ${roomToday > 0 && roomHonesty > 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>
             {roomToday > 0 && (
               <div>
                 <div className="text-2xl font-black text-ink leading-none">{roomToday}</div>
@@ -176,11 +176,11 @@ export default function Home() {
                 </div>
               </div>
             )}
-            {roomPesos > 0 && (
+            {roomHonesty > 0 && (
               <div>
-                <div className="text-2xl font-black text-ink leading-none">{formatMoney(roomPesos, 'PHP')}</div>
+                <div className="text-2xl font-black text-ink leading-none">{roomHonesty}</div>
                 <div className="text-muted text-[0.6875rem] font-semibold uppercase tracking-wider mt-1.5">
-                  {t.home.lostWeekLabel}
+                  {t.home.honestyLabel}
                 </div>
               </div>
             )}
