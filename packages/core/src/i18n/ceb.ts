@@ -51,7 +51,7 @@ export const ceb: Translation = {
     openBrowserBtn: 'Ablihi sa browser',
     openBrowserHow: 'Kung walay mahitabo: i-tap ang ··· unya Open in Chrome o Safari.',
     togetherToday: '{n} ka tawo nag-check in karon',
-    togetherWeek: 'Karong semanaha, nagsulat ang mga tawo dinhi og {amount}',
+    togetherWeek: 'Karong semana, mga kantidad sa piso nga natala dinhi: {amount}',
     togetherHint: 'Walay ngalan. Ang lawak ra.',
   },
 

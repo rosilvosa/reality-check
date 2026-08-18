@@ -51,7 +51,7 @@ export const ilo: Translation = {
     openBrowserBtn: 'Lukatan iti browser',
     openBrowserHow: 'No awan ti mapasamak: i-tap ti ··· sa Open in Chrome wenno Safari.',
     togetherToday: '{n} a tattao ti nag-check in ita',
-    togetherWeek: 'Iti daytoy a lawas, nagsurat dagiti tattao ditoy iti {amount}',
+    togetherWeek: 'Ita a lawas, dagiti gatad iti piso a nailista ditoy: {amount}',
     togetherHint: 'Awan nagan. Ti kuarto laeng.',
   },
 

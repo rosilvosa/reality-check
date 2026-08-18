@@ -51,7 +51,7 @@ export const hil: Translation = {
     openBrowserBtn: 'Buksan sa browser',
     openBrowserHow: 'Kung wala sang natabo: i-tap ang ··· dayon Open in Chrome ukon Safari.',
     togetherToday: '{n} ka tawo nag-check in subong',
-    togetherWeek: 'Karong semana, nagsulat ang mga tawo diri sang {amount}',
+    togetherWeek: 'Sini nga semana, mga kantidad sa piso nga narekord diri: {amount}',
     togetherHint: 'Wala sang ngalan. Ang kuwarto lang.',
   },
 

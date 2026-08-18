@@ -31,7 +31,8 @@ service cloud.firestore {
         && request.resource.data.amount is number
         && request.resource.data.amount > 0
         && request.resource.data.amount <= 5000000
-        && request.resource.data.keys().hasOnly(['amount', 'uid']);
+        && request.resource.data.at == request.time
+        && request.resource.data.keys().hasOnly(['amount', 'uid', 'at']);
       allow read, update, delete: if false;
     }
 
@@ -48,12 +49,7 @@ service cloud.firestore {
           || request.resource.data.country in ['PH', 'US', 'UK', 'AU', 'SG', 'INTL']
         )
         && request.resource.data.hearts == 0;
-      allow update: if request.auth != null
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hearts'])
-        && (
-          request.resource.data.hearts == resource.data.hearts + 1
-          || request.resource.data.hearts == resource.data.hearts - 1
-        );
+      allow update: if false;
       allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
 
       match /hearts/{uid} {

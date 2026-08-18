@@ -111,17 +111,81 @@ export const onRoomCheckIn = region.firestore
     })
   })
 
+/**
+ * One person cannot move the room total by more than this in a week. A real
+ * week of losses can be large, but not so large that a single account should
+ * be able to define the number everyone else sees.
+ */
+const WEEKLY_CAP_PER_USER = 200_000
+
+/** Guard against an unbounded read if the collection ever gets flooded. */
+const WEEK_SCAN_LIMIT = 5000
+
+function manilaWeekStartDate(): Date {
+  return new Date(`${mondayOf(manilaYmd())}T00:00:00+08:00`)
+}
+
+/**
+ * Recomputes the weekly total from the `room_amounts` trail rather than adding
+ * to a running sum. Derived beats accumulated here: a bad or spammed write is
+ * corrected by the next legitimate one instead of being stuck on screen until
+ * the week rolls over, with no way to fix it.
+ */
+async function recomputeWeekPesos(): Promise<void> {
+  const weekStart = mondayOf(manilaYmd())
+  const since = admin.firestore.Timestamp.fromDate(manilaWeekStartDate())
+
+  const snap = await db
+    .collection('room_amounts')
+    .where('at', '>=', since)
+    .limit(WEEK_SCAN_LIMIT)
+    .get()
+
+  if (snap.size >= WEEK_SCAN_LIMIT) {
+    console.warn('room_amounts week scan hit its limit; total is understated')
+  }
+
+  const perUser = new Map<string, number>()
+  for (const d of snap.docs) {
+    const amount = Math.round(Number(d.get('amount')))
+    if (!Number.isFinite(amount) || amount <= 0 || amount > 5_000_000) continue
+    const uid = String(d.get('uid') ?? '')
+    if (!uid) continue
+    perUser.set(uid, Math.min(WEEKLY_CAP_PER_USER, (perUser.get(uid) ?? 0) + amount))
+  }
+
+  let pesos = 0
+  for (const v of perUser.values()) pesos += v
+
+  await liveRef.set({ weekStart, pesos }, { merge: true })
+}
+
 export const onRoomAmount = region.firestore
   .document('room_amounts/{id}')
-  .onCreate(async (snap) => {
-    const amount = Math.round(Number(snap.data()?.amount))
-    if (!Number.isFinite(amount) || amount <= 0 || amount > 5_000_000) return
-    const weekStart = mondayOf(manilaYmd())
-
-    await db.runTransaction(async (tx) => {
-      const live = await tx.get(liveRef)
-      const cur = live.data() ?? {}
-      const pesos = cur.weekStart === weekStart ? Number(cur.pesos) || 0 : 0
-      tx.set(liveRef, { weekStart, pesos: pesos + amount }, { merge: true })
-    })
+  .onCreate(async () => {
+    await recomputeWeekPesos()
   })
+
+/**
+ * Hearts are counted here, not by the client. The rules now deny writes to the
+ * counter, so the only way to move it is to create or delete your own
+ * `hearts/{uid}` document, which you can each do once.
+ */
+async function bumpHearts(postId: string, delta: number): Promise<void> {
+  if (!postId) return
+  const ref = db.doc(`community_posts/${postId}`)
+  await db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref)
+    if (!snap.exists) return
+    const cur = Number(snap.get('hearts')) || 0
+    tx.update(ref, { hearts: Math.max(0, cur + delta) })
+  })
+}
+
+export const onHeartAdded = region.firestore
+  .document('community_posts/{postId}/hearts/{uid}')
+  .onCreate((_snap, context) => bumpHearts(String(context.params.postId ?? ''), 1))
+
+export const onHeartRemoved = region.firestore
+  .document('community_posts/{postId}/hearts/{uid}')
+  .onDelete((_snap, context) => bumpHearts(String(context.params.postId ?? ''), -1))

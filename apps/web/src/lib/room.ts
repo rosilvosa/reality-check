@@ -44,7 +44,7 @@ export async function recordRoomAmount(amount: number, currency: string): Promis
   if ((currency || 'PHP') !== 'PHP') return
   const pesos = Math.round(amount)
   if (!Number.isFinite(pesos) || pesos <= 0 || pesos > 5_000_000) return
-  await addDoc(collection(db, 'room_amounts'), { amount: pesos, uid })
+  await addDoc(collection(db, 'room_amounts'), { amount: pesos, uid, at: serverTimestamp() })
 }
 
 export function todayCheckIns(stats: RoomStats | null): number {

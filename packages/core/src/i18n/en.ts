@@ -51,7 +51,7 @@ export const en: Translation = {
     openBrowserBtn: 'Open in browser',
     openBrowserHow: 'If the button does nothing: tap ··· then Open in Chrome or Safari.',
     togetherToday: '{n} people checked in today',
-    togetherWeek: 'This week people here wrote down {amount}',
+    togetherWeek: 'This week, peso amounts written down here: {amount}',
     togetherHint: 'No names. Just the room.',
   },
 

@@ -4,13 +4,12 @@ import {
   deleteDoc,
   doc,
   getDocs,
-  increment,
   limit,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
   where,
-  writeBatch,
   type Timestamp,
 } from 'firebase/firestore'
 import { db } from './firebase'
@@ -90,17 +89,12 @@ export async function deletePost(id: string): Promise<void> {
 }
 
 export async function toggleHeart(postId: string, uid: string, on: boolean): Promise<void> {
-  const postRef = doc(db, COL, postId)
+  // Only the marker is written. A Cloud Function owns the counter, so a client
+  // cannot invent a number by repeating this call. Community.tsx still updates
+  // optimistically and reconciles from the next snapshot.
   const heartRef = doc(db, COL, postId, 'hearts', uid)
-  const batch = writeBatch(db)
-  if (on) {
-    batch.set(heartRef, { createdAt: serverTimestamp() })
-    batch.update(postRef, { hearts: increment(1) })
-  } else {
-    batch.delete(heartRef)
-    batch.update(postRef, { hearts: increment(-1) })
-  }
-  await batch.commit()
+  if (on) await setDoc(heartRef, { createdAt: serverTimestamp() })
+  else await deleteDoc(heartRef)
 }
 
 export async function deletePostsByUser(uid: string): Promise<void> {
