@@ -14,7 +14,7 @@ export interface Translation {
   common: {
     save: string; cancel: string; back: string; next: string; skip: string
     change: string; close: string; calculate: string; saved: string
-    themeLight: string; themeDark: string
+    themeLight: string; themeDark: string; theme: string
   }
 
   home: {
@@ -57,6 +57,7 @@ export interface Translation {
     almostYes: string
     almostNo: string
     writeNext: string
+    recentTitle: string
   }
 
   sweat: {
@@ -89,6 +90,12 @@ export interface Translation {
     nudgeBody: string; nudgeAction: string; nudgeDismiss: string
     // params: {n}
     pastEntries: string
+    calendarTitle: string; calendarUnknownHint: string
+    calendarFailed: string; calendarSucceeded: string
+    afterTitle: string
+    // params: {title}
+    afterWatch: string
+    afterVoid: string
   }
 
   nearmiss: {
@@ -186,7 +193,8 @@ export interface Translation {
     assetsSection: string; assetsHint: string; assetNamePlaceholder: string
     assetCostPlaceholder: string
     addAsset: string; saveBtn: string; savedBtn: string
-    currencySection: string; currencyHint: string
+    regionCurrencySection: string; regionCurrencyHint: string
+    labelCountry: string; labelCurrency: string
     helpRegionSection: string; helpRegionHint: string
     langSection: string
     langUnreviewed: string

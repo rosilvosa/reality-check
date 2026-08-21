@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import { useT } from '../i18n'
 import { useContactStore } from '../stores/contactStore'
+import { preloadRoute } from '../lib/routePreload'
 import ContactModal from './ContactModal'
 import PageSkeleton from './PageSkeleton'
 import ThemeToggle from './ThemeToggle'
@@ -47,6 +48,7 @@ function Tab({
     <NavLink
       to={to}
       end={end}
+      onPointerDown={() => preloadRoute(to)}
       className={({ isActive }) =>
         `flex-1 min-h-[56px] flex flex-col items-center justify-center gap-0.5 px-0.5 pt-2 pb-1.5 ${
           isActive ? 'text-ink' : 'text-muted'
@@ -59,11 +61,16 @@ function Tab({
               whatever emoji font the OS ships -- Segoe UI Emoji on Windows,
               Noto Color Emoji on Android -- so the exact same character used
               to render as two visibly different pictures depending on the
-              device. An SVG icon is the same pixels everywhere. */}
+              device. An SVG icon is the same pixels everywhere.
+              Stroke-only always, never filled: several of these (Handshake,
+              Brain, Trophy) are drawn as disconnected open-line segments, and
+              forcing a fill on those turns each segment into its own stray
+              wedge instead of a clean glyph. Rather than fill some icons and
+              not others, none of them fill -- color, heavier stroke, and the
+              underline below carry the active state uniformly. */}
           <Icon
             size={22}
             strokeWidth={isActive ? 2.25 : 2}
-            fill={isActive ? 'currentColor' : 'none'}
             className={isActive ? activeColor : 'text-muted opacity-70'}
           />
           <span className="w-full truncate text-[0.6875rem] font-bold tracking-wide leading-tight text-center">{label}</span>
@@ -122,7 +129,7 @@ export default function Layout() {
         </Suspense>
       </main>
 
-      <footer className="max-w-2xl w-full mx-auto px-4 pb-28 text-center text-[0.6875rem] text-muted">
+      <footer className="max-w-2xl w-full mx-auto px-4 pb-20 text-center text-[0.6875rem] text-muted">
         <NavLink to="/privacy" className="hover:text-ink">{t.settings.privacyLink}</NavLink>
         {' · '}
         <NavLink to="/terms" className="hover:text-ink">{t.settings.termsLink}</NavLink>

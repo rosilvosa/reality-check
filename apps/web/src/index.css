@@ -63,6 +63,18 @@ html.dark {
   box-sizing: border-box;
 }
 
+/* Community's post feed makes it far taller than Help's fixed tab+card list,
+   so only one of the two needs a vertical scrollbar. Without this, switching
+   between them changes whether the scrollbar's own width is subtracted from
+   the page, shifting every bit of content sideways by that amount -- the
+   reported "page width twitch." Reserving the gutter unconditionally means
+   the scrollbar's presence never changes layout width, on any route pair,
+   not just this one. overflow-y (not scrollbar-gutter) because Safari does
+   not support scrollbar-gutter yet and this needs to work as a PWA there too. */
+html {
+  overflow-y: scroll;
+}
+
 body {
   background-color: var(--rc-bg);
   color: var(--rc-ink);

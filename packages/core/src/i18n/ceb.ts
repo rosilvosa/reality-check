@@ -14,7 +14,7 @@ export const ceb: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahon', back: 'Balik', next: 'Sunod', skip: 'Priso',
     change: 'Usbon', close: 'Sirado', calculate: 'Kuwentahon', saved: '✓ Na-save',
-    themeLight: 'Hayag nga mode', themeDark: 'Ngitngit nga mode',
+    themeLight: 'Hayag nga mode', themeDark: 'Ngitngit nga mode', theme: 'Tema',
   },
 
   home: {
@@ -27,8 +27,8 @@ export const ceb: Translation = {
     startHint: 'Pag-check in aron sugdan ang ihap sa limpyo nga adlaw.',
     lostBtn: 'Bag-o ko kapildi',
     lostHint: 'Tan-awa ang oras ug ang pagkaon',
-    whyBtn: 'Ngano dili nimo mapugngan',
-    whyHint: 'Random nga payout. Ang near-miss. Ngano dili ka niini pasagdan',
+    whyBtn: 'Dili mapugngan?',
+    whyHint: 'Random nga payout. Ang near-miss.',
     writeBtn: 'Isulat',
     writeHint: 'Ang dyornal. Basaha una ang kataposang entry.',
     lastEntry: 'Kataposan nimo gisulat',
@@ -57,6 +57,7 @@ export const ceb: Translation = {
     almostYes: 'Oo — hapit',
     almostNo: 'Dili',
     writeNext: 'Isulat',
+    recentTitle: 'MGA NANGAGING KAPILDIHAN',
   },
 
   sweat: {
@@ -108,6 +109,13 @@ export const ceb: Translation = {
     recordedHint: 'Mabasa nimo kini sa dili pa ang sunod nga pusta. Kana ang tibuok katuyoan niini.',
     streakReset: 'Mibalik sa zero ang imong streak, ug dili na naka-check in ang adlaw karon. Kana ang tinuod nga numero.',
     pastEntries: 'MGA NANGAGING ENTRY ({n})',
+    calendarTitle: 'Kining semanaha',
+    calendarUnknownHint: 'Ang blangko nga adlaw wala lang rekord, dili gyud kini nagpasabot nga nadagma ka.',
+    calendarFailed: 'Nag-log og kapildihan',
+    calendarSucceeded: 'Ni-check in, limpyo',
+    afterTitle: 'Dili ka lang inusara niini karon',
+    afterWatch: 'Tan-awa: {title}',
+    afterVoid: 'Sulayi ang laing butang hinuon',
   },
 
   nearmiss: {
@@ -260,10 +268,12 @@ export const ceb: Translation = {
     assetNamePlaceholder: 'Ngalan sa gasto',
     addAsset: '+ Magdugang og Gasto',
     assetCostPlaceholder: 'Kantidad',
-    currencySection: 'KWARTA',
-    currencyHint: 'Gigamit kini sa mga calculator. Default piso.',
+    regionCurrencySection: 'NASUD UG KWARTA',
+    regionCurrencyHint: 'Nagabag-o ang kapanguhaan sa Barriers sumala sa nasud. Gigamit ang kwarta sa mga calculator.',
+    labelCountry: 'Nasud',
+    labelCurrency: 'Kwarta',
     helpRegionSection: 'TABANG SUMALA SA NASUD',
-    helpRegionHint: 'Ang self-exclusion ug helpline sa Barriers nagsunod niining nasud.',
+    helpRegionHint: 'Ang self-exclusion ug helpline niining panida nagsunod niining nasud.',
     saveBtn: 'I-SAVE ANG MGA SETTING',
     savedBtn: '✓ NA-SAVE',
     langSection: 'PINULONGAN',

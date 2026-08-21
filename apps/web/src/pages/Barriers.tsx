@@ -81,25 +81,47 @@ export default function Barriers() {
       </p>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-5">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-muted">{t.barriers.progressLabel}</span>
-          <span className={`text-sm font-black ${allDone ? 'text-green-400' : 'text-ink'}`}>
-            {loaded ? count : '—'} / {total}
-          </span>
-        </div>
-        <div className="w-full bg-surface2 rounded-full h-2">
-          <div
-            className={`h-2 rounded-full transition-all duration-500 ${allDone ? 'bg-green-500' : 'bg-accent'}`}
-            style={{ width: `${(count / total) * 100}%` }}
-          />
-        </div>
-        {allDone && (
-          <p className="text-green-400 text-sm font-bold mt-3">{t.barriers.allDone}</p>
-        )}
-        {!allDone && count > 0 && (
-          <p className="text-muted text-xs mt-2">
-            {tpl(t.barriers.remaining, { n: String(total - count), s: total - count === 1 ? '' : 's' })}
-          </p>
+        {!loaded ? (
+          // Cloud accounts fetch saved barriers from Firestore, so `done` is
+          // briefly an empty set before the real one arrives. Rendering the
+          // real bar during that gap would show "0 / total" at 0% width for a
+          // signed-in user who may have already completed several -- wrong
+          // data, not just a loading state -- and then animate (transition-all
+          // duration-500) up to the true value the moment it loads, which is
+          // the reported twitch. A neutral skeleton avoids both: no false "0
+          // done" flash, and nothing to animate away from once real data
+          // lands. Local accounts read synchronously and never hit this
+          // branch (loaded starts true).
+          <div className="animate-pulse">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-muted">{t.barriers.progressLabel}</span>
+              <div className="h-4 w-10 rounded bg-surface2" />
+            </div>
+            <div className="w-full bg-surface2 rounded-full h-2" />
+          </div>
+        ) : (
+          <>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-muted">{t.barriers.progressLabel}</span>
+              <span className={`text-sm font-black ${allDone ? 'text-green-400' : 'text-ink'}`}>
+                {count} / {total}
+              </span>
+            </div>
+            <div className="w-full bg-surface2 rounded-full h-2">
+              <div
+                className={`h-2 rounded-full transition-all duration-500 ${allDone ? 'bg-green-500' : 'bg-accent'}`}
+                style={{ width: `${(count / total) * 100}%` }}
+              />
+            </div>
+            {allDone && (
+              <p className="text-green-400 text-sm font-bold mt-3">{t.barriers.allDone}</p>
+            )}
+            {!allDone && count > 0 && (
+              <p className="text-muted text-xs mt-2">
+                {tpl(t.barriers.remaining, { n: String(total - count), s: total - count === 1 ? '' : 's' })}
+              </p>
+            )}
+          </>
         )}
       </div>
 

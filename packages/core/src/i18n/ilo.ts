@@ -14,7 +14,7 @@ export const ilo: Translation = {
   common: {
     save: 'I-save', cancel: 'Ikansela', back: 'Umay', next: 'Sumaganad', skip: 'Brisan',
     change: 'Balbalen', close: 'Saraan', calculate: 'Kalkularen', saved: '✓ Na-save',
-    themeLight: 'Naraniag a mode', themeDark: 'Nasipnget a mode',
+    themeLight: 'Naraniag a mode', themeDark: 'Nasipnget a mode', theme: 'Tema',
   },
 
   home: {
@@ -27,8 +27,8 @@ export const ilo: Translation = {
     startHint: 'Ag-check in tapno marugian ti bilang dagiti natalna nga aldaw.',
     lostBtn: 'Kakaabakak laeng',
     lostHint: 'Kitaem dagiti oras ken ti kanen',
-    whyBtn: 'No apay a saanmo a mapugngan',
-    whyHint: 'Random a payout. Ti near-miss. Apay a saanka a baybay-an',
+    whyBtn: 'Saan a mapugngan?',
+    whyHint: 'Random a payout. Ti near-miss.',
     writeBtn: 'Isurat',
     writeHint: 'Ti diario. Basaem nga umuna ti maudi nga entry.',
     lastEntry: 'Maudi a naisuratmo',
@@ -57,6 +57,7 @@ export const ilo: Translation = {
     almostYes: 'Wen — asideg',
     almostNo: 'Saan',
     writeNext: 'Isurat',
+    recentTitle: 'DAGITI NAPALABAS A PANNAKAABAK',
   },
 
   sweat: {
@@ -108,6 +109,13 @@ export const ilo: Translation = {
     recordedHint: 'Maibasam daytoy sakbay ti sumaruno a pusta. Dayta ti intero a gagara na.',
     streakReset: 'Nagsubli iti zero ti streak mo, ket saan nga naka-check in ti aldaw ita. Dayta ti pudno a numero.',
     pastEntries: 'NAPALABAS A MGA ENTRY ({n})',
+    calendarTitle: 'Daytoy a lawas',
+    calendarUnknownHint: 'Ti blangko nga aldaw awan laeng rekordna, saan a kayat na ibaga a naparmek ka.',
+    calendarFailed: 'Nag-log iti pannakaabak',
+    calendarSucceeded: 'Nag-check in, nadalus',
+    afterTitle: 'Saanka nga agmaymaysa iti daytoy ita',
+    afterWatch: 'Buyaen: {title}',
+    afterVoid: 'Padasem ti sabali a banag ngem dayta',
   },
 
   nearmiss: {
@@ -260,10 +268,12 @@ export const ilo: Translation = {
     assetNamePlaceholder: 'Nagan ti gasto',
     addAsset: '+ Mangidungag ti Gasto',
     assetCostPlaceholder: 'Halaga',
-    currencySection: 'KUARTA',
-    currencyHint: 'Daytoy ti us-usaren dagiti calculator. Default ket piso.',
+    regionCurrencySection: 'PAGILIAN KEN KUARTA',
+    regionCurrencyHint: 'Agbaliw dagiti rekurso iti Barriers segun iti pagilian. Us-usaren ti kuarta dagiti calculator.',
+    labelCountry: 'Pagilian',
+    labelCurrency: 'Kuarta',
     helpRegionSection: 'TULONG KADAGITI PAGILIAN',
-    helpRegionHint: 'Ti self-exclusion ken helpline iti Barriers ket agtulad iti daytoy a pagilian.',
+    helpRegionHint: 'Ti self-exclusion ken helpline iti daytoy a panid ket agtulad iti daytoy a pagilian.',
     saveBtn: 'I-SAVE DAGITI SETTINGS',
     savedBtn: '✓ NA-SAVE',
     langSection: 'PAGSASAO',

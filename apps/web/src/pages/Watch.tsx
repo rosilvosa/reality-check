@@ -13,7 +13,7 @@ import {
   type VideoStats,
 } from '../lib/videoStats'
 
-const TOPIC_ORDER: VideoTopic[] = ['psychology', 'recovery']
+const TOPIC_ORDER: VideoTopic[] = ['recovery', 'psychology']
 
 /**
  * Stable sort: a video in the viewer's own language moves to the front of its

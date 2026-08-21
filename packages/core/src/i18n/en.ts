@@ -14,7 +14,7 @@ export const en: Translation = {
   common: {
     save: 'Save', cancel: 'Cancel', back: 'Back', next: 'Next', skip: 'Skip',
     change: 'Change', close: 'Close', calculate: 'Calculate', saved: '✓ Saved',
-    themeLight: 'Light mode', themeDark: 'Dark mode',
+    themeLight: 'Light mode', themeDark: 'Dark mode', theme: 'Theme',
   },
 
   home: {
@@ -27,8 +27,8 @@ export const en: Translation = {
     startHint: 'Check in to start counting clean days.',
     lostBtn: 'I just lost',
     lostHint: 'See the hours and the groceries',
-    whyBtn: 'Why you cannot stop',
-    whyHint: 'Random payouts. The near-miss. Why you cannot walk away',
+    whyBtn: "Can't stop?",
+    whyHint: 'Random payouts. The near-miss.',
     writeBtn: 'Write it down',
     writeHint: 'The journal. Read the last entry first.',
     lastEntry: 'Last time you wrote',
@@ -57,6 +57,7 @@ export const en: Translation = {
     almostYes: 'Yes — it felt close',
     almostNo: 'No',
     writeNext: 'Write it down',
+    recentTitle: 'RECENT LOSSES',
   },
 
   sweat: {
@@ -108,6 +109,13 @@ export const en: Translation = {
     recordedHint: 'You will read this before the next bet. That is the whole point of it.',
     streakReset: 'Your streak is back to zero, and today is no longer checked in. That is the honest number.',
     pastEntries: 'PAST ENTRIES ({n})',
+    calendarTitle: 'This week',
+    calendarUnknownHint: 'Blank days mean no record, not necessarily a slip.',
+    calendarFailed: 'Logged a loss',
+    calendarSucceeded: 'Checked in clean',
+    afterTitle: 'Not alone with this right now',
+    afterWatch: 'Watch: {title}',
+    afterVoid: 'Try something else instead',
   },
 
   nearmiss: {
@@ -260,10 +268,12 @@ export const en: Translation = {
     assetNamePlaceholder: 'Asset name',
     assetCostPlaceholder: 'Cost',
     addAsset: '+ Add Asset',
-    currencySection: 'CURRENCY',
-    currencyHint: 'Calculators use this. Default is Philippine pesos.',
+    regionCurrencySection: 'REGION & CURRENCY',
+    regionCurrencyHint: 'Country changes the crisis resources on Barriers. Currency is used by the calculators.',
+    labelCountry: 'Country',
+    labelCurrency: 'Currency',
     helpRegionSection: 'HELP WHERE YOU LIVE',
-    helpRegionHint: 'Self-exclusion and the helpline on Barriers change to match this country.',
+    helpRegionHint: 'Self-exclusion and the helpline on this page change to match this country.',
     saveBtn: 'SAVE SETTINGS',
     savedBtn: '✓ SAVED',
     langSection: 'LANGUAGE',

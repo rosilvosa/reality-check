@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSettingsStore } from '../stores/settingsStore'
+import { useJournalStore } from '../stores/journalStore'
 import { auth } from '../lib/firebase'
 import { useT } from '../i18n'
 import { tpl, formatMoney } from '@rc/core'
 
 export default function Lost() {
   const { monthlyPay, hoursPerMonth, assets, currency, loaded, loadSettings } = useSettingsStore()
+  const journalEntries = useJournalStore((s) => s.entries)
+  // Capped at 3, single-line rows, and only shown before a result renders --
+  // this page exists for the minutes right after a loss and has to stay
+  // short, so the recap cannot be the thing that pushes it into scrolling.
+  const recentLosses = journalEntries.filter((e) => e.amount > 0).slice(0, 3)
   const [loss, setLoss] = useState('')
   const [result, setResult] = useState<{ hours: number; days: number; rate: number } | null>(null)
   const [almost, setAlmost] = useState<null | boolean>(null)
@@ -66,6 +72,20 @@ export default function Lost() {
           {t.sweat.btn}
         </button>
       </div>
+
+      {!result && recentLosses.length > 0 && (
+        <div className="bg-surface border border-border rounded-xl p-4 mb-4">
+          <p className="text-[0.6875rem] font-bold uppercase tracking-wider text-muted mb-2">{t.lost.recentTitle}</p>
+          <div className="space-y-1.5">
+            {recentLosses.map((e) => (
+              <div key={e.id} className="flex items-center justify-between text-sm">
+                <span className="text-muted">{e.createdAt.toLocaleDateString(undefined, { dateStyle: 'medium' })}</span>
+                <span className="text-ink font-bold">{formatMoney(e.amount, currency)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {result && lossVal > 0 && (
         <>

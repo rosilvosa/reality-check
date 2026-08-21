@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { getAdapter } from '../lib/storage'
+import { getAdapter, readLocalJournalSync } from '../lib/storage'
 import { recordHonestyCheckIn, recordRoomAmount } from '../lib/room'
 import { localISODate } from '@rc/core'
 import { useAuthStore } from './authStore'
@@ -25,8 +25,18 @@ async function waitForAuth(): Promise<void> {
   })
 }
 
+// Read once, synchronously, at module init -- before the store even exists --
+// same pattern streakStore uses for readLocalStreakSync, for the same reason:
+// the very first render should reflect what this device already knows,
+// not an empty list that is guaranteed wrong for anyone with any history.
+const seededEntries = readLocalJournalSync()
+
 export const useJournalStore = create<JournalState>((set, get) => ({
-  entries: [],
+  entries: seededEntries,
+  // Left false, not derived from whether a seed exists: this seed is only
+  // ever good enough to answer "is there an entry for today," which is all
+  // Home's lostToday() needs. Journal's own "Loading journal..." gate still
+  // waits for the real loadJournal() fetch before showing the list or intercept.
   loaded: false,
   error: null,
 

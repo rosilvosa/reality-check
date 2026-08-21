@@ -287,29 +287,28 @@ export default function Settings() {
       </div>
 
       <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.currencySection}</p>
-        <p className="text-sm text-muted mb-3 leading-relaxed">{t.settings.currencyHint}</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.regionCurrencySection}</p>
+        <p className="text-sm text-muted mb-3 leading-relaxed">{t.settings.regionCurrencyHint}</p>
+        <label htmlFor="settings-country" className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelCountry}</label>
         <select
+          id="settings-country"
+          value={regionCode}
+          onChange={(e) => setRegionCode(e.target.value)}
+          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent mb-4"
+        >
+          {HELP_REGIONS.map((r) => (
+            <option key={r.code} value={r.code}>{r.label}</option>
+          ))}
+        </select>
+        <label htmlFor="settings-currency" className="block text-xs font-bold text-muted mb-1.5">{t.settings.labelCurrency}</label>
+        <select
+          id="settings-currency"
           value={currencyCode}
           onChange={(e) => setCurrencyCode(e.target.value)}
           className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent"
         >
           {CURRENCIES.map((c) => (
             <option key={c.code} value={c.code}>{c.label}</option>
-          ))}
-        </select>
-      </div>
-
-      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.settings.helpRegionSection}</p>
-        <p className="text-sm text-muted mb-3 leading-relaxed">{t.settings.helpRegionHint}</p>
-        <select
-          value={regionCode}
-          onChange={(e) => setRegionCode(e.target.value)}
-          className="w-full bg-surface2 border border-border rounded-lg px-3 py-2.5 text-ink text-sm outline-none focus:border-accent"
-        >
-          {HELP_REGIONS.map((r) => (
-            <option key={r.code} value={r.code}>{r.label}</option>
           ))}
         </select>
       </div>

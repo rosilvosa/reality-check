@@ -5,6 +5,7 @@ import { useJournalStore } from '../stores/journalStore'
 import VoidSection from '../components/VoidSection'
 import { useT } from '../i18n'
 import { tpl, formatMoney, localISODate, visibleStreak, MILESTONES, MILESTONE_EMOJI } from '@rc/core'
+import { currentWeekISODates, dayStatus } from '../lib/journalCalendar'
 
 function toDateLabel(iso: string | null): string {
   if (!iso) return '—'
@@ -42,7 +43,7 @@ export default function Progress() {
 
       {/* Current streak */}
       <div className="bg-surface border border-border rounded-xl p-6 mb-4 text-center">
-        <div className={`text-7xl font-black leading-none ${loading ? 'text-muted' : 'text-ink'}`}>
+        <div className={`text-7xl leading-none ${loading || days === 0 ? 'font-bold text-muted' : 'font-black text-ink'}`}>
           {loading ? '—' : days}
         </div>
         <div className="text-muted text-sm font-semibold mt-1 mb-3 uppercase tracking-wider">{t.progress.daysClean}</div>
@@ -102,6 +103,57 @@ export default function Progress() {
           <p className="text-ink text-sm font-semibold">{t.progress.resetMsg}</p>
         </div>
       )}
+
+      {/* Moved here from Journal 2026-08-18: a red/green scorecard sitting on
+          the page you open specifically to process a fresh loss reads as
+          judgment at the worst possible moment -- the same shame-without-a-
+          witness risk already reasoned through for the old peso ticker on
+          Home. Progress already frames the whole page as "look how far
+          you've come," so the same dots read as a bump in the road instead
+          of a scoreboard. Tapping a failed day links to Journal -- Progress
+          has no entry list of its own to scroll within. */}
+      <div className="bg-surface border border-border rounded-xl p-5 mb-4">
+        <p className="text-[0.6875rem] text-muted uppercase tracking-widest font-bold mb-3">{t.journal.calendarTitle}</p>
+        <div className="flex justify-between gap-1.5">
+          {currentWeekISODates().map((date) => {
+            const status = dayStatus(date, journalEntries, {
+              currentStreak, longestStreak, lastCheckInDate, milestonesSeen, startDate,
+            })
+            const isToday = date === localISODate()
+            const dayLetter = new Date(date + 'T00:00:00').toLocaleDateString(undefined, { weekday: 'narrow' })
+            const dot = (
+              <span
+                className={`w-6 h-6 rounded-full border-2 ${
+                  status === 'failed' ? 'bg-accent border-accent'
+                    : status === 'succeeded' ? 'bg-support border-support'
+                      : 'border-border'
+                } ${isToday ? 'ring-2 ring-offset-2 ring-offset-surface ring-ink' : ''}`}
+              />
+            )
+            return status === 'failed' ? (
+              <NavLink
+                key={date}
+                to="/journal"
+                aria-label={t.journal.calendarFailed}
+                className="flex-1 flex flex-col items-center gap-1.5 py-1 rounded-lg hover:bg-surface2"
+              >
+                <span className="text-[0.625rem] font-bold uppercase text-muted">{dayLetter}</span>
+                {dot}
+              </NavLink>
+            ) : (
+              <div
+                key={date}
+                aria-label={status === 'succeeded' ? t.journal.calendarSucceeded : undefined}
+                className="flex-1 flex flex-col items-center gap-1.5 py-1"
+              >
+                <span className="text-[0.625rem] font-bold uppercase text-muted">{dayLetter}</span>
+                {dot}
+              </div>
+            )
+          })}
+        </div>
+        <p className="text-muted text-[0.6875rem] mt-3 leading-relaxed">{t.journal.calendarUnknownHint}</p>
+      </div>
 
       {/* What it cost. Not what was saved: these are the amounts from the loss
           journal, and framing them as savings grew the number the more someone

@@ -5,8 +5,8 @@ import { useJournalStore } from '../stores/journalStore'
 import { useAuthStore } from '../stores/authStore'
 import { useStreakStore } from '../stores/streakStore'
 import { auth } from '../lib/firebase'
-import { useT } from '../i18n'
-import { tpl, formatMoney } from '@rc/core'
+import { useT, useLang } from '../i18n'
+import { tpl, formatMoney, RECOVERY_VIDEOS } from '@rc/core'
 import { useSettingsStore } from '../stores/settingsStore'
 
 function amountFromQuery(raw: string | null): string {
@@ -34,6 +34,14 @@ export default function Journal() {
   })
   const showBackupNudge = !isSignedIn && !nudgeHidden && entries.length > 0
   const t = useT()
+  const { lang } = useLang()
+  // A peer story first (someone else got through this), the psychology
+  // group second -- right after logging a loss is not the moment for a
+  // lecture. Language-matched when there is one, otherwise the first entry
+  // in the group; never hidden by language, same rule Watch.tsx uses.
+  const recommendedVideo =
+    RECOVERY_VIDEOS.find((v) => v.topic === 'recovery' && v.lang === lang)
+    ?? RECOVERY_VIDEOS.find((v) => v.topic === 'recovery')
 
   useEffect(() => {
     const next = amountFromQuery(searchParams.get('amount'))
@@ -136,6 +144,31 @@ export default function Journal() {
           {justSaved.reset && (
             <p className="text-accent text-sm font-bold mt-3 leading-relaxed">{t.journal.streakReset}</p>
           )}
+        </div>
+      )}
+
+      {/* Two doors out, not a lecture: something to watch (someone else's
+          story) and something to do (Fill the Void, on Progress) -- both one
+          tap away, neither one more content to read right here. */}
+      {justSaved && (
+        <div className="bg-surface border border-border rounded-xl p-4 mb-6">
+          <p className="text-xs font-bold uppercase tracking-wider text-muted mb-3">{t.journal.afterTitle}</p>
+          <div className="flex flex-col gap-2">
+            {recommendedVideo && (
+              <NavLink
+                to="/watch"
+                className="text-sm font-bold text-ink border border-border rounded-lg px-3 py-2.5 hover:border-accent"
+              >
+                {tpl(t.journal.afterWatch, { title: recommendedVideo.title })} →
+              </NavLink>
+            )}
+            <NavLink
+              to="/progress"
+              className="text-sm font-bold text-ink border border-border rounded-lg px-3 py-2.5 hover:border-accent"
+            >
+              {t.journal.afterVoid} →
+            </NavLink>
+          </div>
         </div>
       )}
 

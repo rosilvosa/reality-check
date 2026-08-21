@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Droplet, Brain, Notebook, Handshake, MessageCircle } from 'lucide-react'
 import { useT } from '../i18n'
 import { formatMoney, MILESTONES, MILESTONE_EMOJI, localISODate, tpl, visibleStreak } from '@rc/core'
 import { useStreakStore } from '../stores/streakStore'
@@ -83,12 +84,12 @@ export default function Home() {
                   {badge}
                 </span>
               )}
-              <div className={`text-5xl font-black leading-none ${loading ? 'text-muted' : 'text-ink'}`}>
+              <div className={`text-5xl leading-none ${loading || days === 0 ? 'font-bold text-muted' : 'font-black text-ink'}`}>
                 {loading ? '—' : days}
               </div>
             </div>
             <div className="text-muted text-xs font-semibold uppercase tracking-wider mt-1">{t.home.daysLabel}</div>
-            {!loading && days === 0 && (
+            {!loading && days === 0 && !lostTodayFlag && (
               <p className="text-ink text-sm mt-3">{t.home.startHint}</p>
             )}
           </div>
@@ -189,29 +190,31 @@ export default function Home() {
                 </div>
               )}
 
-            {loading && (
-              <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
-                —
-              </div>
-            )}
-            {!loading && (
-              lostTodayFlag ? (
-                // No check-in offered on a day with a loss written down. A
-                // disabled button with no reason reads as a broken app, so
-                // say why instead.
-                <p className="w-full py-3.5 px-4 bg-surface2 rounded-xl text-center text-xs font-bold text-muted leading-relaxed">
-                  {t.home.lostToday}
-                </p>
-              ) : (
-                <button
-                  type="button"
-                  onClick={checkIn}
-                  className="w-full py-3.5 bg-accent text-white font-black rounded-xl text-sm tracking-wide hover:opacity-90"
-                >
-                  {t.home.checkInNow}
-                </button>
-              )
-            )}
+            <div className="mt-4">
+              {loading && (
+                <div className="w-full py-3.5 bg-surface2 text-muted font-black rounded-xl text-sm text-center tracking-wide">
+                  —
+                </div>
+              )}
+              {!loading && (
+                lostTodayFlag ? (
+                  // No check-in offered on a day with a loss written down. A
+                  // disabled button with no reason reads as a broken app, so
+                  // say why instead.
+                  <p className="w-full py-3.5 px-4 bg-surface2 rounded-xl text-center text-xs font-bold text-muted leading-relaxed">
+                    {t.home.lostToday}
+                  </p>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={checkIn}
+                    className="w-full py-3.5 bg-accent text-white font-black rounded-xl text-sm tracking-wide hover:opacity-90"
+                  >
+                    {t.home.checkInNow}
+                  </button>
+                )
+              )}
+            </div>
           </div>
         )
       })()}
@@ -225,14 +228,20 @@ export default function Home() {
           to="/lost"
           className="block bg-accent-dim border border-accent rounded-2xl p-4 hover:opacity-90 transition-opacity"
         >
-          <p className="text-ink font-black text-base leading-tight">{t.home.lostBtn}</p>
+          <div className="flex items-center gap-1.5">
+            <Droplet size={20} className="text-accent shrink-0" aria-hidden />
+            <p className="text-ink font-black text-base leading-tight">{t.home.lostBtn}</p>
+          </div>
           <p className="text-muted text-xs mt-1 leading-snug">{t.home.lostHint}</p>
         </Link>
         <Link
           to="/trap/why"
           className="block bg-amber-dim border border-amber rounded-2xl p-4 hover:opacity-90 transition-opacity"
         >
-          <p className="text-ink font-black text-base leading-tight">{t.home.whyBtn}</p>
+          <div className="flex items-center gap-1.5">
+            <Brain size={20} className="text-amber shrink-0" aria-hidden />
+            <p className="text-ink font-black text-base leading-tight">{t.home.whyBtn}</p>
+          </div>
           <p className="text-muted text-xs mt-1 leading-snug">{t.home.whyHint}</p>
         </Link>
       </div>
@@ -241,7 +250,10 @@ export default function Home() {
         to="/journal"
         className="block bg-calm-dim border border-calm rounded-2xl p-5 mb-3 hover:opacity-90 transition-opacity"
       >
-        <p className="text-ink font-black text-lg">{t.home.writeBtn}</p>
+        <div className="flex items-center gap-2">
+          <Notebook size={20} className="text-calm shrink-0" aria-hidden />
+          <p className="text-ink font-black text-lg">{t.home.writeBtn}</p>
+        </div>
         <p className="text-muted text-sm mt-1">{t.home.writeHint}</p>
       </Link>
 
@@ -255,14 +267,20 @@ export default function Home() {
           to="/help"
           className="block bg-support-dim border border-support rounded-2xl p-4 hover:opacity-90 transition-opacity"
         >
-          <p className="text-ink font-black text-base leading-tight">{t.home.helpBtn}</p>
+          <div className="flex items-center gap-1.5">
+            <Handshake size={20} className="text-support shrink-0" aria-hidden />
+            <p className="text-ink font-black text-base leading-tight">{t.home.helpBtn}</p>
+          </div>
           <p className="text-muted text-xs mt-1 leading-snug">{t.home.helpHint}</p>
         </Link>
         <Link
           to="/community"
           className="block bg-support-dim border border-support rounded-2xl p-4 hover:opacity-90 transition-opacity"
         >
-          <p className="text-ink font-black text-base leading-tight">{t.home.communityBtn}</p>
+          <div className="flex items-center gap-1.5">
+            <MessageCircle size={20} className="text-support shrink-0" aria-hidden />
+            <p className="text-ink font-black text-base leading-tight">{t.home.communityBtn}</p>
+          </div>
           <p className="text-muted text-xs mt-1 leading-snug">{t.home.communityHint}</p>
         </Link>
       </div>

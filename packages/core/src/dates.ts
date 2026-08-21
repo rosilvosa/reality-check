@@ -16,6 +16,22 @@ export function localMondayISODate(from = new Date()): string {
   return localISODate(new Date(from.getFullYear(), from.getMonth(), from.getDate() - back))
 }
 
+/** Sunday of the local week containing `from`. Used by the Journal
+ * calendar -- Sunday-start rather than the Monday/ISO default, matching
+ * both the day-of-rest framing Ron asked for and Philippine convention. */
+export function localSundayISODate(from = new Date()): string {
+  const back = from.getDay()
+  return localISODate(new Date(from.getFullYear(), from.getMonth(), from.getDate() - back))
+}
+
+/** Adds (or subtracts, for a negative delta) whole days to a YYYY-MM-DD
+ * string, staying in local calendar terms rather than UTC millisecond math
+ * so it cannot drift across a DST boundary. */
+export function addDaysISODate(iso: string, delta: number): string {
+  const [y, m, day] = iso.split('-').map(Number)
+  return localISODate(new Date(y, m - 1, day + delta))
+}
+
 
 /**
  * PH calendar date as YYYY-MM-DD regardless of the device's own timezone.

@@ -21,11 +21,13 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={onToggle}
-      className="shrink-0 w-11 h-11 flex items-center justify-center text-muted hover:text-ink"
+      className="shrink-0 min-h-[56px] flex flex-col items-center justify-center gap-0.5 px-2 pt-2 pb-1.5 text-muted hover:text-ink"
       aria-label={toLight ? t.common.themeLight : t.common.themeDark}
       title={toLight ? t.common.themeLight : t.common.themeDark}
     >
-      <Icon size={20} strokeWidth={2} />
+      <Icon size={22} strokeWidth={2} />
+      <span className="w-full truncate text-[0.6875rem] font-bold tracking-wide leading-tight text-center">{t.common.theme}</span>
+      <span className="h-0.5 w-5 rounded-full bg-transparent" />
     </button>
   )
 }

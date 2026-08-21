@@ -100,10 +100,33 @@ function lazyCloudAdapter(uid: string): StorageAdapter {
   return {
     getSettings: () => impl().then((x) => x.getSettings()),
     saveSettings: (s) => impl().then((x) => x.saveSettings(s)),
-    getJournalEntries: () => impl().then((x) => x.getJournalEntries()),
-    addJournalEntry: (entry) => impl().then((x) => x.addJournalEntry(entry)),
-    getStreak: () => impl().then((x) => x.getStreak()),
-    saveStreak: (s) => impl().then((x) => x.saveStreak(s)),
+    getJournalEntries: () => impl().then((x) => x.getJournalEntries()).then((entries) => {
+      try {
+        localStorage.setItem(
+          LS_JOURNAL,
+          JSON.stringify(entries.map((e) => ({ ...e, createdAt: e.createdAt.toISOString() }))),
+        )
+      } catch { /* best-effort seed mirror only */ }
+      return entries
+    }),
+    addJournalEntry: (entry) => impl().then((x) => x.addJournalEntry(entry)).then((saved) => {
+      try {
+        const raw = localStorage.getItem(LS_JOURNAL)
+        const existing = raw ? JSON.parse(raw) : []
+        localStorage.setItem(
+          LS_JOURNAL,
+          JSON.stringify([{ ...saved, createdAt: saved.createdAt.toISOString() }, ...existing]),
+        )
+      } catch { /* best-effort seed mirror only -- loadJournal() is still the source of truth */ }
+      return saved
+    }),
+    getStreak: () => impl().then((x) => x.getStreak()).then((data) => {
+      if (data) {
+        try { localStorage.setItem(LS_STREAK, JSON.stringify(data)) } catch { /* best-effort seed mirror only */ }
+      }
+      return data
+    }),
+    saveStreak: (s) => impl().then((x) => x.saveStreak(s)).then(() => localStorageAdapter.saveStreak(s)),
     getBarriers: () => impl().then((x) => x.getBarriers()),
     saveBarriers: (ids) => impl().then((x) => x.saveBarriers(ids)),
   }
@@ -166,6 +189,27 @@ export function readLocalStreakSync(): StreakData | null {
     return raw ? JSON.parse(raw) : null
   } catch {
     return null
+  }
+}
+
+/**
+ * Journal entries, read synchronously, same reasoning as
+ * readLocalStreakSync/readLocalBarriersSync above: without this, entries
+ * starts empty on every fresh load until loadJournal() resolves, and for a
+ * signed-in user that fetch sits behind migrateToFirestore() in App.tsx --
+ * long enough that Home's lostToday() (a plain read of these entries, not
+ * of streak state) reads "no loss today" and shows the check-in button
+ * even on a day a loss was already written down, until the real fetch
+ * lands and flips it. Seeding from this snapshot closes that window the
+ * same way the streak seed already does for the check-in state itself.
+ */
+export function readLocalJournalSync(): JournalEntry[] {
+  try {
+    const raw = localStorage.getItem(LS_JOURNAL)
+    const arr: Array<JournalEntry & { createdAt: string | Date }> = raw ? JSON.parse(raw) : []
+    return arr.map((e) => ({ ...e, createdAt: new Date(e.createdAt) }))
+  } catch {
+    return []
   }
 }
 

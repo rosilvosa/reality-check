@@ -14,7 +14,7 @@ export const hil: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahon', back: 'Balik', next: 'Sunod', skip: 'Laktawan',
     change: 'Usbon', close: 'Sarhan', calculate: 'Kuwentahon', saved: '✓ Na-save',
-    themeLight: 'Masanag nga mode', themeDark: 'Madulom nga mode',
+    themeLight: 'Masanag nga mode', themeDark: 'Madulom nga mode', theme: 'Tema',
   },
 
   home: {
@@ -27,8 +27,8 @@ export const hil: Translation = {
     startHint: 'Mag-check in para umpisahan ang ihap sang limpyo nga adlaw.',
     lostBtn: 'Bag-o lang ako napildi',
     lostHint: 'Tan-awa ang oras kag ang pagkaon',
-    whyBtn: 'Ngaa indi mo mapugngan',
-    whyHint: 'Random nga payout. Ang near-miss. Ngaa indi ka ya pagpabay-an',
+    whyBtn: 'Indi mapugngan?',
+    whyHint: 'Random nga payout. Ang near-miss.',
     writeBtn: 'Isulat',
     writeHint: 'Ang dyornal. Basaha anay ang ulihi nga entry.',
     lastEntry: 'Ulihi mo naisulat',
@@ -57,6 +57,7 @@ export const hil: Translation = {
     almostYes: 'Huo — malapit',
     almostNo: 'Indi',
     writeNext: 'Isulat',
+    recentTitle: 'NAGLIGAD NGA MGA KAPIERDEHAN',
   },
 
   sweat: {
@@ -108,6 +109,13 @@ export const hil: Translation = {
     recordedHint: 'Mabasa mo ini antes sang masunod nga pusta. Amo ina ang bug-os nga rason sini.',
     streakReset: 'Nagbalik sa zero ang imo streak, kag indi na naka-check in ang adlaw subong. Amo ina ang matuod nga numero.',
     pastEntries: 'MGA NAAGI NGA ENTRY ({n})',
+    calendarTitle: 'Sini nga semana',
+    calendarUnknownHint: 'Ang blangko nga adlaw wala lang rekord, indi ini nagakahulugan nga nadasma ka.',
+    calendarFailed: 'Nag-log sang kapierdehan',
+    calendarSucceeded: 'Nag-check in, matinlo',
+    afterTitle: 'Indi ka lang isahanon sini subong',
+    afterWatch: 'Tan-awa: {title}',
+    afterVoid: 'Tilawi ang iban nga butang sa baylo',
   },
 
   nearmiss: {
@@ -260,10 +268,12 @@ export const hil: Translation = {
     assetNamePlaceholder: 'Ngalan sang gastus',
     addAsset: '+ Magdugang sang Gastus',
     assetCostPlaceholder: 'Kantidad',
-    currencySection: 'KWARTA',
-    currencyHint: 'Ini ang ginagamit sang mga calculator. Default piso.',
+    regionCurrencySection: 'PUNGSOD KAG KWARTA',
+    regionCurrencyHint: 'Ang rekurso sa Barriers nagabag-o suno sa pungsod. Ang kwarta ginagamit sang mga calculator.',
+    labelCountry: 'Pungsod',
+    labelCurrency: 'Kwarta',
     helpRegionSection: 'BULIG SUNO SA PUNGSOD',
-    helpRegionHint: 'Ang self-exclusion kag helpline sa Barriers nagasunod sa sini nga pungsod.',
+    helpRegionHint: 'Ang self-exclusion kag helpline sa sini nga pahina nagasunod sa sini nga pungsod.',
     saveBtn: 'I-SAVE ANG MGA SETTING',
     savedBtn: '✓ NA-SAVE',
     langSection: 'PAMULONG',

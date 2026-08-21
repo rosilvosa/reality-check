@@ -14,7 +14,7 @@ export const fil: Translation = {
   common: {
     save: 'I-save', cancel: 'Kanselahin', back: 'Bumalik', next: 'Susunod', skip: 'Laktawan',
     change: 'Palitan', close: 'Isara', calculate: 'Kalkulahin', saved: '✓ Na-save',
-    themeLight: 'Maliwanag na mode', themeDark: 'Madilim na mode',
+    themeLight: 'Maliwanag na mode', themeDark: 'Madilim na mode', theme: 'Tema',
   },
 
   home: {
@@ -28,7 +28,7 @@ export const fil: Translation = {
     lostBtn: 'Kaka-talo ko lang',
     lostHint: 'Tingnan ang oras at ang pagkain',
     whyBtn: 'Bakit hindi mo maitigil',
-    whyHint: 'Random na payout. Ang near-miss. Bakit hindi ka nito pinakakawalan',
+    whyHint: 'Random na payout. Ang near-miss.',
     writeBtn: 'Isulat',
     writeHint: 'Ang talaarawan. Basahin muna ang huling entry.',
     lastEntry: 'Huli mong isinulat',
@@ -57,6 +57,7 @@ export const fil: Translation = {
     almostYes: 'Oo — malapit',
     almostNo: 'Hindi',
     writeNext: 'Isulat',
+    recentTitle: 'MGA NAKARAANG PAGKATALO',
   },
 
   sweat: {
@@ -108,6 +109,13 @@ export const fil: Translation = {
     recordedHint: 'Mababasa mo ito bago ang susunod na pusta. Iyon ang buong dahilan nito.',
     streakReset: 'Bumalik sa zero ang streak mo, at hindi na naka-check in ang araw na ito. Iyan ang tapat na bilang.',
     pastEntries: 'MGA NAKARAANG ENTRY ({n})',
+    calendarTitle: 'Ngayong linggo',
+    calendarUnknownHint: 'Ang mga blangkong araw ay walang record, hindi ibig sabihin ay nadapa ka.',
+    calendarFailed: 'Nag-log ng pagkatalo',
+    calendarSucceeded: 'Checked in, malinis',
+    afterTitle: 'Hindi ka nag-iisa dito ngayon',
+    afterWatch: 'Panoorin: {title}',
+    afterVoid: 'Subukan ang ibang bagay sa halip',
   },
 
   nearmiss: {
@@ -260,10 +268,12 @@ export const fil: Translation = {
     assetNamePlaceholder: 'Pangalan ng gastos',
     addAsset: '+ Magdagdag ng Gastos',
     assetCostPlaceholder: 'Halaga',
-    currencySection: 'PERA',
-    currencyHint: 'Ginagamit ito ng mga calculator. Default ay piso.',
+    regionCurrencySection: 'BANSA AT PERA',
+    regionCurrencyHint: 'Nagbabago ang mapagkukunan sa Barriers ayon sa bansa. Ginagamit ang pera sa mga calculator.',
+    labelCountry: 'Bansa',
+    labelCurrency: 'Pera',
     helpRegionSection: 'TULONG AYON SA BANSA',
-    helpRegionHint: 'Ang self-exclusion at helpline sa Barriers ay tumutugma sa bansang ito.',
+    helpRegionHint: 'Ang self-exclusion at helpline sa pahinang ito ay tumutugma sa bansang ito.',
     saveBtn: 'I-SAVE ANG MGA SETTING',
     savedBtn: '✓ NA-SAVE',
     langSection: 'WIKA',
